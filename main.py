@@ -5,6 +5,7 @@ from PyQt5.QtWidgets import (
 )
 from PyQt5.QtCore import Qt, QTimer, QDateTime
 from PyQt5.QtGui import QPalette, QColor
+from qualidade_agua import QualidadeAguaPage
 
 # ─────────────────────────────────────────────
 #  ESTILOS GLOBAIS
@@ -150,9 +151,7 @@ class MainWindow(QMainWindow):
         cl = QVBoxLayout(content); cl.setContentsMargins(0, 0, 0, 0)
         self.stack = QStackedWidget()
         self.stack.addWidget(DashboardPage())
-        self.stack.addWidget(make_placeholder_page("💧", "Qualidade da Água",
-            "pH · Turbidez · Contaminantes · Alertas automáticos",
-            "🔧 Módulo em desenvolvimento\nFormulários, leitura CSV, gráficos de pH/turbidez e alertas."))
+        self.stack.addWidget(QualidadeAguaPage())
         self.stack.addWidget(make_placeholder_page("📊", "Consumo e Distribuição",
             "Monitoramento de uso, perdas e distribuição regional",
             "🔧 Módulo em desenvolvimento\nConsumo por região, perdas na rede, relatórios."))

@@ -12,10 +12,10 @@ Status: Concluída
 
 ## Fase 2 — Consolidação
 
-Status: Planejada
+Status: Em andamento
 
-* [ ] Persistência de dados
-* [ ] Histórico de medições
+* [x] Persistência de dados
+* [x] Histórico de medições
 * [ ] Exportação de relatórios
 * [ ] Cadastro de pontos de coleta
 * [ ] Registro de eventos críticos
