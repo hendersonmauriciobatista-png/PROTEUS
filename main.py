@@ -1,17 +1,33 @@
+import csv
 import sys
-from PyQt5.QtWidgets import (
-    QApplication, QMainWindow, QWidget, QVBoxLayout, QHBoxLayout,
-    QPushButton, QStackedWidget, QLabel, QFrame, QStatusBar
-)
-from PyQt5.QtCore import Qt, QTimer, QDateTime
-from PyQt5.QtGui import QPalette, QColor
-from qualidade_agua import QualidadeAguaPage
-from dados_ambientais import DadosAmbientaisPage
-from consumo_distribuicao import ConsumoDistribuicaoPage
+from pathlib import Path
 
-# ─────────────────────────────────────────────
-#  ESTILOS GLOBAIS
-# ─────────────────────────────────────────────
+from PyQt5.QtCore import Qt, QDateTime, QTimer
+from PyQt5.QtGui import QColor, QPalette
+from PyQt5.QtWidgets import (
+    QApplication,
+    QFrame,
+    QHBoxLayout,
+    QLabel,
+    QMainWindow,
+    QPushButton,
+    QStackedWidget,
+    QStatusBar,
+    QVBoxLayout,
+    QWidget,
+)
+
+from consumo_distribuicao import ConsumoDistribuicaoPage
+from dados_ambientais import DadosAmbientaisPage
+from qualidade_agua import QualidadeAguaPage
+
+
+DATA_DIR = Path(__file__).resolve().parent / "data"
+QUALIDADE_CSV = DATA_DIR / "qualidade_agua_medicoes.csv"
+AMBIENTE_CSV = DATA_DIR / "dados_ambientais_medicoes.csv"
+CONSUMO_CSV = DATA_DIR / "consumo_distribuicao_medicoes.csv"
+
+
 STYLE_MAIN = """
 QMainWindow { background-color: #0d1b2a; }
 QWidget#central { background-color: #0d1b2a; }
@@ -39,9 +55,7 @@ QLabel#page_title { color: #4fc3f7; font-size: 22px; font-weight: bold; padding:
 QLabel#page_subtitle { color: #78909c; font-size: 12px; padding-bottom: 15px; }
 """
 
-# ─────────────────────────────────────────────
-#  PÁGINAS DOS MÓDULOS
-# ─────────────────────────────────────────────
+
 class DashboardPage(QWidget):
     def __init__(self):
         super().__init__()
@@ -49,60 +63,140 @@ class DashboardPage(QWidget):
         layout.setContentsMargins(30, 20, 30, 20)
         layout.setSpacing(20)
 
-        title = QLabel("🌊 Visão Geral do Sistema")
+        title = QLabel("Visão Geral do Sistema")
         title.setObjectName("page_title")
-        subtitle = QLabel("Monitoramento em tempo real de todos os módulos")
+        subtitle = QLabel("Painel consolidado dos módulos funcionais")
         subtitle.setObjectName("page_subtitle")
         layout.addWidget(title)
         layout.addWidget(subtitle)
 
-        # Cards de resumo
         cards_layout = QHBoxLayout()
-        cards = [
-            ("💧", "Qualidade da Água", "pH: 7.2 | Turbidez: Normal", "#4fc3f7"),
-            ("📊", "Consumo", "3.240 m³ hoje", "#66bb6a"),
-            ("🌍", "Dados Ambientais", "12 sensores ativos", "#ffa726"),
-            ("🤖", "Previsão ML", "Qualidade: BOA (94%)", "#ab47bc"),
+        self.cards = [
+            self._create_card("Qualidade da Água", "#4fc3f7"),
+            self._create_card("Dados Ambientais", "#ffa726"),
+            self._create_card("Consumo", "#66bb6a"),
+            self._create_card("Total de Registros", "#ab47bc"),
         ]
-        for icon, t, val, color in cards:
-            card = QFrame()
-            card.setStyleSheet(f"QFrame {{ background-color: #112240; border: 1px solid {color}44; border-left: 4px solid {color}; border-radius: 10px; padding: 5px; }}")
-            cl = QVBoxLayout(card)
-            lbl1 = QLabel(f"{icon}  {t}")
-            lbl1.setStyleSheet(f"color: {color}; font-weight: bold; background: transparent; border: none;")
-            lbl2 = QLabel(val)
-            lbl2.setStyleSheet("color: #cfd8dc; background: transparent; border: none;")
-            cl.addWidget(lbl1); cl.addWidget(lbl2)
+        for card, _value_label in self.cards:
             cards_layout.addWidget(card)
         layout.addLayout(cards_layout)
 
-        graph = QFrame()
-        graph.setStyleSheet("QFrame { background-color: #112240; border: 1px solid #1e3a5f; border-radius: 10px; min-height: 250px; }")
-        gl = QVBoxLayout(graph)
-        gl_lbl = QLabel("📈  Gráfico de tendências (será integrado nos próximos módulos)")
-        gl_lbl.setAlignment(Qt.AlignCenter)
-        gl_lbl.setStyleSheet("color: #546e7a; font-size: 14px;")
-        gl.addWidget(gl_lbl)
-        layout.addWidget(graph)
+        info = QFrame()
+        info.setStyleSheet(
+            "QFrame { background-color: #112240; border: 1px solid #1e3a5f; "
+            "border-radius: 10px; min-height: 250px; }"
+        )
+        info_layout = QVBoxLayout(info)
+        info_label = QLabel("Dados consolidados a partir dos CSVs locais. Gráficos serão adicionados em etapa futura.")
+        info_label.setAlignment(Qt.AlignCenter)
+        info_label.setStyleSheet("color: #546e7a; font-size: 14px;")
+        info_layout.addWidget(info_label)
+        layout.addWidget(info)
         layout.addStretch()
+        self.refresh()
+
+    def _create_card(self, title, color):
+        card = QFrame()
+        card.setStyleSheet(
+            f"QFrame {{ background-color: #112240; border: 1px solid {color}44; "
+            f"border-left: 4px solid {color}; border-radius: 10px; padding: 5px; }}"
+        )
+        card_layout = QVBoxLayout(card)
+        title_label = QLabel(title)
+        title_label.setStyleSheet(f"color: {color}; font-weight: bold; background: transparent; border: none;")
+        value_label = QLabel("Sem registros")
+        value_label.setWordWrap(True)
+        value_label.setStyleSheet("color: #cfd8dc; background: transparent; border: none;")
+        card_layout.addWidget(title_label)
+        card_layout.addWidget(value_label)
+        return card, value_label
+
+    def refresh(self):
+        qualidade_rows = self._read_csv(QUALIDADE_CSV)
+        ambiente_rows = self._read_csv(AMBIENTE_CSV)
+        consumo_rows = self._read_csv(CONSUMO_CSV)
+
+        self.cards[0][1].setText(self._format_qualidade(qualidade_rows))
+        self.cards[1][1].setText(self._format_ambiente(ambiente_rows))
+        self.cards[2][1].setText(self._format_consumo(consumo_rows))
+        self.cards[3][1].setText(
+            f"Água: {len(qualidade_rows)}\n"
+            f"Ambiente: {len(ambiente_rows)}\n"
+            f"Consumo: {len(consumo_rows)}"
+        )
+
+    def _read_csv(self, path):
+        if not path.exists():
+            return []
+
+        with path.open("r", newline="", encoding="utf-8") as file:
+            return list(csv.DictReader(file))
+
+    def _format_qualidade(self, rows):
+        if not rows:
+            return "Sem registros"
+
+        latest = rows[-1]
+        ph = self._to_float(latest.get("ph"))
+        return f"pH: {ph:.2f}\nStatus: {self._quality_status(latest)}"
+
+    def _format_ambiente(self, rows):
+        if not rows:
+            return "Sem registros"
+
+        latest = rows[-1]
+        temperatura = self._to_float(latest.get("temperatura_ambiente"))
+        umidade = self._to_float(latest.get("umidade_relativa"))
+        return f"Temperatura: {temperatura:.2f} °C\nUmidade: {umidade:.2f} %"
+
+    def _format_consumo(self, rows):
+        if not rows:
+            return "Sem registros"
+
+        latest = rows[-1]
+        consumo_diario = self._to_float(latest.get("consumo_diario"))
+        perdas = self._to_float(latest.get("perdas_estimadas"))
+        return f"Consumo diário: {consumo_diario:.2f} m³\nPerdas: {perdas:.2f} %"
+
+    def _quality_status(self, row):
+        checks = [
+            (self._to_float(row.get("ph")), 6.0, 9.0),
+            (self._to_float(row.get("turbidez")), 0.0, 5.0),
+            (self._to_float(row.get("oxigenio_dissolvido")), 5.0, 10.0),
+            (self._to_float(row.get("temperatura")), 15.0, 30.0),
+            (self._to_float(row.get("agrotoxicos")), 0.0, 0.1),
+        ]
+
+        for value, minimum, maximum in checks:
+            if value < minimum or value > maximum:
+                return "Fora do padrão"
+        return "Dentro do padrão"
+
+    def _to_float(self, value):
+        try:
+            return float(value or 0)
+        except ValueError:
+            return 0.0
 
 
 def make_placeholder_page(icon, title, subtitle, desc):
     page = QWidget()
     layout = QVBoxLayout(page)
     layout.setContentsMargins(30, 20, 30, 20)
-    t = QLabel(f"{icon} {title}"); t.setObjectName("page_title")
-    s = QLabel(subtitle); s.setObjectName("page_subtitle")
-    i = QLabel(desc); i.setAlignment(Qt.AlignCenter)
-    i.setStyleSheet("color: #546e7a; font-size: 13px; padding: 60px;")
-    layout.addWidget(t); layout.addWidget(s); layout.addWidget(i)
+    title_label = QLabel(f"{icon} {title}")
+    title_label.setObjectName("page_title")
+    subtitle_label = QLabel(subtitle)
+    subtitle_label.setObjectName("page_subtitle")
+    info_label = QLabel(desc)
+    info_label.setAlignment(Qt.AlignCenter)
+    info_label.setStyleSheet("color: #546e7a; font-size: 13px; padding: 60px;")
+    layout.addWidget(title_label)
+    layout.addWidget(subtitle_label)
+    layout.addWidget(info_label)
     layout.addStretch()
     return page
 
 
-# ─────────────────────────────────────────────
-#  JANELA PRINCIPAL
-# ─────────────────────────────────────────────
 class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
@@ -114,65 +208,86 @@ class MainWindow(QMainWindow):
         self._start_clock()
 
     def _build_ui(self):
-        central = QWidget(); central.setObjectName("central")
+        central = QWidget()
+        central.setObjectName("central")
         self.setCentralWidget(central)
         main_layout = QHBoxLayout(central)
         main_layout.setContentsMargins(0, 0, 0, 0)
         main_layout.setSpacing(0)
 
-        # Sidebar
-        sidebar = QFrame(); sidebar.setObjectName("sidebar")
-        sl = QVBoxLayout(sidebar); sl.setContentsMargins(0, 0, 0, 0); sl.setSpacing(0)
-        logo = QLabel("💧 AquaAnalysis"); logo.setObjectName("logo")
-        logo_sub = QLabel("SISTEMA DE ANÁLISE"); logo_sub.setObjectName("logo_sub")
-        sl.addWidget(logo); sl.addWidget(logo_sub)
+        sidebar = QFrame()
+        sidebar.setObjectName("sidebar")
+        sidebar_layout = QVBoxLayout(sidebar)
+        sidebar_layout.setContentsMargins(0, 0, 0, 0)
+        sidebar_layout.setSpacing(0)
+        logo = QLabel("AquaAnalysis")
+        logo.setObjectName("logo")
+        logo_sub = QLabel("SISTEMA DE ANÁLISE")
+        logo_sub.setObjectName("logo_sub")
+        sidebar_layout.addWidget(logo)
+        sidebar_layout.addWidget(logo_sub)
 
-        sep = QFrame(); sep.setFrameShape(QFrame.HLine)
+        sep = QFrame()
+        sep.setFrameShape(QFrame.HLine)
         sep.setStyleSheet("background-color: #1e3a5f; max-height: 1px; margin: 5px 15px;")
-        sl.addWidget(sep)
+        sidebar_layout.addWidget(sep)
 
         self.nav_buttons = []
         nav_items = [
-            ("🏠  Dashboard", 0), ("💧  Qualidade da Água", 1),
-            ("📊  Consumo e Distribuição", 2), ("🌍  Dados Ambientais", 3),
-            ("🤖  Previsão com ML", 4),
+            ("Dashboard", 0),
+            ("Qualidade da Água", 1),
+            ("Consumo e Distribuição", 2),
+            ("Dados Ambientais", 3),
+            ("Previsão com ML", 4),
         ]
-        for label, idx in nav_items:
-            btn = QPushButton(label); btn.setObjectName("nav_btn"); btn.setCheckable(True)
-            btn.clicked.connect(lambda _, i=idx: self._navigate(i))
-            sl.addWidget(btn); self.nav_buttons.append(btn)
+        for label, index in nav_items:
+            button = QPushButton(label)
+            button.setObjectName("nav_btn")
+            button.setCheckable(True)
+            button.clicked.connect(lambda _, i=index: self._navigate(i))
+            sidebar_layout.addWidget(button)
+            self.nav_buttons.append(button)
 
-        sl.addStretch()
-        ver = QLabel("v1.0 · Build 2026")
-        ver.setStyleSheet("color: #37474f; font-size: 10px; padding: 10px 20px;")
-        sl.addWidget(ver)
+        sidebar_layout.addStretch()
+        version = QLabel("v1.0 · Build 2026")
+        version.setStyleSheet("color: #37474f; font-size: 10px; padding: 10px 20px;")
+        sidebar_layout.addWidget(version)
         main_layout.addWidget(sidebar)
 
-        # Stack de páginas
-        content = QFrame(); content.setObjectName("content_area")
-        cl = QVBoxLayout(content); cl.setContentsMargins(0, 0, 0, 0)
+        content = QFrame()
+        content.setObjectName("content_area")
+        content_layout = QVBoxLayout(content)
+        content_layout.setContentsMargins(0, 0, 0, 0)
         self.stack = QStackedWidget()
         self.stack.addWidget(DashboardPage())
         self.stack.addWidget(QualidadeAguaPage())
         self.stack.addWidget(ConsumoDistribuicaoPage())
         self.stack.addWidget(DadosAmbientaisPage())
-        self.stack.addWidget(make_placeholder_page("🤖", "Previsão com ML",
-            "Random Forest · LSTM · Previsão de qualidade e demanda",
-            "🔧 Módulo em desenvolvimento\nTreinamento, previsões futuras, métricas de acurácia."))
-        cl.addWidget(self.stack)
+        self.stack.addWidget(
+            make_placeholder_page(
+                "ML",
+                "Previsão com ML",
+                "Random Forest · LSTM · Previsão de qualidade e demanda",
+                "Módulo em desenvolvimento\nTreinamento, previsões futuras, métricas de acurácia.",
+            )
+        )
+        content_layout.addWidget(self.stack)
         main_layout.addWidget(content)
 
-        # Status bar
-        self.status_bar = QStatusBar(); self.setStatusBar(self.status_bar)
+        self.status_bar = QStatusBar()
+        self.setStatusBar(self.status_bar)
         self.clock_label = QLabel()
         self.status_bar.addPermanentWidget(self.clock_label)
-        self.status_bar.showMessage("  ✅ Sistema iniciado · Todos os módulos carregados")
+        self.status_bar.showMessage("Sistema iniciado · Todos os módulos carregados")
         self._navigate(0)
 
     def _navigate(self, index):
         self.stack.setCurrentIndex(index)
-        for i, btn in enumerate(self.nav_buttons):
-            btn.setChecked(i == index)
+        current_page = self.stack.currentWidget()
+        if hasattr(current_page, "refresh"):
+            current_page.refresh()
+        for i, button in enumerate(self.nav_buttons):
+            button.setChecked(i == index)
 
     def _start_clock(self):
         self.timer = QTimer()
@@ -182,7 +297,7 @@ class MainWindow(QMainWindow):
 
     def _update_clock(self):
         now = QDateTime.currentDateTime().toString("dd/MM/yyyy  hh:mm:ss")
-        self.clock_label.setText(f"🕐 {now}  ")
+        self.clock_label.setText(f"{now}  ")
 
 
 if __name__ == "__main__":
