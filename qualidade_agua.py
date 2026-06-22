@@ -8,13 +8,16 @@ from PyQt5.QtWidgets import (
     QFormLayout,
     QFrame,
     QHeaderView,
+    QHBoxLayout,
     QLabel,
+    QMessageBox,
     QPushButton,
     QTableWidget,
     QTableWidgetItem,
     QVBoxLayout,
     QWidget,
 )
+from PyQt5.QtGui import QColor
 
 
 DATA_FILE = Path(__file__).resolve().parent / "data" / "qualidade_agua_medicoes.csv"
@@ -72,6 +75,13 @@ class QualidadeAguaPage(QWidget):
         self.inputs["oxigenio_dissolvido"] = self._make_spinbox(0.0, 30.0, 5.0, 2, 0.1)
         self.inputs["temperatura"] = self._make_spinbox(-10.0, 60.0, 25.0, 2, 0.1)
         self.inputs["agrotoxicos"] = self._make_spinbox(0.0, 100.0, 0.0, 4, 0.01)
+        self.default_values = {
+            "ph": 7.0,
+            "turbidez": 0.0,
+            "oxigenio_dissolvido": 5.0,
+            "temperatura": 25.0,
+            "agrotoxicos": 0.0,
+        }
 
         form_layout.addRow("pH", self.inputs["ph"])
         form_layout.addRow("Turbidez (NTU)", self.inputs["turbidez"])
@@ -81,7 +91,13 @@ class QualidadeAguaPage(QWidget):
 
         self.save_button = QPushButton("Salvar Medição")
         self.save_button.clicked.connect(self.save_measurement)
-        form_layout.addRow("", self.save_button)
+        self.clear_button = QPushButton("Limpar Campos")
+        self.clear_button.clicked.connect(self.clear_fields)
+
+        button_layout = QHBoxLayout()
+        button_layout.addWidget(self.save_button)
+        button_layout.addWidget(self.clear_button)
+        form_layout.addRow("", button_layout)
         layout.addWidget(form_frame)
 
         self.table = QTableWidget()
@@ -130,11 +146,19 @@ class QualidadeAguaPage(QWidget):
             "agrotoxicos": self.inputs["agrotoxicos"].value(),
         }
 
-        with DATA_FILE.open("a", newline="", encoding="utf-8") as file:
-            writer = csv.DictWriter(file, fieldnames=CSV_FIELDS)
-            writer.writerow(measurement)
+        try:
+            with DATA_FILE.open("a", newline="", encoding="utf-8") as file:
+                writer = csv.DictWriter(file, fieldnames=CSV_FIELDS)
+                writer.writerow(measurement)
 
-        self.load_history()
+            self.load_history()
+            QMessageBox.information(self, "Medição salva", "Medição salva com sucesso")
+        except Exception as error:
+            QMessageBox.critical(self, "Erro ao salvar", f"Erro ao salvar medição: {error}")
+
+    def clear_fields(self):
+        for field_name, default_value in self.default_values.items():
+            self.inputs[field_name].setValue(default_value)
 
     def load_history(self):
         self._ensure_storage()
@@ -161,7 +185,17 @@ class QualidadeAguaPage(QWidget):
                 item = QTableWidgetItem(value)
                 if column_index == 6:
                     item.setTextAlignment(Qt.AlignCenter)
+                    self._apply_status_style(item, status)
                 self.table.setItem(row_index, column_index, item)
+
+    def _apply_status_style(self, item, status):
+        if status == "Dentro do padrão":
+            item.setBackground(QColor("#1b5e20"))
+            item.setForeground(QColor("#ffffff"))
+            return
+
+        item.setBackground(QColor("#8e2430"))
+        item.setForeground(QColor("#ffffff"))
 
     def _parse_row(self, row):
         return {

@@ -6,6 +6,7 @@ from PyQt5.QtWidgets import (
 from PyQt5.QtCore import Qt, QTimer, QDateTime
 from PyQt5.QtGui import QPalette, QColor
 from qualidade_agua import QualidadeAguaPage
+from dados_ambientais import DadosAmbientaisPage
 
 # ─────────────────────────────────────────────
 #  ESTILOS GLOBAIS
@@ -155,9 +156,7 @@ class MainWindow(QMainWindow):
         self.stack.addWidget(make_placeholder_page("📊", "Consumo e Distribuição",
             "Monitoramento de uso, perdas e distribuição regional",
             "🔧 Módulo em desenvolvimento\nConsumo por região, perdas na rede, relatórios."))
-        self.stack.addWidget(make_placeholder_page("🌍", "Dados Ambientais",
-            "Sensores IoT · APIs externas · Clima",
-            "🔧 Módulo em desenvolvimento\nLeitura IoT, APIs de clima, mapa de sensores."))
+        self.stack.addWidget(DadosAmbientaisPage())
         self.stack.addWidget(make_placeholder_page("🤖", "Previsão com ML",
             "Random Forest · LSTM · Previsão de qualidade e demanda",
             "🔧 Módulo em desenvolvimento\nTreinamento, previsões futuras, métricas de acurácia."))
