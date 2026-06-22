@@ -7,6 +7,7 @@ from PyQt5.QtCore import Qt, QTimer, QDateTime
 from PyQt5.QtGui import QPalette, QColor
 from qualidade_agua import QualidadeAguaPage
 from dados_ambientais import DadosAmbientaisPage
+from consumo_distribuicao import ConsumoDistribuicaoPage
 
 # ─────────────────────────────────────────────
 #  ESTILOS GLOBAIS
@@ -153,9 +154,7 @@ class MainWindow(QMainWindow):
         self.stack = QStackedWidget()
         self.stack.addWidget(DashboardPage())
         self.stack.addWidget(QualidadeAguaPage())
-        self.stack.addWidget(make_placeholder_page("📊", "Consumo e Distribuição",
-            "Monitoramento de uso, perdas e distribuição regional",
-            "🔧 Módulo em desenvolvimento\nConsumo por região, perdas na rede, relatórios."))
+        self.stack.addWidget(ConsumoDistribuicaoPage())
         self.stack.addWidget(DadosAmbientaisPage())
         self.stack.addWidget(make_placeholder_page("🤖", "Previsão com ML",
             "Random Forest · LSTM · Previsão de qualidade e demanda",
