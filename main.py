@@ -20,6 +20,7 @@ from PyQt5.QtWidgets import (
 from consumo_distribuicao import ConsumoDistribuicaoPage
 from dados_ambientais import DadosAmbientaisPage
 from qualidade_agua import QualidadeAguaPage
+from relatorios import RelatoriosPage
 
 
 DATA_DIR = Path(__file__).resolve().parent / "data"
@@ -238,7 +239,8 @@ class MainWindow(QMainWindow):
             ("Qualidade da Água", 1),
             ("Consumo e Distribuição", 2),
             ("Dados Ambientais", 3),
-            ("Previsão com ML", 4),
+            ("Relatórios", 4),
+            ("Previsão com ML", 5),
         ]
         for label, index in nav_items:
             button = QPushButton(label)
@@ -263,6 +265,7 @@ class MainWindow(QMainWindow):
         self.stack.addWidget(QualidadeAguaPage())
         self.stack.addWidget(ConsumoDistribuicaoPage())
         self.stack.addWidget(DadosAmbientaisPage())
+        self.stack.addWidget(RelatoriosPage())
         self.stack.addWidget(
             make_placeholder_page(
                 "ML",

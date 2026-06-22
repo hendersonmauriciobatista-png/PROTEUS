@@ -1,0 +1,18 @@
+RELATÓRIO OPERACIONAL
+Gerado em: 2026-06-22T20:20:57
+
+TOTAL DE REGISTROS
+- Água: 7
+- Ambiente: 8
+- Consumo: 1
+
+ÚLTIMAS MEDIÇÕES
+- Água: 2026-06-22T20:12:09 | pH 7.00 | Turbidez 0.00 | Status Dentro do padrão
+- Ambiente: 2026-06-22T20:14:13 | Temperatura 25.00 °C | Umidade 60.00 %
+- Consumo: 2026-06-22T20:00:50 | Consumo diário 5.00 m³ | Perdas 5.00 %
+
+QUALIDADE DA ÁGUA
+- Registros fora do padrão: 3
+- Média de pH: 6.81
+- Média de turbidez: 0.01
+- Média de temperatura da água: 25.71
