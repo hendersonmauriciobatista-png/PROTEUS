@@ -19,6 +19,7 @@ from PyQt5.QtWidgets import (
 
 from consumo_distribuicao import ConsumoDistribuicaoPage
 from dados_ambientais import DadosAmbientaisPage
+from previsao_analitica import PrevisaoAnaliticaPage
 from qualidade_agua import QualidadeAguaPage
 from relatorios import RelatoriosPage
 
@@ -240,7 +241,7 @@ class MainWindow(QMainWindow):
             ("Consumo e Distribuição", 2),
             ("Dados Ambientais", 3),
             ("Relatórios", 4),
-            ("Previsão com ML", 5),
+            ("Previsao Analitica", 5),
         ]
         for label, index in nav_items:
             button = QPushButton(label)
@@ -266,14 +267,7 @@ class MainWindow(QMainWindow):
         self.stack.addWidget(ConsumoDistribuicaoPage())
         self.stack.addWidget(DadosAmbientaisPage())
         self.stack.addWidget(RelatoriosPage())
-        self.stack.addWidget(
-            make_placeholder_page(
-                "ML",
-                "Previsão com ML",
-                "Random Forest · LSTM · Previsão de qualidade e demanda",
-                "Módulo em desenvolvimento\nTreinamento, previsões futuras, métricas de acurácia.",
-            )
-        )
+        self.stack.addWidget(PrevisaoAnaliticaPage())
         content_layout.addWidget(self.stack)
         main_layout.addWidget(content)
 
