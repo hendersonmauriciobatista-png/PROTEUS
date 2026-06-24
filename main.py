@@ -20,6 +20,7 @@ from PyQt5.QtWidgets import (
 from consumo_distribuicao import ConsumoDistribuicaoPage
 from dados_ambientais import DadosAmbientaisPage
 from governanca_operacional import GovernancaOperacionalPage
+from painel_executivo import PainelExecutivoPage
 from previsao_analitica import PrevisaoAnaliticaPage
 from qualidade_agua import QualidadeAguaPage
 from relatorios import RelatoriosPage
@@ -238,12 +239,13 @@ class MainWindow(QMainWindow):
         self.nav_buttons = []
         nav_items = [
             ("Dashboard", 0),
-            ("Qualidade da Água", 1),
-            ("Consumo e Distribuição", 2),
-            ("Dados Ambientais", 3),
-            ("Relatórios", 4),
-            ("Previsao Analitica", 5),
-            ("Governanca Operacional", 6),
+            ("Painel Executivo", 1),
+            ("Qualidade da Água", 2),
+            ("Consumo e Distribuição", 3),
+            ("Dados Ambientais", 4),
+            ("Relatórios", 5),
+            ("Previsao Analitica", 6),
+            ("Governanca Operacional", 7),
         ]
         for label, index in nav_items:
             button = QPushButton(label)
@@ -265,6 +267,7 @@ class MainWindow(QMainWindow):
         content_layout.setContentsMargins(0, 0, 0, 0)
         self.stack = QStackedWidget()
         self.stack.addWidget(DashboardPage())
+        self.stack.addWidget(PainelExecutivoPage())
         self.stack.addWidget(QualidadeAguaPage())
         self.stack.addWidget(ConsumoDistribuicaoPage())
         self.stack.addWidget(DadosAmbientaisPage())
