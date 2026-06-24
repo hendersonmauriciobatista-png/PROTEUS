@@ -19,6 +19,7 @@ from PyQt5.QtWidgets import (
 
 from consumo_distribuicao import ConsumoDistribuicaoPage
 from dados_ambientais import DadosAmbientaisPage
+from governanca_operacional import GovernancaOperacionalPage
 from previsao_analitica import PrevisaoAnaliticaPage
 from qualidade_agua import QualidadeAguaPage
 from relatorios import RelatoriosPage
@@ -242,6 +243,7 @@ class MainWindow(QMainWindow):
             ("Dados Ambientais", 3),
             ("Relatórios", 4),
             ("Previsao Analitica", 5),
+            ("Governanca Operacional", 6),
         ]
         for label, index in nav_items:
             button = QPushButton(label)
@@ -268,6 +270,7 @@ class MainWindow(QMainWindow):
         self.stack.addWidget(DadosAmbientaisPage())
         self.stack.addWidget(RelatoriosPage())
         self.stack.addWidget(PrevisaoAnaliticaPage())
+        self.stack.addWidget(GovernancaOperacionalPage())
         content_layout.addWidget(self.stack)
         main_layout.addWidget(content)
 
