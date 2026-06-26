@@ -1,0 +1,369 @@
+{
+  "versao_catalogo": "GP-A09",
+  "descricao": "Catalogo inicial da arquitetura modular de Monitoramento Hidrico.",
+  "perfis_operacionais": [
+    {
+      "codigo": "rural",
+      "nome": "Rural",
+      "descricao": "Monitoramento aplicado a propriedades rurais, captacoes e usos agropecuarios."
+    },
+    {
+      "codigo": "industrial",
+      "nome": "Industrial",
+      "descricao": "Monitoramento aplicado a uso industrial, efluentes e pontos de controle produtivo."
+    },
+    {
+      "codigo": "urbano_saneamento",
+      "nome": "Urbano/Saneamento",
+      "descricao": "Monitoramento aplicado a redes urbanas, abastecimento e saneamento."
+    },
+    {
+      "codigo": "ambiental_rio",
+      "nome": "Ambiental/Rio",
+      "descricao": "Monitoramento aplicado a rios, corpos hidricos e acompanhamento ambiental."
+    },
+    {
+      "codigo": "eta",
+      "nome": "ETA",
+      "descricao": "Monitoramento aplicado a estacoes de tratamento de agua."
+    },
+    {
+      "codigo": "ete",
+      "nome": "ETE",
+      "descricao": "Monitoramento aplicado a estacoes de tratamento de esgoto."
+    }
+  ],
+  "categorias_parametros": [
+    {
+      "codigo": "fisicos",
+      "nome": "Fisicos",
+      "descricao": "Parametros fisicos de observacao direta ou instrumental."
+    },
+    {
+      "codigo": "quimicos",
+      "nome": "Quimicos",
+      "descricao": "Parametros quimicos gerais de qualidade da agua."
+    },
+    {
+      "codigo": "metais_pesados",
+      "nome": "Metais Pesados",
+      "descricao": "Metais e elementos inorganicos de interesse operacional."
+    },
+    {
+      "codigo": "contaminantes_agricolas",
+      "nome": "Contaminantes Agricolas",
+      "descricao": "Substancias associadas ao uso agricola e agropecuario."
+    },
+    {
+      "codigo": "contaminantes_industriais",
+      "nome": "Contaminantes Industriais",
+      "descricao": "Substancias associadas a atividades industriais e efluentes."
+    },
+    {
+      "codigo": "biologicos",
+      "nome": "Biologicos",
+      "descricao": "Indicadores biologicos e microbiologicos."
+    },
+    {
+      "codigo": "contaminantes_emergentes",
+      "nome": "Contaminantes Emergentes",
+      "descricao": "Parametros emergentes para acompanhamento observacional futuro."
+    }
+  ],
+  "parametros_hidricos": [
+    {
+      "codigo": "temperatura_agua",
+      "nome": "Temperatura da agua",
+      "categoria": "fisicos",
+      "unidade": "C",
+      "descricao": "Temperatura medida na amostra de agua."
+    },
+    {
+      "codigo": "turbidez",
+      "nome": "Turbidez",
+      "categoria": "fisicos",
+      "unidade": "NTU",
+      "descricao": "Indicador fisico de particulas em suspensao."
+    },
+    {
+      "codigo": "cor",
+      "nome": "Cor",
+      "categoria": "fisicos",
+      "unidade": "uH",
+      "descricao": "Cor aparente ou verdadeira observada na amostra."
+    },
+    {
+      "codigo": "condutividade_eletrica",
+      "nome": "Condutividade eletrica",
+      "categoria": "fisicos",
+      "unidade": "uS/cm",
+      "descricao": "Capacidade da agua de conduzir corrente eletrica."
+    },
+    {
+      "codigo": "tds",
+      "nome": "TDS",
+      "categoria": "fisicos",
+      "unidade": "mg/L",
+      "descricao": "Solidos totais dissolvidos."
+    },
+    {
+      "codigo": "salinidade",
+      "nome": "Salinidade",
+      "categoria": "fisicos",
+      "unidade": "PSU",
+      "descricao": "Concentracao salina estimada na amostra."
+    },
+    {
+      "codigo": "ph",
+      "nome": "pH",
+      "categoria": "quimicos",
+      "unidade": "unidade de pH",
+      "descricao": "Potencial hidrogenionico da amostra."
+    },
+    {
+      "codigo": "oxigenio_dissolvido",
+      "nome": "Oxigenio dissolvido",
+      "categoria": "quimicos",
+      "unidade": "mg/L",
+      "descricao": "Oxigenio disponivel dissolvido na agua."
+    },
+    {
+      "codigo": "dbo",
+      "nome": "DBO",
+      "categoria": "quimicos",
+      "unidade": "mg/L",
+      "descricao": "Demanda bioquimica de oxigenio."
+    },
+    {
+      "codigo": "dqo",
+      "nome": "DQO",
+      "categoria": "quimicos",
+      "unidade": "mg/L",
+      "descricao": "Demanda quimica de oxigenio."
+    },
+    {
+      "codigo": "nitrato",
+      "nome": "Nitrato",
+      "categoria": "quimicos",
+      "unidade": "mg/L",
+      "descricao": "Concentracao de nitrato na amostra."
+    },
+    {
+      "codigo": "nitrito",
+      "nome": "Nitrito",
+      "categoria": "quimicos",
+      "unidade": "mg/L",
+      "descricao": "Concentracao de nitrito na amostra."
+    },
+    {
+      "codigo": "amonia",
+      "nome": "Amonia",
+      "categoria": "quimicos",
+      "unidade": "mg/L",
+      "descricao": "Concentracao de amonia na amostra."
+    },
+    {
+      "codigo": "fosforo",
+      "nome": "Fosforo",
+      "categoria": "quimicos",
+      "unidade": "mg/L",
+      "descricao": "Concentracao de fosforo na amostra."
+    },
+    {
+      "codigo": "fosfato",
+      "nome": "Fosfato",
+      "categoria": "quimicos",
+      "unidade": "mg/L",
+      "descricao": "Concentracao de fosfato na amostra."
+    },
+    {
+      "codigo": "cloro_residual",
+      "nome": "Cloro residual",
+      "categoria": "quimicos",
+      "unidade": "mg/L",
+      "descricao": "Cloro residual livre ou total conforme metodo operacional."
+    },
+    {
+      "codigo": "chumbo",
+      "nome": "Chumbo",
+      "categoria": "metais_pesados",
+      "unidade": "mg/L",
+      "descricao": "Concentracao de chumbo na amostra."
+    },
+    {
+      "codigo": "mercurio",
+      "nome": "Mercurio",
+      "categoria": "metais_pesados",
+      "unidade": "mg/L",
+      "descricao": "Concentracao de mercurio na amostra."
+    },
+    {
+      "codigo": "arsenio",
+      "nome": "Arsenio",
+      "categoria": "metais_pesados",
+      "unidade": "mg/L",
+      "descricao": "Concentracao de arsenio na amostra."
+    },
+    {
+      "codigo": "cadmio",
+      "nome": "Cadmio",
+      "categoria": "metais_pesados",
+      "unidade": "mg/L",
+      "descricao": "Concentracao de cadmio na amostra."
+    },
+    {
+      "codigo": "cromo",
+      "nome": "Cromo",
+      "categoria": "metais_pesados",
+      "unidade": "mg/L",
+      "descricao": "Concentracao de cromo na amostra."
+    },
+    {
+      "codigo": "niquel",
+      "nome": "Niquel",
+      "categoria": "metais_pesados",
+      "unidade": "mg/L",
+      "descricao": "Concentracao de niquel na amostra."
+    },
+    {
+      "codigo": "cobre",
+      "nome": "Cobre",
+      "categoria": "metais_pesados",
+      "unidade": "mg/L",
+      "descricao": "Concentracao de cobre na amostra."
+    },
+    {
+      "codigo": "zinco",
+      "nome": "Zinco",
+      "categoria": "metais_pesados",
+      "unidade": "mg/L",
+      "descricao": "Concentracao de zinco na amostra."
+    },
+    {
+      "codigo": "agrotoxicos",
+      "nome": "Agrotoxicos",
+      "categoria": "contaminantes_agricolas",
+      "unidade": "ug/L",
+      "descricao": "Grupo agregado de agrotoxicos monitoraveis."
+    },
+    {
+      "codigo": "herbicidas",
+      "nome": "Herbicidas",
+      "categoria": "contaminantes_agricolas",
+      "unidade": "ug/L",
+      "descricao": "Grupo agregado de herbicidas monitoraveis."
+    },
+    {
+      "codigo": "fungicidas",
+      "nome": "Fungicidas",
+      "categoria": "contaminantes_agricolas",
+      "unidade": "ug/L",
+      "descricao": "Grupo agregado de fungicidas monitoraveis."
+    },
+    {
+      "codigo": "inseticidas",
+      "nome": "Inseticidas",
+      "categoria": "contaminantes_agricolas",
+      "unidade": "ug/L",
+      "descricao": "Grupo agregado de inseticidas monitoraveis."
+    },
+    {
+      "codigo": "oleos_graxas",
+      "nome": "Oleos e graxas",
+      "categoria": "contaminantes_industriais",
+      "unidade": "mg/L",
+      "descricao": "Concentracao de oleos e graxas na amostra."
+    },
+    {
+      "codigo": "fenois",
+      "nome": "Fenois",
+      "categoria": "contaminantes_industriais",
+      "unidade": "mg/L",
+      "descricao": "Concentracao de fenois na amostra."
+    },
+    {
+      "codigo": "solventes",
+      "nome": "Solventes",
+      "categoria": "contaminantes_industriais",
+      "unidade": "ug/L",
+      "descricao": "Grupo agregado de solventes monitoraveis."
+    },
+    {
+      "codigo": "hidrocarbonetos",
+      "nome": "Hidrocarbonetos",
+      "categoria": "contaminantes_industriais",
+      "unidade": "ug/L",
+      "descricao": "Grupo agregado de hidrocarbonetos monitoraveis."
+    },
+    {
+      "codigo": "detergentes",
+      "nome": "Detergentes",
+      "categoria": "contaminantes_industriais",
+      "unidade": "mg/L",
+      "descricao": "Concentracao de detergentes ou surfactantes na amostra."
+    },
+    {
+      "codigo": "coliformes_totais",
+      "nome": "Coliformes totais",
+      "categoria": "biologicos",
+      "unidade": "NMP/100 mL",
+      "descricao": "Indicador microbiologico de coliformes totais."
+    },
+    {
+      "codigo": "e_coli",
+      "nome": "E. coli",
+      "categoria": "biologicos",
+      "unidade": "NMP/100 mL",
+      "descricao": "Indicador microbiologico de Escherichia coli."
+    },
+    {
+      "codigo": "enterococos",
+      "nome": "Enterococos",
+      "categoria": "biologicos",
+      "unidade": "NMP/100 mL",
+      "descricao": "Indicador microbiologico de enterococos."
+    },
+    {
+      "codigo": "cianobacterias",
+      "nome": "Cianobacterias",
+      "categoria": "biologicos",
+      "unidade": "celulas/mL",
+      "descricao": "Contagem ou estimativa de cianobacterias."
+    },
+    {
+      "codigo": "clorofila_a",
+      "nome": "Clorofila-a",
+      "categoria": "biologicos",
+      "unidade": "ug/L",
+      "descricao": "Indicador de biomassa algal."
+    },
+    {
+      "codigo": "microplasticos",
+      "nome": "Microplasticos",
+      "categoria": "contaminantes_emergentes",
+      "unidade": "particulas/L",
+      "descricao": "Contagem estimada de microplasticos."
+    },
+    {
+      "codigo": "residuos_medicamentos",
+      "nome": "Residuos de medicamentos",
+      "categoria": "contaminantes_emergentes",
+      "unidade": "ng/L",
+      "descricao": "Grupo agregado de residuos farmaceuticos monitoraveis."
+    },
+    {
+      "codigo": "hormonios",
+      "nome": "Hormonios",
+      "categoria": "contaminantes_emergentes",
+      "unidade": "ng/L",
+      "descricao": "Grupo agregado de hormonios monitoraveis."
+    },
+    {
+      "codigo": "pfas",
+      "nome": "PFAS",
+      "categoria": "contaminantes_emergentes",
+      "unidade": "ng/L",
+      "descricao": "Substancias perfluoroalquiladas e polifluoroalquiladas."
+    }
+  ]
+}

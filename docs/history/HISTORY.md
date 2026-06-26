@@ -160,3 +160,33 @@ APROVADA E CONSOLIDADA.
 Sem bloqueadores arquiteturais conhecidos.
 
 Próximas evoluções deverão ocorrer sobre esta baseline.
+
+---
+
+# GP-A09 - Monitoramento Hídrico Modular Base
+
+## Data
+
+26/06/2026
+
+## Status
+
+INICIADA
+
+## Evento
+
+Criação da arquitetura base para evoluir a camada Qualidade Da Água para Monitoramento Hídrico.
+
+## Resultado
+
+* Pacote `monitoramento_hidrico` criado.
+* Modelos simples criados para `PerfilOperacional`, `CategoriaParametro` e `ParametroHidrico`.
+* Catálogo inicial de perfis, categorias e parâmetros criado em JSON.
+* Testes de carregamento e consistência básica do catálogo adicionados.
+
+## Restrições Mantidas
+
+* CSVs existentes preservados.
+* Dados operacionais salvos preservados.
+* Validação legal completa não implementada nesta etapa.
+* Evolução mantida como base modular, rastreável e extensível.

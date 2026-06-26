@@ -2,7 +2,7 @@
 
 ## Visão Geral
 
-O Sistema De Análise De Água é uma plataforma de monitoramento, análise e acompanhamento operacional voltada para indicadores de qualidade da água, dados ambientais e consumo/distribuição.
+O Sistema de Análise de Água é uma plataforma de monitoramento, análise e acompanhamento operacional de recursos hídricos. Sua arquitetura foi concebida para apoiar diferentes cenários de monitoramento da qualidade da água, incluindo aplicações ambientais, agrícolas, industriais e de saneamento, por meio de módulos especializados de análise. A Baseline Operacional Inteligente V1 concentra-se na gestão de indicadores de qualidade da água, dados ambientais e consumo/distribuição, constituindo o primeiro núcleo funcional da plataforma.
 
 O projeto foi desenvolvido seguindo a metodologia ICFACTORY, com foco em arquitetura determinística, rastreabilidade, explicabilidade e evolução incremental.
 
@@ -162,6 +162,7 @@ Componentes concluídos:
 * GP-A06 Analytical Prediction Layer V1
 * GP-A07 Operational Governance Layer V1
 * GP-A08 Executive Intelligence Layer V1
+* GP-A09 Monitoramento Hídrico Modular Base
 
 Características da baseline:
 
@@ -184,10 +185,30 @@ Características da baseline:
 
 ---
 
+# Monitoramento Hídrico
+
+GP-A09 inicia a evolução da camada Qualidade Da Água para uma arquitetura base de Monitoramento Hídrico.
+
+Componentes criados:
+
+* Perfis operacionais: Rural, Industrial, Urbano/Saneamento, Ambiental/Rio, ETA e ETE.
+* Categorias de parâmetros: Físicos, Químicos, Metais Pesados, Contaminantes Agrícolas, Contaminantes Industriais, Biológicos e Contaminantes Emergentes.
+* Catálogo inicial de parâmetros hídricos em JSON.
+* Modelos simples e carregadores determinísticos para uso futuro pelas camadas operacional, analítica e executiva.
+
+Características:
+
+* Não altera CSVs existentes.
+* Não altera dados operacionais salvos.
+* Não implementa validação legal completa nesta etapa.
+* Mantém rastreabilidade e evolução incremental aderentes à filosofia ICFACTORY.
+
+---
+
 # Próximos Passos
 
-A próxima expansão arquitetural será definida após a consolidação completa da Baseline Operacional Inteligente V1.
+A próxima expansão arquitetural deverá evoluir a base criada em GP-A09 para regras de aplicabilidade por perfil operacional, limites observacionais e integração gradual com as telas e análises existentes.
 
 Próximo marco previsto:
 
-GP-A09 — Não iniciada.
+GP-A10 — Regras operacionais por perfil e categoria.

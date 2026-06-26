@@ -84,6 +84,7 @@ Observação
 | GP-A06 | Analytical Prediction Layer V1  | ENCERRADA |
 | GP-A07 | Operational Governance Layer V1 | ENCERRADA |
 | GP-A08 | Executive Intelligence Layer V1 | ENCERRADA |
+| GP-A09 | Monitoramento Hídrico Modular Base | INICIADA |
 
 ---
 
@@ -91,15 +92,21 @@ Observação
 
 ## Camada Operacional
 
-Status: ENCERRADA
+Status: EM EVOLUÇÃO
 
 Componentes:
 
 * Dashboard
 * Qualidade Da Água
+* Monitoramento Hídrico
 * Dados Ambientais
 * Consumo E Distribuição
 * Relatórios Operacionais
+
+Evolução em andamento:
+
+* GP-A09 cria a base modular de Monitoramento Hídrico sem substituir os fluxos existentes de Qualidade Da Água.
+* Perfis operacionais e categorias de parâmetros passam a existir como catálogo rastreável.
 
 ## Camada Analítica
 
@@ -168,11 +175,16 @@ Arquitetura determinística, explicável e auditável.
 
 # Próximas Expansões
 
-Ainda não iniciadas.
+GP-A09 iniciada como expansão arquitetural após a Baseline Operacional Inteligente V1.
 
 Próxima GP:
 
-GP-A09
-Status: NÃO INICIADA
+GP-A10
+Status: PLANEJADA
 
-Escopo: A definir após consolidação completa da Baseline Operacional Inteligente V1.
+Escopo previsto:
+
+* Definir aplicabilidade de parâmetros por perfil operacional.
+* Preparar limites observacionais por categoria sem validação legal completa.
+* Planejar integração progressiva com telas, análises e relatórios existentes.
+* Preservar compatibilidade com CSVs e dados operacionais existentes.
