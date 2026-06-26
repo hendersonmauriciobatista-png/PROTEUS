@@ -1,0 +1,133 @@
+{
+  "versao_configuracoes": "GP-A10",
+  "descricao": "Configuracoes operacionais iniciais para Monitoramento Hidrico.",
+  "configuracoes": [
+    {
+      "identificador": "config_rural_base",
+      "nome": "Configuracao Rural Base",
+      "perfil_operacional_base": "rural",
+      "categorias_habilitadas": [
+        "fisicos",
+        "quimicos",
+        "contaminantes_agricolas",
+        "biologicos"
+      ],
+      "parametros_habilitados": [
+        "temperatura_agua",
+        "turbidez",
+        "ph",
+        "nitrato",
+        "fosfato",
+        "agrotoxicos",
+        "coliformes_totais",
+        "e_coli"
+      ],
+      "observacoes": "Configuracao exemplo para operacoes rurais e agropecuarias."
+    },
+    {
+      "identificador": "config_industrial_base",
+      "nome": "Configuracao Industrial Base",
+      "perfil_operacional_base": "industrial",
+      "categorias_habilitadas": [
+        "fisicos",
+        "quimicos",
+        "metais_pesados",
+        "contaminantes_industriais"
+      ],
+      "parametros_habilitados": [
+        "temperatura_agua",
+        "ph",
+        "dbo",
+        "dqo",
+        "chumbo",
+        "cromo",
+        "oleos_graxas",
+        "fenois",
+        "hidrocarbonetos"
+      ],
+      "observacoes": "Configuracao exemplo para acompanhamento industrial."
+    },
+    {
+      "identificador": "config_urbano_saneamento_base",
+      "nome": "Configuracao Urbano/Saneamento Base",
+      "perfil_operacional_base": "urbano_saneamento",
+      "categorias_habilitadas": [
+        "fisicos",
+        "quimicos",
+        "biologicos"
+      ],
+      "parametros_habilitados": [
+        "turbidez",
+        "cor",
+        "ph",
+        "cloro_residual",
+        "coliformes_totais",
+        "e_coli"
+      ],
+      "observacoes": "Configuracao exemplo para redes urbanas e saneamento."
+    },
+    {
+      "identificador": "config_ambiental_rio_base",
+      "nome": "Configuracao Ambiental/Rio Base",
+      "perfil_operacional_base": "ambiental_rio",
+      "categorias_habilitadas": [
+        "fisicos",
+        "quimicos",
+        "biologicos",
+        "contaminantes_emergentes"
+      ],
+      "parametros_habilitados": [
+        "temperatura_agua",
+        "turbidez",
+        "oxigenio_dissolvido",
+        "nitrato",
+        "fosforo",
+        "cianobacterias",
+        "clorofila_a",
+        "microplasticos"
+      ],
+      "observacoes": "Configuracao exemplo para rios e corpos hidricos."
+    },
+    {
+      "identificador": "config_eta_base",
+      "nome": "Configuracao ETA Base",
+      "perfil_operacional_base": "eta",
+      "categorias_habilitadas": [
+        "fisicos",
+        "quimicos",
+        "biologicos"
+      ],
+      "parametros_habilitados": [
+        "turbidez",
+        "cor",
+        "ph",
+        "cloro_residual",
+        "coliformes_totais",
+        "e_coli"
+      ],
+      "observacoes": "Configuracao exemplo para estacao de tratamento de agua."
+    },
+    {
+      "identificador": "config_ete_base",
+      "nome": "Configuracao ETE Base",
+      "perfil_operacional_base": "ete",
+      "categorias_habilitadas": [
+        "fisicos",
+        "quimicos",
+        "biologicos",
+        "contaminantes_industriais"
+      ],
+      "parametros_habilitados": [
+        "turbidez",
+        "ph",
+        "dbo",
+        "dqo",
+        "amonia",
+        "fosforo",
+        "oleos_graxas",
+        "coliformes_totais"
+      ],
+      "observacoes": "Configuracao exemplo para estacao de tratamento de esgoto."
+    }
+  ]
+}

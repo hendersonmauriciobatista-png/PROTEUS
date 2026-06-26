@@ -4,11 +4,15 @@ from .catalog import (
     load_parametros_hidricos,
     load_perfis_operacionais,
 )
-from .models import CategoriaParametro, ParametroHidrico, PerfilOperacional
+from .configuracoes import CONFIGURACOES_PATH, ConfiguracaoOperacionalService
+from .models import CategoriaParametro, ConfiguracaoOperacional, ParametroHidrico, PerfilOperacional
 
 __all__ = [
     "CATALOG_PATH",
+    "CONFIGURACOES_PATH",
     "CategoriaParametro",
+    "ConfiguracaoOperacional",
+    "ConfiguracaoOperacionalService",
     "ParametroHidrico",
     "PerfilOperacional",
     "load_categorias_parametros",

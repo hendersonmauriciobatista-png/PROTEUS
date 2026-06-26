@@ -190,3 +190,37 @@ Criação da arquitetura base para evoluir a camada Qualidade Da Água para Moni
 * Dados operacionais salvos preservados.
 * Validação legal completa não implementada nesta etapa.
 * Evolução mantida como base modular, rastreável e extensível.
+
+---
+
+# GP-A10 - Configuração Operacional de Monitoramento Hídrico
+
+## Data
+
+26/06/2026
+
+## Status
+
+INICIADA
+
+## Evento
+
+Criação da camada de Configuração Operacional para Monitoramento Hídrico como evolução direta da arquitetura modular criada na GP-A09.
+
+## Resultado
+
+* Modelo `ConfiguracaoOperacional` criado.
+* Serviço `ConfiguracaoOperacionalService` criado.
+* Operações para criar configuração a partir de perfil, habilitar/desabilitar categorias e habilitar/desabilitar parâmetros adicionadas.
+* Validação de existência de perfis, categorias e parâmetros contra o catálogo GP-A09 adicionada.
+* Persistência de configurações operacionais em JSON criada.
+* Configurações exemplo adicionadas para Rural, Industrial, Urbano/Saneamento, Ambiental/Rio, ETA e ETE.
+* Testes de configuração operacional adicionados.
+
+## Restrições Mantidas
+
+* CSVs operacionais existentes preservados.
+* Compatibilidade com GP-A09 preservada.
+* Tela PyQt não implementada nesta etapa.
+* Motor de conformidade legal completo não implementado nesta etapa.
+* Evolução mantida simples, determinística, testável e extensível.

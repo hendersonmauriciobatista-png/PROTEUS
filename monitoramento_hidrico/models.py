@@ -1,4 +1,4 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from typing import Optional
 
 
@@ -23,3 +23,13 @@ class ParametroHidrico:
     categoria: str
     unidade: Optional[str] = None
     descricao: str = ""
+
+
+@dataclass
+class ConfiguracaoOperacional:
+    identificador: str
+    nome: str
+    perfil_operacional_base: str
+    categorias_habilitadas: list[str] = field(default_factory=list)
+    parametros_habilitados: list[str] = field(default_factory=list)
+    observacoes: str = ""

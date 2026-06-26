@@ -163,6 +163,7 @@ Componentes concluídos:
 * GP-A07 Operational Governance Layer V1
 * GP-A08 Executive Intelligence Layer V1
 * GP-A09 Monitoramento Hídrico Modular Base
+* GP-A10 Configuração Operacional de Monitoramento Hídrico
 
 Características da baseline:
 
@@ -203,12 +204,22 @@ Características:
 * Não implementa validação legal completa nesta etapa.
 * Mantém rastreabilidade e evolução incremental aderentes à filosofia ICFACTORY.
 
+GP-A10 adiciona a camada de Configuração Operacional, permitindo que cada operação use o perfil operacional como modelo inicial e habilite categorias e parâmetros conforme cliente, cenário ou necessidade operacional.
+
+Componentes adicionados:
+
+* Modelo `ConfiguracaoOperacional`.
+* Serviço `ConfiguracaoOperacionalService`.
+* Configurações exemplo para Rural, Industrial, Urbano/Saneamento, Ambiental/Rio, ETA e ETE.
+* Persistência de configurações em JSON.
+* Validação determinística de perfis, categorias e parâmetros contra o catálogo GP-A09.
+
 ---
 
 # Próximos Passos
 
-A próxima expansão arquitetural deverá evoluir a base criada em GP-A09 para regras de aplicabilidade por perfil operacional, limites observacionais e integração gradual com as telas e análises existentes.
+A próxima expansão arquitetural deverá evoluir a configuração operacional para presets, limites observacionais e integração gradual com as telas e análises existentes.
 
 Próximo marco previsto:
 
-GP-A10 — Regras operacionais por perfil e categoria.
+GP-A11 — Presets operacionais, limites observacionais e integração progressiva.
