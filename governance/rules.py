@@ -66,6 +66,13 @@ class OperationalGovernanceRules:
             source="analytics",
             occurrence_count=1,
             last_seen_at=now,
+            policy_id=getattr(alert, "policy_id", ""),
+            policy_name=getattr(alert, "policy_name", ""),
+            observational_status=getattr(alert, "observational_status", ""),
+            observational_severity=getattr(alert, "observational_severity", ""),
+            limit_origin=getattr(alert, "limit_origin", ""),
+            technical_observations=getattr(alert, "technical_observations", ""),
+            explainability=getattr(alert, "explainability", ""),
         )
 
     def update_existing_event(self, event, alert, now=None):
@@ -77,6 +84,13 @@ class OperationalGovernanceRules:
         event.evidence = alert.evidence
         event.recommendation = alert.recommendation
         event.description = alert.message
+        event.policy_id = getattr(alert, "policy_id", "")
+        event.policy_name = getattr(alert, "policy_name", "")
+        event.observational_status = getattr(alert, "observational_status", "")
+        event.observational_severity = getattr(alert, "observational_severity", "")
+        event.limit_origin = getattr(alert, "limit_origin", "")
+        event.technical_observations = getattr(alert, "technical_observations", "")
+        event.explainability = getattr(alert, "explainability", "")
         return event
 
     def transition_event(self, event, target_state, note="", now=None):

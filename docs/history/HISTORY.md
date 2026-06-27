@@ -403,6 +403,58 @@ Execução da primeira auditoria de integração arquitetural do Núcleo de Moni
 
 ---
 
+# GP-A21 - Integração da Governança Operacional com o Núcleo de Monitoramento Hídrico
+
+## Data
+
+27/06/2026
+
+## Status
+
+CONCLUÍDA
+
+## Evento
+
+Integração de `OperationalGovernanceService` ao Núcleo de Monitoramento Hídrico para enriquecer eventos operacionais com metadados observacionais rastreáveis.
+
+## Diagnóstico
+
+* Governança não lia medições diretamente.
+* Governança não possuía `CONAMA`, `QUALITY_LIMITS` ou `check_status`.
+* Governança copiava severidade e evidência dos alertas analíticos.
+* Eventos operacionais não registravam política aplicada, status observacional, origem do limite ou explicabilidade.
+
+## Resultado
+
+* Adapter `OperationalGovernanceHydricMonitoringAdapter` criado.
+* `OperationalGovernanceService` passou a enriquecer alertas antes da sincronização.
+* Alertas de qualidade da água passaram a ser reavaliados pelo Núcleo quando possuem valor observado.
+* `PolicyEngine` passou a selecionar a política aplicável.
+* `AvaliacaoObservacionalService` passou a executar a avaliação observacional.
+* `OperationalEvent` passou a persistir metadados opcionais de rastreabilidade.
+* JSON de eventos existente preservado por campos opcionais com valores padrão.
+* Interface visual preservada.
+
+## Testes
+
+Comando executado:
+
+`python -m unittest discover -s tests`
+
+Resultado:
+
+* 62 testes executados.
+* Todos passaram.
+
+## Restrições Mantidas
+
+* CSVs operacionais não alterados.
+* Interface visual não redesenhada.
+* Documentos constitucionais ICFACTORY não alterados.
+* Nenhuma Discovery promovida.
+
+---
+
 # GP-A19 - Integração dos Relatórios Operacionais com o Núcleo de Monitoramento Hídrico
 
 ## Data

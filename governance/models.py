@@ -31,6 +31,13 @@ class OperationalEvent:
     last_seen_at: datetime
     resolution_note: str = ""
     archived_reason: str = ""
+    policy_id: str = ""
+    policy_name: str = ""
+    observational_status: str = ""
+    observational_severity: str = ""
+    limit_origin: str = ""
+    technical_observations: str = ""
+    explainability: str = ""
 
     def to_dict(self):
         return {
@@ -52,6 +59,13 @@ class OperationalEvent:
             "last_seen_at": self.last_seen_at.isoformat(timespec="seconds"),
             "resolution_note": self.resolution_note,
             "archived_reason": self.archived_reason,
+            "policy_id": self.policy_id,
+            "policy_name": self.policy_name,
+            "observational_status": self.observational_status,
+            "observational_severity": self.observational_severity,
+            "limit_origin": self.limit_origin,
+            "technical_observations": self.technical_observations,
+            "explainability": self.explainability,
         }
 
     @classmethod
@@ -75,6 +89,13 @@ class OperationalEvent:
             last_seen_at=_parse_datetime(data.get("last_seen_at")),
             resolution_note=data.get("resolution_note", ""),
             archived_reason=data.get("archived_reason", ""),
+            policy_id=data.get("policy_id", ""),
+            policy_name=data.get("policy_name", ""),
+            observational_status=data.get("observational_status", ""),
+            observational_severity=data.get("observational_severity", ""),
+            limit_origin=data.get("limit_origin", ""),
+            technical_observations=data.get("technical_observations", ""),
+            explainability=data.get("explainability", ""),
         )
 
 

@@ -187,3 +187,98 @@ Resultado:
 GP-A19 concluída.
 
 Os Relatórios Operacionais continuam apresentando resumo operacional, mas deixam de decidir status observacional localmente. O status de qualidade da água passa a ser derivado do Núcleo de Monitoramento Hídrico.
+
+---
+
+# GP-A21 - Integração da Governança Operacional com o Núcleo de Monitoramento Hídrico
+
+Data: 27/06/2026
+
+Status: CONCLUÍDA
+
+## Diagnóstico Passivo
+
+A auditoria da GP-A21 localizou a responsabilidade de Governança Operacional em `governanca_operacional.py` e no pacote `governance`.
+
+Achados:
+
+* A UI não interpreta medições diretamente.
+* `OperationalGovernanceService` consome `AnalyticsService`.
+* `OperationalGovernanceRules` transforma alertas analíticos em eventos operacionais.
+* Não havia `CONAMA`, `QUALITY_LIMITS` ou `check_status` em `governance`.
+* A severidade de eventos era copiada do alerta analítico.
+* A Governança não persistia política aplicada, status observacional, severidade observacional, origem do limite ou explicabilidade.
+
+## Alteração Arquitetural
+
+A GP-A21 integrou a Governança Operacional ao Núcleo de Monitoramento Hídrico por meio de um adapter de rastreabilidade.
+
+Estado após integração:
+
+* `OperationalGovernanceHydricMonitoringAdapter` criado.
+* `OperationalGovernanceService` passa a enriquecer alertas antes de sincronizar eventos.
+* Alertas de qualidade da água são reavaliados pelo Núcleo quando possuem valor observado.
+* `PolicyEngine` seleciona a política aplicável.
+* `AvaliacaoObservacionalService` executa a avaliação.
+* Eventos operacionais passam a persistir metadados opcionais de política, resultado observacional e explicabilidade.
+* Eventos antigos continuam compatíveis com o JSON existente.
+* Interface visual preservada.
+
+## PA-01
+
+Separação mantida:
+
+* Governança acompanha eventos.
+* Adapter conecta alertas ao Núcleo.
+* Policy Engine seleciona política.
+* Motor Observacional executa avaliação.
+* Governança consome resultado e metadados, sem produzir avaliação própria.
+
+## Impacto na AI-07
+
+Veredito atualizado:
+
+INTEGRAÇÃO DE RASTREABILIDADE OBSERVACIONAL CONCLUÍDA.
+
+Prioridade remanescente:
+
+MÉDIA.
+
+Lacunas remanescentes:
+
+* A Governança ainda consome `AnalyticsService` como origem dos alertas.
+* Alertas sem valor numérico explícito são preservados sem reavaliação pela Governança.
+* A tela ainda não exibe colunas específicas para política e status observacional.
+
+## Testes
+
+Comando executado:
+
+`python -m unittest discover -s tests`
+
+Resultado:
+
+* 62 testes executados.
+* Todos passaram.
+
+## Matriz de Conformidade GP-A21
+
+| Critério | Resultado |
+| -------- | --------- |
+| Remover autoridade observacional local | Atendido |
+| Não usar `CONAMA` | Atendido |
+| Não usar `QUALITY_LIMITS` como decisão local | Atendido |
+| Não usar `check_status` | Atendido |
+| Policy Engine seleciona política | Atendido |
+| Motor Observacional executa avaliação | Atendido |
+| Governança consome resultado observacional | Atendido |
+| Preservar interface | Atendido |
+| Preservar JSON existente | Atendido |
+| Preservar PA-01 | Atendido |
+| Manter testes passando | Atendido |
+
+## Veredito
+
+GP-A21 concluída.
+
+A Governança Operacional continua acompanhando eventos, mas passa a consumir metadados rastreáveis do Núcleo de Monitoramento Hídrico para alertas de qualidade da água.

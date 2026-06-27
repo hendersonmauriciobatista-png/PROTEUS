@@ -94,6 +94,7 @@ Observação
 | GP-A16 | Integração de Qualidade da Água / Monitoramento Hídrico com o Núcleo | CONCLUÍDA |
 | GP-A19 | Integração dos Relatórios Operacionais com o Núcleo de Monitoramento Hídrico | CONCLUÍDA |
 | GP-A20 | Integração da Previsão Analítica com o Núcleo de Monitoramento Hídrico | CONCLUÍDA |
+| GP-A21 | Integração da Governança Operacional com o Núcleo de Monitoramento Hídrico | CONCLUÍDA |
 
 ---
 
@@ -232,7 +233,7 @@ Pendência pós-GP-A15:
 * [x] Integrar Previsão Analítica com adapter analítico para consumir avaliações observacionais do núcleo.
 * [x] Separar tendências analíticas próprias de decisões baseadas em limites hídricos.
 * [x] Preparar Water Health Score para usar avaliações observacionais nas penalidades de qualidade.
-* Integrar Governança Operacional com eventos enriquecidos por metadados de avaliação.
+* [x] Integrar Governança Operacional com eventos enriquecidos por metadados de avaliação.
 * Desacoplar futuramente a origem de alertas de `AnalyticsService` puro.
 * Preservar transições de governança e histórico em `eventos_operacionais.json`.
 * Integrar Painel Executivo com sinais rastreáveis até política, motor e avaliação.
@@ -240,7 +241,7 @@ Pendência pós-GP-A15:
 
 Próxima etapa sugerida:
 
-GP-A21 - Integração da Governança Operacional com eventos rastreáveis do Núcleo de Monitoramento Hídrico.
+GP-A22 - Integração do Painel Executivo com sinais rastreáveis do Núcleo de Monitoramento Hídrico.
 
 Prioridade:
 
@@ -248,4 +249,4 @@ MÉDIA-ALTA.
 
 Motivo:
 
-A Governança Operacional ainda consome alertas sem metadados completos de política, motor e avaliação observacional.
+O Painel Executivo ainda sintetiza sinais de Analytics e Governança sem exibir rastreabilidade completa até política, motor e avaliação observacional.

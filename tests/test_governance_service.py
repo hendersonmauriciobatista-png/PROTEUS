@@ -44,6 +44,10 @@ class OperationalGovernanceServiceTests(unittest.TestCase):
             self.assertEqual(1, result["created"])
             self.assertEqual(1, len(events))
             self.assertEqual(EventState.ABERTO.value, events[0].state)
+            self.assertEqual("ATENCAO", events[0].observational_status)
+            self.assertEqual("catalogo:limite_observacional", events[0].limit_origin)
+            self.assertTrue(events[0].policy_id)
+            self.assertIn("resultado ATENCAO", events[0].explainability)
 
     def test_manual_actions_update_state(self):
         alert = PreventiveAlert(

@@ -1,4 +1,6 @@
 from analytics import AnalyticsService
+from monitoramento_hidrico import AvaliacaoObservacionalService, PolicyEngine
+from monitoramento_hidrico.governance_adapter import OperationalGovernanceHydricMonitoringAdapter
 
 from .models import EventState
 from .repositories import OperationalEventRepository
@@ -6,10 +8,14 @@ from .rules import OperationalGovernanceRules
 
 
 class OperationalGovernanceService:
-    def __init__(self, repository=None, analytics_service=None, rules=None):
+    def __init__(self, repository=None, analytics_service=None, rules=None, monitoring_adapter=None):
         self.repository = repository or OperationalEventRepository()
         self.analytics_service = analytics_service or AnalyticsService()
         self.rules = rules or OperationalGovernanceRules()
+        self.monitoring_adapter = monitoring_adapter or OperationalGovernanceHydricMonitoringAdapter(
+            policy_engine=PolicyEngine(),
+            evaluation_service=AvaliacaoObservacionalService(),
+        )
 
     def list_events(self):
         return self.repository.load_events()
@@ -17,13 +23,14 @@ class OperationalGovernanceService:
     def sync_from_analytics(self):
         events = self.repository.load_events()
         snapshot = self.analytics_service.build_snapshot()
-        created, updated = self.rules.sync_alerts(events, snapshot.alerts)
+        signals = self.monitoring_adapter.enriquecer_alertas(snapshot.alerts)
+        created, updated = self.rules.sync_alerts(events, signals)
         self.repository.save_events(events)
         return {
             "created": created,
             "updated": updated,
             "total": len(events),
-            "alerts": len(snapshot.alerts),
+            "alerts": len(signals),
         }
 
     def move_to_monitoring(self, event_id):
