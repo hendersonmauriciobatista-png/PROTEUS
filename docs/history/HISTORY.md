@@ -437,6 +437,40 @@ Auditoria e decisao arquitetural sobre a integracao de Dados Ambientais com o Nu
 
 ---
 
+# GP-A22A - Arquitetura da Inteligencia Executiva Evolutiva
+
+## Data
+
+27/06/2026
+
+## Status
+
+BLUEPRINT ARQUITETURAL CONCLUIDO
+
+## Evento
+
+Criacao do blueprint arquitetural da nova fase de Inteligencia Executiva Evolutiva do CASE-01.
+
+## Resultado
+
+* Painel Executivo, Analytics e Governanca Operacional auditados de forma passiva.
+* Documento `docs/architecture/EXECUTIVE_INTELLIGENCE_ARCHITECTURE.md` criado.
+* Responsabilidades futuras de Analytics, Governanca Operacional, Executive Intelligence, Executive Rules, futuro `ExecutiveRecommendationService` e Painel Executivo separadas por camada.
+* Recomendacao executiva definida como consumidora de sinais existentes, nunca como autoridade observacional.
+* PA-01 preservado explicitamente.
+* GP-A22B definida como proxima etapa sugerida para implementacao do mecanismo deterministico de recomendacoes executivas.
+
+## Restricoes Mantidas
+
+* Codigo funcional nao alterado.
+* Runtime nao alterado.
+* Interface PyQt nao alterada.
+* CSVs operacionais nao alterados.
+* Documentos constitucionais ICFACTORY nao alterados.
+* Discovery nao promovida.
+
+---
+
 # GP-A21 - Integração da Governança Operacional com o Núcleo de Monitoramento Hídrico
 
 ## Data

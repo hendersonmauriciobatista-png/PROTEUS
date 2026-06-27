@@ -97,6 +97,7 @@ Observação
 | GP-A19 | Integração dos Relatórios Operacionais com o Núcleo de Monitoramento Hídrico | CONCLUÍDA |
 | GP-A20 | Integração da Previsão Analítica com o Núcleo de Monitoramento Hídrico | CONCLUÍDA |
 | GP-A21 | Integração da Governança Operacional com o Núcleo de Monitoramento Hídrico | CONCLUÍDA |
+| GP-A22A | Arquitetura da Inteligência Executiva Evolutiva | CONCLUÍDA |
 
 ---
 
@@ -241,14 +242,29 @@ Pendência pós-GP-A15:
 * Integrar Painel Executivo com sinais rastreáveis até política, motor e avaliação.
 * Preservar regras executivas como síntese, sem transformar o painel em motor de avaliação.
 
+Nova fase:
+
+Inteligência Executiva Evolutiva.
+
+GP-A22A:
+
+CONCLUÍDA.
+
+Entregável:
+
+* Blueprint arquitetural em `docs/architecture/EXECUTIVE_INTELLIGENCE_ARCHITECTURE.md`.
+* Responsabilidades futuras separadas entre Analytics, Governança Operacional, Executive Intelligence, Executive Rules, futuro `ExecutiveRecommendationService` e Painel Executivo.
+* PA-01 preservado.
+* Recomendação executiva definida como consumidora de sinais existentes, sem autoridade observacional própria.
+
 Próxima etapa sugerida:
 
-Definir nova fila pós-GP-A14 para rastreabilidade executiva e serviços operacionais, sem misturar coleta operacional com autoridade observacional hídrica.
+GP-A22B - Implementar o mecanismo determinístico de recomendações executivas.
 
 Prioridade:
 
-A DEFINIR.
+ALTA.
 
 Motivo:
 
-A fila de integração arquitetural da GP-A14 foi encerrada. Próximas evoluções devem nascer como novo escopo, preservando o Núcleo de Monitoramento Hídrico como autoridade observacional central para qualidade da água.
+A fila de integração arquitetural da GP-A14 foi encerrada. O próximo avanço natural é transformar os sinais já observados, interpretados e governados em recomendações executivas rastreáveis, mantendo o Núcleo de Monitoramento Hídrico como autoridade observacional central.
