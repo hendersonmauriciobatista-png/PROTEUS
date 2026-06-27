@@ -403,6 +403,40 @@ Execução da primeira auditoria de integração arquitetural do Núcleo de Moni
 
 ---
 
+# GP-A17 - Integracao dos Dados Ambientais com o Nucleo de Monitoramento Hidrico
+
+## Data
+
+27/06/2026
+
+## Status
+
+CONCLUIDA SEM ADAPTER FUNCIONAL
+
+## Evento
+
+Auditoria e decisao arquitetural sobre a integracao de Dados Ambientais com o Nucleo de Monitoramento Hidrico.
+
+## Resultado
+
+* `dados_ambientais.py` auditado como camada de contexto e coleta ambiental.
+* Nenhuma autoridade observacional local identificada.
+* Nenhum uso de `CONAMA`, `QUALITY_LIMITS` ou `check_status` identificado.
+* Nenhuma classificacao, conformidade, severidade ou alerta observacional local identificado na tela.
+* CSV `data/dados_ambientais_medicoes.csv` preservado.
+* Interface visual preservada.
+* Adapter `EnvironmentalDataHydricMonitoringAdapter` nao criado por nao haver decisao observacional local a delegar.
+* PA-01 preservado: a tela nao seleciona politica e nao executa avaliacao.
+
+## Restricoes Mantidas
+
+* Codigo funcional nao alterado.
+* CSVs operacionais nao alterados.
+* Telas PyQt nao alteradas.
+* Documentos constitucionais ICFACTORY nao alterados.
+
+---
+
 # GP-A21 - Integração da Governança Operacional com o Núcleo de Monitoramento Hídrico
 
 ## Data

@@ -92,6 +92,7 @@ Observação
 | GP-A14 | Auditoria de Integração do Núcleo de Monitoramento Hídrico | CONCLUÍDA |
 | GP-A15 | Integração do Dashboard ao Núcleo de Monitoramento Hídrico | INICIADA |
 | GP-A16 | Integração de Qualidade da Água / Monitoramento Hídrico com o Núcleo | CONCLUÍDA |
+| GP-A17 | Integração dos Dados Ambientais com o Núcleo de Monitoramento Hídrico | CONCLUÍDA SEM ADAPTER FUNCIONAL |
 | GP-A19 | Integração dos Relatórios Operacionais com o Núcleo de Monitoramento Hídrico | CONCLUÍDA |
 | GP-A20 | Integração da Previsão Analítica com o Núcleo de Monitoramento Hídrico | CONCLUÍDA |
 | GP-A21 | Integração da Governança Operacional com o Núcleo de Monitoramento Hídrico | CONCLUÍDA |
@@ -224,7 +225,7 @@ Pendência pós-GP-A15:
 * Avaliar extração futura de uma camada de serviço de resumo do Dashboard.
 * [x] Integrar Qualidade da Água / Monitoramento Hídrico com adapter próprio.
 * [x] Remover `CONAMA` e `check_status` da camada visual.
-* Integrar Dados Ambientais com adapter ou serviço de dados operacionais.
+* [x] Auditar Dados Ambientais e concluir que adapter hídrico não é necessário nesta etapa.
 * Avaliar catálogo/metadados futuros para parâmetros ambientais.
 * Integrar Consumo e Distribuição com adapter ou serviço de dados operacionais.
 * Avaliar política futura para perdas estimadas e consumo, se houver necessidade observacional.
@@ -241,12 +242,12 @@ Pendência pós-GP-A15:
 
 Próxima etapa sugerida:
 
-GP-A22 - Integração do Painel Executivo com sinais rastreáveis do Núcleo de Monitoramento Hídrico.
+GP-A18 - Integração de Consumo e Distribuição com serviço operacional ou adapter contextual.
 
 Prioridade:
 
-MÉDIA-ALTA.
+MÉDIA.
 
 Motivo:
 
-O Painel Executivo ainda sintetiza sinais de Analytics e Governança sem exibir rastreabilidade completa até política, motor e avaliação observacional.
+Consumo e Distribuição ainda possui regras preventivas e cálculos próprios de perdas, com oportunidade de separar coleta, indicador operacional e eventual decisão observacional futura.
