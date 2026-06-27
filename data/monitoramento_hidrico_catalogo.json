@@ -1,6 +1,6 @@
 {
-  "versao_catalogo": "GP-A09",
-  "descricao": "Catalogo inicial da arquitetura modular de Monitoramento Hidrico.",
+  "versao_catalogo": "GP-A11",
+  "descricao": "Catalogo inteligente inicial da arquitetura modular de Monitoramento Hidrico.",
   "perfis_operacionais": [
     {
       "codigo": "rural",
@@ -76,294 +76,848 @@
       "nome": "Temperatura da agua",
       "categoria": "fisicos",
       "unidade": "C",
-      "descricao": "Temperatura medida na amostra de agua."
+      "descricao": "Temperatura medida na amostra de agua.",
+      "unidade_medida": "C",
+      "tipo_valor": "numerico",
+      "aplicabilidade_perfis": [
+        "rural",
+        "industrial",
+        "urbano_saneamento",
+        "ambiental_rio",
+        "eta",
+        "ete"
+      ],
+      "metodo_analise": "Medicao instrumental ou observacao fisica em campo/laboratorio.",
+      "frequencia_recomendada": "rotina operacional",
+      "observacoes_tecnicas": "Metadado inicial para configuracao operacional e futura avaliacao de conformidade.",
+      "limite_observacional": null
     },
     {
       "codigo": "turbidez",
       "nome": "Turbidez",
       "categoria": "fisicos",
       "unidade": "NTU",
-      "descricao": "Indicador fisico de particulas em suspensao."
+      "descricao": "Indicador fisico de particulas em suspensao.",
+      "unidade_medida": "NTU",
+      "tipo_valor": "numerico",
+      "aplicabilidade_perfis": [
+        "rural",
+        "industrial",
+        "urbano_saneamento",
+        "ambiental_rio",
+        "eta",
+        "ete"
+      ],
+      "metodo_analise": "Medicao instrumental ou observacao fisica em campo/laboratorio.",
+      "frequencia_recomendada": "rotina operacional",
+      "observacoes_tecnicas": "Metadado inicial para configuracao operacional e futura avaliacao de conformidade.",
+      "limite_observacional": {
+        "max": 5.0,
+        "unidade": "NTU",
+        "criterio": "referencia operacional inicial, sem carater legal"
+      }
     },
     {
       "codigo": "cor",
       "nome": "Cor",
       "categoria": "fisicos",
       "unidade": "uH",
-      "descricao": "Cor aparente ou verdadeira observada na amostra."
+      "descricao": "Cor aparente ou verdadeira observada na amostra.",
+      "unidade_medida": "uH",
+      "tipo_valor": "numerico",
+      "aplicabilidade_perfis": [
+        "rural",
+        "industrial",
+        "urbano_saneamento",
+        "ambiental_rio",
+        "eta",
+        "ete"
+      ],
+      "metodo_analise": "Medicao instrumental ou observacao fisica em campo/laboratorio.",
+      "frequencia_recomendada": "rotina operacional",
+      "observacoes_tecnicas": "Metadado inicial para configuracao operacional e futura avaliacao de conformidade.",
+      "limite_observacional": null
     },
     {
       "codigo": "condutividade_eletrica",
       "nome": "Condutividade eletrica",
       "categoria": "fisicos",
       "unidade": "uS/cm",
-      "descricao": "Capacidade da agua de conduzir corrente eletrica."
+      "descricao": "Capacidade da agua de conduzir corrente eletrica.",
+      "unidade_medida": "uS/cm",
+      "tipo_valor": "numerico",
+      "aplicabilidade_perfis": [
+        "rural",
+        "industrial",
+        "urbano_saneamento",
+        "ambiental_rio",
+        "eta",
+        "ete"
+      ],
+      "metodo_analise": "Medicao instrumental ou observacao fisica em campo/laboratorio.",
+      "frequencia_recomendada": "rotina operacional",
+      "observacoes_tecnicas": "Metadado inicial para configuracao operacional e futura avaliacao de conformidade.",
+      "limite_observacional": null
     },
     {
       "codigo": "tds",
       "nome": "TDS",
       "categoria": "fisicos",
       "unidade": "mg/L",
-      "descricao": "Solidos totais dissolvidos."
+      "descricao": "Solidos totais dissolvidos.",
+      "unidade_medida": "mg/L",
+      "tipo_valor": "numerico",
+      "aplicabilidade_perfis": [
+        "rural",
+        "industrial",
+        "urbano_saneamento",
+        "ambiental_rio",
+        "eta",
+        "ete"
+      ],
+      "metodo_analise": "Medicao instrumental ou observacao fisica em campo/laboratorio.",
+      "frequencia_recomendada": "rotina operacional",
+      "observacoes_tecnicas": "Metadado inicial para configuracao operacional e futura avaliacao de conformidade.",
+      "limite_observacional": null
     },
     {
       "codigo": "salinidade",
       "nome": "Salinidade",
       "categoria": "fisicos",
       "unidade": "PSU",
-      "descricao": "Concentracao salina estimada na amostra."
+      "descricao": "Concentracao salina estimada na amostra.",
+      "unidade_medida": "PSU",
+      "tipo_valor": "numerico",
+      "aplicabilidade_perfis": [
+        "rural",
+        "industrial",
+        "urbano_saneamento",
+        "ambiental_rio",
+        "eta",
+        "ete"
+      ],
+      "metodo_analise": "Medicao instrumental ou observacao fisica em campo/laboratorio.",
+      "frequencia_recomendada": "rotina operacional",
+      "observacoes_tecnicas": "Metadado inicial para configuracao operacional e futura avaliacao de conformidade.",
+      "limite_observacional": null
     },
     {
       "codigo": "ph",
       "nome": "pH",
       "categoria": "quimicos",
       "unidade": "unidade de pH",
-      "descricao": "Potencial hidrogenionico da amostra."
+      "descricao": "Potencial hidrogenionico da amostra.",
+      "unidade_medida": "unidade de pH",
+      "tipo_valor": "numerico",
+      "aplicabilidade_perfis": [
+        "rural",
+        "industrial",
+        "urbano_saneamento",
+        "ambiental_rio",
+        "eta",
+        "ete"
+      ],
+      "metodo_analise": "Analise fisico-quimica conforme metodo operacional definido.",
+      "frequencia_recomendada": "rotina operacional",
+      "observacoes_tecnicas": "Metadado inicial para configuracao operacional e futura avaliacao de conformidade.",
+      "limite_observacional": {
+        "min": 6.0,
+        "max": 9.5,
+        "criterio": "faixa observacional inicial, sem carater legal"
+      }
     },
     {
       "codigo": "oxigenio_dissolvido",
       "nome": "Oxigenio dissolvido",
       "categoria": "quimicos",
       "unidade": "mg/L",
-      "descricao": "Oxigenio disponivel dissolvido na agua."
+      "descricao": "Oxigenio disponivel dissolvido na agua.",
+      "unidade_medida": "mg/L",
+      "tipo_valor": "numerico",
+      "aplicabilidade_perfis": [
+        "rural",
+        "industrial",
+        "urbano_saneamento",
+        "ambiental_rio",
+        "eta",
+        "ete"
+      ],
+      "metodo_analise": "Analise fisico-quimica conforme metodo operacional definido.",
+      "frequencia_recomendada": "rotina operacional",
+      "observacoes_tecnicas": "Metadado inicial para configuracao operacional e futura avaliacao de conformidade.",
+      "limite_observacional": {
+        "min": 5.0,
+        "unidade": "mg/L",
+        "criterio": "referencia observacional para atencao operacional"
+      }
     },
     {
       "codigo": "dbo",
       "nome": "DBO",
       "categoria": "quimicos",
       "unidade": "mg/L",
-      "descricao": "Demanda bioquimica de oxigenio."
+      "descricao": "Demanda bioquimica de oxigenio.",
+      "unidade_medida": "mg/L",
+      "tipo_valor": "numerico",
+      "aplicabilidade_perfis": [
+        "rural",
+        "industrial",
+        "urbano_saneamento",
+        "ambiental_rio",
+        "eta",
+        "ete"
+      ],
+      "metodo_analise": "Analise fisico-quimica conforme metodo operacional definido.",
+      "frequencia_recomendada": "rotina operacional",
+      "observacoes_tecnicas": "Metadado inicial para configuracao operacional e futura avaliacao de conformidade.",
+      "limite_observacional": {
+        "max": 10.0,
+        "unidade": "mg/L",
+        "criterio": "referencia observacional para tendencia"
+      }
     },
     {
       "codigo": "dqo",
       "nome": "DQO",
       "categoria": "quimicos",
       "unidade": "mg/L",
-      "descricao": "Demanda quimica de oxigenio."
+      "descricao": "Demanda quimica de oxigenio.",
+      "unidade_medida": "mg/L",
+      "tipo_valor": "numerico",
+      "aplicabilidade_perfis": [
+        "rural",
+        "industrial",
+        "urbano_saneamento",
+        "ambiental_rio",
+        "eta",
+        "ete"
+      ],
+      "metodo_analise": "Analise fisico-quimica conforme metodo operacional definido.",
+      "frequencia_recomendada": "rotina operacional",
+      "observacoes_tecnicas": "Metadado inicial para configuracao operacional e futura avaliacao de conformidade.",
+      "limite_observacional": {
+        "max": 50.0,
+        "unidade": "mg/L",
+        "criterio": "referencia observacional para tendencia"
+      }
     },
     {
       "codigo": "nitrato",
       "nome": "Nitrato",
       "categoria": "quimicos",
       "unidade": "mg/L",
-      "descricao": "Concentracao de nitrato na amostra."
+      "descricao": "Concentracao de nitrato na amostra.",
+      "unidade_medida": "mg/L",
+      "tipo_valor": "numerico",
+      "aplicabilidade_perfis": [
+        "rural",
+        "industrial",
+        "urbano_saneamento",
+        "ambiental_rio",
+        "eta",
+        "ete"
+      ],
+      "metodo_analise": "Analise fisico-quimica conforme metodo operacional definido.",
+      "frequencia_recomendada": "rotina operacional",
+      "observacoes_tecnicas": "Metadado inicial para configuracao operacional e futura avaliacao de conformidade.",
+      "limite_observacional": null
     },
     {
       "codigo": "nitrito",
       "nome": "Nitrito",
       "categoria": "quimicos",
       "unidade": "mg/L",
-      "descricao": "Concentracao de nitrito na amostra."
+      "descricao": "Concentracao de nitrito na amostra.",
+      "unidade_medida": "mg/L",
+      "tipo_valor": "numerico",
+      "aplicabilidade_perfis": [
+        "rural",
+        "industrial",
+        "urbano_saneamento",
+        "ambiental_rio",
+        "eta",
+        "ete"
+      ],
+      "metodo_analise": "Analise fisico-quimica conforme metodo operacional definido.",
+      "frequencia_recomendada": "rotina operacional",
+      "observacoes_tecnicas": "Metadado inicial para configuracao operacional e futura avaliacao de conformidade.",
+      "limite_observacional": null
     },
     {
       "codigo": "amonia",
       "nome": "Amonia",
       "categoria": "quimicos",
       "unidade": "mg/L",
-      "descricao": "Concentracao de amonia na amostra."
+      "descricao": "Concentracao de amonia na amostra.",
+      "unidade_medida": "mg/L",
+      "tipo_valor": "numerico",
+      "aplicabilidade_perfis": [
+        "rural",
+        "industrial",
+        "urbano_saneamento",
+        "ambiental_rio",
+        "eta",
+        "ete"
+      ],
+      "metodo_analise": "Analise fisico-quimica conforme metodo operacional definido.",
+      "frequencia_recomendada": "rotina operacional",
+      "observacoes_tecnicas": "Metadado inicial para configuracao operacional e futura avaliacao de conformidade.",
+      "limite_observacional": null
     },
     {
       "codigo": "fosforo",
       "nome": "Fosforo",
       "categoria": "quimicos",
       "unidade": "mg/L",
-      "descricao": "Concentracao de fosforo na amostra."
+      "descricao": "Concentracao de fosforo na amostra.",
+      "unidade_medida": "mg/L",
+      "tipo_valor": "numerico",
+      "aplicabilidade_perfis": [
+        "rural",
+        "industrial",
+        "urbano_saneamento",
+        "ambiental_rio",
+        "eta",
+        "ete"
+      ],
+      "metodo_analise": "Analise fisico-quimica conforme metodo operacional definido.",
+      "frequencia_recomendada": "rotina operacional",
+      "observacoes_tecnicas": "Metadado inicial para configuracao operacional e futura avaliacao de conformidade.",
+      "limite_observacional": null
     },
     {
       "codigo": "fosfato",
       "nome": "Fosfato",
       "categoria": "quimicos",
       "unidade": "mg/L",
-      "descricao": "Concentracao de fosfato na amostra."
+      "descricao": "Concentracao de fosfato na amostra.",
+      "unidade_medida": "mg/L",
+      "tipo_valor": "numerico",
+      "aplicabilidade_perfis": [
+        "rural",
+        "industrial",
+        "urbano_saneamento",
+        "ambiental_rio",
+        "eta",
+        "ete"
+      ],
+      "metodo_analise": "Analise fisico-quimica conforme metodo operacional definido.",
+      "frequencia_recomendada": "rotina operacional",
+      "observacoes_tecnicas": "Metadado inicial para configuracao operacional e futura avaliacao de conformidade.",
+      "limite_observacional": null
     },
     {
       "codigo": "cloro_residual",
       "nome": "Cloro residual",
       "categoria": "quimicos",
       "unidade": "mg/L",
-      "descricao": "Cloro residual livre ou total conforme metodo operacional."
+      "descricao": "Cloro residual livre ou total conforme metodo operacional.",
+      "unidade_medida": "mg/L",
+      "tipo_valor": "numerico",
+      "aplicabilidade_perfis": [
+        "rural",
+        "industrial",
+        "urbano_saneamento",
+        "ambiental_rio",
+        "eta",
+        "ete"
+      ],
+      "metodo_analise": "Analise fisico-quimica conforme metodo operacional definido.",
+      "frequencia_recomendada": "rotina operacional",
+      "observacoes_tecnicas": "Metadado inicial para configuracao operacional e futura avaliacao de conformidade.",
+      "limite_observacional": {
+        "min": 0.2,
+        "max": 2.0,
+        "unidade": "mg/L",
+        "criterio": "faixa operacional inicial, sem carater legal"
+      }
     },
     {
       "codigo": "chumbo",
       "nome": "Chumbo",
       "categoria": "metais_pesados",
       "unidade": "mg/L",
-      "descricao": "Concentracao de chumbo na amostra."
+      "descricao": "Concentracao de chumbo na amostra.",
+      "unidade_medida": "mg/L",
+      "tipo_valor": "numerico",
+      "aplicabilidade_perfis": [
+        "industrial",
+        "ambiental_rio",
+        "eta"
+      ],
+      "metodo_analise": "Analise laboratorial instrumental para metais.",
+      "frequencia_recomendada": "periodica ou sob suspeita operacional",
+      "observacoes_tecnicas": "Metadado inicial para configuracao operacional e futura avaliacao de conformidade.",
+      "limite_observacional": null
     },
     {
       "codigo": "mercurio",
       "nome": "Mercurio",
       "categoria": "metais_pesados",
       "unidade": "mg/L",
-      "descricao": "Concentracao de mercurio na amostra."
+      "descricao": "Concentracao de mercurio na amostra.",
+      "unidade_medida": "mg/L",
+      "tipo_valor": "numerico",
+      "aplicabilidade_perfis": [
+        "industrial",
+        "ambiental_rio",
+        "eta"
+      ],
+      "metodo_analise": "Analise laboratorial instrumental para metais.",
+      "frequencia_recomendada": "periodica ou sob suspeita operacional",
+      "observacoes_tecnicas": "Metadado inicial para configuracao operacional e futura avaliacao de conformidade.",
+      "limite_observacional": null
     },
     {
       "codigo": "arsenio",
       "nome": "Arsenio",
       "categoria": "metais_pesados",
       "unidade": "mg/L",
-      "descricao": "Concentracao de arsenio na amostra."
+      "descricao": "Concentracao de arsenio na amostra.",
+      "unidade_medida": "mg/L",
+      "tipo_valor": "numerico",
+      "aplicabilidade_perfis": [
+        "industrial",
+        "ambiental_rio",
+        "eta"
+      ],
+      "metodo_analise": "Analise laboratorial instrumental para metais.",
+      "frequencia_recomendada": "periodica ou sob suspeita operacional",
+      "observacoes_tecnicas": "Metadado inicial para configuracao operacional e futura avaliacao de conformidade.",
+      "limite_observacional": null
     },
     {
       "codigo": "cadmio",
       "nome": "Cadmio",
       "categoria": "metais_pesados",
       "unidade": "mg/L",
-      "descricao": "Concentracao de cadmio na amostra."
+      "descricao": "Concentracao de cadmio na amostra.",
+      "unidade_medida": "mg/L",
+      "tipo_valor": "numerico",
+      "aplicabilidade_perfis": [
+        "industrial",
+        "ambiental_rio",
+        "eta"
+      ],
+      "metodo_analise": "Analise laboratorial instrumental para metais.",
+      "frequencia_recomendada": "periodica ou sob suspeita operacional",
+      "observacoes_tecnicas": "Metadado inicial para configuracao operacional e futura avaliacao de conformidade.",
+      "limite_observacional": null
     },
     {
       "codigo": "cromo",
       "nome": "Cromo",
       "categoria": "metais_pesados",
       "unidade": "mg/L",
-      "descricao": "Concentracao de cromo na amostra."
+      "descricao": "Concentracao de cromo na amostra.",
+      "unidade_medida": "mg/L",
+      "tipo_valor": "numerico",
+      "aplicabilidade_perfis": [
+        "industrial",
+        "ambiental_rio",
+        "eta"
+      ],
+      "metodo_analise": "Analise laboratorial instrumental para metais.",
+      "frequencia_recomendada": "periodica ou sob suspeita operacional",
+      "observacoes_tecnicas": "Metadado inicial para configuracao operacional e futura avaliacao de conformidade.",
+      "limite_observacional": null
     },
     {
       "codigo": "niquel",
       "nome": "Niquel",
       "categoria": "metais_pesados",
       "unidade": "mg/L",
-      "descricao": "Concentracao de niquel na amostra."
+      "descricao": "Concentracao de niquel na amostra.",
+      "unidade_medida": "mg/L",
+      "tipo_valor": "numerico",
+      "aplicabilidade_perfis": [
+        "industrial",
+        "ambiental_rio",
+        "eta"
+      ],
+      "metodo_analise": "Analise laboratorial instrumental para metais.",
+      "frequencia_recomendada": "periodica ou sob suspeita operacional",
+      "observacoes_tecnicas": "Metadado inicial para configuracao operacional e futura avaliacao de conformidade.",
+      "limite_observacional": null
     },
     {
       "codigo": "cobre",
       "nome": "Cobre",
       "categoria": "metais_pesados",
       "unidade": "mg/L",
-      "descricao": "Concentracao de cobre na amostra."
+      "descricao": "Concentracao de cobre na amostra.",
+      "unidade_medida": "mg/L",
+      "tipo_valor": "numerico",
+      "aplicabilidade_perfis": [
+        "industrial",
+        "ambiental_rio",
+        "eta"
+      ],
+      "metodo_analise": "Analise laboratorial instrumental para metais.",
+      "frequencia_recomendada": "periodica ou sob suspeita operacional",
+      "observacoes_tecnicas": "Metadado inicial para configuracao operacional e futura avaliacao de conformidade.",
+      "limite_observacional": null
     },
     {
       "codigo": "zinco",
       "nome": "Zinco",
       "categoria": "metais_pesados",
       "unidade": "mg/L",
-      "descricao": "Concentracao de zinco na amostra."
+      "descricao": "Concentracao de zinco na amostra.",
+      "unidade_medida": "mg/L",
+      "tipo_valor": "numerico",
+      "aplicabilidade_perfis": [
+        "industrial",
+        "ambiental_rio",
+        "eta"
+      ],
+      "metodo_analise": "Analise laboratorial instrumental para metais.",
+      "frequencia_recomendada": "periodica ou sob suspeita operacional",
+      "observacoes_tecnicas": "Metadado inicial para configuracao operacional e futura avaliacao de conformidade.",
+      "limite_observacional": null
     },
     {
       "codigo": "agrotoxicos",
       "nome": "Agrotoxicos",
       "categoria": "contaminantes_agricolas",
       "unidade": "ug/L",
-      "descricao": "Grupo agregado de agrotoxicos monitoraveis."
+      "descricao": "Grupo agregado de agrotoxicos monitoraveis.",
+      "unidade_medida": "ug/L",
+      "tipo_valor": "numerico",
+      "aplicabilidade_perfis": [
+        "rural",
+        "ambiental_rio"
+      ],
+      "metodo_analise": "Analise laboratorial direcionada a compostos agricolas.",
+      "frequencia_recomendada": "sazonal ou sob suspeita operacional",
+      "observacoes_tecnicas": "Metadado inicial para configuracao operacional e futura avaliacao de conformidade.",
+      "limite_observacional": null
     },
     {
       "codigo": "herbicidas",
       "nome": "Herbicidas",
       "categoria": "contaminantes_agricolas",
       "unidade": "ug/L",
-      "descricao": "Grupo agregado de herbicidas monitoraveis."
+      "descricao": "Grupo agregado de herbicidas monitoraveis.",
+      "unidade_medida": "ug/L",
+      "tipo_valor": "numerico",
+      "aplicabilidade_perfis": [
+        "rural",
+        "ambiental_rio"
+      ],
+      "metodo_analise": "Analise laboratorial direcionada a compostos agricolas.",
+      "frequencia_recomendada": "sazonal ou sob suspeita operacional",
+      "observacoes_tecnicas": "Metadado inicial para configuracao operacional e futura avaliacao de conformidade.",
+      "limite_observacional": null
     },
     {
       "codigo": "fungicidas",
       "nome": "Fungicidas",
       "categoria": "contaminantes_agricolas",
       "unidade": "ug/L",
-      "descricao": "Grupo agregado de fungicidas monitoraveis."
+      "descricao": "Grupo agregado de fungicidas monitoraveis.",
+      "unidade_medida": "ug/L",
+      "tipo_valor": "numerico",
+      "aplicabilidade_perfis": [
+        "rural",
+        "ambiental_rio"
+      ],
+      "metodo_analise": "Analise laboratorial direcionada a compostos agricolas.",
+      "frequencia_recomendada": "sazonal ou sob suspeita operacional",
+      "observacoes_tecnicas": "Metadado inicial para configuracao operacional e futura avaliacao de conformidade.",
+      "limite_observacional": null
     },
     {
       "codigo": "inseticidas",
       "nome": "Inseticidas",
       "categoria": "contaminantes_agricolas",
       "unidade": "ug/L",
-      "descricao": "Grupo agregado de inseticidas monitoraveis."
+      "descricao": "Grupo agregado de inseticidas monitoraveis.",
+      "unidade_medida": "ug/L",
+      "tipo_valor": "numerico",
+      "aplicabilidade_perfis": [
+        "rural",
+        "ambiental_rio"
+      ],
+      "metodo_analise": "Analise laboratorial direcionada a compostos agricolas.",
+      "frequencia_recomendada": "sazonal ou sob suspeita operacional",
+      "observacoes_tecnicas": "Metadado inicial para configuracao operacional e futura avaliacao de conformidade.",
+      "limite_observacional": null
     },
     {
       "codigo": "oleos_graxas",
       "nome": "Oleos e graxas",
       "categoria": "contaminantes_industriais",
       "unidade": "mg/L",
-      "descricao": "Concentracao de oleos e graxas na amostra."
+      "descricao": "Concentracao de oleos e graxas na amostra.",
+      "unidade_medida": "mg/L",
+      "tipo_valor": "numerico",
+      "aplicabilidade_perfis": [
+        "industrial",
+        "urbano_saneamento",
+        "ambiental_rio",
+        "ete"
+      ],
+      "metodo_analise": "Analise laboratorial direcionada a compostos industriais.",
+      "frequencia_recomendada": "periodica ou sob suspeita operacional",
+      "observacoes_tecnicas": "Metadado inicial para configuracao operacional e futura avaliacao de conformidade.",
+      "limite_observacional": null
     },
     {
       "codigo": "fenois",
       "nome": "Fenois",
       "categoria": "contaminantes_industriais",
       "unidade": "mg/L",
-      "descricao": "Concentracao de fenois na amostra."
+      "descricao": "Concentracao de fenois na amostra.",
+      "unidade_medida": "mg/L",
+      "tipo_valor": "numerico",
+      "aplicabilidade_perfis": [
+        "industrial",
+        "urbano_saneamento",
+        "ambiental_rio",
+        "ete"
+      ],
+      "metodo_analise": "Analise laboratorial direcionada a compostos industriais.",
+      "frequencia_recomendada": "periodica ou sob suspeita operacional",
+      "observacoes_tecnicas": "Metadado inicial para configuracao operacional e futura avaliacao de conformidade.",
+      "limite_observacional": null
     },
     {
       "codigo": "solventes",
       "nome": "Solventes",
       "categoria": "contaminantes_industriais",
       "unidade": "ug/L",
-      "descricao": "Grupo agregado de solventes monitoraveis."
+      "descricao": "Grupo agregado de solventes monitoraveis.",
+      "unidade_medida": "ug/L",
+      "tipo_valor": "numerico",
+      "aplicabilidade_perfis": [
+        "industrial",
+        "urbano_saneamento",
+        "ambiental_rio",
+        "ete"
+      ],
+      "metodo_analise": "Analise laboratorial direcionada a compostos industriais.",
+      "frequencia_recomendada": "periodica ou sob suspeita operacional",
+      "observacoes_tecnicas": "Metadado inicial para configuracao operacional e futura avaliacao de conformidade.",
+      "limite_observacional": null
     },
     {
       "codigo": "hidrocarbonetos",
       "nome": "Hidrocarbonetos",
       "categoria": "contaminantes_industriais",
       "unidade": "ug/L",
-      "descricao": "Grupo agregado de hidrocarbonetos monitoraveis."
+      "descricao": "Grupo agregado de hidrocarbonetos monitoraveis.",
+      "unidade_medida": "ug/L",
+      "tipo_valor": "numerico",
+      "aplicabilidade_perfis": [
+        "industrial",
+        "urbano_saneamento",
+        "ambiental_rio",
+        "ete"
+      ],
+      "metodo_analise": "Analise laboratorial direcionada a compostos industriais.",
+      "frequencia_recomendada": "periodica ou sob suspeita operacional",
+      "observacoes_tecnicas": "Metadado inicial para configuracao operacional e futura avaliacao de conformidade.",
+      "limite_observacional": null
     },
     {
       "codigo": "detergentes",
       "nome": "Detergentes",
       "categoria": "contaminantes_industriais",
       "unidade": "mg/L",
-      "descricao": "Concentracao de detergentes ou surfactantes na amostra."
+      "descricao": "Concentracao de detergentes ou surfactantes na amostra.",
+      "unidade_medida": "mg/L",
+      "tipo_valor": "numerico",
+      "aplicabilidade_perfis": [
+        "industrial",
+        "urbano_saneamento",
+        "ambiental_rio",
+        "ete"
+      ],
+      "metodo_analise": "Analise laboratorial direcionada a compostos industriais.",
+      "frequencia_recomendada": "periodica ou sob suspeita operacional",
+      "observacoes_tecnicas": "Metadado inicial para configuracao operacional e futura avaliacao de conformidade.",
+      "limite_observacional": null
     },
     {
       "codigo": "coliformes_totais",
       "nome": "Coliformes totais",
       "categoria": "biologicos",
       "unidade": "NMP/100 mL",
-      "descricao": "Indicador microbiologico de coliformes totais."
+      "descricao": "Indicador microbiologico de coliformes totais.",
+      "unidade_medida": "NMP/100 mL",
+      "tipo_valor": "numerico",
+      "aplicabilidade_perfis": [
+        "rural",
+        "urbano_saneamento",
+        "ambiental_rio",
+        "eta",
+        "ete"
+      ],
+      "metodo_analise": "Analise microbiologica ou biologica conforme indicador.",
+      "frequencia_recomendada": "rotina operacional ou campanha especifica",
+      "observacoes_tecnicas": "Metadado inicial para configuracao operacional e futura avaliacao de conformidade.",
+      "limite_observacional": {
+        "max": 0,
+        "unidade": "NMP/100 mL",
+        "criterio": "gatilho observacional conservador, sem carater legal"
+      }
     },
     {
       "codigo": "e_coli",
       "nome": "E. coli",
       "categoria": "biologicos",
       "unidade": "NMP/100 mL",
-      "descricao": "Indicador microbiologico de Escherichia coli."
+      "descricao": "Indicador microbiologico de Escherichia coli.",
+      "unidade_medida": "NMP/100 mL",
+      "tipo_valor": "numerico",
+      "aplicabilidade_perfis": [
+        "rural",
+        "urbano_saneamento",
+        "ambiental_rio",
+        "eta",
+        "ete"
+      ],
+      "metodo_analise": "Analise microbiologica ou biologica conforme indicador.",
+      "frequencia_recomendada": "rotina operacional ou campanha especifica",
+      "observacoes_tecnicas": "Metadado inicial para configuracao operacional e futura avaliacao de conformidade.",
+      "limite_observacional": {
+        "max": 0,
+        "unidade": "NMP/100 mL",
+        "criterio": "gatilho observacional conservador, sem carater legal"
+      }
     },
     {
       "codigo": "enterococos",
       "nome": "Enterococos",
       "categoria": "biologicos",
       "unidade": "NMP/100 mL",
-      "descricao": "Indicador microbiologico de enterococos."
+      "descricao": "Indicador microbiologico de enterococos.",
+      "unidade_medida": "NMP/100 mL",
+      "tipo_valor": "numerico",
+      "aplicabilidade_perfis": [
+        "rural",
+        "urbano_saneamento",
+        "ambiental_rio",
+        "eta",
+        "ete"
+      ],
+      "metodo_analise": "Analise microbiologica ou biologica conforme indicador.",
+      "frequencia_recomendada": "rotina operacional ou campanha especifica",
+      "observacoes_tecnicas": "Metadado inicial para configuracao operacional e futura avaliacao de conformidade.",
+      "limite_observacional": null
     },
     {
       "codigo": "cianobacterias",
       "nome": "Cianobacterias",
       "categoria": "biologicos",
       "unidade": "celulas/mL",
-      "descricao": "Contagem ou estimativa de cianobacterias."
+      "descricao": "Contagem ou estimativa de cianobacterias.",
+      "unidade_medida": "celulas/mL",
+      "tipo_valor": "numerico",
+      "aplicabilidade_perfis": [
+        "rural",
+        "urbano_saneamento",
+        "ambiental_rio",
+        "eta",
+        "ete"
+      ],
+      "metodo_analise": "Analise microbiologica ou biologica conforme indicador.",
+      "frequencia_recomendada": "rotina operacional ou campanha especifica",
+      "observacoes_tecnicas": "Metadado inicial para configuracao operacional e futura avaliacao de conformidade.",
+      "limite_observacional": null
     },
     {
       "codigo": "clorofila_a",
       "nome": "Clorofila-a",
       "categoria": "biologicos",
       "unidade": "ug/L",
-      "descricao": "Indicador de biomassa algal."
+      "descricao": "Indicador de biomassa algal.",
+      "unidade_medida": "ug/L",
+      "tipo_valor": "numerico",
+      "aplicabilidade_perfis": [
+        "rural",
+        "urbano_saneamento",
+        "ambiental_rio",
+        "eta",
+        "ete"
+      ],
+      "metodo_analise": "Analise microbiologica ou biologica conforme indicador.",
+      "frequencia_recomendada": "rotina operacional ou campanha especifica",
+      "observacoes_tecnicas": "Metadado inicial para configuracao operacional e futura avaliacao de conformidade.",
+      "limite_observacional": null
     },
     {
       "codigo": "microplasticos",
       "nome": "Microplasticos",
       "categoria": "contaminantes_emergentes",
       "unidade": "particulas/L",
-      "descricao": "Contagem estimada de microplasticos."
+      "descricao": "Contagem estimada de microplasticos.",
+      "unidade_medida": "particulas/L",
+      "tipo_valor": "numerico",
+      "aplicabilidade_perfis": [
+        "urbano_saneamento",
+        "ambiental_rio",
+        "ete"
+      ],
+      "metodo_analise": "Analise especializada conforme disponibilidade tecnica.",
+      "frequencia_recomendada": "campanha especifica ou estudo exploratorio",
+      "observacoes_tecnicas": "Metadado inicial para configuracao operacional e futura avaliacao de conformidade.",
+      "limite_observacional": null
     },
     {
       "codigo": "residuos_medicamentos",
       "nome": "Residuos de medicamentos",
       "categoria": "contaminantes_emergentes",
       "unidade": "ng/L",
-      "descricao": "Grupo agregado de residuos farmaceuticos monitoraveis."
+      "descricao": "Grupo agregado de residuos farmaceuticos monitoraveis.",
+      "unidade_medida": "ng/L",
+      "tipo_valor": "numerico",
+      "aplicabilidade_perfis": [
+        "urbano_saneamento",
+        "ambiental_rio",
+        "ete"
+      ],
+      "metodo_analise": "Analise especializada conforme disponibilidade tecnica.",
+      "frequencia_recomendada": "campanha especifica ou estudo exploratorio",
+      "observacoes_tecnicas": "Metadado inicial para configuracao operacional e futura avaliacao de conformidade.",
+      "limite_observacional": null
     },
     {
       "codigo": "hormonios",
       "nome": "Hormonios",
       "categoria": "contaminantes_emergentes",
       "unidade": "ng/L",
-      "descricao": "Grupo agregado de hormonios monitoraveis."
+      "descricao": "Grupo agregado de hormonios monitoraveis.",
+      "unidade_medida": "ng/L",
+      "tipo_valor": "numerico",
+      "aplicabilidade_perfis": [
+        "urbano_saneamento",
+        "ambiental_rio",
+        "ete"
+      ],
+      "metodo_analise": "Analise especializada conforme disponibilidade tecnica.",
+      "frequencia_recomendada": "campanha especifica ou estudo exploratorio",
+      "observacoes_tecnicas": "Metadado inicial para configuracao operacional e futura avaliacao de conformidade.",
+      "limite_observacional": null
     },
     {
       "codigo": "pfas",
       "nome": "PFAS",
       "categoria": "contaminantes_emergentes",
       "unidade": "ng/L",
-      "descricao": "Substancias perfluoroalquiladas e polifluoroalquiladas."
+      "descricao": "Substancias perfluoroalquiladas e polifluoroalquiladas.",
+      "unidade_medida": "ng/L",
+      "tipo_valor": "numerico",
+      "aplicabilidade_perfis": [
+        "urbano_saneamento",
+        "ambiental_rio",
+        "ete"
+      ],
+      "metodo_analise": "Analise especializada conforme disponibilidade tecnica.",
+      "frequencia_recomendada": "campanha especifica ou estudo exploratorio",
+      "observacoes_tecnicas": "Metadado inicial para configuracao operacional e futura avaliacao de conformidade.",
+      "limite_observacional": null
     }
   ]
 }

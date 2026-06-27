@@ -1,4 +1,5 @@
 import json
+from dataclasses import asdict
 from pathlib import Path
 
 from .models import CategoriaParametro, ParametroHidrico, PerfilOperacional
@@ -26,4 +27,59 @@ def load_categorias_parametros(path=CATALOG_PATH):
 
 def load_parametros_hidricos(path=CATALOG_PATH):
     catalog = load_catalog(path)
-    return [ParametroHidrico(**item) for item in catalog.get("parametros_hidricos", [])]
+    return [_build_parametro_hidrico(item) for item in catalog.get("parametros_hidricos", [])]
+
+
+def listar_parametros_por_perfil(perfil_operacional, path=CATALOG_PATH):
+    return [
+        parametro
+        for parametro in load_parametros_hidricos(path)
+        if perfil_operacional in parametro.aplicabilidade_perfis
+    ]
+
+
+def listar_parametros_por_categoria(categoria, path=CATALOG_PATH):
+    return [
+        parametro
+        for parametro in load_parametros_hidricos(path)
+        if parametro.categoria == categoria
+    ]
+
+
+def obter_metadados_parametro(codigo, path=CATALOG_PATH):
+    for parametro in load_parametros_hidricos(path):
+        if parametro.codigo == codigo:
+            return asdict(parametro)
+    raise ValueError(f"Parametro inexistente no catalogo: {codigo}")
+
+
+def validar_metadados_parametros(path=CATALOG_PATH):
+    perfis = {perfil.codigo for perfil in load_perfis_operacionais(path)}
+    categorias = {categoria.codigo for categoria in load_categorias_parametros(path)}
+    tipos_validos = {"numerico", "texto", "booleano", "observacional"}
+
+    for parametro in load_parametros_hidricos(path):
+        if not parametro.codigo or not parametro.nome:
+            raise ValueError("Parametro hidrico sem codigo ou nome.")
+        if parametro.categoria not in categorias:
+            raise ValueError(f"Categoria invalida para parametro: {parametro.codigo}")
+        if parametro.tipo_valor not in tipos_validos:
+            raise ValueError(f"Tipo de valor invalido para parametro: {parametro.codigo}")
+        if parametro.tipo_valor == "numerico" and not parametro.unidade_medida:
+            raise ValueError(f"Parametro numerico sem unidade de medida: {parametro.codigo}")
+        if not parametro.aplicabilidade_perfis:
+            raise ValueError(f"Parametro sem aplicabilidade por perfil: {parametro.codigo}")
+        for perfil in parametro.aplicabilidade_perfis:
+            if perfil not in perfis:
+                raise ValueError(f"Perfil invalido para parametro {parametro.codigo}: {perfil}")
+
+    return True
+
+
+def _build_parametro_hidrico(item):
+    parametro = dict(item)
+    if not parametro.get("unidade_medida"):
+        parametro["unidade_medida"] = parametro.get("unidade")
+    if not parametro.get("unidade"):
+        parametro["unidade"] = parametro.get("unidade_medida")
+    return ParametroHidrico(**parametro)

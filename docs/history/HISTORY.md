@@ -224,3 +224,35 @@ Criação da camada de Configuração Operacional para Monitoramento Hídrico co
 * Tela PyQt não implementada nesta etapa.
 * Motor de conformidade legal completo não implementado nesta etapa.
 * Evolução mantida simples, determinística, testável e extensível.
+
+---
+
+# GP-A11 - Catálogo Inteligente de Parâmetros Hídricos
+
+## Data
+
+26/06/2026
+
+## Status
+
+INICIADA
+
+## Evento
+
+Enriquecimento do catálogo de parâmetros hídricos para preparar a futura GP-A12 - Motor de Conformidade.
+
+## Resultado
+
+* Modelo `ParametroHidrico` evoluído com metadados inteligentes.
+* Catálogo JSON enriquecido com unidade de medida, tipo de valor, aplicabilidade por perfil, método de análise, frequência recomendada, observações técnicas e limites observacionais.
+* Funções de consulta por perfil operacional e categoria adicionadas.
+* Função de obtenção de metadados completos por parâmetro adicionada.
+* Validação de campos mínimos inteligentes adicionada.
+* Testes do catálogo inteligente adicionados.
+
+## Restrições Mantidas
+
+* CSVs operacionais existentes preservados.
+* Telas PyQt não alteradas.
+* Validação legal completa não implementada nesta etapa.
+* Compatibilidade com GP-A09 e GP-A10 preservada.

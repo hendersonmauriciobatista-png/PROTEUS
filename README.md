@@ -164,6 +164,7 @@ Componentes concluídos:
 * GP-A08 Executive Intelligence Layer V1
 * GP-A09 Monitoramento Hídrico Modular Base
 * GP-A10 Configuração Operacional de Monitoramento Hídrico
+* GP-A11 Catálogo Inteligente de Parâmetros Hídricos
 
 Características da baseline:
 
@@ -214,12 +215,31 @@ Componentes adicionados:
 * Persistência de configurações em JSON.
 * Validação determinística de perfis, categorias e parâmetros contra o catálogo GP-A09.
 
+GP-A11 enriquece o catálogo de parâmetros hídricos para preparar a futura camada de conformidade.
+
+Metadados adicionados:
+
+* Unidade de medida.
+* Tipo de valor.
+* Aplicabilidade por perfil operacional.
+* Método de análise.
+* Frequência recomendada.
+* Observações técnicas.
+* Limite observacional sem caráter legal completo.
+
+Consultas disponíveis:
+
+* Listagem de parâmetros por perfil operacional.
+* Listagem de parâmetros por categoria.
+* Obtenção de metadados completos por parâmetro.
+* Validação de campos mínimos inteligentes.
+
 ---
 
 # Próximos Passos
 
-A próxima expansão arquitetural deverá evoluir a configuração operacional para presets, limites observacionais e integração gradual com as telas e análises existentes.
+A próxima expansão arquitetural deverá usar os metadados inteligentes da GP-A11 como base para um motor inicial de conformidade observacional.
 
 Próximo marco previsto:
 
-GP-A11 — Presets operacionais, limites observacionais e integração progressiva.
+GP-A12 — Motor de Conformidade Observacional.

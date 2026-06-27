@@ -85,7 +85,8 @@ Observação
 | GP-A07 | Operational Governance Layer V1 | ENCERRADA |
 | GP-A08 | Executive Intelligence Layer V1 | ENCERRADA |
 | GP-A09 | Monitoramento Hídrico Modular Base | ENCERRADA |
-| GP-A10 | Configuração Operacional de Monitoramento Hídrico | INICIADA |
+| GP-A10 | Configuração Operacional de Monitoramento Hídrico | ENCERRADA |
+| GP-A11 | Catálogo Inteligente de Parâmetros Hídricos | INICIADA |
 
 ---
 
@@ -110,6 +111,7 @@ Evolução em andamento:
 * Perfis operacionais e categorias de parâmetros passam a existir como catálogo rastreável.
 * GP-A10 adiciona configurações operacionais customizáveis por cliente, cenário ou operação.
 * Perfis operacionais passam a atuar como modelos iniciais, não como regras fixas.
+* GP-A11 enriquece o catálogo de parâmetros com metadados técnicos, aplicabilidade por perfil e limites observacionais não legais.
 
 ## Camada Analítica
 
@@ -178,16 +180,17 @@ Arquitetura determinística, explicável e auditável.
 
 # Próximas Expansões
 
-GP-A10 iniciada como evolução direta da arquitetura modular criada em GP-A09.
+GP-A11 iniciada como evolução do catálogo de Monitoramento Hídrico e preparação para conformidade observacional.
 
 Próxima GP:
 
-GP-A11
+GP-A12
 Status: PLANEJADA
 
 Escopo previsto:
 
-* Criar presets operacionais mais detalhados por perfil.
-* Preparar limites observacionais por parâmetro e contexto sem validação legal completa.
-* Planejar integração progressiva com telas, análises e relatórios existentes.
+* Criar motor inicial de conformidade observacional.
+* Consumir limites observacionais do catálogo inteligente.
+* Separar alertas observacionais de validação legal completa.
+* Planejar integração progressiva com configurações operacionais, análises e relatórios.
 * Preservar compatibilidade com CSVs e dados operacionais existentes.

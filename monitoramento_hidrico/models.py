@@ -22,6 +22,13 @@ class ParametroHidrico:
     nome: str
     categoria: str
     unidade: Optional[str] = None
+    unidade_medida: Optional[str] = None
+    tipo_valor: str = "numerico"
+    aplicabilidade_perfis: list[str] = field(default_factory=list)
+    metodo_analise: Optional[str] = None
+    frequencia_recomendada: Optional[str] = None
+    observacoes_tecnicas: Optional[str] = None
+    limite_observacional: Optional[dict] = None
     descricao: str = ""
 
 
