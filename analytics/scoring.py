@@ -1,8 +1,28 @@
-from .alerts import QUALITY_LIMITS
 from .models import WaterHealthScore
+from monitoramento_hidrico import AvaliacaoObservacionalService, PolicyEngine
+from monitoramento_hidrico.analytics_adapter import (
+    AnalyticsHydricMonitoringAdapter,
+    resultado_nao_avaliavel,
+    resultado_normal,
+)
+
+
+QUALITY_SCORE_WEIGHTS = {
+    "ph": 18,
+    "turbidez": 18,
+    "oxigenio_dissolvido": 20,
+    "temperatura": 10,
+    "agrotoxicos": 22,
+}
 
 
 class WaterHealthScoreCalculator:
+    def __init__(self, monitoring_adapter=None):
+        self.monitoring_adapter = monitoring_adapter or AnalyticsHydricMonitoringAdapter(
+            policy_engine=PolicyEngine(),
+            evaluation_service=AvaliacaoObservacionalService(),
+        )
+
     def calculate(self, quality, environment, consumption):
         score = 100.0
         explanations = []
@@ -15,17 +35,7 @@ class WaterHealthScoreCalculator:
             )
 
         latest_quality = quality[-1]
-        score -= self._quality_penalty("ph", "pH", latest_quality.ph, explanations, 18)
-        score -= self._quality_penalty("turbidez", "Turbidez", latest_quality.turbidez, explanations, 18)
-        score -= self._quality_penalty(
-            "oxigenio_dissolvido",
-            "Oxigenio dissolvido",
-            latest_quality.oxigenio_dissolvido,
-            explanations,
-            20,
-        )
-        score -= self._quality_penalty("temperatura", "Temperatura da agua", latest_quality.temperatura, explanations, 10)
-        score -= self._quality_penalty("agrotoxicos", "Agrotoxicos", latest_quality.agrotoxicos, explanations, 22)
+        score -= self._quality_penalties_from_observational_results(latest_quality, explanations)
 
         if consumption:
             latest_consumption = consumption[-1]
@@ -55,28 +65,32 @@ class WaterHealthScoreCalculator:
 
         return WaterHealthScore(score=final_score, status=self._status(final_score), explanations=explanations)
 
-    def _quality_penalty(self, metric, label, value, explanations, max_penalty):
-        minimum, maximum = QUALITY_LIMITS[metric]
-        if minimum <= value <= maximum:
+    def _quality_penalties_from_observational_results(self, measurement, explanations):
+        total_penalty = 0.0
+        for item in self.monitoring_adapter.avaliar_qualidade(measurement):
+            resultado = item["resultado"]
+            max_penalty = QUALITY_SCORE_WEIGHTS[item["field_name"]]
+
+            if resultado_normal(resultado):
+                explanations.append(
+                    f"{item['label']} {float(resultado.valor_avaliado):.4f} normal na avaliacao observacional; sem penalidade."
+                )
+                continue
+
+            if resultado_nao_avaliavel(resultado):
+                explanations.append(
+                    f"{item['label']} sem avaliacao observacional aplicavel ao score: {resultado.mensagem}"
+                )
+                continue
+
+            penalty = max_penalty if resultado.status == "CRITICO" else max_penalty * 0.5
+            total_penalty += penalty
             explanations.append(
-                f"{label} {value:.4f} dentro da faixa configurada {minimum:.4f}-{maximum:.4f}; sem penalidade."
+                f"{item['label']} {float(resultado.valor_avaliado):.4f} com status {resultado.status}; "
+                f"reduz {penalty:.2f} pontos."
             )
-            return 0.0
 
-        if value < minimum:
-            distance = minimum - value
-            reference = max(abs(minimum), 1.0)
-            direction = "abaixo"
-        else:
-            distance = value - maximum
-            reference = max(abs(maximum), 1.0)
-            direction = "acima"
-
-        penalty = min(max_penalty, max_penalty * (distance / reference))
-        explanations.append(
-            f"{label} {value:.4f} {direction} da faixa {minimum:.4f}-{maximum:.4f}; reduz {penalty:.2f} pontos."
-        )
-        return penalty
+        return total_penalty
 
     def _status(self, score):
         if score >= 85:

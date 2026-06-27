@@ -92,6 +92,7 @@ Observação
 | GP-A14 | Auditoria de Integração do Núcleo de Monitoramento Hídrico | CONCLUÍDA |
 | GP-A15 | Integração do Dashboard ao Núcleo de Monitoramento Hídrico | INICIADA |
 | GP-A16 | Integração de Qualidade da Água / Monitoramento Hídrico com o Núcleo | CONCLUÍDA |
+| GP-A20 | Integração da Previsão Analítica com o Núcleo de Monitoramento Hídrico | CONCLUÍDA |
 
 ---
 
@@ -227,9 +228,9 @@ Pendência pós-GP-A15:
 * Avaliar política futura para perdas estimadas e consumo, se houver necessidade observacional.
 * Integrar Relatórios com serviço próprio e remover `_quality_status` da camada visual.
 * Garantir que relatórios consumam avaliações observacionais do núcleo.
-* Integrar Previsão Analítica com adapter analítico para consumir avaliações observacionais do núcleo.
-* Separar tendências analíticas próprias de decisões baseadas em limites hídricos.
-* Preparar Water Health Score para rastrear a origem das avaliações usadas em penalidades.
+* [x] Integrar Previsão Analítica com adapter analítico para consumir avaliações observacionais do núcleo.
+* [x] Separar tendências analíticas próprias de decisões baseadas em limites hídricos.
+* [x] Preparar Water Health Score para usar avaliações observacionais nas penalidades de qualidade.
 * Integrar Governança Operacional com eventos enriquecidos por metadados de avaliação.
 * Desacoplar futuramente a origem de alertas de `AnalyticsService` puro.
 * Preservar transições de governança e histórico em `eventos_operacionais.json`.

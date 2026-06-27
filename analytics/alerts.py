@@ -1,16 +1,18 @@
 from .models import PreventiveAlert
-
-
-QUALITY_LIMITS = {
-    "ph": (6.0, 9.0),
-    "turbidez": (0.0, 5.0),
-    "oxigenio_dissolvido": (5.0, 10.0),
-    "temperatura": (15.0, 30.0),
-    "agrotoxicos": (0.0, 0.1),
-}
+from monitoramento_hidrico import AvaliacaoObservacionalService, PolicyEngine
+from monitoramento_hidrico.analytics_adapter import (
+    AnalyticsHydricMonitoringAdapter,
+    resultado_requer_atencao,
+)
 
 
 class PreventiveAlertService:
+    def __init__(self, monitoring_adapter=None):
+        self.monitoring_adapter = monitoring_adapter or AnalyticsHydricMonitoringAdapter(
+            policy_engine=PolicyEngine(),
+            evaluation_service=AvaliacaoObservacionalService(),
+        )
+
     def build_alerts(self, quality, environment, consumption, quality_trends, consumption_trends):
         alerts = []
         latest_quality = quality[-1] if quality else None
@@ -31,43 +33,22 @@ class PreventiveAlertService:
 
     def _quality_limit_alerts(self, measurement):
         alerts = []
-        checks = [
-            ("ph", "pH", measurement.ph, "fora da faixa 6.0-9.0", "alto"),
-            ("turbidez", "Turbidez", measurement.turbidez, "acima de 5.0 NTU", "alto"),
-            (
-                "oxigenio_dissolvido",
-                "Oxigenio dissolvido",
-                measurement.oxigenio_dissolvido,
-                "abaixo de 5.0 mg/L",
-                "alto",
-            ),
-            ("temperatura", "Temperatura da agua", measurement.temperatura, "fora da faixa 15.0-30.0", "medio"),
-            ("agrotoxicos", "Agrotoxicos", measurement.agrotoxicos, "acima de 0.1 mg/L", "alto"),
-        ]
+        for item in self.monitoring_adapter.avaliar_qualidade(measurement):
+            resultado = item["resultado"]
+            if not resultado_requer_atencao(resultado):
+                continue
 
-        for metric, label, value, condition, severity in checks:
-            minimum, maximum = QUALITY_LIMITS[metric]
-            if value < minimum or value > maximum:
-                alerts.append(
-                    PreventiveAlert(
-                        severity=severity,
-                        domain="qualidade_agua",
-                        metric=metric,
-                        message=f"Atencao preventiva: {label} {condition}.",
-                        evidence=f"Valor atual {value:.4f}; limite minimo {minimum:.4f}; limite maximo {maximum:.4f}.",
-                        recommendation="Revisar a medicao e acompanhar novas coletas antes de qualquer decisao operacional.",
-                    )
-                )
-
-        if 0.07 <= measurement.agrotoxicos <= 0.1:
             alerts.append(
                 PreventiveAlert(
-                    severity="medio",
+                    severity=_severity_from_observational_status(resultado.status),
                     domain="qualidade_agua",
-                    metric="agrotoxicos",
-                    message="Atencao preventiva: agrotoxicos proximos do limite configurado.",
-                    evidence=f"Valor atual {measurement.agrotoxicos:.4f}; limite maximo 0.1000.",
-                    recommendation="Acompanhar proximas medicoes e verificar contexto da coleta.",
+                    metric=item["field_name"],
+                    message=f"Atencao preventiva: {item['label']} com avaliacao observacional {resultado.status}.",
+                    evidence=(
+                        f"Valor atual {float(resultado.valor_avaliado):.4f}; "
+                        f"{resultado.mensagem}; origem {resultado.origem_limite}."
+                    ),
+                    recommendation="Revisar a medicao e acompanhar novas coletas antes de qualquer decisao operacional.",
                 )
             )
 
@@ -147,3 +128,11 @@ class PreventiveAlertService:
                 )
             ]
         return []
+
+
+def _severity_from_observational_status(status):
+    if status == "CRITICO":
+        return "alto"
+    if status == "ATENCAO":
+        return "medio"
+    return "baixo"

@@ -15,9 +15,20 @@ class PreventiveAlertServiceTests(unittest.TestCase):
         alerts = PreventiveAlertService().build_alerts(quality, environment, consumption, trends, [])
 
         self.assertTrue(alerts)
-        self.assertEqual("alto", alerts[0].severity)
+        self.assertEqual("medio", alerts[0].severity)
         self.assertIn("Atencao preventiva", alerts[0].message)
         self.assertIn("Valor atual 5.5000", alerts[0].evidence)
+        self.assertIn("catalogo:limite_observacional", alerts[0].evidence)
+
+    def test_alerts_report_critical_status_from_observational_engine(self):
+        quality = [QualityMeasurement(None, 7.0, 100.0, 6.0, 25.0, 0.0)]
+        trends = TrendAnalyzer().quality_trends(quality)
+
+        alerts = PreventiveAlertService().build_alerts(quality, [], [], trends, [])
+
+        turbidity_alert = next(alert for alert in alerts if alert.metric == "turbidez")
+        self.assertEqual("alto", turbidity_alert.severity)
+        self.assertIn("CRITICO", turbidity_alert.message)
 
     def test_alerts_combine_rain_and_rising_turbidity(self):
         quality = [

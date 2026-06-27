@@ -403,6 +403,53 @@ Execução da primeira auditoria de integração arquitetural do Núcleo de Moni
 
 ---
 
+# GP-A20 - Integração da Previsão Analítica com o Núcleo de Monitoramento Hídrico
+
+## Data
+
+27/06/2026
+
+## Status
+
+CONCLUÍDA
+
+## Evento
+
+Integração da camada `analytics` ao Núcleo de Monitoramento Hídrico para avaliações observacionais de qualidade da água.
+
+## Resultado
+
+* Adapter `AnalyticsHydricMonitoringAdapter` criado.
+* `PreventiveAlertService` passou a consumir avaliações observacionais do núcleo para alertas de qualidade da água.
+* `WaterHealthScoreCalculator` passou a consumir avaliações observacionais do núcleo para penalidades de qualidade.
+* `QUALITY_LIMITS` deixou de ser autoridade local para decisão observacional de qualidade.
+* Tendências analíticas foram preservadas como responsabilidade da camada `analytics`.
+* Leitura dos CSVs via `AnalyticsRepository` preservada.
+* Interface visual da Previsão Analítica preservada.
+* Conformidade legal completa não implementada.
+* Relatório de integração atualizado com veredito da GP-A20.
+
+## Testes
+
+Comando executado:
+
+`python -m unittest discover -s tests`
+
+Resultado:
+
+* 56 testes executados.
+* Todos passaram.
+
+## Restrições Mantidas
+
+* CSVs operacionais não alterados.
+* Interface visual não redesenhada.
+* Tendências analíticas não removidas.
+* Configuração Operacional ainda não aplicada à Previsão Analítica.
+* Nenhum commit realizado.
+
+---
+
 # GP-A16 - Integração de Qualidade da Água / Monitoramento Hídrico com o Núcleo
 
 ## Data
