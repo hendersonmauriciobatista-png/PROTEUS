@@ -400,3 +400,193 @@ Resultado:
 GP-A17 concluida.
 
 Dados Ambientais permanece como camada de contexto e coleta, sem autoridade observacional propria. Nenhuma integracao funcional foi necessaria porque nao havia decisao observacional local a remover.
+
+---
+
+# GP-A18 - Integracao de Consumo e Distribuicao com o Nucleo de Monitoramento Hidrico
+
+Data: 27/06/2026
+
+Status: CONCLUIDA SEM ADAPTER FUNCIONAL
+
+## Auditoria Passiva
+
+A auditoria da GP-A18 avaliou `consumo_distribuicao.py` e os consumidores relacionados ao CSV de consumo e distribuicao.
+
+Achados:
+
+* `ConsumoDistribuicaoPage` registra medicoes operacionais de consumo, distribuicao e perdas.
+* O modulo preserva leitura e escrita direta em `data/consumo_distribuicao_medicoes.csv`.
+* O CSV mantem os campos `timestamp`, `consumo_diario`, `consumo_mensal`, `volume_distribuido`, `perdas_estimadas` e `observacao`.
+* A tela exibe historico das medicoes sem produzir status observacional.
+* Nao ha `CONAMA`, `QUALITY_LIMITS`, `check_status`, severidade local, conformidade local ou classificacao observacional local.
+* Os ranges de `QDoubleSpinBox` sao restricoes de entrada de formulario, nao limites observacionais hidricos.
+* `DashboardPage` apresenta consumo diario e perdas como resumo operacional.
+* `RelatoriosPage` apresenta a ultima medicao de consumo sem classificar ou avaliar o dado.
+* `AnalyticsRepository` consome o CSV de consumo como insumo operacional.
+* `analytics.alerts` e `analytics.scoring` possuem regras preventivas de perdas estimadas, mas essas regras pertencem a camada analitica/operacional e nao a tela de Consumo e Distribuicao.
+* `Governanca Operacional` consome alertas derivados de Analytics, sem ler diretamente a tela.
+
+## Diagnostico Arquitetural
+
+Consumo e Distribuicao atua como produtor de dados operacionais e camada de coleta.
+
+Nao foi identificada autoridade observacional local no modulo visual. Portanto, a criacao de `ConsumptionDistributionHydricMonitoringAdapter` nao e necessaria nesta GP.
+
+As regras preventivas de perdas existentes em Analytics devem ser tratadas em uma evolucao propria de indicadores operacionais, sem confundir o Nucleo de Monitoramento Hidrico com motor generico de consumo/distribuicao.
+
+## Plano Aplicado
+
+* Nao alterar codigo funcional.
+* Nao alterar interface visual.
+* Nao alterar CSV operacional.
+* Nao criar adapter sem necessidade arquitetural.
+* Registrar a decisao de manter Consumo e Distribuicao como coleta operacional.
+* Registrar que regras preventivas de perdas permanecem fora da tela e fora da autoridade observacional hidrica.
+* Manter PA-01 preservado.
+
+## Integracao Existente
+
+Nao ha integracao direta com:
+
+* Configuracao Operacional.
+* Catalogo Inteligente.
+* Policy Engine.
+* Motor Observacional.
+
+Essa ausencia nao e lacuna critica nesta GP porque o modulo nao decide status observacional hidrico.
+
+## PA-01
+
+PA-01 preservado.
+
+Consumo e Distribuicao nao seleciona politica e nao executa avaliacao observacional. A tela apenas coleta, persiste e apresenta dados operacionais.
+
+## Impacto na AI-04
+
+Veredito atualizado:
+
+INTEGRACAO POR AUDITORIA CONCLUIDA; ADAPTER HIDRICO NAO NECESSARIO NESTA ETAPA.
+
+Prioridade remanescente:
+
+BAIXA-MEDIA.
+
+Lacunas remanescentes:
+
+* Leitura e escrita direta em CSV permanecem por decisao de compatibilidade.
+* Indicadores de perdas e consumo ainda nao possuem uma camada dedicada de politica operacional.
+* Regras preventivas de perdas continuam em Analytics e podem ser auditadas futuramente como inteligencia operacional, nao como conformidade hidrica.
+
+## Classificacao das Lacunas
+
+| Codigo | Classificacao | Situacao GP-A18 |
+| ------ | ------------- | --------------- |
+| IA-01 | Duplicacao de Responsabilidade | Nao identificada na tela |
+| IA-02 | Acoplamento Direto | Presente pela dependencia direta do CSV |
+| IA-03 | Dependencia de CSV | Presente e preservada |
+| IA-04 | Logica Duplicada | Nao identificada para avaliacao observacional hidrica |
+| IA-05 | Servico Nao Utilizado | Nao aplicavel nesta etapa |
+| IA-06 | Violacao do PA-01 | Nao identificada |
+| IA-07 | Baixa Coesao | Nao identificada como bloqueio |
+| IA-08 | Integracao Ausente | Aceita, pois nao ha decisao observacional local |
+
+## Matriz de Conformidade GP-A18
+
+| Criterio | Resultado |
+| -------- | --------- |
+| Auditar `consumo_distribuicao.py` | Atendido |
+| Verificar ausencia de `CONAMA` | Atendido |
+| Verificar ausencia de `QUALITY_LIMITS` | Atendido |
+| Verificar ausencia de `check_status` | Atendido |
+| Verificar ausencia de classificacao observacional local | Atendido |
+| Verificar dependencias com Dashboard | Atendido |
+| Verificar dependencias com Analytics | Atendido |
+| Verificar dependencias com Governanca | Atendido |
+| Verificar dependencias com Relatorios | Atendido |
+| Preservar CSV | Atendido |
+| Preservar interface | Atendido |
+| Preservar comportamento operacional | Atendido |
+| Preservar PA-01 | Atendido |
+| Criar adapter apenas se necessario | Atendido; adapter nao criado |
+| Manter testes passando | Atendido |
+
+## Testes
+
+Comando executado:
+
+`python -m unittest discover -s tests`
+
+Resultado:
+
+* 62 testes executados.
+* Todos passaram.
+
+## Veredito
+
+GP-A18 concluida.
+
+Consumo e Distribuicao permanece como camada operacional de coleta, sem autoridade observacional propria. Nenhuma integracao funcional foi necessaria porque nao havia decisao observacional local a remover.
+
+---
+
+# Conclusao Institucional da GP-A14
+
+Data: 27/06/2026
+
+Status: FILA DE INTEGRACAO ENCERRADA
+
+## GPs Executadas
+
+* GP-A16 - Integracao de Qualidade da Agua / Monitoramento Hidrico.
+* GP-A20 - Integracao da Previsao Analitica.
+* GP-A19 - Integracao dos Relatorios Operacionais.
+* GP-A21 - Integracao da Governanca Operacional.
+* GP-A17 - Auditoria/integracao de Dados Ambientais como camada de coleta.
+* GP-A18 - Auditoria/integracao de Consumo e Distribuicao como camada operacional de coleta.
+
+## Integracoes Realizadas
+
+* Qualidade da Agua passou a delegar status observacional ao Nucleo de Monitoramento Hidrico.
+* Previsao Analitica passou a consumir resultados observacionais do Nucleo para qualidade da agua.
+* Relatorios Operacionais passaram a consumir status observacional derivado do Nucleo.
+* Governanca Operacional passou a consumir metadados rastreaveis de politica, resultado observacional e explicabilidade.
+
+## Modulos Auditados
+
+* Dashboard.
+* Qualidade da Agua / Monitoramento Hidrico.
+* Dados Ambientais.
+* Consumo e Distribuicao.
+* Relatorios Operacionais.
+* Previsao Analitica.
+* Governanca Operacional.
+* Painel Executivo.
+
+## Modulos Que Permaneceram Apenas Como Coleta
+
+* Dados Ambientais.
+* Consumo e Distribuicao.
+
+Esses modulos nao possuem autoridade observacional local e nao exigiram adapters hidricos nesta etapa.
+
+## Confirmacao do PA-01
+
+PA-01 confirmado como principio operacional vigente:
+
+* Policy Engine seleciona politicas.
+* Motores especializados executam avaliacoes.
+* Telas e camadas consumidoras apresentam ou interpretam resultados recebidos.
+* Modulos de coleta nao selecionam politica nem executam avaliacao observacional.
+
+## Autoridade Observacional Central
+
+O Nucleo de Monitoramento Hidrico permanece confirmado como autoridade observacional central do sistema para qualidade da agua.
+
+As regras de consumo, distribuicao, perdas e contexto ambiental continuam separadas como indicadores operacionais ou analiticos, sem serem promovidas indevidamente a conformidade hidrica.
+
+## Veredito Institucional
+
+GP-A14 encerrada institucionalmente.
+
+A fila de integracao arquitetural definida pela auditoria foi executada. Os modulos com decisao observacional de qualidade da agua foram integrados ao Nucleo de Monitoramento Hidrico, e os modulos puramente operacionais foram formalmente preservados como coleta/contexto.

@@ -933,3 +933,38 @@ Módulos auditados:
 * CSVs operacionais não alterados.
 * Telas PyQt não alteradas.
 * Integração não implementada nesta etapa.
+
+---
+
+# GP-A18 - Integracao de Consumo e Distribuicao com o Nucleo de Monitoramento Hidrico
+
+## Data
+
+27/06/2026
+
+## Status
+
+CONCLUIDA SEM ADAPTER FUNCIONAL
+
+## Evento
+
+Auditoria e decisao arquitetural sobre a integracao de Consumo e Distribuicao com o Nucleo de Monitoramento Hidrico.
+
+## Resultado
+
+* `consumo_distribuicao.py` auditado como camada operacional de coleta.
+* Nenhuma autoridade observacional local identificada.
+* Nenhum uso de `CONAMA`, `QUALITY_LIMITS` ou `check_status` identificado.
+* Nenhuma classificacao, conformidade, severidade ou alerta observacional local identificado na tela.
+* CSV `data/consumo_distribuicao_medicoes.csv` preservado.
+* Interface visual preservada.
+* Adapter `ConsumptionDistributionHydricMonitoringAdapter` nao criado por nao haver decisao observacional local a delegar.
+* PA-01 preservado: a tela nao seleciona politica e nao executa avaliacao.
+* Fila de integracao da GP-A14 encerrada institucionalmente no relatorio de arquitetura.
+
+## Restricoes Mantidas
+
+* Codigo funcional nao alterado.
+* CSVs operacionais nao alterados.
+* Telas PyQt nao alteradas.
+* Documentos constitucionais ICFACTORY nao alterados.

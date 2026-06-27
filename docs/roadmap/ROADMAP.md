@@ -93,6 +93,7 @@ Observação
 | GP-A15 | Integração do Dashboard ao Núcleo de Monitoramento Hídrico | INICIADA |
 | GP-A16 | Integração de Qualidade da Água / Monitoramento Hídrico com o Núcleo | CONCLUÍDA |
 | GP-A17 | Integração dos Dados Ambientais com o Núcleo de Monitoramento Hídrico | CONCLUÍDA SEM ADAPTER FUNCIONAL |
+| GP-A18 | Integração de Consumo e Distribuição com o Núcleo de Monitoramento Hídrico | CONCLUÍDA SEM ADAPTER FUNCIONAL |
 | GP-A19 | Integração dos Relatórios Operacionais com o Núcleo de Monitoramento Hídrico | CONCLUÍDA |
 | GP-A20 | Integração da Previsão Analítica com o Núcleo de Monitoramento Hídrico | CONCLUÍDA |
 | GP-A21 | Integração da Governança Operacional com o Núcleo de Monitoramento Hídrico | CONCLUÍDA |
@@ -227,7 +228,7 @@ Pendência pós-GP-A15:
 * [x] Remover `CONAMA` e `check_status` da camada visual.
 * [x] Auditar Dados Ambientais e concluir que adapter hídrico não é necessário nesta etapa.
 * Avaliar catálogo/metadados futuros para parâmetros ambientais.
-* Integrar Consumo e Distribuição com adapter ou serviço de dados operacionais.
+* [x] Auditar Consumo e Distribuição e concluir que adapter hídrico não é necessário nesta etapa.
 * Avaliar política futura para perdas estimadas e consumo, se houver necessidade observacional.
 * [x] Integrar Relatórios com adapter próprio e remover `_quality_status` da camada visual.
 * [x] Garantir que relatórios consumam avaliações observacionais do núcleo.
@@ -242,12 +243,12 @@ Pendência pós-GP-A15:
 
 Próxima etapa sugerida:
 
-GP-A18 - Integração de Consumo e Distribuição com serviço operacional ou adapter contextual.
+Definir nova fila pós-GP-A14 para rastreabilidade executiva e serviços operacionais, sem misturar coleta operacional com autoridade observacional hídrica.
 
 Prioridade:
 
-MÉDIA.
+A DEFINIR.
 
 Motivo:
 
-Consumo e Distribuição ainda possui regras preventivas e cálculos próprios de perdas, com oportunidade de separar coleta, indicador operacional e eventual decisão observacional futura.
+A fila de integração arquitetural da GP-A14 foi encerrada. Próximas evoluções devem nascer como novo escopo, preservando o Núcleo de Monitoramento Hídrico como autoridade observacional central para qualidade da água.
