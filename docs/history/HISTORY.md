@@ -290,3 +290,42 @@ Criação de um motor simples, determinístico e testável para avaliar mediçõ
 * Conformidade legal/normativa completa não implementada.
 * Avaliação observacional separada de conformidade legal futura.
 * Compatibilidade com GP-A09, GP-A10 e GP-A11 preservada.
+
+---
+
+# GP-A12A - Policy Engine do Monitoramento Hídrico
+
+## Data
+
+26/06/2026
+
+## Status
+
+INICIADA
+
+## Evento
+
+Criação do Policy Engine para separar seleção de políticas e execução de avaliações no Monitoramento Hídrico.
+
+## Princípio Arquitetural
+
+PA-01 - Separação entre seleção e execução de políticas.
+
+## Resultado
+
+* Modelo `PoliticaAvaliacao` criado.
+* Serviço `PolicyEngine` criado.
+* Funções de listagem e seleção de políticas criadas.
+* Dados iniciais de políticas observacionais adicionados.
+* Priorização por especificidade implementada.
+* Seleção de política padrão observacional implementada.
+* Testes do Policy Engine adicionados.
+* Documento `docs/architecture/ARCHITECTURAL_PRINCIPLES.md` criado.
+
+## Restrições Mantidas
+
+* CSVs operacionais existentes preservados.
+* Telas PyQt não alteradas.
+* Conformidade legal completa não implementada.
+* Policy Engine não executa avaliação.
+* Motores especializados não selecionam política.

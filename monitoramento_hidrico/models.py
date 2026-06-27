@@ -51,3 +51,16 @@ class ResultadoAvaliacaoObservacional:
     severidade: str
     origem_limite: str
     observacoes: str = ""
+
+
+@dataclass(frozen=True)
+class PoliticaAvaliacao:
+    identificador: str
+    nome: str
+    tipo: str
+    motor_destino: str
+    perfil_operacional: Optional[str] = None
+    categoria: Optional[str] = None
+    parametro_id: Optional[str] = None
+    prioridade: int = 0
+    observacoes: str = ""

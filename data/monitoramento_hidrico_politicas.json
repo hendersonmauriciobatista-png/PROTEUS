@@ -1,0 +1,51 @@
+{
+  "versao_politicas": "GP-A12A",
+  "descricao": "Politicas iniciais para selecao de motores de avaliacao do Monitoramento Hidrico.",
+  "principio_arquitetural": "PA-01 - Separacao entre selecao e execucao de politicas.",
+  "politicas": [
+    {
+      "identificador": "politica_observacional_padrao",
+      "nome": "Politica Observacional Padrao",
+      "tipo": "observacional",
+      "motor_destino": "avaliacao_observacional",
+      "perfil_operacional": null,
+      "categoria": null,
+      "parametro_id": null,
+      "prioridade": 0,
+      "observacoes": "Seleciona o motor observacional quando nenhuma politica especifica for aplicavel."
+    },
+    {
+      "identificador": "politica_observacional_industrial",
+      "nome": "Politica Observacional Industrial",
+      "tipo": "observacional",
+      "motor_destino": "avaliacao_observacional",
+      "perfil_operacional": "industrial",
+      "categoria": null,
+      "parametro_id": null,
+      "prioridade": 10,
+      "observacoes": "Seleciona avaliacao observacional para configuracoes com perfil industrial."
+    },
+    {
+      "identificador": "politica_observacional_eta",
+      "nome": "Politica Observacional ETA",
+      "tipo": "observacional",
+      "motor_destino": "avaliacao_observacional",
+      "perfil_operacional": "eta",
+      "categoria": null,
+      "parametro_id": null,
+      "prioridade": 10,
+      "observacoes": "Seleciona avaliacao observacional para estacoes de tratamento de agua."
+    },
+    {
+      "identificador": "politica_observacional_ete",
+      "nome": "Politica Observacional ETE",
+      "tipo": "observacional",
+      "motor_destino": "avaliacao_observacional",
+      "perfil_operacional": "ete",
+      "categoria": null,
+      "parametro_id": null,
+      "prioridade": 10,
+      "observacoes": "Seleciona avaliacao observacional para estacoes de tratamento de esgoto."
+    }
+  ]
+}

@@ -166,6 +166,7 @@ Componentes concluídos:
 * GP-A10 Configuração Operacional de Monitoramento Hídrico
 * GP-A11 Catálogo Inteligente de Parâmetros Hídricos
 * GP-A12 Motor de Avaliação Observacional
+* GP-A12A Policy Engine do Monitoramento Hídrico
 
 Características da baseline:
 
@@ -245,11 +246,26 @@ Recursos adicionados:
 * Status `NORMAL`, `ATENCAO`, `CRITICO` e `NAO_AVALIAVEL`.
 * Separação explícita entre avaliação observacional e conformidade legal/normativa futura.
 
+GP-A12A adiciona o Policy Engine do Monitoramento Hídrico.
+
+Princípio arquitetural aplicado:
+
+* PA-01 - Separação entre seleção e execução de políticas.
+
+Recursos adicionados:
+
+* Modelo `PoliticaAvaliacao`.
+* Serviço `PolicyEngine`.
+* Seleção de política por perfil operacional, categoria e parâmetro.
+* Priorização da política mais específica.
+* Política observacional padrão quando não houver regra específica.
+* Separação explícita: o Policy Engine seleciona política, mas não executa avaliação.
+
 ---
 
 # Próximos Passos
 
-A próxima expansão arquitetural deverá preparar a conformidade legal/normativa sobre a base observacional, sem misturar regra operacional com regra normativa.
+A próxima expansão arquitetural deverá preparar a conformidade legal/normativa sobre o Policy Engine e os motores especializados, sem misturar seleção de política com execução de avaliação.
 
 Próximo marco previsto:
 

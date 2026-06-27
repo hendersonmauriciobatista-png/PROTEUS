@@ -87,7 +87,8 @@ Observação
 | GP-A09 | Monitoramento Hídrico Modular Base | ENCERRADA |
 | GP-A10 | Configuração Operacional de Monitoramento Hídrico | ENCERRADA |
 | GP-A11 | Catálogo Inteligente de Parâmetros Hídricos | ENCERRADA |
-| GP-A12 | Motor de Avaliação Observacional | INICIADA |
+| GP-A12 | Motor de Avaliação Observacional | ENCERRADA |
+| GP-A12A | Policy Engine do Monitoramento Hídrico | INICIADA |
 
 ---
 
@@ -114,6 +115,7 @@ Evolução em andamento:
 * Perfis operacionais passam a atuar como modelos iniciais, não como regras fixas.
 * GP-A11 enriquece o catálogo de parâmetros com metadados técnicos, aplicabilidade por perfil e limites observacionais não legais.
 * GP-A12 cria avaliação observacional determinística sem implementar conformidade legal/normativa.
+* GP-A12A cria o Policy Engine e aplica o PA-01: seleção de política separada da execução por motores especializados.
 
 ## Camada Analítica
 
@@ -182,7 +184,7 @@ Arquitetura determinística, explicável e auditável.
 
 # Próximas Expansões
 
-GP-A12 iniciada como motor de avaliação observacional baseado no catálogo inteligente GP-A11.
+GP-A12A iniciada como Policy Engine do Monitoramento Hídrico, separando seleção de políticas e execução de avaliações.
 
 Próxima GP:
 
@@ -194,5 +196,6 @@ Escopo previsto:
 * Criar conformidade legal/normativa inicial em camada própria.
 * Diferenciar limites observacionais de limites legais.
 * Versionar referências normativas e critérios de aplicação.
+* Integrar políticas normativas futuras ao Policy Engine sem executar avaliação dentro dele.
 * Planejar integração progressiva com configurações operacionais, análises e relatórios.
 * Preservar compatibilidade com CSVs e dados operacionais existentes.
