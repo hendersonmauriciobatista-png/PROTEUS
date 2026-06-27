@@ -165,6 +165,7 @@ Componentes concluídos:
 * GP-A09 Monitoramento Hídrico Modular Base
 * GP-A10 Configuração Operacional de Monitoramento Hídrico
 * GP-A11 Catálogo Inteligente de Parâmetros Hídricos
+* GP-A12 Motor de Avaliação Observacional
 
 Características da baseline:
 
@@ -234,12 +235,22 @@ Consultas disponíveis:
 * Obtenção de metadados completos por parâmetro.
 * Validação de campos mínimos inteligentes.
 
+GP-A12 adiciona um motor determinístico de avaliação observacional.
+
+Recursos adicionados:
+
+* Modelo `ResultadoAvaliacaoObservacional`.
+* Serviço `AvaliacaoObservacionalService`.
+* Avaliação de parâmetro e valor com base em `limite_observacional`.
+* Status `NORMAL`, `ATENCAO`, `CRITICO` e `NAO_AVALIAVEL`.
+* Separação explícita entre avaliação observacional e conformidade legal/normativa futura.
+
 ---
 
 # Próximos Passos
 
-A próxima expansão arquitetural deverá usar os metadados inteligentes da GP-A11 como base para um motor inicial de conformidade observacional.
+A próxima expansão arquitetural deverá preparar a conformidade legal/normativa sobre a base observacional, sem misturar regra operacional com regra normativa.
 
 Próximo marco previsto:
 
-GP-A12 — Motor de Conformidade Observacional.
+GP-A13 — Conformidade Legal/Normativa Inicial.

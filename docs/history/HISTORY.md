@@ -256,3 +256,37 @@ Enriquecimento do catálogo de parâmetros hídricos para preparar a futura GP-A
 * Telas PyQt não alteradas.
 * Validação legal completa não implementada nesta etapa.
 * Compatibilidade com GP-A09 e GP-A10 preservada.
+
+---
+
+# GP-A12 - Motor de Avaliação Observacional
+
+## Data
+
+26/06/2026
+
+## Status
+
+INICIADA
+
+## Evento
+
+Criação de um motor simples, determinístico e testável para avaliar medições com base nos limites observacionais do catálogo inteligente.
+
+## Resultado
+
+* Modelo `ResultadoAvaliacaoObservacional` criado.
+* Serviço `AvaliacaoObservacionalService` criado.
+* Função `avaliar_parametro_observacional` criada.
+* Status `NORMAL`, `ATENCAO`, `CRITICO` e `NAO_AVALIAVEL` implementados.
+* Severidades `baixa`, `media`, `alta` e `nenhuma` implementadas.
+* Avaliação numérica baseada em `limite_observacional` adicionada.
+* Testes do motor observacional adicionados.
+
+## Restrições Mantidas
+
+* CSVs operacionais existentes preservados.
+* Telas PyQt não alteradas.
+* Conformidade legal/normativa completa não implementada.
+* Avaliação observacional separada de conformidade legal futura.
+* Compatibilidade com GP-A09, GP-A10 e GP-A11 preservada.

@@ -40,3 +40,14 @@ class ConfiguracaoOperacional:
     categorias_habilitadas: list[str] = field(default_factory=list)
     parametros_habilitados: list[str] = field(default_factory=list)
     observacoes: str = ""
+
+
+@dataclass(frozen=True)
+class ResultadoAvaliacaoObservacional:
+    parametro_id: str
+    valor_avaliado: object
+    status: str
+    mensagem: str
+    severidade: str
+    origem_limite: str
+    observacoes: str = ""
