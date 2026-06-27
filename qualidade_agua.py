@@ -19,6 +19,12 @@ from PyQt5.QtWidgets import (
 )
 from PyQt5.QtGui import QColor
 
+from monitoramento_hidrico import AvaliacaoObservacionalService, PolicyEngine
+from monitoramento_hidrico.qualidade_agua_adapter import (
+    STATUS_DENTRO_PADRAO,
+    QualidadeAguaMonitoringAdapter,
+)
+
 
 DATA_FILE = Path(__file__).resolve().parent / "data" / "qualidade_agua_medicoes.csv"
 CSV_FIELDS = [
@@ -30,19 +36,14 @@ CSV_FIELDS = [
     "agrotoxicos",
 ]
 
-CONAMA = {
-    "pH": {"min": 6.0, "max": 9.0, "unidade": ""},
-    "Turbidez": {"min": 0.0, "max": 5.0, "unidade": "NTU"},
-    "OD": {"min": 5.0, "max": 10.0, "unidade": "mg/L"},
-    "Temperatura": {"min": 15.0, "max": 30.0, "unidade": "°C"},
-    "Agrotóxicos": {"min": 0.0, "max": 0.1, "unidade": "mg/L"},
-}
-
-
 class QualidadeAguaPage(QWidget):
     def __init__(self):
         super().__init__()
         self.inputs = {}
+        self.monitoring_adapter = QualidadeAguaMonitoringAdapter(
+            policy_engine=PolicyEngine(),
+            evaluation_service=AvaliacaoObservacionalService(),
+        )
         self._ensure_storage()
         self._build_ui()
         self.load_history()
@@ -170,7 +171,7 @@ class QualidadeAguaPage(QWidget):
 
         for row_index, row in enumerate(rows):
             values = self._parse_row(row)
-            status = self.check_status(values)
+            status = self.monitoring_adapter.status_medicao(values)
             display_values = [
                 row.get("timestamp", ""),
                 f"{values['ph']:.2f}",
@@ -189,7 +190,7 @@ class QualidadeAguaPage(QWidget):
                 self.table.setItem(row_index, column_index, item)
 
     def _apply_status_style(self, item, status):
-        if status == "Dentro do padrão":
+        if status == STATUS_DENTRO_PADRAO:
             item.setBackground(QColor("#1b5e20"))
             item.setForeground(QColor("#ffffff"))
             return
@@ -206,17 +207,3 @@ class QualidadeAguaPage(QWidget):
             "agrotoxicos": float(row.get("agrotoxicos") or 0),
         }
 
-    def check_status(self, measurement):
-        checks = [
-            ("pH", measurement["ph"]),
-            ("Turbidez", measurement["turbidez"]),
-            ("OD", measurement["oxigenio_dissolvido"]),
-            ("Temperatura", measurement["temperatura"]),
-            ("Agrotóxicos", measurement["agrotoxicos"]),
-        ]
-
-        for parameter, value in checks:
-            limits = CONAMA[parameter]
-            if value < limits["min"] or value > limits["max"]:
-                return "Fora do padrão"
-        return "Dentro do padrão"

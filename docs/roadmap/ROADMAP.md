@@ -88,7 +88,10 @@ Observação
 | GP-A10 | Configuração Operacional de Monitoramento Hídrico | ENCERRADA |
 | GP-A11 | Catálogo Inteligente de Parâmetros Hídricos | ENCERRADA |
 | GP-A12 | Motor de Avaliação Observacional | ENCERRADA |
-| GP-A12A | Policy Engine do Monitoramento Hídrico | INICIADA |
+| GP-A12A | Policy Engine do Monitoramento Hídrico | ENCERRADA |
+| GP-A14 | Auditoria de Integração do Núcleo de Monitoramento Hídrico | CONCLUÍDA |
+| GP-A15 | Integração do Dashboard ao Núcleo de Monitoramento Hídrico | INICIADA |
+| GP-A16 | Integração de Qualidade da Água / Monitoramento Hídrico com o Núcleo | CONCLUÍDA |
 
 ---
 
@@ -116,6 +119,12 @@ Evolução em andamento:
 * GP-A11 enriquece o catálogo de parâmetros com metadados técnicos, aplicabilidade por perfil e limites observacionais não legais.
 * GP-A12 cria avaliação observacional determinística sem implementar conformidade legal/normativa.
 * GP-A12A cria o Policy Engine e aplica o PA-01: seleção de política separada da execução por motores especializados.
+
+Estado congelado:
+
+* Núcleo de Monitoramento Hídrico - Ciclo Arquitetural 1 encerrado.
+* Componentes concluídos: arquitetura modular, configuração operacional, catálogo inteligente, motor de avaliação observacional, Policy Engine e PA-01.
+* Próxima evolução deve ocorrer após auditoria de integração arquitetural.
 
 ## Camada Analítica
 
@@ -184,18 +193,57 @@ Arquitetura determinística, explicável e auditável.
 
 # Próximas Expansões
 
-GP-A12A iniciada como Policy Engine do Monitoramento Hídrico, separando seleção de políticas e execução de avaliações.
+Núcleo de Monitoramento Hídrico - Ciclo Arquitetural 1 encerrado e congelado.
 
 Próxima GP:
 
-GP-A13
-Status: PLANEJADA
+GP-A14
+Status: CONCLUÍDA
 
 Escopo previsto:
 
-* Criar conformidade legal/normativa inicial em camada própria.
-* Diferenciar limites observacionais de limites legais.
-* Versionar referências normativas e critérios de aplicação.
-* Integrar políticas normativas futuras ao Policy Engine sem executar avaliação dentro dele.
-* Planejar integração progressiva com configurações operacionais, análises e relatórios.
+* [x] AI-01 - Auditar integração com Dashboard.
+* [x] GP-A15 - Remover avaliação observacional própria do Dashboard.
+* [x] AI-02 - Auditar integração com Qualidade da Água / Monitoramento Hídrico.
+* [x] AI-03 - Auditar integração com Dados Ambientais.
+* [x] AI-04 - Auditar integração com Consumo e Distribuição.
+* [x] AI-05 - Auditar integração com Relatórios.
+* [x] AI-06 - Auditar integração com Previsão Analítica.
+* [x] AI-07 - Auditar integração com Governança Operacional.
+* [x] AI-08 - Auditar integração com Painel Executivo.
+* [x] Identificar quais módulos ainda usam lógica própria.
+* [x] Identificar quais módulos devem passar a consumir o novo núcleo de Monitoramento Hídrico.
 * Preservar compatibilidade com CSVs e dados operacionais existentes.
+
+Pendência pós-GP-A15:
+
+* Integrar Dashboard com configuração operacional.
+* Avaliar extração futura de uma camada de serviço de resumo do Dashboard.
+* [x] Integrar Qualidade da Água / Monitoramento Hídrico com adapter próprio.
+* [x] Remover `CONAMA` e `check_status` da camada visual.
+* Integrar Dados Ambientais com adapter ou serviço de dados operacionais.
+* Avaliar catálogo/metadados futuros para parâmetros ambientais.
+* Integrar Consumo e Distribuição com adapter ou serviço de dados operacionais.
+* Avaliar política futura para perdas estimadas e consumo, se houver necessidade observacional.
+* Integrar Relatórios com serviço próprio e remover `_quality_status` da camada visual.
+* Garantir que relatórios consumam avaliações observacionais do núcleo.
+* Integrar Previsão Analítica com adapter analítico para consumir avaliações observacionais do núcleo.
+* Separar tendências analíticas próprias de decisões baseadas em limites hídricos.
+* Preparar Water Health Score para rastrear a origem das avaliações usadas em penalidades.
+* Integrar Governança Operacional com eventos enriquecidos por metadados de avaliação.
+* Desacoplar futuramente a origem de alertas de `AnalyticsService` puro.
+* Preservar transições de governança e histórico em `eventos_operacionais.json`.
+* Integrar Painel Executivo com sinais rastreáveis até política, motor e avaliação.
+* Preservar regras executivas como síntese, sem transformar o painel em motor de avaliação.
+
+Próxima etapa sugerida:
+
+GP-A19 - Integração de Relatórios com o Núcleo de Monitoramento Hídrico.
+
+Prioridade:
+
+ALTA.
+
+Motivo:
+
+O módulo de Relatórios ainda possui `_quality_status` próprio e pode divergir das avaliações observacionais já integradas no Dashboard e em Qualidade da Água.
