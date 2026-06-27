@@ -92,6 +92,7 @@ Observação
 | GP-A14 | Auditoria de Integração do Núcleo de Monitoramento Hídrico | CONCLUÍDA |
 | GP-A15 | Integração do Dashboard ao Núcleo de Monitoramento Hídrico | INICIADA |
 | GP-A16 | Integração de Qualidade da Água / Monitoramento Hídrico com o Núcleo | CONCLUÍDA |
+| GP-A19 | Integração dos Relatórios Operacionais com o Núcleo de Monitoramento Hídrico | CONCLUÍDA |
 | GP-A20 | Integração da Previsão Analítica com o Núcleo de Monitoramento Hídrico | CONCLUÍDA |
 
 ---
@@ -226,8 +227,8 @@ Pendência pós-GP-A15:
 * Avaliar catálogo/metadados futuros para parâmetros ambientais.
 * Integrar Consumo e Distribuição com adapter ou serviço de dados operacionais.
 * Avaliar política futura para perdas estimadas e consumo, se houver necessidade observacional.
-* Integrar Relatórios com serviço próprio e remover `_quality_status` da camada visual.
-* Garantir que relatórios consumam avaliações observacionais do núcleo.
+* [x] Integrar Relatórios com adapter próprio e remover `_quality_status` da camada visual.
+* [x] Garantir que relatórios consumam avaliações observacionais do núcleo.
 * [x] Integrar Previsão Analítica com adapter analítico para consumir avaliações observacionais do núcleo.
 * [x] Separar tendências analíticas próprias de decisões baseadas em limites hídricos.
 * [x] Preparar Water Health Score para usar avaliações observacionais nas penalidades de qualidade.
@@ -239,12 +240,12 @@ Pendência pós-GP-A15:
 
 Próxima etapa sugerida:
 
-GP-A19 - Integração de Relatórios com o Núcleo de Monitoramento Hídrico.
+GP-A21 - Integração da Governança Operacional com eventos rastreáveis do Núcleo de Monitoramento Hídrico.
 
 Prioridade:
 
-ALTA.
+MÉDIA-ALTA.
 
 Motivo:
 
-O módulo de Relatórios ainda possui `_quality_status` próprio e pode divergir das avaliações observacionais já integradas no Dashboard e em Qualidade da Água.
+A Governança Operacional ainda consome alertas sem metadados completos de política, motor e avaliação observacional.

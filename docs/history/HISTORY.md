@@ -403,6 +403,59 @@ Execução da primeira auditoria de integração arquitetural do Núcleo de Moni
 
 ---
 
+# GP-A19 - Integração dos Relatórios Operacionais com o Núcleo de Monitoramento Hídrico
+
+## Data
+
+27/06/2026
+
+## Status
+
+CONCLUÍDA
+
+## Evento
+
+Integração de `RelatoriosPage` ao Núcleo de Monitoramento Hídrico para remover autoridade observacional própria dos Relatórios Operacionais.
+
+## Diagnóstico
+
+* `relatorios.py` possuía `_quality_status` com limites locais para parâmetros de qualidade da água.
+* O relatório calculava registros fora do padrão com decisão local.
+* O relatório exibia status da última medição com decisão local.
+* Não havia `CONAMA` nem `QUALITY_LIMITS`, mas havia lógica equivalente de classificação observacional.
+
+## Resultado
+
+* Adapter `OperationalReportsHydricMonitoringAdapter` criado.
+* `RelatoriosPage` passou a usar o adapter para status da última medição de qualidade.
+* `RelatoriosPage` passou a usar o adapter para contagem de registros fora do padrão.
+* Método `_quality_status` removido.
+* Limites hardcoded removidos da camada de relatórios.
+* `PolicyEngine` passou a selecionar a política aplicável.
+* `AvaliacaoObservacionalService` passou a executar a avaliação observacional.
+* Leitura dos CSVs preservada.
+* Interface e exportação TXT preservadas.
+
+## Testes
+
+Comando executado:
+
+`python -m unittest discover -s tests`
+
+Resultado:
+
+* 60 testes executados.
+* Todos passaram.
+
+## Restrições Mantidas
+
+* CSVs operacionais não alterados.
+* Interface visual não redesenhada.
+* Documentos constitucionais ICFACTORY não alterados.
+* Nenhuma Discovery promovida.
+
+---
+
 # GP-A20 - Integração da Previsão Analítica com o Núcleo de Monitoramento Hídrico
 
 ## Data

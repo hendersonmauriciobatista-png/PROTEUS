@@ -93,3 +93,97 @@ Resultado:
 GP-A20 concluída.
 
 A Previsão Analítica continua exibindo tendências, alertas e Water Health Score, mas avaliações de qualidade da água baseadas em limites observacionais passam a vir do Núcleo de Monitoramento Hídrico.
+
+---
+
+# GP-A19 - Integração dos Relatórios Operacionais com o Núcleo de Monitoramento Hídrico
+
+Data: 27/06/2026
+
+Status: CONCLUÍDA
+
+## Diagnóstico Passivo
+
+A auditoria da GP-A19 localizou a responsabilidade de Relatórios Operacionais em `relatorios.py`, classe `RelatoriosPage`.
+
+Achados:
+
+* O módulo lê `data/qualidade_agua_medicoes.csv`, `data/dados_ambientais_medicoes.csv` e `data/consumo_distribuicao_medicoes.csv`.
+* A leitura direta de CSV foi preservada nesta GP.
+* O módulo exporta `reports/relatorio_operacional.txt`.
+* A tela possuía `_quality_status` com limites hardcoded para pH, turbidez, oxigênio dissolvido, temperatura e agrotóxicos.
+* O relatório calculava registros fora do padrão com `_quality_status`.
+* A última medição de água exibia status calculado localmente.
+* Não havia `CONAMA` nem `QUALITY_LIMITS`, mas havia autoridade observacional local equivalente.
+
+## Alteração Arquitetural
+
+A GP-A19 removeu a decisão observacional local dos Relatórios Operacionais.
+
+Estado após integração:
+
+* `OperationalReportsHydricMonitoringAdapter` criado.
+* `RelatoriosPage` passou a consumir o adapter para status da última medição.
+* `RelatoriosPage` passou a consumir o adapter para contar registros fora do padrão.
+* `_quality_status` foi removido de `relatorios.py`.
+* Limites hardcoded de qualidade foram removidos de `relatorios.py`.
+* CSVs operacionais foram preservados.
+* Interface visual e exportação TXT foram preservadas.
+
+## PA-01
+
+Separação mantida:
+
+* Relatórios leem e apresentam dados.
+* Policy Engine seleciona a política observacional.
+* `AvaliacaoObservacionalService` executa a avaliação.
+* Relatórios consomem o status derivado de `ResultadoAvaliacaoObservacional`.
+
+## Impacto na AI-05
+
+Veredito atualizado:
+
+INTEGRAÇÃO OBSERVACIONAL CONCLUÍDA COM PERSISTÊNCIA CSV PRESERVADA.
+
+Prioridade remanescente:
+
+MÉDIA.
+
+Lacunas remanescentes:
+
+* Relatórios ainda leem CSVs diretamente.
+* Relatórios ainda não usam Configuração Operacional para definir perfil/cenário.
+* Sínteses de médias permanecem cálculos locais de relatório, sem caráter observacional normativo.
+
+## Testes
+
+Comando executado:
+
+`python -m unittest discover -s tests`
+
+Resultado:
+
+* 60 testes executados.
+* Todos passaram.
+
+## Matriz de Conformidade GP-A19
+
+| Critério | Resultado |
+| -------- | --------- |
+| Remover decisão observacional local dos relatórios | Atendido |
+| Remover `_quality_status` | Atendido |
+| Não usar `CONAMA` local | Atendido |
+| Não usar `QUALITY_LIMITS` local como autoridade | Atendido |
+| Usar Policy Engine para seleção | Atendido |
+| Usar Motor Observacional para execução | Atendido |
+| Consumir resultado observacional do núcleo | Atendido |
+| Preservar CSV | Atendido |
+| Preservar interface | Atendido |
+| Preservar PA-01 | Atendido |
+| Manter testes passando | Atendido |
+
+## Veredito
+
+GP-A19 concluída.
+
+Os Relatórios Operacionais continuam apresentando resumo operacional, mas deixam de decidir status observacional localmente. O status de qualidade da água passa a ser derivado do Núcleo de Monitoramento Hídrico.
