@@ -2,7 +2,7 @@
 
 Data: 27/06/2026
 
-Status: BLUEPRINT ARQUITETURAL
+Status: BLUEPRINT ARQUITETURAL - GP-A22B IMPLEMENTADA
 
 ## Contexto
 
@@ -13,6 +13,8 @@ O Nucleo de Monitoramento Hidrico esta consolidado como autoridade observacional
 A GP-A22A inaugura a nova fase do CASE-01: Inteligencia Executiva Evolutiva.
 
 Esta etapa nao implementa codigo funcional. Ela define o blueprint para uma futura GP-A22B, focada em um mecanismo deterministico de recomendacoes executivas.
+
+Atualizacao GP-A22B (28/06/2026): o pacote `executive_recommendation` foi criado com modelos proprios, regras deterministicas iniciais e `ExecutiveRecommendationService` isolado. A implementacao preserva o PA-01 ao consumir apenas sinais consolidados, sem acessar CSV, `PolicyEngine`, `AvaliacaoObservacionalService` ou diretamente o Nucleo de Monitoramento Hidrico.
 
 ## Auditoria Passiva
 

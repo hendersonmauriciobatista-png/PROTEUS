@@ -1,5 +1,52 @@
 # HISTORY
 
+# GP-A22B - ExecutiveRecommendationService v1
+
+## Data
+
+28/06/2026
+
+## Status
+
+CONCLUIDA
+
+## Evento
+
+Implementacao da primeira versao deterministica do mecanismo de recomendacoes executivas.
+
+## Resultado
+
+* Pacote `executive_recommendation` criado.
+* Modelos proprios de recomendacao executiva criados: `RecommendationPriority`, `RecommendationAction`, `RecommendationEvidence`, `ExecutiveRecommendation` e `RecommendationSnapshot`.
+* `ExecutiveRecommendationService` criado como camada isolada consumidora de sinais consolidados.
+* Regras deterministicas iniciais implementadas para Water Health Score >= 90, entre 70 e 89, abaixo de 70 e fallback por score insuficiente.
+* Testes unitarios adicionados para as regras e limites arquiteturais do servico.
+* Blueprint `docs/architecture/EXECUTIVE_INTELLIGENCE_ARCHITECTURE.md` atualizado com status da GP-A22B.
+
+## Testes
+
+Comando executado:
+
+`python -m unittest discover -s tests`
+
+Resultado:
+
+* 67 testes executados.
+* Todos passaram.
+
+## Restricoes Mantidas
+
+* PA-01 preservado explicitamente.
+* Nenhum CSV acessado pelo novo servico.
+* Nenhum `PolicyEngine` acessado pelo novo servico.
+* Nenhum `AvaliacaoObservacionalService` acessado pelo novo servico.
+* Nucleo de Monitoramento Hidrico nao alterado.
+* Documentos constitucionais ICFACTORY nao alterados.
+* Discovery nao promovida.
+* Painel Executivo nao integrado nesta etapa.
+
+---
+
 ## v0.1 — Fundação Constitucional
 
 Data: 22/06/2026
