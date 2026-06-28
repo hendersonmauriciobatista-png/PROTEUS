@@ -102,6 +102,7 @@ Observação
 | GP-A22C | Integracao do ExecutiveRecommendationService ao Painel Executivo | CONCLUIDA |
 | GP-A22D | Evolucao das Recomendacoes Executivas | CONCLUIDA |
 | GP-A23 | Auditoria Arquitetural Global do CASE-01 | AUDITORIA CONCLUIDA |
+| GP-A25 | Grafico Executivo do Water Health Score no Dashboard | CONCLUIDA |
 | GP-R02 | Investigacao Arquitetural: Progressao de Valor Entre Camadas | PESQUISA CONCLUIDA |
 | GP-R03 | Investigacao Arquitetural: Executive Context | PESQUISA CONCLUIDA |
 
@@ -298,6 +299,18 @@ Entregavel:
 * Alertas, tendencias, explicacoes do score e resumo de governanca passaram a enriquecer justificativas e evidencias.
 * `confidence` opcional adicionado a `ExecutiveRecommendation`, baseado em completude de sinais consolidados.
 * `RecommendationSnapshot`, `ExecutiveSnapshot` e Painel Executivo preservados.
+
+GP-A25:
+
+CONCLUIDA.
+
+Entregavel:
+
+* Placeholder futuro removido do Dashboard.
+* Grafico executivo de evolucao do Water Health Score adicionado ao espaco inferior do Dashboard.
+* Estado vazio profissional exibido quando nao ha historico suficiente.
+* Dashboard preservado como camada de apresentacao, consumindo dados e calculo analitico ja existentes.
+* PA-01 preservado, sem nova camada e sem duplicacao de logica observacional ou analitica.
 * Nenhum `ExecutiveContext` criado e nenhuma nova camada adicionada.
 * PA-01 preservado e PA-02 mantida como Discovery candidata.
 

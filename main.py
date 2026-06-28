@@ -3,7 +3,7 @@ import sys
 from pathlib import Path
 
 from PyQt5.QtCore import Qt, QDateTime, QTimer
-from PyQt5.QtGui import QColor, QPalette
+from PyQt5.QtGui import QColor, QPainter, QPen, QPalette
 from PyQt5.QtWidgets import (
     QApplication,
     QFrame,
@@ -17,6 +17,8 @@ from PyQt5.QtWidgets import (
     QWidget,
 )
 
+from analytics.repositories import AnalyticsRepository
+from analytics.scoring import WaterHealthScoreCalculator
 from consumo_distribuicao import ConsumoDistribuicaoPage
 from dados_ambientais import DadosAmbientaisPage
 from governanca_operacional import GovernancaOperacionalPage
@@ -60,6 +62,96 @@ QLabel#page_subtitle { color: #78909c; font-size: 12px; padding-bottom: 15px; }
 """
 
 
+class WaterHealthScoreChart(QWidget):
+    def __init__(self):
+        super().__init__()
+        self.points = []
+        self.setMinimumHeight(230)
+
+    def set_points(self, points):
+        self.points = list(points)
+        self.update()
+
+    def paintEvent(self, _event):
+        painter = QPainter(self)
+        painter.setRenderHint(QPainter.Antialiasing)
+        painter.fillRect(self.rect(), QColor("#112240"))
+
+        if len(self.points) < 2:
+            painter.setPen(QColor("#78909c"))
+            painter.drawText(
+                self.rect(),
+                Qt.AlignCenter,
+                "Historico insuficiente para exibir a evolucao do Water Health Score.\n"
+                "Registre ao menos duas medicoes de qualidade da agua.",
+            )
+            return
+
+        left = 48
+        top = 18
+        right = 18
+        bottom = 38
+        width = max(1, self.width() - left - right)
+        height = max(1, self.height() - top - bottom)
+        x0 = left
+        y0 = top + height
+
+        grid_pen = QPen(QColor("#1e3a5f"))
+        axis_pen = QPen(QColor("#78909c"))
+        text_color = QColor("#90a4ae")
+        line_pen = QPen(QColor("#4fc3f7"), 2)
+
+        painter.setPen(grid_pen)
+        for value in (0, 25, 50, 75, 100):
+            y = y0 - int((value / 100) * height)
+            painter.drawLine(x0, y, x0 + width, y)
+            painter.setPen(text_color)
+            painter.drawText(8, y + 4, f"{value}")
+            painter.setPen(grid_pen)
+
+        painter.setPen(axis_pen)
+        painter.drawLine(x0, top, x0, y0)
+        painter.drawLine(x0, y0, x0 + width, y0)
+
+        coordinates = []
+        denominator = max(1, len(self.points) - 1)
+        for index, point in enumerate(self.points):
+            score = max(0, min(100, int(point["score"])))
+            x = x0 + int((index / denominator) * width)
+            y = y0 - int((score / 100) * height)
+            coordinates.append((x, y, score, point["label"]))
+
+        painter.setPen(line_pen)
+        for index in range(1, len(coordinates)):
+            previous = coordinates[index - 1]
+            current = coordinates[index]
+            painter.drawLine(previous[0], previous[1], current[0], current[1])
+
+        for x, y, score, _label in coordinates:
+            painter.setBrush(QColor(self._score_color(score)))
+            painter.setPen(QColor("#0d1b2a"))
+            painter.drawEllipse(x - 4, y - 4, 8, 8)
+
+        painter.setPen(text_color)
+        label_indexes = sorted({0, len(coordinates) // 2, len(coordinates) - 1})
+        for index in label_indexes:
+            x, _y, _score, label = coordinates[index]
+            painter.drawText(x - 26, y0 + 18, 52, 18, Qt.AlignCenter, label)
+
+        last_x, last_y, last_score, _last_label = coordinates[-1]
+        painter.setPen(QColor("#cfd8dc"))
+        painter.drawText(last_x - 42, last_y - 24, 84, 18, Qt.AlignCenter, f"{last_score}/100")
+
+    def _score_color(self, score):
+        if score >= 85:
+            return "#66bb6a"
+        if score >= 70:
+            return "#9ccc65"
+        if score >= 50:
+            return "#ffa726"
+        return "#ef5350"
+
+
 class DashboardPage(QWidget):
     def __init__(self):
         super().__init__()
@@ -91,12 +183,15 @@ class DashboardPage(QWidget):
             "border-radius: 10px; min-height: 250px; }"
         )
         info_layout = QVBoxLayout(info)
-        info_label = QLabel("Dados consolidados a partir dos CSVs locais. Gráficos serão adicionados em etapa futura.")
-        info_label.setAlignment(Qt.AlignCenter)
-        info_label.setStyleSheet("color: #546e7a; font-size: 14px;")
-        info_layout.addWidget(info_label)
+        chart_title = QLabel("Evolucao do Water Health Score")
+        chart_title.setStyleSheet("color: #4fc3f7; font-weight: bold; background: transparent; border: none;")
+        self.score_chart = WaterHealthScoreChart()
+        info_layout.addWidget(chart_title)
+        info_layout.addWidget(self.score_chart)
         layout.addWidget(info)
         layout.addStretch()
+        self.analytics_repository = AnalyticsRepository()
+        self.score_calculator = WaterHealthScoreCalculator()
         self.refresh()
 
     def _create_card(self, title, color):
@@ -128,6 +223,7 @@ class DashboardPage(QWidget):
             f"Ambiente: {len(ambiente_rows)}\n"
             f"Consumo: {len(consumo_rows)}"
         )
+        self.score_chart.set_points(self._water_health_score_series())
 
     def _read_csv(self, path):
         if not path.exists():
@@ -181,6 +277,46 @@ class DashboardPage(QWidget):
             return float(value or 0)
         except ValueError:
             return 0.0
+
+    def _water_health_score_series(self):
+        quality = self.analytics_repository.load_quality()
+        if len(quality) < 2:
+            return []
+
+        environment = self.analytics_repository.load_environment()
+        consumption = self.analytics_repository.load_consumption()
+        points = []
+        for index, quality_measurement in enumerate(quality):
+            timestamp = quality_measurement.timestamp
+            score = self.score_calculator.calculate(
+                quality[: index + 1],
+                self._measurements_until(environment, timestamp),
+                self._measurements_until(consumption, timestamp),
+            )
+            points.append(
+                {
+                    "label": self._format_chart_label(timestamp, index),
+                    "score": score.score,
+                    "status": score.status,
+                }
+            )
+
+        return points[-12:]
+
+    def _measurements_until(self, measurements, timestamp):
+        if timestamp is None:
+            return list(measurements)
+
+        return [
+            measurement
+            for measurement in measurements
+            if measurement.timestamp is None or measurement.timestamp <= timestamp
+        ]
+
+    def _format_chart_label(self, timestamp, index):
+        if timestamp is None:
+            return str(index + 1)
+        return timestamp.strftime("%d/%m")
 
 
 def make_placeholder_page(icon, title, subtitle, desc):

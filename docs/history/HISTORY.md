@@ -1,5 +1,61 @@
 # HISTORY
 
+# GP-A25 - Grafico Executivo do Water Health Score no Dashboard
+
+## Data
+
+28/06/2026
+
+## Status
+
+CONCLUIDA
+
+## Evento
+
+Substituicao do placeholder futuro do Dashboard por um grafico executivo simples para acompanhar a evolucao do Water Health Score.
+
+## Diagnostico
+
+* O Dashboard apresentava a mensagem "Dados consolidados a partir dos CSVs locais. Graficos serao adicionados em etapa futura." no espaco inferior.
+* O historico de qualidade da agua ja estava disponivel para apresentacao.
+* O calculo do Water Health Score ja existia na camada analitica e podia ser consumido sem duplicacao de regra.
+
+## Resultado
+
+* Placeholder futuro removido.
+* `WaterHealthScoreChart` adicionado ao Dashboard.
+* Grafico de linha passa a exibir a evolucao recente do Water Health Score quando ha ao menos duas medicoes.
+* Estado vazio profissional exibido quando o historico e insuficiente.
+* Dashboard consome `AnalyticsRepository` e `WaterHealthScoreCalculator` existentes, sem criar nova camada e sem duplicar formula analitica.
+* Interface do Dashboard preservada, com enriquecimento visual no espaco inferior.
+
+## Testes
+
+Comandos executados:
+
+`python -m py_compile main.py`
+
+`python -m unittest discover -s tests`
+
+Resultado:
+
+* `main.py` compilado com sucesso.
+* 68 testes executados.
+* Todos passaram.
+
+## Restricoes Mantidas
+
+* Nenhuma nova camada criada.
+* Nucleo de Monitoramento Hidrico nao alterado.
+* `PolicyEngine` nao alterado.
+* `AvaliacaoObservacionalService` nao alterado.
+* `ExecutiveRecommendationService` nao alterado.
+* Nenhuma logica observacional criada no Dashboard.
+* Nenhuma logica analitica duplicada no Dashboard.
+* PA-01 preservado.
+
+---
+
 # GP-A23 - Auditoria Arquitetural Global do CASE-01
 
 ## Data
