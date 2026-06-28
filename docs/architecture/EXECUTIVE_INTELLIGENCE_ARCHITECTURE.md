@@ -2,7 +2,7 @@
 
 Data: 27/06/2026
 
-Status: BLUEPRINT ARQUITETURAL - GP-A22B IMPLEMENTADA
+Status: BLUEPRINT ARQUITETURAL - GP-A22C IMPLEMENTADA
 
 ## Contexto
 
@@ -16,6 +16,8 @@ Esta etapa nao implementa codigo funcional. Ela define o blueprint para uma futu
 
 Atualizacao GP-A22B (28/06/2026): o pacote `executive_recommendation` foi criado com modelos proprios, regras deterministicas iniciais e `ExecutiveRecommendationService` isolado. A implementacao preserva o PA-01 ao consumir apenas sinais consolidados, sem acessar CSV, `PolicyEngine`, `AvaliacaoObservacionalService` ou diretamente o Nucleo de Monitoramento Hidrico.
 
+Atualizacao GP-A22C (28/06/2026): `ExecutiveRecommendationService` foi integrado ao `ExecutiveIntelligenceService`, `RecommendationSnapshot` passou a compor o `ExecutiveSnapshot` e o Painel Executivo passou a apresentar recomendacoes executivas. O painel permanece como camada de apresentacao e nao cria logica observacional, analitica ou de governanca.
+
 ## Auditoria Passiva
 
 ### Painel Executivo
@@ -23,7 +25,7 @@ Atualizacao GP-A22B (28/06/2026): o pacote `executive_recommendation` foi criado
 Responsabilidade atual:
 
 * Apresentar `ExecutiveSnapshot`.
-* Exibir status executivo, Water Health Score, contagem de eventos por estado, prioridades observacionais, alertas e tendencias.
+* Exibir status executivo, Water Health Score, contagem de eventos por estado, recomendacoes executivas, prioridades observacionais, alertas e tendencias.
 * Consumir `ExecutiveIntelligenceService`.
 * Nao ler CSV diretamente.
 * Nao executar avaliacao observacional hidrica.
@@ -36,6 +38,7 @@ Dados exibidos:
 * `water_health_status`.
 * `open_events`, `monitoring_events`, `resolved_events`.
 * `observational_priorities`.
+* `recommendation_snapshot`.
 * `relevant_alerts`.
 * `key_trends`.
 * `executive_message`.
@@ -279,9 +282,9 @@ GP-A22B nao deve:
 
 ## Sequencia Futura Sugerida
 
-1. GP-A22B - Implementar `ExecutiveRecommendationService` e modelos de recomendacao.
-2. GP-A22C - Integrar recomendacoes ao `ExecutiveSnapshot`.
-3. GP-A22D - Adaptar Painel Executivo para apresentar recomendacoes, preservando a interface existente.
+1. GP-A22B - Implementar `ExecutiveRecommendationService` e modelos de recomendacao. CONCLUIDA.
+2. GP-A22C - Integrar recomendacoes ao `ExecutiveSnapshot` e ao Painel Executivo. CONCLUIDA.
+3. GP-A22D - Ampliar rastreabilidade e criterios de confianca das recomendacoes executivas.
 4. GP-A22E - Criar testes de rastreabilidade de recomendacoes ate Analytics, Governanca e Nucleo.
 5. GP-A23 - Avaliar camada de configuracao executiva para pesos, horizontes e prioridades por perfil operacional.
 

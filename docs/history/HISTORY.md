@@ -1,5 +1,57 @@
 # HISTORY
 
+# GP-A22C - Integracao do ExecutiveRecommendationService ao Painel Executivo
+
+## Data
+
+28/06/2026
+
+## Status
+
+CONCLUIDA
+
+## Evento
+
+Integracao do `ExecutiveRecommendationService` ao fluxo do Painel Executivo como camada de apoio a decisao.
+
+## Diagnostico Arquitetural
+
+* Painel Executivo consome `ExecutiveIntelligenceService`.
+* `ExecutiveIntelligenceService` ja consolida `AnalyticsSnapshot`, eventos e resumo de Governanca Operacional.
+* Ponto de integracao definido no `ExecutiveIntelligenceService`, evitando regra nova no painel.
+* Painel mantido como camada de apresentacao de `ExecutiveSnapshot` e `RecommendationSnapshot`.
+
+## Resultado
+
+* `ExecutiveSnapshot` passou a carregar `RecommendationSnapshot`.
+* `ExecutiveIntelligenceService` passou a chamar `ExecutiveRecommendationService` com `AnalyticsSnapshot` e resumo de governanca ja consolidados.
+* Painel Executivo passou a exibir recomendacoes executivas com prioridade, recomendacao, justificativa, confianca quando disponivel e evidencias.
+* Interface preservada por meio de tabela consistente com as tabelas existentes.
+* Teste do servico executivo atualizado para validar recomendacoes no snapshot.
+
+## Testes
+
+Comando executado:
+
+`python -m unittest discover -s tests`
+
+Resultado:
+
+* 67 testes executados.
+* Todos passaram.
+
+## Restricoes Mantidas
+
+* PA-01 preservado.
+* Nenhuma logica observacional criada no Painel Executivo.
+* Nenhuma logica analitica criada no Painel Executivo.
+* Nenhuma logica de governanca criada no Painel Executivo.
+* Painel apenas apresenta `RecommendationSnapshot`.
+* Nucleo de Monitoramento Hidrico nao alterado.
+* Documentos constitucionais ICFACTORY nao alterados.
+
+---
+
 # GP-A22B - ExecutiveRecommendationService v1
 
 ## Data

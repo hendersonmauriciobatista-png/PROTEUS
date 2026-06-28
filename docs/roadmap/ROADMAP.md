@@ -99,6 +99,7 @@ Observação
 | GP-A21 | Integração da Governança Operacional com o Núcleo de Monitoramento Hídrico | CONCLUÍDA |
 | GP-A22A | Arquitetura da Inteligência Executiva Evolutiva | CONCLUÍDA |
 | GP-A22B | ExecutiveRecommendationService v1 | CONCLUIDA |
+| GP-A22C | Integracao do ExecutiveRecommendationService ao Painel Executivo | CONCLUIDA |
 
 ---
 
@@ -270,9 +271,22 @@ Entregavel:
 * Fallback para score insuficiente implementado.
 * PA-01 preservado: recomendacoes consomem sinais consolidados e nao acessam CSV, PolicyEngine, AvaliacaoObservacionalService ou Nucleo de Monitoramento Hidrico.
 
+GP-A22C:
+
+CONCLUIDA.
+
+Entregavel:
+
+* `RecommendationSnapshot` integrado ao `ExecutiveSnapshot`.
+* `ExecutiveIntelligenceService` passou a orquestrar recomendacoes executivas com sinais consolidados.
+* Painel Executivo passou a apresentar recomendacoes sem recalcular regras.
+* Prioridade, recomendacao, justificativa, confianca quando disponivel e evidencias passaram a ser exibidas.
+* Interface visual preservada por tabela consistente com o painel existente.
+* PA-01 preservado: painel nao cria logica observacional, analitica ou de governanca.
+
 Próxima etapa sugerida:
 
-GP-A22C - Integrar recomendacoes ao `ExecutiveSnapshot`.
+GP-A22D - Ampliar rastreabilidade e criterios de confianca das recomendacoes executivas.
 
 Prioridade:
 
@@ -280,4 +294,4 @@ ALTA.
 
 Motivo:
 
-A GP-A22B criou o mecanismo deterministico isolado de recomendacoes executivas. O proximo avanco natural e expor essas recomendacoes no snapshot executivo, preservando o Painel Executivo e mantendo o Nucleo de Monitoramento Hidrico como autoridade observacional central.
+A GP-A22C integrou recomendacoes ao snapshot e ao painel sem duplicar autoridade. O proximo avanco natural e enriquecer rastreabilidade, criterios de confianca e evidencias apresentadas, mantendo o Nucleo de Monitoramento Hidrico como autoridade observacional central.

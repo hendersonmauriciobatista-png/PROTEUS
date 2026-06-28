@@ -54,6 +54,14 @@ class PainelExecutivoPage(QWidget):
         )
         layout.addWidget(self.message_label)
 
+        self.recommendations_table = QTableWidget()
+        self.recommendations_table.setColumnCount(5)
+        self.recommendations_table.setHorizontalHeaderLabels(
+            ["Prioridade", "Recomendacao", "Justificativa", "Confianca", "Evidencias"]
+        )
+        self._style_table(self.recommendations_table)
+        layout.addWidget(self.recommendations_table)
+
         self.priorities_table = QTableWidget()
         self.priorities_table.setColumnCount(5)
         self.priorities_table.setHorizontalHeaderLabels(["Nivel", "Prioridade observacional", "Fonte", "Evidencia", "Recomendacao"])
@@ -110,8 +118,30 @@ class PainelExecutivoPage(QWidget):
             f"{snapshot.executive_message}\n" + "\n".join(snapshot.explanations[:3])
         )
         self._apply_status_style(snapshot.executive_status)
+        self._load_recommendations(snapshot.recommendation_snapshot)
         self._load_priorities(snapshot.observational_priorities)
         self._load_signals(snapshot.relevant_alerts, snapshot.key_trends)
+
+    def _load_recommendations(self, recommendation_snapshot):
+        recommendations = []
+        if recommendation_snapshot is not None:
+            recommendations = recommendation_snapshot.recommendations
+
+        self.recommendations_table.setRowCount(len(recommendations))
+        for row_index, recommendation in enumerate(recommendations):
+            priority = self._enum_value(recommendation.priority)
+            values = [
+                priority,
+                recommendation.recommendation,
+                recommendation.rationale,
+                self._format_optional_value(getattr(recommendation, "confidence", None)),
+                self._format_recommendation_evidence(recommendation.evidence),
+            ]
+            for column_index, value in enumerate(values):
+                item = QTableWidgetItem(value)
+                if column_index == 0:
+                    self._apply_recommendation_priority_style(item, priority)
+                self.recommendations_table.setItem(row_index, column_index, item)
 
     def _load_priorities(self, priorities):
         self.priorities_table.setRowCount(len(priorities))
@@ -122,6 +152,28 @@ class PainelExecutivoPage(QWidget):
                 if column_index == 0:
                     self._apply_level_style(item, priority.level)
                 self.priorities_table.setItem(row_index, column_index, item)
+
+    def _format_recommendation_evidence(self, evidences):
+        if not evidences:
+            return "-"
+
+        descriptions = []
+        for evidence in evidences:
+            value = ""
+            if evidence.value is not None:
+                value = f"={evidence.value}"
+            descriptions.append(
+                f"{evidence.source}:{evidence.metric}{value} - {evidence.description}"
+            )
+        return " | ".join(descriptions)
+
+    def _format_optional_value(self, value):
+        if value is None:
+            return "-"
+        return str(value)
+
+    def _enum_value(self, value):
+        return getattr(value, "value", str(value))
 
     def _load_signals(self, alerts, trends):
         rows = []
@@ -157,5 +209,17 @@ class PainelExecutivoPage(QWidget):
             "alto": "#8e2430",
         }
         item.setBackground(QColor(colors.get(level, "#112240")))
+        item.setForeground(QColor("#ffffff"))
+        item.setTextAlignment(Qt.AlignCenter)
+
+    def _apply_recommendation_priority_style(self, item, priority):
+        colors = {
+            "LOW": "#1e3f6e",
+            "LOW_CONTROLLED": "#1e3f6e",
+            "MEDIUM": "#8a6d1d",
+            "HIGH": "#8e2430",
+            "UNKNOWN": "#455a64",
+        }
+        item.setBackground(QColor(colors.get(priority, "#112240")))
         item.setForeground(QColor("#ffffff"))
         item.setTextAlignment(Qt.AlignCenter)

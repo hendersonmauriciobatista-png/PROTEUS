@@ -1,5 +1,8 @@
 from dataclasses import dataclass, field
 from datetime import datetime
+from typing import Optional
+
+from executive_recommendation.models import RecommendationSnapshot
 
 
 EXECUTIVE_NORMAL = "NORMAL"
@@ -39,3 +42,4 @@ class ExecutiveSnapshot:
     executive_message: str
     observational_priorities: list[ExecutivePriority]
     explanations: list[str] = field(default_factory=list)
+    recommendation_snapshot: Optional[RecommendationSnapshot] = None

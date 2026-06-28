@@ -4,6 +4,7 @@ from datetime import datetime
 from analytics.models import AnalyticsSnapshot, PreventiveAlert, TrendResult, WaterHealthScore
 from executive import ExecutiveIntelligenceService
 from executive.models import EXECUTIVE_ATTENTION
+from executive_recommendation.models import RecommendationPriority
 from governance.models import EventState, OperationalEvent
 
 
@@ -87,6 +88,12 @@ class ExecutiveIntelligenceServiceTests(unittest.TestCase):
         self.assertEqual(1, len(snapshot.relevant_alerts))
         self.assertEqual(1, len(snapshot.key_trends))
         self.assertTrue(snapshot.observational_priorities)
+        self.assertIsNotNone(snapshot.recommendation_snapshot)
+        self.assertEqual(1, len(snapshot.recommendation_snapshot.recommendations))
+        self.assertEqual(
+            RecommendationPriority.MEDIUM,
+            snapshot.recommendation_snapshot.recommendations[0].priority,
+        )
         self.assertIn("acompanhamento", snapshot.executive_message)
 
 

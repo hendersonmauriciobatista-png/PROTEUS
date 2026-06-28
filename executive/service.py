@@ -1,6 +1,7 @@
 from datetime import datetime
 
 from analytics import AnalyticsService
+from executive_recommendation import ExecutiveRecommendationService
 from governance import OperationalGovernanceService
 
 from .models import ExecutiveSnapshot
@@ -8,10 +9,11 @@ from .rules import ExecutiveRules
 
 
 class ExecutiveIntelligenceService:
-    def __init__(self, analytics_service=None, governance_service=None, rules=None):
+    def __init__(self, analytics_service=None, governance_service=None, rules=None, recommendation_service=None):
         self.analytics_service = analytics_service or AnalyticsService()
         self.governance_service = governance_service or OperationalGovernanceService()
         self.rules = rules or ExecutiveRules()
+        self.recommendation_service = recommendation_service or ExecutiveRecommendationService()
 
     def build_snapshot(self):
         analytics_snapshot = self.analytics_service.build_snapshot()
@@ -26,6 +28,11 @@ class ExecutiveIntelligenceService:
             events,
             relevant_alerts,
             key_trends,
+        )
+        recommendation_snapshot = self.recommendation_service.build_snapshot(
+            analytics_snapshot=analytics_snapshot,
+            governance_snapshot=summary,
+            observational_result=None,
         )
 
         return ExecutiveSnapshot(
@@ -42,4 +49,5 @@ class ExecutiveIntelligenceService:
             executive_message=self.rules.executive_message(executive_status),
             observational_priorities=priorities,
             explanations=explanations,
+            recommendation_snapshot=recommendation_snapshot,
         )
