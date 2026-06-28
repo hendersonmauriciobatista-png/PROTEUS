@@ -101,6 +101,7 @@ Observação
 | GP-A22B | ExecutiveRecommendationService v1 | CONCLUIDA |
 | GP-A22C | Integracao do ExecutiveRecommendationService ao Painel Executivo | CONCLUIDA |
 | GP-R02 | Investigacao Arquitetural: Progressao de Valor Entre Camadas | PESQUISA CONCLUIDA |
+| GP-R03 | Investigacao Arquitetural: Executive Context | PESQUISA CONCLUIDA |
 
 ---
 
@@ -314,6 +315,24 @@ Entregavel:
 * Veredito: hipotese suportada como Discovery candidata, sem promocao institucional.
 * Nenhum codigo funcional, runtime ou documento constitucional alterado.
 
+Pesquisa relacionada concluida:
+
+GP-R03 - Investigar `ExecutiveContext` como camada candidata entre Analytics/Governanca e ExecutiveRecommendation.
+
+## GP-R03 - Executive Context
+
+Status:
+
+PESQUISA CONCLUIDA.
+
+Entregavel:
+
+* Relatorio `docs/research/GP_R03_EXECUTIVE_CONTEXT_AUDIT.md`.
+* Hipotese de `ExecutiveContext` avaliada apenas como Discovery candidata.
+* Veredito: hipotese suportada como Discovery candidata, sem recomendacao de implementacao imediata.
+* Nenhum codigo funcional, runtime, interface ou documento constitucional alterado.
+* PA-01 preservado e PA-02 mantida apenas como Discovery candidata.
+
 Proxima pesquisa sugerida:
 
-GP-R03 - Auditar documentos primarios do H&A para validar a hipotese em Memory, Context, Guidance, Governance e Decision.
+GP-R04 - Desenhar criterios formais para diferenciar contexto executivo, recomendacao executiva e inteligencia executiva antes de qualquer implementacao.
