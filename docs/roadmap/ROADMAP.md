@@ -100,6 +100,7 @@ Observação
 | GP-A22A | Arquitetura da Inteligência Executiva Evolutiva | CONCLUÍDA |
 | GP-A22B | ExecutiveRecommendationService v1 | CONCLUIDA |
 | GP-A22C | Integracao do ExecutiveRecommendationService ao Painel Executivo | CONCLUIDA |
+| GP-A22D | Evolucao das Recomendacoes Executivas | CONCLUIDA |
 | GP-R02 | Investigacao Arquitetural: Progressao de Valor Entre Camadas | PESQUISA CONCLUIDA |
 | GP-R03 | Investigacao Arquitetural: Executive Context | PESQUISA CONCLUIDA |
 
@@ -286,9 +287,22 @@ Entregavel:
 * Interface visual preservada por tabela consistente com o painel existente.
 * PA-01 preservado: painel nao cria logica observacional, analitica ou de governanca.
 
+GP-A22D:
+
+CONCLUIDA.
+
+Entregavel:
+
+* `ExecutiveRecommendationService` passou a combinar multiplos sinais consolidados ja existentes.
+* Alertas, tendencias, explicacoes do score e resumo de governanca passaram a enriquecer justificativas e evidencias.
+* `confidence` opcional adicionado a `ExecutiveRecommendation`, baseado em completude de sinais consolidados.
+* `RecommendationSnapshot`, `ExecutiveSnapshot` e Painel Executivo preservados.
+* Nenhum `ExecutiveContext` criado e nenhuma nova camada adicionada.
+* PA-01 preservado e PA-02 mantida como Discovery candidata.
+
 Próxima etapa sugerida:
 
-GP-A22D - Ampliar rastreabilidade e criterios de confianca das recomendacoes executivas.
+GP-A22E - Formalizar rastreabilidade das recomendacoes ate Analytics, Governanca e Nucleo sem criar nova autoridade.
 
 Prioridade:
 
@@ -296,7 +310,7 @@ ALTA.
 
 Motivo:
 
-A GP-A22C integrou recomendacoes ao snapshot e ao painel sem duplicar autoridade. O proximo avanco natural e enriquecer rastreabilidade, criterios de confianca e evidencias apresentadas, mantendo o Nucleo de Monitoramento Hidrico como autoridade observacional central.
+A GP-A22D enriqueceu recomendacoes com sinais consolidados sem criar novas camadas. O proximo avanco natural e formalizar rastreabilidade ponta a ponta, mantendo o Nucleo de Monitoramento Hidrico como autoridade observacional central.
 
 ---
 

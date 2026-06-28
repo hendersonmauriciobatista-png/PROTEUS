@@ -1,5 +1,61 @@
 # HISTORY
 
+# GP-A22D - Evolucao das Recomendacoes Executivas
+
+## Data
+
+28/06/2026
+
+## Status
+
+CONCLUIDA
+
+## Evento
+
+Evolucao do `ExecutiveRecommendationService` para enriquecer recomendacoes com multiplos sinais consolidados ja existentes.
+
+## Diagnostico
+
+* `AnalyticsSnapshot` ja disponibiliza Water Health Score, explicacoes, alertas e tendencias.
+* Governanca ja disponibiliza resumo por estado para o fluxo executivo.
+* `RecommendationSnapshot` e `ExecutiveSnapshot` ja estavam integrados ao Painel Executivo.
+* GP-R03 concluiu que `ExecutiveContext` e Discovery candidata, mas nao deve ser implementado neste momento.
+
+## Resultado
+
+* `ExecutiveRecommendationService` passou a considerar alertas, tendencias, explicacoes do score e resumo de governanca como contexto consolidado.
+* Regras deterministicas de prioridade e acao por Water Health Score preservadas.
+* Justificativas passaram a incluir contexto executivo adicional.
+* Evidencias passaram a detalhar score, status, explicacoes, alertas, tendencias e governanca quando disponiveis.
+* `ExecutiveRecommendation` passou a expor `confidence` opcional calculada por completude de sinais consolidados.
+* Painel Executivo preservado e passou a exibir a confianca ja disponivel.
+* Testes atualizados para recomendacoes multi-sinal.
+
+## Testes
+
+Comando executado:
+
+`python -m unittest discover -s tests`
+
+Resultado:
+
+* 68 testes executados.
+* Todos passaram.
+
+## Restricoes Mantidas
+
+* `ExecutiveRecommendationService` permanece consumidor de sinais consolidados.
+* Nenhum `ExecutiveContext` criado.
+* Nenhuma nova camada criada.
+* PA-01 preservado.
+* PA-02 permanece Discovery candidata.
+* Nucleo de Monitoramento Hidrico nao alterado.
+* Analytics nao alterado.
+* Governanca nao alterada.
+* Sem IA, Machine Learning ou alteracao de runtime.
+
+---
+
 # GP-R03 - Investigacao Arquitetural: Executive Context
 
 ## Data

@@ -2,7 +2,7 @@
 
 Data: 27/06/2026
 
-Status: BLUEPRINT ARQUITETURAL - GP-A22C IMPLEMENTADA
+Status: BLUEPRINT ARQUITETURAL - GP-A22D IMPLEMENTADA
 
 ## Contexto
 
@@ -17,6 +17,8 @@ Esta etapa nao implementa codigo funcional. Ela define o blueprint para uma futu
 Atualizacao GP-A22B (28/06/2026): o pacote `executive_recommendation` foi criado com modelos proprios, regras deterministicas iniciais e `ExecutiveRecommendationService` isolado. A implementacao preserva o PA-01 ao consumir apenas sinais consolidados, sem acessar CSV, `PolicyEngine`, `AvaliacaoObservacionalService` ou diretamente o Nucleo de Monitoramento Hidrico.
 
 Atualizacao GP-A22C (28/06/2026): `ExecutiveRecommendationService` foi integrado ao `ExecutiveIntelligenceService`, `RecommendationSnapshot` passou a compor o `ExecutiveSnapshot` e o Painel Executivo passou a apresentar recomendacoes executivas. O painel permanece como camada de apresentacao e nao cria logica observacional, analitica ou de governanca.
+
+Atualizacao GP-A22D (28/06/2026): `ExecutiveRecommendationService` passou a enriquecer recomendacoes com alertas, tendencias, explicacoes do score e resumo de governanca ja consolidados. Nenhum `ExecutiveContext` foi criado, nenhuma nova camada foi adicionada e as regras deterministicas por Water Health Score foram preservadas.
 
 ## Auditoria Passiva
 
@@ -284,8 +286,8 @@ GP-A22B nao deve:
 
 1. GP-A22B - Implementar `ExecutiveRecommendationService` e modelos de recomendacao. CONCLUIDA.
 2. GP-A22C - Integrar recomendacoes ao `ExecutiveSnapshot` e ao Painel Executivo. CONCLUIDA.
-3. GP-A22D - Ampliar rastreabilidade e criterios de confianca das recomendacoes executivas.
-4. GP-A22E - Criar testes de rastreabilidade de recomendacoes ate Analytics, Governanca e Nucleo.
+3. GP-A22D - Ampliar evidencias, justificativas e confianca com sinais consolidados. CONCLUIDA.
+4. GP-A22E - Formalizar rastreabilidade de recomendacoes ate Analytics, Governanca e Nucleo.
 5. GP-A23 - Avaliar camada de configuracao executiva para pesos, horizontes e prioridades por perfil operacional.
 
 ## Veredito

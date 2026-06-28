@@ -25,6 +25,8 @@ class ExecutiveRecommendationService:
         score = self._extract_water_health_score(analytics_snapshot)
         priority, action, recommendation_text, rationale = self.rules.evaluate_water_health_score(score)
         evidence = self._build_evidence(score, analytics_snapshot, governance_snapshot, observational_result)
+        rationale = self._enrich_rationale(rationale, analytics_snapshot, governance_snapshot)
+        confidence = self._calculate_confidence(score, analytics_snapshot, governance_snapshot, observational_result)
 
         recommendation = ExecutiveRecommendation(
             recommendation_id="water-health-score-primary",
@@ -32,6 +34,7 @@ class ExecutiveRecommendationService:
             action=action,
             recommendation=recommendation_text,
             rationale=rationale,
+            confidence=confidence,
             evidence=evidence,
         )
 
@@ -59,6 +62,7 @@ class ExecutiveRecommendationService:
 
     def _build_evidence(self, score, analytics_snapshot, governance_snapshot, observational_result):
         evidence = []
+        water_health_score = self._read_field(analytics_snapshot, "water_health_score")
 
         if score is not None:
             evidence.append(
@@ -69,6 +73,25 @@ class ExecutiveRecommendationService:
                     description=f"Water Health Score consolidado: {score}/100.",
                 )
             )
+            status = self._read_field(water_health_score, "status")
+            if status:
+                evidence.append(
+                    RecommendationEvidence(
+                        source="analytics",
+                        metric="water_health_status",
+                        value=None,
+                        description=f"Status consolidado do Water Health Score: {status}.",
+                    )
+                )
+            for explanation in self._read_list(water_health_score, "explanations")[:3]:
+                evidence.append(
+                    RecommendationEvidence(
+                        source="analytics",
+                        metric="water_health_score_explanation",
+                        value=None,
+                        description=explanation,
+                    )
+                )
         else:
             evidence.append(
                 RecommendationEvidence(
@@ -79,13 +102,64 @@ class ExecutiveRecommendationService:
                 )
             )
 
+        alerts = self._read_list(analytics_snapshot, "alerts")
+        if alerts:
+            severities = self._count_by_field(alerts, "severity")
+            evidence.append(
+                RecommendationEvidence(
+                    source="analytics",
+                    metric="preventive_alerts",
+                    value=len(alerts),
+                    description=f"{len(alerts)} alerta(s) preventivo(s) consolidado(s): {self._format_counts(severities)}.",
+                )
+            )
+            for alert in alerts[:3]:
+                evidence.append(
+                    RecommendationEvidence(
+                        source="analytics",
+                        metric=self._read_field(alert, "metric") or "alert",
+                        value=None,
+                        description=self._format_alert_evidence(alert),
+                    )
+                )
+
+        trends = self._read_list(analytics_snapshot, "quality_trends") + self._read_list(
+            analytics_snapshot, "consumption_trends"
+        )
+        if trends:
+            directions = self._count_by_field(trends, "direction")
+            evidence.append(
+                RecommendationEvidence(
+                    source="analytics",
+                    metric="trends",
+                    value=len(trends),
+                    description=f"{len(trends)} tendencia(s) consolidada(s): {self._format_counts(directions)}.",
+                )
+            )
+            for trend in trends[:3]:
+                evidence.append(
+                    RecommendationEvidence(
+                        source="analytics",
+                        metric=self._read_field(trend, "metric") or "trend",
+                        value=None,
+                        description=self._read_field(trend, "explanation")
+                        or "Tendencia consolidada sem explicacao textual.",
+                    )
+                )
+
         if governance_snapshot is not None:
+            active_events = self._governance_count(governance_snapshot, "ABERTO") + self._governance_count(
+                governance_snapshot, "MONITORAMENTO"
+            )
             evidence.append(
                 RecommendationEvidence(
                     source="governance",
                     metric="governance_snapshot",
-                    value=None,
-                    description="Snapshot de governanca recebido como contexto consolidado.",
+                    value=active_events,
+                    description=(
+                        "Resumo de governanca consolidado recebido: "
+                        f"{self._format_governance_snapshot(governance_snapshot)}."
+                    ),
                 )
             )
 
@@ -107,10 +181,63 @@ class ExecutiveRecommendationService:
 
         return evidence
 
+    def _enrich_rationale(self, rationale, analytics_snapshot, governance_snapshot):
+        details = []
+        alerts = self._read_list(analytics_snapshot, "alerts")
+        trends = self._read_list(analytics_snapshot, "quality_trends") + self._read_list(
+            analytics_snapshot, "consumption_trends"
+        )
+
+        if alerts:
+            details.append(f"{len(alerts)} alerta(s) preventivo(s) ja consolidado(s)")
+        if trends:
+            details.append(f"{len(trends)} tendencia(s) ja consolidada(s)")
+        if governance_snapshot is not None:
+            active_events = self._governance_count(governance_snapshot, "ABERTO") + self._governance_count(
+                governance_snapshot, "MONITORAMENTO"
+            )
+            details.append(f"{active_events} evento(s) ativo(s) em governanca")
+
+        if not details:
+            return rationale
+
+        return f"{rationale} Contexto executivo considerado: {', '.join(details)}."
+
+    def _calculate_confidence(self, score, analytics_snapshot, governance_snapshot, observational_result):
+        confidence = 0.35
+        if score is not None:
+            confidence += 0.30
+        if self._read_list(self._read_field(analytics_snapshot, "water_health_score"), "explanations"):
+            confidence += 0.10
+        if self._read_list(analytics_snapshot, "alerts"):
+            confidence += 0.10
+        if self._read_list(analytics_snapshot, "quality_trends") or self._read_list(
+            analytics_snapshot, "consumption_trends"
+        ):
+            confidence += 0.10
+        if governance_snapshot is not None:
+            confidence += 0.05
+        if observational_result is not None:
+            confidence += 0.05
+
+        return min(0.95, round(confidence, 2))
+
     def _read_field(self, source, field_name):
         if isinstance(source, dict):
             return source.get(field_name)
         return getattr(source, field_name, None)
+
+    def _read_list(self, source, field_name):
+        value = self._read_field(source, field_name)
+        if value is None:
+            return []
+        if isinstance(value, list):
+            return value
+        if isinstance(value, tuple):
+            return list(value)
+        if isinstance(value, set):
+            return sorted(value)
+        return [value]
 
     def _coerce_score(self, value):
         if value is None:
@@ -119,3 +246,27 @@ class ExecutiveRecommendationService:
             return int(value)
         except (TypeError, ValueError):
             return None
+
+    def _count_by_field(self, items, field_name):
+        counts = {}
+        for item in items:
+            value = self._read_field(item, field_name) or "desconhecido"
+            counts[value] = counts.get(value, 0) + 1
+        return counts
+
+    def _format_counts(self, counts):
+        return ", ".join(f"{key}={value}" for key, value in sorted(counts.items()))
+
+    def _format_alert_evidence(self, alert):
+        severity = self._read_field(alert, "severity") or "sem severidade"
+        message = self._read_field(alert, "message") or "Alerta preventivo consolidado."
+        evidence = self._read_field(alert, "evidence") or "Sem evidencia textual."
+        return f"{severity}: {message} Evidencia: {evidence}"
+
+    def _governance_count(self, governance_snapshot, state):
+        return self._coerce_score(self._read_field(governance_snapshot, state)) or 0
+
+    def _format_governance_snapshot(self, governance_snapshot):
+        if isinstance(governance_snapshot, dict):
+            return self._format_counts(governance_snapshot)
+        return str(governance_snapshot)

@@ -34,6 +34,7 @@ class ExecutiveRecommendation:
     action: RecommendationAction
     recommendation: str
     rationale: str
+    confidence: Optional[float] = None
     evidence: list[RecommendationEvidence] = field(default_factory=list)
 
 
