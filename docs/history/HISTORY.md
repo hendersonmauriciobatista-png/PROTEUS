@@ -1,5 +1,57 @@
 # HISTORY
 
+# GP-D01B - Implementacao do Modelo Minimo de Projeto de Monitoramento
+
+## Data
+
+30/06/2026
+
+## Status
+
+CONCLUIDA
+
+## Evento
+
+Implementacao do modelo minimo de Projeto de Monitoramento aprovado pela GP-D01A.
+
+## Resultado
+
+* Modelo `ProjetoMonitoramento` criado no dominio existente de Monitoramento Hidrico.
+* Persistencia do projeto ativo unico criada em `data/projeto_monitoramento.json`.
+* Tela `ProjetoMonitoramentoPage` adicionada como unidade principal do sistema.
+* CSVs de medicoes preservados sem alteracao de schema nesta GP.
+* Estrategia tecnica de persistencia da relacao Medicao -> Projeto adiada para GP-D01C.
+* Implementacao limitada aos conceitos aprovados: Projeto, Cliente, Area Operacional, Ponto Principal de Coleta e Coletor Responsavel.
+
+## Testes
+
+Comandos executados:
+
+`python -m py_compile monitoramento_hidrico\projeto_monitoramento.py projeto_monitoramento_page.py qualidade_agua.py dados_ambientais.py consumo_distribuicao.py main.py`
+
+`python -m unittest discover -s tests`
+
+Resultado:
+
+* Compilacao concluida com sucesso.
+* 72 testes executados.
+* Todos passaram.
+
+## Restricoes Mantidas
+
+* Nenhuma nova camada arquitetural criada.
+* PA-01 preservado.
+* `PolicyEngine` nao alterado.
+* `AvaliacaoObservacionalService` nao alterado.
+* Nucleo de Monitoramento Hidrico preservado como autoridade observacional.
+* Analytics, Governanca e Recommendation nao alterados.
+* Nenhuma logica observacional criada no Projeto.
+* Nenhuma nova politica criada.
+* Nenhuma coluna `projeto_id` consolidada nos CSVs nesta GP.
+* Multiplos projetos, multiplos pontos, GPS, fotos, cadeia de custodia, anexos e assinatura digital nao implementados.
+
+---
+
 # GP-D01A - Auditoria do Modelo de Projeto de Monitoramento
 
 ## Data

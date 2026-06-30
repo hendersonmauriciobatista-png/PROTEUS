@@ -104,6 +104,7 @@ Observação
 | GP-A23 | Auditoria Arquitetural Global do CASE-01 | AUDITORIA CONCLUIDA |
 | GP-A25 | Grafico Executivo do Water Health Score no Dashboard | CONCLUIDA |
 | GP-D01A | Auditoria do Modelo de Projeto de Monitoramento | AUDITORIA DOCUMENTAL CONCLUIDA |
+| GP-D01B | Implementacao do Modelo Minimo de Projeto de Monitoramento | CONCLUIDA |
 | GP-R02 | Investigacao Arquitetural: Progressao de Valor Entre Camadas | PESQUISA CONCLUIDA |
 | GP-R03 | Investigacao Arquitetural: Executive Context | PESQUISA CONCLUIDA |
 
@@ -340,9 +341,9 @@ Entregavel:
 * PA-01 preservado: Projeto fornece contexto; `PolicyEngine` seleciona politica; Motor Observacional executa avaliacao.
 * Nenhuma entidade, tela, CSV, runtime ou camada nova criada.
 
-Proxima etapa de dominio sugerida:
+Proxima etapa de dominio atendida:
 
-GP-D01B - Especificar contrato textual dos campos do Projeto de Monitoramento, ainda sem implementacao.
+GP-D01B - Implementar o modelo minimo aprovado pela GP-D01A.
 
 Prioridade:
 
@@ -350,7 +351,21 @@ ALTA.
 
 Motivo:
 
-A GP-D01A recomendou um modelo minimo suportado para evolucao do dominio. O proximo passo natural e fechar contrato textual dos campos antes de qualquer entidade, tela ou persistencia.
+A GP-D01A recomendou um modelo minimo suportado para evolucao do dominio. A GP-D01B executa essa evolucao mantendo o escopo aprovado e sem criar nova camada.
+
+GP-D01B:
+
+CONCLUIDA.
+
+Entregavel:
+
+* Modelo minimo de Projeto de Monitoramento implementado.
+* Persistencia do projeto ativo unico criada em `data/projeto_monitoramento.json`.
+* Projeto de Monitoramento adicionado como primeira unidade da interface.
+* CSVs de medicoes preservados sem alteracao de schema nesta GP.
+* Estrategia tecnica de persistencia da relacao Medicao -> Projeto adiada para GP-D01C.
+* PA-01 preservado, sem alteracao de `PolicyEngine`, Motor Observacional, Analytics, Governanca ou Recommendation.
+* Conceitos adiados pela GP-D01A permanecem nao implementados.
 
 Etapa executiva tambem sugerida:
 

@@ -24,6 +24,7 @@ from dados_ambientais import DadosAmbientaisPage
 from governanca_operacional import GovernancaOperacionalPage
 from painel_executivo import PainelExecutivoPage
 from previsao_analitica import PrevisaoAnaliticaPage
+from projeto_monitoramento_page import ProjetoMonitoramentoPage
 from qualidade_agua import QualidadeAguaPage
 from relatorios import RelatoriosPage
 
@@ -374,16 +375,18 @@ class MainWindow(QMainWindow):
 
         self.nav_buttons = []
         nav_items = [
-            ("Dashboard", 0),
-            ("Painel Executivo", 1),
+            ("Projeto de Monitoramento", 0),
+            ("Dashboard", 1),
+            ("Painel Executivo", 2),
             ("Qualidade da Água", 2),
             ("Consumo e Distribuição", 3),
             ("Dados Ambientais", 4),
             ("Relatórios", 5),
-            ("Previsao Analitica", 6),
-            ("Governanca Operacional", 7),
+            ("Previsao Analitica", 7),
+            ("Governanca Operacional", 8),
         ]
-        for label, index in nav_items:
+        for index, item in enumerate(nav_items):
+            label = item[0]
             button = QPushButton(label)
             button.setObjectName("nav_btn")
             button.setCheckable(True)
@@ -402,6 +405,7 @@ class MainWindow(QMainWindow):
         content_layout = QVBoxLayout(content)
         content_layout.setContentsMargins(0, 0, 0, 0)
         self.stack = QStackedWidget()
+        self.stack.addWidget(ProjetoMonitoramentoPage())
         self.stack.addWidget(DashboardPage())
         self.stack.addWidget(PainelExecutivoPage())
         self.stack.addWidget(QualidadeAguaPage())

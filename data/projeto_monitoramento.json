@@ -1,0 +1,10 @@
+{
+  "identificador": "projeto_monitoramento_principal",
+  "nome": "Projeto de Monitoramento Principal",
+  "cliente": "Cliente nao informado",
+  "area_operacional": "urbana",
+  "ponto_principal_coleta": "outro",
+  "coletor_responsavel": "Coletor nao informado",
+  "data_criacao": "2026-06-30T00:00:00",
+  "status": "ativo"
+}
