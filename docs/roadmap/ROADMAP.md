@@ -103,6 +103,7 @@ Observação
 | GP-A22D | Evolucao das Recomendacoes Executivas | CONCLUIDA |
 | GP-A23 | Auditoria Arquitetural Global do CASE-01 | AUDITORIA CONCLUIDA |
 | GP-A25 | Grafico Executivo do Water Health Score no Dashboard | CONCLUIDA |
+| GP-D01A | Auditoria do Modelo de Projeto de Monitoramento | AUDITORIA DOCUMENTAL CONCLUIDA |
 | GP-R02 | Investigacao Arquitetural: Progressao de Valor Entre Camadas | PESQUISA CONCLUIDA |
 | GP-R03 | Investigacao Arquitetural: Executive Context | PESQUISA CONCLUIDA |
 
@@ -326,7 +327,32 @@ Entregavel:
 * Veredito: arquitetura madura com pequenas ressalvas.
 * Recomendacao: crescer por enriquecimento disciplinado das camadas existentes, sem criar novas camadas no curto prazo.
 
-Próxima etapa sugerida:
+GP-D01A:
+
+AUDITORIA DOCUMENTAL CONCLUIDA.
+
+Entregavel:
+
+* Relatorio `docs/domain/GP_D01A_MONITORING_PROJECT_DOMAIN_AUDIT.md`.
+* Modelo minimo conceitual de Projeto de Monitoramento recomendado.
+* Conceitos do MVP de dominio: Projeto, Cliente, Area Operacional, Ponto Principal de Coleta, Coletor Responsavel e perfil operacional derivado ou selecionavel.
+* Conceitos de rastreabilidade pesada adiados: GPS, fotos, assinatura digital, cadeia de custodia, lacre, anexos, multiplos pontos e multiplos coletores.
+* PA-01 preservado: Projeto fornece contexto; `PolicyEngine` seleciona politica; Motor Observacional executa avaliacao.
+* Nenhuma entidade, tela, CSV, runtime ou camada nova criada.
+
+Proxima etapa de dominio sugerida:
+
+GP-D01B - Especificar contrato textual dos campos do Projeto de Monitoramento, ainda sem implementacao.
+
+Prioridade:
+
+ALTA.
+
+Motivo:
+
+A GP-D01A recomendou um modelo minimo suportado para evolucao do dominio. O proximo passo natural e fechar contrato textual dos campos antes de qualquer entidade, tela ou persistencia.
+
+Etapa executiva tambem sugerida:
 
 GP-A22E - Formalizar rastreabilidade das recomendacoes ate Analytics, Governanca e Nucleo sem criar nova autoridade.
 

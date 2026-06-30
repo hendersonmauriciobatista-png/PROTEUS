@@ -1,5 +1,44 @@
 # HISTORY
 
+# GP-D01A - Auditoria do Modelo de Projeto de Monitoramento
+
+## Data
+
+30/06/2026
+
+## Status
+
+AUDITORIA DOCUMENTAL CONCLUIDA
+
+## Evento
+
+Auditoria documental do modelo minimo de dominio para Projeto de Monitoramento Hidrico, antes de qualquer implementacao funcional.
+
+## Resultado
+
+* Relatorio `docs/domain/GP_D01A_MONITORING_PROJECT_DOMAIN_AUDIT.md` criado.
+* Conceitos Projeto, Cliente, Area Operacional, Ponto Principal de Coleta e Coletor Responsavel avaliados pelo criterio "Agrega valor ao projeto?".
+* Modelo minimo conceitual recomendado sem criacao de entidade, tela, CSV, runtime ou nova camada arquitetural.
+* Area Operacional recomendada como contexto que influencia `perfil_operacional` e selecao de politica pelo `PolicyEngine`, sem alterar PA-01.
+* Conceitos como GPS, fotos, assinatura digital, cadeia de custodia, lacre, anexos, multiplos pontos e multiplos coletores adiados.
+* Veredito: modelo minimo suportado e recomendado.
+
+## Restricoes Mantidas
+
+* Nenhum codigo funcional alterado.
+* Interface nao alterada.
+* Runtime nao alterado.
+* Nenhum CSV criado.
+* Nenhuma entidade criada.
+* Nenhuma camada nova criada.
+* `PolicyEngine`, Motor Observacional, Analytics, Governanca e Recommendation nao alterados.
+* Documentos constitucionais ICFACTORY nao alterados.
+* PA-01 preservado.
+* GP-A23 respeitada.
+* Nenhuma Discovery promovida.
+
+---
+
 # GP-A25 - Grafico Executivo do Water Health Score no Dashboard
 
 ## Data
