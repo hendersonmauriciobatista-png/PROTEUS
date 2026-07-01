@@ -105,6 +105,7 @@ Observação
 | GP-A25 | Grafico Executivo do Water Health Score no Dashboard | CONCLUIDA |
 | GP-D01A | Auditoria do Modelo de Projeto de Monitoramento | AUDITORIA DOCUMENTAL CONCLUIDA |
 | GP-D01B | Implementacao do Modelo Minimo de Projeto de Monitoramento | CONCLUIDA |
+| GP-D02A | Auditoria do Contexto Operacional | AUDITORIA DOCUMENTAL CONCLUIDA |
 | GP-R02 | Investigacao Arquitetural: Progressao de Valor Entre Camadas | PESQUISA CONCLUIDA |
 | GP-R03 | Investigacao Arquitetural: Executive Context | PESQUISA CONCLUIDA |
 
@@ -366,6 +367,20 @@ Entregavel:
 * Estrategia tecnica de persistencia da relacao Medicao -> Projeto adiada para GP-D01C.
 * PA-01 preservado, sem alteracao de `PolicyEngine`, Motor Observacional, Analytics, Governanca ou Recommendation.
 * Conceitos adiados pela GP-D01A permanecem nao implementados.
+
+GP-D02A:
+
+AUDITORIA DOCUMENTAL CONCLUIDA.
+
+Entregavel:
+
+* Relatorio `docs/domain/GP_D02A_OPERATIONAL_CONTEXT_AUDIT.md`.
+* Contextos Urbana, Rural, Industrial e Agricola auditados.
+* Modelo recomendado: Contexto Operacional pertence ao Projeto e orienta o `PolicyEngine` apenas por perfil operacional explicito ou derivado.
+* Mapeamento recomendado: Urbana -> `urbano_saneamento`, Rural -> `rural`, Industrial -> `industrial`, Agricola -> `rural`.
+* Nenhuma politica, perfil novo, interface, runtime ou camada criada.
+* PA-01 preservado.
+* `DISCOVERY_CATALOG.md` consultado: PA-02 e PA-03 reforcadas como Discoveries candidatas, sem promocao.
 
 Etapa executiva tambem sugerida:
 
