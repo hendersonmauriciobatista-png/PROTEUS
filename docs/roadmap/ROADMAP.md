@@ -109,6 +109,7 @@ Observação
 | GP-D02B | Implementacao do Contexto Operacional | CONCLUIDA |
 | GP-D03A | Auditoria do Ciclo de Vida do Projeto de Monitoramento | AUDITORIA DOCUMENTAL CONCLUIDA |
 | GP-D03B | Auditoria Das Ressalvas Do Ciclo De Vida | AUDITORIA DOCUMENTAL CONCLUIDA |
+| GP-D03C | Priorizacao Das Ressalvas Do Ciclo De Vida | AUDITORIA DOCUMENTAL CONCLUIDA |
 | GP-R02 | Investigacao Arquitetural: Progressao de Valor Entre Camadas | PESQUISA CONCLUIDA |
 | GP-R03 | Investigacao Arquitetural: Executive Context | PESQUISA CONCLUIDA |
 
@@ -416,7 +417,7 @@ Entregavel:
 
 Proximas GPs de dominio sugeridas:
 
-* GP-D03C - Auditoria dos Estados do Projeto de Monitoramento.
+* GP-D03D - Auditoria dos Estados e Criterios de Encerramento do Projeto.
 * GP-D04A - Auditoria do Planejamento de Monitoramento.
 
 GP-D03B:
@@ -435,9 +436,29 @@ Entregavel:
 
 Proximas GPs de dominio sugeridas:
 
-* GP-D03C - Auditoria dos Estados do Projeto de Monitoramento.
+* GP-D03D - Auditoria dos Estados e Criterios de Encerramento do Projeto.
 * GP-D04A - Auditoria do Planejamento de Monitoramento.
 * GP-D08A - Auditoria do Dossie Final do Projeto.
+
+GP-D03C:
+
+AUDITORIA DOCUMENTAL CONCLUIDA.
+
+Entregavel:
+
+* Relatorio `docs/domain/GP_D03C_LIFECYCLE_REMARKS_PRIORITY.md`.
+* Ressalvas importantes da GP-D03B priorizadas.
+* Matriz de prioridade criada para Planejamento, Estados do Projeto, Dossie final, Arquivamento e Encerramento.
+* Primeira frente recomendada: Encerramento do Projeto.
+* Veredito: Tratar encerramento primeiro.
+* GP futura sugerida: GP-D03D - Auditoria dos Estados e Criterios de Encerramento do Projeto.
+* PA-01 preservado, GP-A23 preservada e nenhuma camada nova criada.
+* `DISCOVERY_CATALOG.md` consultado: PA-02 e PA-03 reforcadas, sem promocao automatica.
+
+Proximas GPs de dominio sugeridas:
+
+* GP-D03D - Auditoria dos Estados e Criterios de Encerramento do Projeto.
+* GP-D04A - Auditoria do Planejamento de Monitoramento.
 
 Etapa executiva tambem sugerida:
 

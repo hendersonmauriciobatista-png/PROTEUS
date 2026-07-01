@@ -1,5 +1,55 @@
 # HISTORY
 
+# GP-D03C - Priorizacao Das Ressalvas Do Ciclo De Vida
+
+## Data
+
+30/06/2026
+
+## Status
+
+AUDITORIA DOCUMENTAL CONCLUIDA
+
+## Evento
+
+Priorizacao documental das ressalvas importantes identificadas na GP-D03B.
+
+## Resultado
+
+* Relatorio `docs/domain/GP_D03C_LIFECYCLE_REMARKS_PRIORITY.md` criado.
+* Ressalvas importantes extraidas da GP-D03B: Planejamento, Estados do Projeto, Dossie final, Arquivamento e Encerramento.
+* Matriz de prioridade criada com valor ao Projeto, impacto operacional, dependencias, risco de adiamento, complexidade provavel, PA-01, GP-A23 e enriquecimento das estruturas existentes.
+* Primeira frente recomendada: Encerramento do Projeto.
+* GP futura sugerida: GP-D03D - Auditoria dos Estados e Criterios de Encerramento do Projeto.
+* Veredito: Tratar encerramento primeiro.
+
+## Discovery Catalog
+
+`docs/research/DISCOVERY_CATALOG.md` foi consultado.
+
+Impacto registrado:
+
+* PA-02 reforcada: a priorizacao recomenda evoluir o dominio existente, sem nova camada.
+* PA-03 reforcada: encerramento deve ser auditado antes de materializar novos campos, estados, artefatos ou persistencias.
+* Nenhuma Discovery foi contradita.
+* Nenhuma Discovery foi promovida automaticamente.
+* Nenhuma nova Discovery candidata foi identificada.
+
+## Restricoes Mantidas
+
+* Nenhum codigo alterado.
+* Nenhuma interface alterada.
+* Nenhum runtime alterado.
+* Nenhum CSV alterado.
+* Nenhuma arquitetura alterada.
+* Nenhuma camada criada.
+* PA-01 preservado.
+* GP-A23 preservada.
+* GP-D03B preservada.
+* Testes nao executados por se tratar de GP exclusivamente documental.
+
+---
+
 # GP-D03B - Auditoria Das Ressalvas Do Ciclo De Vida
 
 ## Data
