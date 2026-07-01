@@ -110,6 +110,7 @@ Observação
 | GP-D03A | Auditoria do Ciclo de Vida do Projeto de Monitoramento | AUDITORIA DOCUMENTAL CONCLUIDA |
 | GP-D03B | Auditoria Das Ressalvas Do Ciclo De Vida | AUDITORIA DOCUMENTAL CONCLUIDA |
 | GP-D03C | Priorizacao Das Ressalvas Do Ciclo De Vida | AUDITORIA DOCUMENTAL CONCLUIDA |
+| GP-D03D | Auditoria dos Estados e Criterios de Encerramento do Projeto | AUDITORIA DOCUMENTAL CONCLUIDA |
 | GP-R02 | Investigacao Arquitetural: Progressao de Valor Entre Camadas | PESQUISA CONCLUIDA |
 | GP-R03 | Investigacao Arquitetural: Executive Context | PESQUISA CONCLUIDA |
 
@@ -417,7 +418,7 @@ Entregavel:
 
 Proximas GPs de dominio sugeridas:
 
-* GP-D03D - Auditoria dos Estados e Criterios de Encerramento do Projeto.
+* GP-D03E - Implementacao minima dos estados de Projeto, se aprovada.
 * GP-D04A - Auditoria do Planejamento de Monitoramento.
 
 GP-D03B:
@@ -436,7 +437,7 @@ Entregavel:
 
 Proximas GPs de dominio sugeridas:
 
-* GP-D03D - Auditoria dos Estados e Criterios de Encerramento do Projeto.
+* GP-D03E - Implementacao minima dos estados de Projeto, se aprovada.
 * GP-D04A - Auditoria do Planejamento de Monitoramento.
 * GP-D08A - Auditoria do Dossie Final do Projeto.
 
@@ -457,7 +458,29 @@ Entregavel:
 
 Proximas GPs de dominio sugeridas:
 
-* GP-D03D - Auditoria dos Estados e Criterios de Encerramento do Projeto.
+* GP-D03E - Implementacao minima dos estados de Projeto, se aprovada.
+* GP-D04A - Auditoria do Planejamento de Monitoramento.
+
+GP-D03D:
+
+AUDITORIA DOCUMENTAL CONCLUIDA.
+
+Entregavel:
+
+* Relatorio `docs/domain/GP_D03D_PROJECT_CLOSURE_AUDIT.md`.
+* Conceito de Encerramento do Projeto definido em nivel de dominio.
+* Estados auditados: Ativo, Encerrado, Arquivado, Inativo, Pausado e Rascunho.
+* Estados minimos recomendados para GP futura: `ativo`, `encerrado` e `arquivado`.
+* Arquivamento definido como etapa distinta e posterior ao encerramento.
+* Criterios minimos de encerramento e Dossie Final definidos documentalmente.
+* Veredito: Modelo suportado com ressalvas.
+* PA-01 preservado, GP-A23 preservada e nenhuma camada nova criada.
+* `DISCOVERY_CATALOG.md` consultado: PA-02 e PA-03 reforcadas, sem promocao automatica.
+
+Proximas GPs de dominio sugeridas:
+
+* GP-D03E - Implementacao minima dos estados `ativo`, `encerrado` e `arquivado`, se aprovada.
+* GP-D08A - Auditoria do Dossie Final do Projeto.
 * GP-D04A - Auditoria do Planejamento de Monitoramento.
 
 Etapa executiva tambem sugerida:
