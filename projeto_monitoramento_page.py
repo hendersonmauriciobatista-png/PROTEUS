@@ -15,10 +15,14 @@ from monitoramento_hidrico.projeto_monitoramento import (
     CONTEXTOS_OPERACIONAIS,
     PONTOS_PRINCIPAIS_COLETA,
     PROJETO_ATIVO_ID,
-    STATUS_PROJETO,
+    STATUS_ARQUIVADO,
+    STATUS_ATIVO,
+    STATUS_ENCERRADO,
     ProjetoMonitoramento,
     ProjetoMonitoramentoStore,
+    arquivar_projeto,
     derivar_perfil_operacional,
+    encerrar_projeto,
 )
 
 
@@ -63,7 +67,8 @@ class ProjetoMonitoramentoPage(QWidget):
         self.inputs["coletor_responsavel"] = self._make_line_edit(120)
         self.inputs["data_criacao"] = self._make_line_edit(40)
         self.inputs["data_criacao"].setReadOnly(True)
-        self.inputs["status"] = self._make_combo(STATUS_PROJETO)
+        self.inputs["status"] = self._make_line_edit(40)
+        self.inputs["status"].setReadOnly(True)
 
         form_layout.addRow("Nome do Projeto", self.inputs["nome"])
         form_layout.addRow("Cliente", self.inputs["cliente"])
@@ -77,6 +82,12 @@ class ProjetoMonitoramentoPage(QWidget):
         self.save_button = QPushButton("Salvar Projeto")
         self.save_button.clicked.connect(self.save_project)
         form_layout.addRow("", self.save_button)
+        self.close_button = QPushButton("Encerrar Projeto")
+        self.close_button.clicked.connect(self.close_project)
+        form_layout.addRow("", self.close_button)
+        self.archive_button = QPushButton("Arquivar Projeto")
+        self.archive_button.clicked.connect(self.archive_project)
+        form_layout.addRow("", self.archive_button)
         layout.addWidget(form_frame)
         layout.addStretch()
 
@@ -89,7 +100,8 @@ class ProjetoMonitoramentoPage(QWidget):
         self._set_combo_value("ponto_principal_coleta", projeto.ponto_principal_coleta)
         self.inputs["coletor_responsavel"].setText(projeto.coletor_responsavel)
         self.inputs["data_criacao"].setText(projeto.data_criacao)
-        self._set_combo_value("status", projeto.status)
+        self.inputs["status"].setText(projeto.status)
+        self._apply_status_state(projeto.status)
 
     def save_project(self):
         projeto_atual = self.store.carregar()
@@ -102,7 +114,7 @@ class ProjetoMonitoramentoPage(QWidget):
             ponto_principal_coleta=self.inputs["ponto_principal_coleta"].currentData(),
             coletor_responsavel=self.inputs["coletor_responsavel"].text().strip(),
             data_criacao=projeto_atual.data_criacao,
-            status=self.inputs["status"].currentData(),
+            status=projeto_atual.status,
         )
 
         try:
@@ -111,6 +123,24 @@ class ProjetoMonitoramentoPage(QWidget):
             QMessageBox.information(self, "Projeto salvo", "Projeto de Monitoramento salvo com sucesso")
         except Exception as error:
             QMessageBox.critical(self, "Erro ao salvar", f"Erro ao salvar projeto: {error}")
+
+    def close_project(self):
+        try:
+            projeto = encerrar_projeto(self.store.carregar())
+            self.store.salvar(projeto)
+            self.refresh()
+            QMessageBox.information(self, "Projeto encerrado", "Projeto de Monitoramento encerrado com sucesso")
+        except Exception as error:
+            QMessageBox.critical(self, "Erro ao encerrar", f"Erro ao encerrar projeto: {error}")
+
+    def archive_project(self):
+        try:
+            projeto = arquivar_projeto(self.store.carregar())
+            self.store.salvar(projeto)
+            self.refresh()
+            QMessageBox.information(self, "Projeto arquivado", "Projeto de Monitoramento arquivado com sucesso")
+        except Exception as error:
+            QMessageBox.critical(self, "Erro ao arquivar", f"Erro ao arquivar projeto: {error}")
 
     def _make_line_edit(self, max_length):
         field = QLineEdit()
@@ -140,3 +170,24 @@ class ProjetoMonitoramentoPage(QWidget):
     def _update_perfil_operacional(self):
         contexto = self.inputs["area_operacional"].currentData()
         self.inputs["perfil_operacional"].setText(derivar_perfil_operacional(contexto))
+
+    def _apply_status_state(self, status):
+        projeto_ativo = status == STATUS_ATIVO
+        projeto_encerrado = status == STATUS_ENCERRADO
+        projeto_arquivado = status == STATUS_ARQUIVADO
+
+        self.save_button.setEnabled(projeto_ativo)
+        self.close_button.setEnabled(projeto_ativo)
+        self.archive_button.setEnabled(projeto_encerrado)
+
+        for field_name in ["nome", "cliente", "coletor_responsavel"]:
+            self.inputs[field_name].setReadOnly(not projeto_ativo)
+        for field_name in ["area_operacional", "ponto_principal_coleta"]:
+            self.inputs[field_name].setEnabled(projeto_ativo)
+
+        if projeto_arquivado:
+            self.inputs["status"].setToolTip("Projeto arquivado permanece disponivel para consulta.")
+        elif projeto_encerrado:
+            self.inputs["status"].setToolTip("Projeto encerrado pode ser arquivado.")
+        else:
+            self.inputs["status"].setToolTip("Projeto ativo pode ser editado ou encerrado.")

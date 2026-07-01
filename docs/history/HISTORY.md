@@ -1,5 +1,77 @@
 # HISTORY
 
+# GP-D03E - Implementacao dos Estados do Projeto
+
+## Data
+
+30/06/2026
+
+## Status
+
+CONCLUIDA
+
+## Evento
+
+Implementacao minima dos estados do Projeto de Monitoramento aprovados pela GP-D03D.
+
+## Resultado
+
+* Estados do Projeto materializados: `ativo`, `encerrado` e `arquivado`.
+* Estado legado `inativo` deixou de compor os estados vigentes e passa a ser lido como `encerrado` para compatibilidade.
+* Projeto novo nasce como `ativo`.
+* Transicao `ativo` -> `encerrado` implementada.
+* Transicao `encerrado` -> `arquivado` implementada.
+* Transicao direta `ativo` -> `arquivado` bloqueada.
+* Projeto arquivado permanece carregavel e consultavel.
+* Tela do Projeto passa a exibir status em campo somente leitura.
+* Tela do Projeto passa a oferecer acoes explicitas de Encerrar e Arquivar.
+* Edicao dos dados do Projeto fica restrita ao estado `ativo`.
+* Nenhum Dossie Final, multiplos projetos, reabertura, CSV, politica, motor, Analytics, Governanca, Recommendation, Dashboard ou nova camada foi criado.
+
+## Testes
+
+Comandos executados:
+
+`python -m unittest tests.test_monitoramento_projeto`
+
+`python -m py_compile monitoramento_hidrico\projeto_monitoramento.py projeto_monitoramento_page.py monitoramento_hidrico\__init__.py`
+
+`python -m unittest discover -s tests`
+
+Resultado:
+
+* Testes especificos do Projeto executados com sucesso.
+* Arquivos tocados compilados com sucesso.
+* Suite completa executada com sucesso.
+
+## Discovery Catalog
+
+`docs/research/DISCOVERY_CATALOG.md` foi consultado.
+
+Impacto registrado:
+
+* PA-02 reforcada: estados agregam valor por enriquecimento do dominio existente, sem nova camada.
+* PA-03 reforcada: apenas os estados minimos aprovados foram materializados; Dossie Final e novos artefatos permanecem nao materializados.
+* Nenhuma Discovery foi contradita.
+* Nenhuma Discovery foi promovida automaticamente.
+* Nenhuma nova Discovery candidata foi identificada.
+
+## Restricoes Mantidas
+
+* Nenhum CSV alterado.
+* Nenhuma nova camada criada.
+* PA-01 preservado.
+* GP-A23 preservada.
+* `PolicyEngine` nao alterado.
+* Motor Observacional nao alterado.
+* Analytics, Governanca, Recommendation e Dashboard nao alterados.
+* Nenhuma autoridade observacional criada no Projeto.
+* Nenhum Dossie Final criado.
+* Nenhum multiplo Projeto criado.
+* Nenhuma reabertura implementada.
+
+---
+
 # GP-D03D - Auditoria dos Estados e Criterios de Encerramento do Projeto
 
 ## Data

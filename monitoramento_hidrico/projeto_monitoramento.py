@@ -10,7 +10,9 @@ PROJETO_MONITORAMENTO_PATH = DATA_DIR / "projeto_monitoramento.json"
 
 PROJETO_ATIVO_ID = "projeto_monitoramento_principal"
 STATUS_ATIVO = "ativo"
-STATUS_INATIVO = "inativo"
+STATUS_ENCERRADO = "encerrado"
+STATUS_ARQUIVADO = "arquivado"
+STATUS_LEGADO_INATIVO = "inativo"
 
 CONTEXTOS_OPERACIONAIS = ("urbana", "rural", "industrial", "agricola")
 PERFIS_OPERACIONAIS = ("urbano_saneamento", "rural", "industrial")
@@ -22,7 +24,7 @@ PERFIL_OPERACIONAL_POR_CONTEXTO = {
 }
 AREAS_OPERACIONAIS = CONTEXTOS_OPERACIONAIS
 PONTOS_PRINCIPAIS_COLETA = ("rio", "poco", "reservatorio", "eta", "lago", "outro")
-STATUS_PROJETO = (STATUS_ATIVO, STATUS_INATIVO)
+STATUS_PROJETO = (STATUS_ATIVO, STATUS_ENCERRADO, STATUS_ARQUIVADO)
 
 
 @dataclass(frozen=True)
@@ -53,6 +55,8 @@ class ProjetoMonitoramentoStore:
 
         if "perfil_operacional" not in payload:
             payload["perfil_operacional"] = derivar_perfil_operacional(payload.get("area_operacional"))
+        if payload.get("status") == STATUS_LEGADO_INATIVO:
+            payload["status"] = STATUS_ENCERRADO
 
         projeto = ProjetoMonitoramento(**payload)
         validar_projeto_monitoramento(projeto)
@@ -61,11 +65,26 @@ class ProjetoMonitoramentoStore:
     def salvar(self, projeto):
         projeto = normalizar_projeto_monitoramento(projeto)
         validar_projeto_monitoramento(projeto)
+        status_atual = self._status_persistido()
+        if status_atual is None and projeto.status != STATUS_ATIVO:
+            raise ValueError("Projeto novo deve nascer como ativo.")
+        if status_atual is not None:
+            validar_transicao_status(status_atual, projeto.status)
         self.path.parent.mkdir(parents=True, exist_ok=True)
         with self.path.open("w", encoding="utf-8") as file:
             json.dump(asdict(projeto), file, ensure_ascii=False, indent=2)
             file.write("\n")
         return projeto
+
+    def _status_persistido(self):
+        if not self.path.exists():
+            return None
+        with self.path.open("r", encoding="utf-8") as file:
+            payload = json.load(file)
+        status = payload.get("status", STATUS_ATIVO)
+        if status == STATUS_LEGADO_INATIVO:
+            return STATUS_ENCERRADO
+        return status
 
 
 def projeto_monitoramento_padrao(criado_em=None):
@@ -93,6 +112,33 @@ def normalizar_projeto_monitoramento(projeto):
         projeto,
         perfil_operacional=derivar_perfil_operacional(projeto.area_operacional),
     )
+
+
+def encerrar_projeto(projeto):
+    validar_transicao_status(projeto.status, STATUS_ENCERRADO)
+    return replace(projeto, status=STATUS_ENCERRADO)
+
+
+def arquivar_projeto(projeto):
+    validar_transicao_status(projeto.status, STATUS_ARQUIVADO)
+    return replace(projeto, status=STATUS_ARQUIVADO)
+
+
+def validar_transicao_status(status_atual, novo_status):
+    if status_atual not in STATUS_PROJETO:
+        raise ValueError(f"Status atual de projeto invalido: {status_atual}")
+    if novo_status not in STATUS_PROJETO:
+        raise ValueError(f"Novo status de projeto invalido: {novo_status}")
+    if status_atual == novo_status:
+        return True
+    transicoes_permitidas = {
+        STATUS_ATIVO: (STATUS_ENCERRADO,),
+        STATUS_ENCERRADO: (STATUS_ARQUIVADO,),
+        STATUS_ARQUIVADO: (),
+    }
+    if novo_status not in transicoes_permitidas[status_atual]:
+        raise ValueError(f"Transicao de status invalida: {status_atual} -> {novo_status}")
+    return True
 
 
 def validar_projeto_monitoramento(projeto):
