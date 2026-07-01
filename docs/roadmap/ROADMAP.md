@@ -107,6 +107,7 @@ Observação
 | GP-D01B | Implementacao do Modelo Minimo de Projeto de Monitoramento | CONCLUIDA |
 | GP-D02A | Auditoria do Contexto Operacional | AUDITORIA DOCUMENTAL CONCLUIDA |
 | GP-D02B | Implementacao do Contexto Operacional | CONCLUIDA |
+| GP-D03A | Auditoria do Ciclo de Vida do Projeto de Monitoramento | AUDITORIA DOCUMENTAL CONCLUIDA |
 | GP-R02 | Investigacao Arquitetural: Progressao de Valor Entre Camadas | PESQUISA CONCLUIDA |
 | GP-R03 | Investigacao Arquitetural: Executive Context | PESQUISA CONCLUIDA |
 
@@ -397,6 +398,25 @@ Entregavel:
 * Tela do Projeto atualizada para exibir Perfil Operacional derivado em modo somente leitura.
 * `PolicyEngine`, Motor Observacional, Analytics, Governanca, Executive Recommendation e Dashboard preservados.
 * `DISCOVERY_CATALOG.md` consultado: PA-02 e PA-03 reforcadas como Discoveries candidatas, sem promocao.
+
+GP-D03A:
+
+AUDITORIA DOCUMENTAL CONCLUIDA.
+
+Entregavel:
+
+* Relatorio `docs/domain/GP_D03A_MONITORING_PROJECT_LIFECYCLE_AUDIT.md`.
+* Ciclo de vida atual do Projeto de Monitoramento reconstruido ponta a ponta.
+* Etapas existentes, parciais e ausentes mapeadas com autoridades, entradas, saidas, dependencias e rastreabilidade.
+* Lacunas principais registradas: Planejamento, Amostra formal, Arquivamento do Projeto, Encerramento do Projeto e dossie final.
+* Veredito: Ciclo de Vida suportado com ressalvas.
+* PA-01 preservado, GP-A23 respeitada e nenhuma camada nova criada.
+* `DISCOVERY_CATALOG.md` consultado: PA-02 e PA-03 reforcadas, sem promocao automatica.
+
+Proximas GPs de dominio sugeridas:
+
+* GP-D03B - Auditoria dos Estados do Projeto de Monitoramento.
+* GP-D04A - Auditoria do Planejamento de Monitoramento.
 
 Etapa executiva tambem sugerida:
 
