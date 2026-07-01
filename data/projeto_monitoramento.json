@@ -3,6 +3,7 @@
   "nome": "Projeto de Monitoramento Principal",
   "cliente": "Cliente nao informado",
   "area_operacional": "urbana",
+  "perfil_operacional": "urbano_saneamento",
   "ponto_principal_coleta": "outro",
   "coletor_responsavel": "Coletor nao informado",
   "data_criacao": "2026-06-30T00:00:00",

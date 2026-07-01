@@ -1,5 +1,69 @@
 # HISTORY
 
+# GP-D02B - Implementacao do Contexto Operacional
+
+## Data
+
+30/06/2026
+
+## Status
+
+CONCLUIDA
+
+## Evento
+
+Implementacao do Contexto Operacional aprovado pela GP-D02A no Projeto de Monitoramento ativo.
+
+## Resultado
+
+* `ProjetoMonitoramento` passou a persistir `perfil_operacional`.
+* Contextos operacionais suportados preservados: urbana, rural, industrial e agricola.
+* Perfis operacionais materializados no Projeto: `urbano_saneamento`, `rural` e `industrial`.
+* Associacao contexto -> perfil implementada de forma deterministica: urbana -> `urbano_saneamento`, rural -> `rural`, industrial -> `industrial`, agricola -> `rural`.
+* Agricola permanece especializacao conceitual de Rural e nao gera perfil operacional proprio.
+* Tela do Projeto passa a exibir o Perfil Operacional derivado como campo somente leitura.
+* Nenhuma politica, regra observacional, limite, avaliacao, calculo ou camada arquitetural foi criada.
+
+## Testes
+
+Comandos executados:
+
+`python -m py_compile monitoramento_hidrico\projeto_monitoramento.py projeto_monitoramento_page.py`
+
+`python -m unittest discover -s tests`
+
+Resultado:
+
+* Compilacao concluida com sucesso.
+* 74 testes executados.
+* Todos passaram.
+
+## Discovery Catalog
+
+`docs/research/DISCOVERY_CATALOG.md` foi consultado.
+
+Impacto registrado:
+
+* PA-02 reforcada: a GP-D02B enriquece o dominio existente sem criar nova camada.
+* PA-03 reforcada: apenas o perfil operacional necessario foi materializado no Projeto; politicas, novos perfis e regras automaticas permanecem nao materializados.
+* Nenhuma Discovery foi contradita.
+* Nenhuma Discovery foi promovida automaticamente.
+
+## Restricoes Mantidas
+
+* PA-01 preservado.
+* GP-A23 preservada.
+* GP-D02A respeitada.
+* `PolicyEngine` nao alterado.
+* Motor Observacional nao alterado.
+* Analytics, Governanca e Executive Recommendation nao alterados.
+* Dashboard nao alterado por esta GP.
+* Nenhuma nova politica criada.
+* Nenhum perfil agricola proprio criado.
+* Nenhum multiplo contexto por Projeto implementado.
+
+---
+
 # GP-D02A - Auditoria do Contexto Operacional
 
 ## Data

@@ -12,12 +12,13 @@ from PyQt5.QtWidgets import (
 )
 
 from monitoramento_hidrico.projeto_monitoramento import (
-    AREAS_OPERACIONAIS,
+    CONTEXTOS_OPERACIONAIS,
     PONTOS_PRINCIPAIS_COLETA,
     PROJETO_ATIVO_ID,
     STATUS_PROJETO,
     ProjetoMonitoramento,
     ProjetoMonitoramentoStore,
+    derivar_perfil_operacional,
 )
 
 
@@ -54,7 +55,10 @@ class ProjetoMonitoramentoPage(QWidget):
 
         self.inputs["nome"] = self._make_line_edit(120)
         self.inputs["cliente"] = self._make_line_edit(120)
-        self.inputs["area_operacional"] = self._make_combo(AREAS_OPERACIONAIS)
+        self.inputs["area_operacional"] = self._make_combo(CONTEXTOS_OPERACIONAIS)
+        self.inputs["area_operacional"].currentIndexChanged.connect(self._update_perfil_operacional)
+        self.inputs["perfil_operacional"] = self._make_line_edit(80)
+        self.inputs["perfil_operacional"].setReadOnly(True)
         self.inputs["ponto_principal_coleta"] = self._make_combo(PONTOS_PRINCIPAIS_COLETA)
         self.inputs["coletor_responsavel"] = self._make_line_edit(120)
         self.inputs["data_criacao"] = self._make_line_edit(40)
@@ -63,7 +67,8 @@ class ProjetoMonitoramentoPage(QWidget):
 
         form_layout.addRow("Nome do Projeto", self.inputs["nome"])
         form_layout.addRow("Cliente", self.inputs["cliente"])
-        form_layout.addRow("Area Operacional", self.inputs["area_operacional"])
+        form_layout.addRow("Contexto Operacional", self.inputs["area_operacional"])
+        form_layout.addRow("Perfil Operacional", self.inputs["perfil_operacional"])
         form_layout.addRow("Ponto Principal de Coleta", self.inputs["ponto_principal_coleta"])
         form_layout.addRow("Coletor Responsavel", self.inputs["coletor_responsavel"])
         form_layout.addRow("Data de criacao", self.inputs["data_criacao"])
@@ -80,6 +85,7 @@ class ProjetoMonitoramentoPage(QWidget):
         self.inputs["nome"].setText(projeto.nome)
         self.inputs["cliente"].setText(projeto.cliente)
         self._set_combo_value("area_operacional", projeto.area_operacional)
+        self.inputs["perfil_operacional"].setText(projeto.perfil_operacional)
         self._set_combo_value("ponto_principal_coleta", projeto.ponto_principal_coleta)
         self.inputs["coletor_responsavel"].setText(projeto.coletor_responsavel)
         self.inputs["data_criacao"].setText(projeto.data_criacao)
@@ -92,6 +98,7 @@ class ProjetoMonitoramentoPage(QWidget):
             nome=self.inputs["nome"].text().strip(),
             cliente=self.inputs["cliente"].text().strip(),
             area_operacional=self.inputs["area_operacional"].currentData(),
+            perfil_operacional=derivar_perfil_operacional(self.inputs["area_operacional"].currentData()),
             ponto_principal_coleta=self.inputs["ponto_principal_coleta"].currentData(),
             coletor_responsavel=self.inputs["coletor_responsavel"].text().strip(),
             data_criacao=projeto_atual.data_criacao,
@@ -129,3 +136,7 @@ class ProjetoMonitoramentoPage(QWidget):
         index = combo.findData(value)
         if index >= 0:
             combo.setCurrentIndex(index)
+
+    def _update_perfil_operacional(self):
+        contexto = self.inputs["area_operacional"].currentData()
+        self.inputs["perfil_operacional"].setText(derivar_perfil_operacional(contexto))

@@ -1,5 +1,5 @@
 import json
-from dataclasses import asdict, dataclass
+from dataclasses import asdict, dataclass, replace
 from datetime import datetime
 from pathlib import Path
 
@@ -12,7 +12,15 @@ PROJETO_ATIVO_ID = "projeto_monitoramento_principal"
 STATUS_ATIVO = "ativo"
 STATUS_INATIVO = "inativo"
 
-AREAS_OPERACIONAIS = ("urbana", "rural", "industrial", "agricola")
+CONTEXTOS_OPERACIONAIS = ("urbana", "rural", "industrial", "agricola")
+PERFIS_OPERACIONAIS = ("urbano_saneamento", "rural", "industrial")
+PERFIL_OPERACIONAL_POR_CONTEXTO = {
+    "urbana": "urbano_saneamento",
+    "rural": "rural",
+    "industrial": "industrial",
+    "agricola": "rural",
+}
+AREAS_OPERACIONAIS = CONTEXTOS_OPERACIONAIS
 PONTOS_PRINCIPAIS_COLETA = ("rio", "poco", "reservatorio", "eta", "lago", "outro")
 STATUS_PROJETO = (STATUS_ATIVO, STATUS_INATIVO)
 
@@ -26,6 +34,7 @@ class ProjetoMonitoramento:
     ponto_principal_coleta: str
     coletor_responsavel: str
     data_criacao: str
+    perfil_operacional: str
     status: str = STATUS_ATIVO
 
 
@@ -42,11 +51,15 @@ class ProjetoMonitoramentoStore:
         with self.path.open("r", encoding="utf-8") as file:
             payload = json.load(file)
 
+        if "perfil_operacional" not in payload:
+            payload["perfil_operacional"] = derivar_perfil_operacional(payload.get("area_operacional"))
+
         projeto = ProjetoMonitoramento(**payload)
         validar_projeto_monitoramento(projeto)
         return projeto
 
     def salvar(self, projeto):
+        projeto = normalizar_projeto_monitoramento(projeto)
         validar_projeto_monitoramento(projeto)
         self.path.parent.mkdir(parents=True, exist_ok=True)
         with self.path.open("w", encoding="utf-8") as file:
@@ -64,7 +77,21 @@ def projeto_monitoramento_padrao(criado_em=None):
         ponto_principal_coleta="outro",
         coletor_responsavel="Coletor nao informado",
         data_criacao=criado_em or datetime.now().isoformat(timespec="seconds"),
+        perfil_operacional="urbano_saneamento",
         status=STATUS_ATIVO,
+    )
+
+
+def derivar_perfil_operacional(contexto_operacional):
+    if contexto_operacional not in PERFIL_OPERACIONAL_POR_CONTEXTO:
+        raise ValueError(f"Contexto operacional invalido: {contexto_operacional}")
+    return PERFIL_OPERACIONAL_POR_CONTEXTO[contexto_operacional]
+
+
+def normalizar_projeto_monitoramento(projeto):
+    return replace(
+        projeto,
+        perfil_operacional=derivar_perfil_operacional(projeto.area_operacional),
     )
 
 
@@ -75,8 +102,12 @@ def validar_projeto_monitoramento(projeto):
         raise ValueError("Projeto de Monitoramento sem nome.")
     if not projeto.cliente.strip():
         raise ValueError("Projeto de Monitoramento sem cliente.")
-    if projeto.area_operacional not in AREAS_OPERACIONAIS:
-        raise ValueError(f"Area operacional invalida: {projeto.area_operacional}")
+    if projeto.area_operacional not in CONTEXTOS_OPERACIONAIS:
+        raise ValueError(f"Contexto operacional invalido: {projeto.area_operacional}")
+    if projeto.perfil_operacional not in PERFIS_OPERACIONAIS:
+        raise ValueError(f"Perfil operacional invalido: {projeto.perfil_operacional}")
+    if projeto.perfil_operacional != derivar_perfil_operacional(projeto.area_operacional):
+        raise ValueError("Perfil operacional inconsistente com o contexto operacional.")
     if projeto.ponto_principal_coleta not in PONTOS_PRINCIPAIS_COLETA:
         raise ValueError(f"Ponto principal de coleta invalido: {projeto.ponto_principal_coleta}")
     if not projeto.coletor_responsavel.strip():
@@ -94,4 +125,3 @@ def carregar_projeto_ativo(path=PROJETO_MONITORAMENTO_PATH):
 
 def salvar_projeto_ativo(projeto, path=PROJETO_MONITORAMENTO_PATH):
     return ProjetoMonitoramentoStore(path).salvar(projeto)
-
