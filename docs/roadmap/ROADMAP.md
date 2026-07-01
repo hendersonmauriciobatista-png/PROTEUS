@@ -108,6 +108,7 @@ Observação
 | GP-D02A | Auditoria do Contexto Operacional | AUDITORIA DOCUMENTAL CONCLUIDA |
 | GP-D02B | Implementacao do Contexto Operacional | CONCLUIDA |
 | GP-D03A | Auditoria do Ciclo de Vida do Projeto de Monitoramento | AUDITORIA DOCUMENTAL CONCLUIDA |
+| GP-D03B | Auditoria Das Ressalvas Do Ciclo De Vida | AUDITORIA DOCUMENTAL CONCLUIDA |
 | GP-R02 | Investigacao Arquitetural: Progressao de Valor Entre Camadas | PESQUISA CONCLUIDA |
 | GP-R03 | Investigacao Arquitetural: Executive Context | PESQUISA CONCLUIDA |
 
@@ -415,8 +416,28 @@ Entregavel:
 
 Proximas GPs de dominio sugeridas:
 
-* GP-D03B - Auditoria dos Estados do Projeto de Monitoramento.
+* GP-D03C - Auditoria dos Estados do Projeto de Monitoramento.
 * GP-D04A - Auditoria do Planejamento de Monitoramento.
+
+GP-D03B:
+
+AUDITORIA DOCUMENTAL CONCLUIDA.
+
+Entregavel:
+
+* Relatorio `docs/domain/GP_D03B_LIFECYCLE_REMARKS_AUDIT.md`.
+* Ressalvas da GP-D03A auditadas individualmente.
+* Impacto classificado como importante, desejavel ou futuro; nenhuma ressalva critica identificada.
+* Veredito: Ressalvas importantes.
+* Recomendacao central: nao implementar imediatamente; priorizar auditoria dos Estados do Projeto e depois Planejamento.
+* PA-01 preservado, GP-A23 preservada e nenhuma camada nova criada.
+* `DISCOVERY_CATALOG.md` consultado: PA-02 e PA-03 reforcadas, sem promocao automatica.
+
+Proximas GPs de dominio sugeridas:
+
+* GP-D03C - Auditoria dos Estados do Projeto de Monitoramento.
+* GP-D04A - Auditoria do Planejamento de Monitoramento.
+* GP-D08A - Auditoria do Dossie Final do Projeto.
 
 Etapa executiva tambem sugerida:
 
