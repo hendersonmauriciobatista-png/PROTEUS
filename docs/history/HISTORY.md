@@ -1,5 +1,58 @@
 # HISTORY
 
+# GP-D05A - Auditoria Das Responsabilidades Do Projeto
+
+## Data
+
+02/07/2026
+
+## Status
+
+AUDITORIA DOCUMENTAL CONCLUIDA
+
+## Evento
+
+Auditoria documental das responsabilidades que devem existir no dominio do Projeto de Monitoramento.
+
+## Resultado
+
+* Responsabilidades do Projeto classificadas entre permanentes, operacionais, administrativas, tecnicas e de aprovacao.
+* Diferencas entre participante, responsavel, operador, supervisor e aprovador delimitadas.
+* `coletor_responsavel` confirmado como responsabilidade operacional minima ja existente.
+* Responsavel principal do Projeto, responsavel pelo encerramento, responsavel pelo arquivamento e responsavel pela geracao do Dossie Final reconhecidos como conceitos permanentes potenciais para evolucao futura.
+* Entidade propria de responsabilidades e colecao de participantes nao recomendadas neste momento por ausencia de necessidade objetiva.
+* Dossie Final preservado como memoria permanente, sem virar cadastro completo de participantes.
+
+## Testes
+
+Nao executados.
+
+Justificativa: GP exclusivamente documental, sem alteracao de codigo, runtime, interface ou persistencia.
+
+## Discovery Catalog
+
+`docs/research/DISCOVERY_CATALOG.md` foi consultado.
+
+Impacto registrado:
+
+* PA-02 reforcada: responsabilidades agregam valor quando enriquecem o dominio existente sem nova camada.
+* PA-03 reforcada: apenas responsabilidades com necessidade objetiva e valor permanente devem ser materializadas.
+* Nenhuma Discovery foi contradita.
+* Nenhuma Discovery foi promovida automaticamente.
+* Nenhuma nova Discovery candidata foi identificada.
+
+## Restricoes Mantidas
+
+* Nenhum codigo alterado.
+* Nenhuma persistencia alterada.
+* Nenhuma interface alterada.
+* Nenhum Dossie Final alterado.
+* Nenhuma camada arquitetural criada.
+* PA-01 preservado.
+* GP-A23 preservada.
+
+---
+
 # GP-D04D - Implementacao do Conteudo do Dossie Final
 
 ## Data

@@ -116,6 +116,7 @@ Observação
 | GP-D04B | Implementacao da Estrutura do Dossie Final | CONCLUIDA |
 | GP-D04C | Auditoria do Conteudo do Dossie Final | AUDITORIA DOCUMENTAL CONCLUIDA |
 | GP-D04D | Implementacao do Conteudo do Dossie Final | CONCLUIDA |
+| GP-D05A | Auditoria das Responsabilidades do Projeto | AUDITORIA DOCUMENTAL CONCLUIDA |
 | GP-R02 | Investigacao Arquitetural: Progressao de Valor Entre Camadas | PESQUISA CONCLUIDA |
 | GP-R03 | Investigacao Arquitetural: Executive Context | PESQUISA CONCLUIDA |
 
@@ -423,7 +424,7 @@ Entregavel:
 
 Proximas GPs de dominio sugeridas:
 
-* GP-D05A - Auditoria do Planejamento de Monitoramento.
+* GP-D06A - Auditoria do Planejamento de Monitoramento.
 
 GP-D03B:
 
@@ -441,7 +442,7 @@ Entregavel:
 
 Proximas GPs de dominio sugeridas:
 
-* GP-D05A - Auditoria do Planejamento de Monitoramento.
+* GP-D06A - Auditoria do Planejamento de Monitoramento.
 
 GP-D03C:
 
@@ -460,7 +461,7 @@ Entregavel:
 
 Proximas GPs de dominio sugeridas:
 
-* GP-D05A - Auditoria do Planejamento de Monitoramento.
+* GP-D06A - Auditoria do Planejamento de Monitoramento.
 
 GP-D03D:
 
@@ -480,7 +481,7 @@ Entregavel:
 
 Proximas GPs de dominio sugeridas:
 
-* GP-D05A - Auditoria do Planejamento de Monitoramento.
+* GP-D06A - Auditoria do Planejamento de Monitoramento.
 
 GP-D03E:
 
@@ -502,7 +503,7 @@ Entregavel:
 Proximas GPs de dominio sugeridas:
 
 * GP-D04B - Implementacao da Estrutura do Dossie Final.
-* GP-D05A - Auditoria do Planejamento de Monitoramento.
+* GP-D06A - Auditoria do Planejamento de Monitoramento.
 
 GP-D04A:
 
@@ -522,7 +523,7 @@ Entregavel:
 Proximas GPs de dominio sugeridas:
 
 * GP-D04B - Implementacao da Estrutura do Dossie Final.
-* GP-D05A - Auditoria do Planejamento de Monitoramento.
+* GP-D06A - Auditoria do Planejamento de Monitoramento.
 
 GP-D04B:
 
@@ -542,7 +543,7 @@ Entregavel:
 Proximas GPs de dominio sugeridas:
 
 * GP-D04C - Auditoria do Conteudo do Dossie Final.
-* GP-D05A - Auditoria do Planejamento de Monitoramento.
+* GP-D06A - Auditoria do Planejamento de Monitoramento.
 
 GP-D04C:
 
@@ -562,7 +563,7 @@ Entregavel:
 Proximas GPs de dominio sugeridas:
 
 * GP-D04D - Implementacao do Conteudo do Dossie Final.
-* GP-D05A - Auditoria do Planejamento de Monitoramento.
+* GP-D05A - Auditoria das Responsabilidades do Projeto.
 
 GP-D04D:
 
@@ -581,7 +582,28 @@ Entregavel:
 Proximas GPs de dominio sugeridas:
 
 * GP-D04E - Auditoria da Geracao Minima do Dossie Final.
-* GP-D05A - Auditoria do Planejamento de Monitoramento.
+* GP-D05A - Auditoria das Responsabilidades do Projeto.
+
+GP-D05A:
+
+AUDITORIA DOCUMENTAL CONCLUIDA.
+
+Entregavel:
+
+* Relatorio `docs/domain/GP_D05A_PROJECT_RESPONSIBILITIES_AUDIT.md`.
+* Responsabilidades do Projeto auditadas sem alteracao de codigo, persistencia, interface, arquitetura ou Dossie Final.
+* `coletor_responsavel` confirmado como responsabilidade operacional minima ja existente.
+* Responsabilidades permanentes potenciais delimitadas: responsavel principal do Projeto, responsavel pelo encerramento, responsavel pelo arquivamento e responsavel pela geracao do Dossie Final.
+* Responsabilidades operacionais excluidas da memoria permanente: operadores eventuais, substituicoes temporarias, lancamentos pontuais, logs e tarefas administrativas de rotina.
+* Entidade propria e colecao de responsabilidades nao recomendadas neste momento; atributos diretos ou referencias documentais sao a evolucao preferencial quando houver necessidade objetiva.
+* PA-01 preservado, GP-A23 preservada e nenhuma camada nova criada.
+* `DISCOVERY_CATALOG.md` consultado em `docs/research`: PA-02 e PA-03 reforcadas, sem contradicao, promocao ou nova Discovery candidata.
+* Veredito: Modelo de responsabilidades suportado com ressalvas.
+
+Proximas GPs de dominio sugeridas:
+
+* GP-D05B - Auditoria da Materializacao Minima das Responsabilidades do Projeto.
+* GP-D06A - Auditoria do Planejamento de Monitoramento.
 
 Etapa executiva tambem sugerida:
 
