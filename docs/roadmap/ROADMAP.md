@@ -120,6 +120,7 @@ Observação
 | GP-D06A | Auditoria das Evidencias do Projeto | AUDITORIA DOCUMENTAL CONCLUIDA |
 | GP-D06B | Implementacao das Evidencias do Projeto | CONCLUIDA |
 | GP-D07A | Auditoria dos Eventos Institucionais do Projeto | AUDITORIA DOCUMENTAL CONCLUIDA |
+| GP-D08A | Auditoria dos Objetivos e Resultados do Projeto | AUDITORIA DOCUMENTAL CONCLUIDA |
 | GP-R02 | Investigacao Arquitetural: Progressao de Valor Entre Camadas | PESQUISA CONCLUIDA |
 | GP-R03 | Investigacao Arquitetural: Executive Context | PESQUISA CONCLUIDA |
 
@@ -674,7 +675,39 @@ Proximas GPs de dominio sugeridas:
 
 * GP-D06C - Auditoria da Curadoria Das Evidencias Permanentes.
 * GP-D07B - Auditoria da Materializacao Minima de Eventos Institucionais, somente se houver necessidade objetiva.
-* GP-D08A - Auditoria do Planejamento de Monitoramento.
+* GP-D08B - Auditoria da Materializacao Minima de Objetivos e Resultados, somente se houver necessidade objetiva.
+* GP-D09A - Auditoria do Planejamento de Monitoramento.
+
+GP-D08A:
+
+AUDITORIA DOCUMENTAL CONCLUIDA.
+
+Entregavel:
+
+* Relatorio `docs/domain/GP_D08A_PROJECT_OBJECTIVES_RESULTS_AUDIT.md`.
+* Objetivo do Projeto definido como declaracao do que o Projeto pretendia alcancar, explicando finalidade, escopo, expectativa de entrega ou valor institucional do monitoramento.
+* Resultado do Projeto definido como descricao do que foi efetivamente entregue, observado, consolidado ou concluido ao fim do ciclo operacional.
+* Objetivos permanentes delimitados: objetivo geral, objetivos especificos relevantes, escopo pretendido, criterio qualitativo de sucesso, entrega minima e expectativa de consolidacao documental.
+* Objetivos operacionais excluidos da memoria permanente: tarefas diarias, preenchimento de tela, arquivos temporarios, correcao pontual, tratamento rotineiro de alerta, ajuste de interface e testes tecnicos.
+* Resultados permanentes delimitados: declaracao de cumprimento, resultados consolidados das medicoes, Water Health Score final, tendencias, alertas relevantes, eventos institucionais ou criticos, recomendacoes, evidencias permanentes, conclusao executiva e justificativas de lacunas.
+* Resultados operacionais excluidos da memoria permanente: medicoes individuais, status observacional linha a linha, logs, calculos intermediarios, estados internos, graficos temporarios e alertas repetitivos sem efeito final.
+* Objetivos e Resultados nao alteram estado por si so; podem orientar encerramento, mas a transicao pertence ao Ciclo de Vida do Projeto.
+* Objetivos e Resultados permanentes podem integrar o Dossie Final apenas de forma consolidada ou referenciada; a GP nao alterou o Dossie Final.
+* Entidade propria `Objetivo` nao recomendada agora.
+* Entidade propria `Resultado` nao recomendada agora.
+* Colecao de objetivos ou resultados no Projeto nao recomendada agora.
+* Objetivos e Resultados devem permanecer apenas como conceitos documentais neste momento.
+* Secao `Observacoes da IA / Hipoteses Metodologicas` registrada separadamente, com observacoes simples e hipotese em monitoramento, sem alterar escopo ou promover Discovery.
+* PA-01 preservado, GP-A23 preservada e nenhuma camada nova criada.
+* `DISCOVERY_CATALOG.md` consultado em `docs/research`: PA-02 reforcada, PA-03 reforcada, nenhuma Discovery contradita, nenhuma Discovery promovida e nenhuma nova Discovery candidata identificada.
+* Veredito: Modelo de Objetivos e Resultados suportado como conceito documental, sem implementacao.
+
+Proximas GPs de dominio sugeridas:
+
+* GP-D06C - Auditoria da Curadoria Das Evidencias Permanentes.
+* GP-D07B - Auditoria da Materializacao Minima de Eventos Institucionais, somente se houver necessidade objetiva.
+* GP-D08B - Auditoria da Materializacao Minima de Objetivos e Resultados, somente se houver necessidade objetiva.
+* GP-D09A - Auditoria do Planejamento de Monitoramento.
 
 Etapa executiva tambem sugerida:
 
