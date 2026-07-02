@@ -1,5 +1,68 @@
 # HISTORY
 
+# GP-D04B - Implementacao da Estrutura do Dossie Final
+
+## Data
+
+01/07/2026
+
+## Status
+
+CONCLUIDA
+
+## Evento
+
+Materializacao da estrutura minima do Dossie Final aprovada pela GP-D04A.
+
+## Resultado
+
+* Modelo `DossierFinal` criado no dominio existente de Projeto de Monitoramento.
+* Persistencia JSON do Dossie preparada por `DossierFinalStore`.
+* Associacao entre Projeto encerrado/arquivado e Dossie Final implementada por identificador do Projeto principal.
+* Campos estruturais minimos implementados: identificador do Dossie, identificador do Projeto, nome do Projeto, cliente, contexto operacional, perfil operacional, periodo inicial, periodo final, data de encerramento e status do Projeto.
+* Campos finais de periodo e data de encerramento podem permanecer vazios nesta fase.
+* Projeto ativo nao pode originar Dossie Final.
+* Nenhuma geracao automatica completa, PDF, impressao, exportacao, assinatura, versionamento, anexos, integracao externa, Dashboard, Analytics, Governanca, Recommendation, Policy Engine ou Motor Observacional foi implementado.
+
+## Testes
+
+Comandos executados:
+
+`python -m py_compile monitoramento_hidrico\projeto_monitoramento.py monitoramento_hidrico\__init__.py tests\test_monitoramento_projeto.py projeto_monitoramento_page.py`
+
+`python -m unittest discover -s tests`
+
+Resultado:
+
+* Arquivos tocados compilados com sucesso.
+* Suite completa executada com sucesso.
+* 80 testes executados.
+
+## Discovery Catalog
+
+`docs/research/DISCOVERY_CATALOG.md` foi consultado.
+
+Impacto registrado:
+
+* PA-02 reforcada: o Dossie agrega valor por enriquecimento do dominio de Projeto, sem nova camada arquitetural.
+* PA-03 reforcada: apenas a estrutura minima do Dossie foi materializada; geracao automatica completa e campos finais permanecem condicionados a necessidade futura.
+* Nenhuma Discovery foi contradita.
+* Nenhuma Discovery foi promovida automaticamente.
+* Nenhuma nova Discovery candidata foi identificada.
+
+## Restricoes Mantidas
+
+* Nenhuma interface alterada.
+* Nenhum runtime alterado fora do dominio de Projeto.
+* Nenhum CSV alterado.
+* Nenhuma arquitetura alterada.
+* Nenhuma camada criada.
+* PA-01 preservado.
+* GP-A23 preservada.
+* `PolicyEngine`, Motor Observacional, Analytics, Governanca, Recommendation e Dashboard nao alterados.
+
+---
+
 # GP-D04A - Auditoria do Dossie Final do Projeto
 
 ## Data

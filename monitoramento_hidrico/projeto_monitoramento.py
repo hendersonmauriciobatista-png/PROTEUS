@@ -7,8 +7,10 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 DATA_DIR = BASE_DIR / "data"
 PROJETO_MONITORAMENTO_PATH = DATA_DIR / "projeto_monitoramento.json"
+DOSSIE_FINAL_PROJETO_PATH = DATA_DIR / "dossie_final_projeto.json"
 
 PROJETO_ATIVO_ID = "projeto_monitoramento_principal"
+DOSSIE_FINAL_ID = "dossie_final_projeto_monitoramento_principal"
 STATUS_ATIVO = "ativo"
 STATUS_ENCERRADO = "encerrado"
 STATUS_ARQUIVADO = "arquivado"
@@ -38,6 +40,20 @@ class ProjetoMonitoramento:
     data_criacao: str
     perfil_operacional: str
     status: str = STATUS_ATIVO
+
+
+@dataclass(frozen=True)
+class DossierFinal:
+    identificador: str
+    identificador_projeto: str
+    projeto_nome: str
+    cliente: str
+    contexto_operacional: str
+    perfil_operacional: str
+    periodo_inicio: str = ""
+    periodo_fim: str = ""
+    data_encerramento: str = ""
+    status_projeto: str = STATUS_ENCERRADO
 
 
 class ProjetoMonitoramentoStore:
@@ -87,6 +103,28 @@ class ProjetoMonitoramentoStore:
         return status
 
 
+class DossierFinalStore:
+    def __init__(self, path=DOSSIE_FINAL_PROJETO_PATH):
+        self.path = Path(path)
+
+    def carregar(self):
+        if not self.path.exists():
+            return None
+        with self.path.open("r", encoding="utf-8") as file:
+            payload = json.load(file)
+        dossie = DossierFinal(**payload)
+        validar_dossier_final(dossie)
+        return dossie
+
+    def salvar(self, dossie):
+        validar_dossier_final(dossie)
+        self.path.parent.mkdir(parents=True, exist_ok=True)
+        with self.path.open("w", encoding="utf-8") as file:
+            json.dump(asdict(dossie), file, ensure_ascii=False, indent=2)
+            file.write("\n")
+        return dossie
+
+
 def projeto_monitoramento_padrao(criado_em=None):
     return ProjetoMonitoramento(
         identificador=PROJETO_ATIVO_ID,
@@ -98,6 +136,28 @@ def projeto_monitoramento_padrao(criado_em=None):
         data_criacao=criado_em or datetime.now().isoformat(timespec="seconds"),
         perfil_operacional="urbano_saneamento",
         status=STATUS_ATIVO,
+    )
+
+
+def dossier_final_do_projeto(
+    projeto,
+    periodo_inicio="",
+    periodo_fim="",
+    data_encerramento="",
+):
+    if projeto.status not in (STATUS_ENCERRADO, STATUS_ARQUIVADO):
+        raise ValueError("Dossie Final exige Projeto encerrado.")
+    return DossierFinal(
+        identificador=DOSSIE_FINAL_ID,
+        identificador_projeto=projeto.identificador,
+        projeto_nome=projeto.nome,
+        cliente=projeto.cliente,
+        contexto_operacional=projeto.area_operacional,
+        perfil_operacional=projeto.perfil_operacional,
+        periodo_inicio=periodo_inicio,
+        periodo_fim=periodo_fim,
+        data_encerramento=data_encerramento,
+        status_projeto=projeto.status,
     )
 
 
@@ -165,9 +225,37 @@ def validar_projeto_monitoramento(projeto):
     return True
 
 
+def validar_dossier_final(dossie):
+    if dossie.identificador != DOSSIE_FINAL_ID:
+        raise ValueError("Identificador de Dossie Final invalido.")
+    if dossie.identificador_projeto != PROJETO_ATIVO_ID:
+        raise ValueError("Dossie Final deve estar associado ao Projeto principal.")
+    if not dossie.projeto_nome.strip():
+        raise ValueError("Dossie Final sem nome de Projeto.")
+    if not dossie.cliente.strip():
+        raise ValueError("Dossie Final sem cliente.")
+    if dossie.contexto_operacional not in CONTEXTOS_OPERACIONAIS:
+        raise ValueError(f"Contexto operacional invalido: {dossie.contexto_operacional}")
+    if dossie.perfil_operacional not in PERFIS_OPERACIONAIS:
+        raise ValueError(f"Perfil operacional invalido: {dossie.perfil_operacional}")
+    if dossie.perfil_operacional != derivar_perfil_operacional(dossie.contexto_operacional):
+        raise ValueError("Perfil operacional inconsistente com o contexto operacional.")
+    if dossie.status_projeto not in (STATUS_ENCERRADO, STATUS_ARQUIVADO):
+        raise ValueError("Dossie Final exige Projeto encerrado ou arquivado.")
+    return True
+
+
 def carregar_projeto_ativo(path=PROJETO_MONITORAMENTO_PATH):
     return ProjetoMonitoramentoStore(path).carregar()
 
 
 def salvar_projeto_ativo(projeto, path=PROJETO_MONITORAMENTO_PATH):
     return ProjetoMonitoramentoStore(path).salvar(projeto)
+
+
+def carregar_dossier_final(path=DOSSIE_FINAL_PROJETO_PATH):
+    return DossierFinalStore(path).carregar()
+
+
+def salvar_dossier_final(dossie, path=DOSSIE_FINAL_PROJETO_PATH):
+    return DossierFinalStore(path).salvar(dossie)

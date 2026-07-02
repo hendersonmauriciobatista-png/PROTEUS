@@ -113,6 +113,7 @@ Observação
 | GP-D03D | Auditoria dos Estados e Criterios de Encerramento do Projeto | AUDITORIA DOCUMENTAL CONCLUIDA |
 | GP-D03E | Implementacao dos Estados do Projeto | CONCLUIDA |
 | GP-D04A | Auditoria do Dossie Final do Projeto | AUDITORIA DOCUMENTAL CONCLUIDA |
+| GP-D04B | Implementacao da Estrutura do Dossie Final | CONCLUIDA |
 | GP-R02 | Investigacao Arquitetural: Progressao de Valor Entre Camadas | PESQUISA CONCLUIDA |
 | GP-R03 | Investigacao Arquitetural: Executive Context | PESQUISA CONCLUIDA |
 
@@ -420,7 +421,7 @@ Entregavel:
 
 Proximas GPs de dominio sugeridas:
 
-* GP-D04B - Auditoria do Planejamento de Monitoramento.
+* GP-D05A - Auditoria do Planejamento de Monitoramento.
 
 GP-D03B:
 
@@ -438,8 +439,7 @@ Entregavel:
 
 Proximas GPs de dominio sugeridas:
 
-* GP-D04A - Auditoria do Planejamento de Monitoramento.
-* GP-D08A - Auditoria do Dossie Final do Projeto.
+* GP-D05A - Auditoria do Planejamento de Monitoramento.
 
 GP-D03C:
 
@@ -458,7 +458,7 @@ Entregavel:
 
 Proximas GPs de dominio sugeridas:
 
-* GP-D04A - Auditoria do Planejamento de Monitoramento.
+* GP-D05A - Auditoria do Planejamento de Monitoramento.
 
 GP-D03D:
 
@@ -478,8 +478,7 @@ Entregavel:
 
 Proximas GPs de dominio sugeridas:
 
-* GP-D08A - Auditoria do Dossie Final do Projeto.
-* GP-D04A - Auditoria do Planejamento de Monitoramento.
+* GP-D05A - Auditoria do Planejamento de Monitoramento.
 
 GP-D03E:
 
@@ -500,7 +499,8 @@ Entregavel:
 
 Proximas GPs de dominio sugeridas:
 
-* GP-D04A - Auditoria do Planejamento de Monitoramento.
+* GP-D04B - Implementacao da Estrutura do Dossie Final.
+* GP-D05A - Auditoria do Planejamento de Monitoramento.
 
 GP-D04A:
 
@@ -519,8 +519,28 @@ Entregavel:
 
 Proximas GPs de dominio sugeridas:
 
-* GP-D04B - Auditoria do Planejamento de Monitoramento.
-* GP-D04C - Auditoria da Implementacao Minima do Dossie Final.
+* GP-D04B - Implementacao da Estrutura do Dossie Final.
+* GP-D05A - Auditoria do Planejamento de Monitoramento.
+
+GP-D04B:
+
+CONCLUIDA.
+
+Entregavel:
+
+* Modelo `DossierFinal` implementado no dominio existente de Projeto de Monitoramento.
+* Persistencia JSON preparada por `DossierFinalStore`.
+* Associacao entre Projeto encerrado/arquivado e Dossie Final implementada.
+* Campos estruturais minimos materializados: identificador do Projeto, cliente, contexto operacional, perfil operacional, periodo do Projeto, data de encerramento e status do Projeto.
+* Periodo e data de encerramento podem permanecer vazios nesta fase, porque a GP-D04B materializa apenas a estrutura.
+* Projeto ativo nao pode originar Dossie Final.
+* PA-01 preservado, GP-A23 preservada e nenhuma camada nova criada.
+* `DISCOVERY_CATALOG.md` consultado: PA-02 e PA-03 reforcadas, sem promocao automatica.
+
+Proximas GPs de dominio sugeridas:
+
+* GP-D04C - Auditoria da Geracao Minima do Dossie Final.
+* GP-D05A - Auditoria do Planejamento de Monitoramento.
 
 Etapa executiva tambem sugerida:
 
