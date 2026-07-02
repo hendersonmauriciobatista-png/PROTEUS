@@ -1,5 +1,62 @@
 # HISTORY
 
+# GP-D07A - Auditoria Dos Eventos Institucionais Do Projeto
+
+## Data
+
+02/07/2026
+
+## Status
+
+AUDITORIA DOCUMENTAL CONCLUIDA
+
+## Evento
+
+Auditoria documental do conceito de Eventos Institucionais do Projeto de Monitoramento.
+
+## Resultado
+
+* Relatorio `docs/domain/GP_D07A_PROJECT_INSTITUTIONAL_EVENTS_AUDIT.md` criado.
+* Evento Institucional definido como acontecimento com valor permanente para memoria, ciclo, decisao, responsabilidade, encerramento, arquivamento ou custodia documental do Projeto.
+* Evento Institucional distinguido de evento operacional, log tecnico, medicao, alteracao de estado, evidencia documental e registro para Dossie Final.
+* Eventos permanentes reconhecidos como formalizacao do Projeto, inicio do ciclo quando formal, encerramento, emissao do Dossie Final, arquivamento, excecoes relevantes, eventos criticos consolidados e custodia documental quando existir.
+* Eventos operacionais excluidos da memoria permanente: medicoes individuais, logs, alertas de rotina, transicoes internas de eventos operacionais, erros tecnicos, tarefas administrativas sem impacto, acoes de interface e resultados intermediarios.
+* Entidade propria `Evento` nao recomendada neste momento.
+* Colecao de eventos no Projeto nao recomendada neste momento.
+* Evento Institucional recomendado apenas como conceito documental nesta GP.
+* Secao `Observacoes da IA / Hipoteses Metodologicas` registrada separadamente da auditoria principal, sem alterar escopo, PA-01, PA-02 ou PA-03.
+
+## Testes
+
+Nao executados.
+
+Justificativa: GP exclusivamente documental, sem alteracao de codigo, runtime, interface ou persistencia.
+
+## Discovery Catalog
+
+`docs/research/DISCOVERY_CATALOG.md` foi consultado.
+
+Impacto registrado:
+
+* PA-02 reforcada: Eventos Institucionais agregam valor por enriquecimento documental do dominio existente, sem criacao de nova camada.
+* PA-03 reforcada: o conceito permanece auditado antes de qualquer materializacao de entidade, colecao, persistencia ou interface.
+* Nenhuma Discovery foi contradita.
+* Nenhuma Discovery foi promovida automaticamente.
+* Nenhuma nova Discovery candidata foi identificada.
+* Observacoes metodologicas da IA foram registradas apenas como observacao simples ou hipotese em monitoramento, sem promocao a regra ICFACTORY.
+
+## Restricoes Mantidas
+
+* Nenhum codigo alterado.
+* Nenhuma persistencia alterada.
+* Nenhuma interface alterada.
+* Nenhum Dossie Final alterado.
+* Nenhuma camada arquitetural criada.
+* PA-01 preservado.
+* GP-A23 preservada.
+
+---
+
 # GP-D06B - Implementacao Das Evidencias Do Projeto
 
 ## Data

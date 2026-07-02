@@ -119,6 +119,7 @@ Observação
 | GP-D05A | Auditoria das Responsabilidades do Projeto | AUDITORIA DOCUMENTAL CONCLUIDA |
 | GP-D06A | Auditoria das Evidencias do Projeto | AUDITORIA DOCUMENTAL CONCLUIDA |
 | GP-D06B | Implementacao das Evidencias do Projeto | CONCLUIDA |
+| GP-D07A | Auditoria dos Eventos Institucionais do Projeto | AUDITORIA DOCUMENTAL CONCLUIDA |
 | GP-R02 | Investigacao Arquitetural: Progressao de Valor Entre Camadas | PESQUISA CONCLUIDA |
 | GP-R03 | Investigacao Arquitetural: Executive Context | PESQUISA CONCLUIDA |
 
@@ -645,7 +646,35 @@ Entregavel:
 Proximas GPs de dominio sugeridas:
 
 * GP-D06C - Auditoria da Curadoria Das Evidencias Permanentes.
-* GP-D07A - Auditoria do Planejamento de Monitoramento.
+* GP-D07B - Auditoria da Materializacao Minima de Eventos Institucionais, somente se houver necessidade objetiva.
+* GP-D08A - Auditoria do Planejamento de Monitoramento.
+
+GP-D07A:
+
+AUDITORIA DOCUMENTAL CONCLUIDA.
+
+Entregavel:
+
+* Relatorio `docs/domain/GP_D07A_PROJECT_INSTITUTIONAL_EVENTS_AUDIT.md`.
+* Evento Institucional definido como acontecimento com valor permanente para memoria, ciclo, decisao, responsabilidade, encerramento, arquivamento ou custodia documental do Projeto.
+* Distincao registrada entre Evento Institucional, evento operacional, log tecnico, medicao, alteracao de estado, evidencia documental e registro para Dossie Final.
+* Eventos permanentes delimitados: formalizacao do Projeto, inicio formal do ciclo, encerramento, emissao do Dossie Final, arquivamento, excecoes relevantes, eventos criticos consolidados e custodia documental quando existir.
+* Eventos apenas operacionais excluidos da memoria permanente: medicoes individuais, logs, alertas de rotina, transicoes internas da Governanca Operacional, erros tecnicos, tarefas administrativas sem impacto, acoes de interface e resultados intermediarios.
+* Evento nao altera estado por si so; alteracao de estado pertence ao Ciclo de Vida do Projeto.
+* Eventos permanentes podem integrar o Dossie Final apenas de forma consolidada ou referenciada; a GP nao alterou o Dossie Final.
+* Entidade propria `Evento` nao recomendada agora.
+* Colecao de eventos no Projeto nao recomendada agora.
+* Evento Institucional deve permanecer apenas como conceito documental neste momento.
+* Secao `Observacoes da IA / Hipoteses Metodologicas` registrada separadamente, com observacoes simples e hipotese em monitoramento, sem alterar escopo ou promover Discovery.
+* PA-01 preservado, GP-A23 preservada e nenhuma camada nova criada.
+* `DISCOVERY_CATALOG.md` consultado em `docs/research`: PA-02 reforcada, PA-03 reforcada, nenhuma Discovery contradita, nenhuma Discovery promovida e nenhuma nova Discovery candidata identificada.
+* Veredito: Modelo de Eventos Institucionais suportado como conceito documental, sem implementacao.
+
+Proximas GPs de dominio sugeridas:
+
+* GP-D06C - Auditoria da Curadoria Das Evidencias Permanentes.
+* GP-D07B - Auditoria da Materializacao Minima de Eventos Institucionais, somente se houver necessidade objetiva.
+* GP-D08A - Auditoria do Planejamento de Monitoramento.
 
 Etapa executiva tambem sugerida:
 
