@@ -118,6 +118,7 @@ Observação
 | GP-D04D | Implementacao do Conteudo do Dossie Final | CONCLUIDA |
 | GP-D05A | Auditoria das Responsabilidades do Projeto | AUDITORIA DOCUMENTAL CONCLUIDA |
 | GP-D06A | Auditoria das Evidencias do Projeto | AUDITORIA DOCUMENTAL CONCLUIDA |
+| GP-D06B | Implementacao das Evidencias do Projeto | CONCLUIDA |
 | GP-R02 | Investigacao Arquitetural: Progressao de Valor Entre Camadas | PESQUISA CONCLUIDA |
 | GP-R03 | Investigacao Arquitetural: Executive Context | PESQUISA CONCLUIDA |
 
@@ -624,7 +625,26 @@ Entregavel:
 
 Proximas GPs de dominio sugeridas:
 
-* GP-D06B - Auditoria da Materializacao Minima das Evidencias do Projeto.
+* GP-D06B - Implementacao das Evidencias do Projeto.
+* GP-D07A - Auditoria do Planejamento de Monitoramento.
+
+GP-D06B:
+
+CONCLUIDA.
+
+Entregavel:
+
+* `DossierFinal` enriquecido com `referencias_evidencias_permanentes`.
+* Referencias documentais permanentes materializadas como texto simples, sem entidade propria, colecao complexa, anexos ou repositorio dedicado.
+* `dossier_final_do_projeto` atualizado para receber a referencia documental minima.
+* Validacao leve adicionada para impedir estrutura nao textual nesse campo.
+* Testes atualizados para persistencia, valor padrao e preservacao do limite arquitetural.
+* PA-01 preservado, GP-A23 preservada e nenhuma camada nova criada.
+* `DISCOVERY_CATALOG.md` consultado em `docs/research`: PA-02 e PA-03 reforcadas, sem contradicao, promocao ou nova Discovery candidata.
+
+Proximas GPs de dominio sugeridas:
+
+* GP-D06C - Auditoria da Curadoria Das Evidencias Permanentes.
 * GP-D07A - Auditoria do Planejamento de Monitoramento.
 
 Etapa executiva tambem sugerida:

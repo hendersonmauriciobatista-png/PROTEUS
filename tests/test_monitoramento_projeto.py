@@ -1,6 +1,7 @@
 import inspect
 import tempfile
 import unittest
+from dataclasses import replace
 from pathlib import Path
 
 from monitoramento_hidrico.projeto_monitoramento import (
@@ -171,6 +172,7 @@ class ProjetoMonitoramentoTests(unittest.TestCase):
         self.assertEqual("", dossie.historico_resumido)
         self.assertEqual("", dossie.eventos_relevantes)
         self.assertEqual("", dossie.conclusao_executiva)
+        self.assertEqual("", dossie.referencias_evidencias_permanentes)
         self.assertTrue(validar_dossier_final(dossie))
 
     def test_dossie_final_rejeita_projeto_ativo(self):
@@ -199,6 +201,7 @@ class ProjetoMonitoramentoTests(unittest.TestCase):
                 historico_resumido="Ciclo mensal concluido sem pendencias criticas",
                 eventos_relevantes="Evento operacional de cloro acompanhado e resolvido",
                 conclusao_executiva="Condicao final adequada com acompanhamento preventivo",
+                referencias_evidencias_permanentes="Laudo final LF-2026-07; mapa do ponto ETA Central",
             )
 
             salvo = store.salvar(dossie)
@@ -212,6 +215,20 @@ class ProjetoMonitoramentoTests(unittest.TestCase):
         self.assertEqual(18, recarregado.quantidade_total_medicoes)
         self.assertEqual("82 - Bom", recarregado.water_health_score_final)
         self.assertEqual("Condicao final adequada com acompanhamento preventivo", recarregado.conclusao_executiva)
+        self.assertEqual(
+            "Laudo final LF-2026-07; mapa do ponto ETA Central",
+            recarregado.referencias_evidencias_permanentes,
+        )
+
+    def test_dossie_final_rejeita_referencias_de_evidencias_nao_textuais(self):
+        projeto = encerrar_projeto(projeto_monitoramento_padrao(criado_em="2026-06-30T20:00:00"))
+        dossie = replace(
+            dossier_final_do_projeto(projeto),
+            referencias_evidencias_permanentes=["laudo-final"],
+        )
+
+        with self.assertRaises(ValueError):
+            validar_dossier_final(dossie)
 
     def test_store_preserva_dossie_final_imutavel_apos_geracao(self):
         with tempfile.TemporaryDirectory() as temp_dir:
@@ -248,6 +265,8 @@ class ProjetoMonitoramentoTests(unittest.TestCase):
         self.assertNotIn("PolicyEngine", source)
         self.assertNotIn("AvaliacaoObservacionalService", source)
         self.assertNotIn("projeto_id", source)
+        self.assertNotIn("class Evidencia", source)
+        self.assertNotIn("EvidenciaStore", source)
 
 
 if __name__ == "__main__":

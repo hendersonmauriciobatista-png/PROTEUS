@@ -1,5 +1,65 @@
 # HISTORY
 
+# GP-D06B - Implementacao Das Evidencias Do Projeto
+
+## Data
+
+02/07/2026
+
+## Status
+
+CONCLUIDA
+
+## Evento
+
+Implementacao minima das referencias de evidencias permanentes do Projeto conforme GP-D06A.
+
+## Resultado
+
+* `DossierFinal` recebeu o campo textual `referencias_evidencias_permanentes`.
+* `dossier_final_do_projeto` passou a aceitar referencias documentais permanentes sem criar entidade, colecao complexa, anexos ou repositorio dedicado.
+* Validacao leve adicionada para manter as referencias de evidencias como texto simples.
+* Dossie Final preservado como memoria consolidada, sem se tornar repositorio integral de evidencias.
+* Medicoes individuais, logs, arquivos brutos, registros tecnicos e anexos permaneceram fora do dominio do Projeto.
+
+## Testes
+
+Comandos executados:
+
+`python -m py_compile monitoramento_hidrico\projeto_monitoramento.py monitoramento_hidrico\__init__.py tests\test_monitoramento_projeto.py projeto_monitoramento_page.py`
+
+`python -m unittest discover -s tests`
+
+Resultado:
+
+* Arquivos tocados compilados com sucesso.
+* Suite completa executada com sucesso.
+
+## Discovery Catalog
+
+`docs/research/DISCOVERY_CATALOG.md` foi consultado.
+
+Impacto registrado:
+
+* PA-02 reforcada: evidencias permanentes agregam valor por enriquecimento do Dossie Final existente, sem nova camada arquitetural.
+* PA-03 reforcada: apenas uma referencia textual minima foi materializada; entidade, colecao, persistencia dedicada e anexos permanecem nao materializados.
+* Nenhuma Discovery foi contradita.
+* Nenhuma Discovery foi promovida automaticamente.
+* Nenhuma nova Discovery candidata foi identificada.
+
+## Restricoes Mantidas
+
+* Nenhuma entidade propria de Evidencia criada.
+* Nenhuma colecao complexa de Evidencias criada.
+* Nenhum repositorio dedicado criado.
+* Nenhuma interface alterada.
+* Nenhum CSV alterado.
+* Nenhuma camada arquitetural criada.
+* PA-01 preservado.
+* GP-A23 preservada.
+
+---
+
 # GP-D06A - Auditoria Das Evidencias Do Projeto
 
 ## Data
