@@ -115,6 +115,7 @@ Observação
 | GP-D04A | Auditoria do Dossie Final do Projeto | AUDITORIA DOCUMENTAL CONCLUIDA |
 | GP-D04B | Implementacao da Estrutura do Dossie Final | CONCLUIDA |
 | GP-D04C | Auditoria do Conteudo do Dossie Final | AUDITORIA DOCUMENTAL CONCLUIDA |
+| GP-D04D | Implementacao do Conteudo do Dossie Final | CONCLUIDA |
 | GP-R02 | Investigacao Arquitetural: Progressao de Valor Entre Camadas | PESQUISA CONCLUIDA |
 | GP-R03 | Investigacao Arquitetural: Executive Context | PESQUISA CONCLUIDA |
 
@@ -560,7 +561,26 @@ Entregavel:
 
 Proximas GPs de dominio sugeridas:
 
-* GP-D04D - Auditoria da Geracao Minima do Dossie Final.
+* GP-D04D - Implementacao do Conteudo do Dossie Final.
+* GP-D05A - Auditoria do Planejamento de Monitoramento.
+
+GP-D04D:
+
+CONCLUIDA.
+
+Entregavel:
+
+* Conteudo permanente do `DossierFinal` implementado conforme GP-D04C.
+* Conteudos integrais adicionados ao Dossie: coletor responsavel, area operacional e ponto principal de coleta.
+* Conteudos consolidados adicionados ao Dossie: quantidade total de medicoes, resumo estatistico, Water Health Score final, tendencias, alertas relevantes, recomendacoes, situacao final, historico resumido, eventos relevantes e conclusao executiva.
+* `DossierFinalStore` passou a impedir alteracao divergente de Dossie ja gerado, preservando imutabilidade substantiva.
+* Medicoes individuais, logs, dados temporarios, estados intermediarios e detalhes internos de calculo permaneceram fora do Dossie.
+* PA-01 preservado, GP-A23 preservada e nenhuma camada nova criada.
+* `DISCOVERY_CATALOG.md` consultado em `docs/research`: PA-02 e PA-03 reforcadas, sem promocao automatica.
+
+Proximas GPs de dominio sugeridas:
+
+* GP-D04E - Auditoria da Geracao Minima do Dossie Final.
 * GP-D05A - Auditoria do Planejamento de Monitoramento.
 
 Etapa executiva tambem sugerida:

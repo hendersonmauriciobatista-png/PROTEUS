@@ -50,10 +50,23 @@ class DossierFinal:
     cliente: str
     contexto_operacional: str
     perfil_operacional: str
+    coletor_responsavel: str
+    area_operacional: str
+    ponto_principal_coleta: str
     periodo_inicio: str = ""
     periodo_fim: str = ""
     data_encerramento: str = ""
     status_projeto: str = STATUS_ENCERRADO
+    quantidade_total_medicoes: int = 0
+    resumo_estatistico_medicoes: str = ""
+    water_health_score_final: str = ""
+    tendencias_identificadas: str = ""
+    alertas_relevantes: str = ""
+    recomendacoes_emitidas: str = ""
+    situacao_final: str = ""
+    historico_resumido: str = ""
+    eventos_relevantes: str = ""
+    conclusao_executiva: str = ""
 
 
 class ProjetoMonitoramentoStore:
@@ -118,6 +131,9 @@ class DossierFinalStore:
 
     def salvar(self, dossie):
         validar_dossier_final(dossie)
+        dossie_atual = self.carregar()
+        if dossie_atual is not None and dossie_atual != dossie:
+            raise ValueError("Dossie Final ja gerado nao pode ter sua substancia alterada.")
         self.path.parent.mkdir(parents=True, exist_ok=True)
         with self.path.open("w", encoding="utf-8") as file:
             json.dump(asdict(dossie), file, ensure_ascii=False, indent=2)
@@ -144,6 +160,16 @@ def dossier_final_do_projeto(
     periodo_inicio="",
     periodo_fim="",
     data_encerramento="",
+    quantidade_total_medicoes=0,
+    resumo_estatistico_medicoes="",
+    water_health_score_final="",
+    tendencias_identificadas="",
+    alertas_relevantes="",
+    recomendacoes_emitidas="",
+    situacao_final="",
+    historico_resumido="",
+    eventos_relevantes="",
+    conclusao_executiva="",
 ):
     if projeto.status not in (STATUS_ENCERRADO, STATUS_ARQUIVADO):
         raise ValueError("Dossie Final exige Projeto encerrado.")
@@ -154,10 +180,23 @@ def dossier_final_do_projeto(
         cliente=projeto.cliente,
         contexto_operacional=projeto.area_operacional,
         perfil_operacional=projeto.perfil_operacional,
+        coletor_responsavel=projeto.coletor_responsavel,
+        area_operacional=projeto.area_operacional,
+        ponto_principal_coleta=projeto.ponto_principal_coleta,
         periodo_inicio=periodo_inicio,
         periodo_fim=periodo_fim,
         data_encerramento=data_encerramento,
         status_projeto=projeto.status,
+        quantidade_total_medicoes=quantidade_total_medicoes,
+        resumo_estatistico_medicoes=resumo_estatistico_medicoes,
+        water_health_score_final=water_health_score_final,
+        tendencias_identificadas=tendencias_identificadas,
+        alertas_relevantes=alertas_relevantes,
+        recomendacoes_emitidas=recomendacoes_emitidas,
+        situacao_final=situacao_final,
+        historico_resumido=historico_resumido,
+        eventos_relevantes=eventos_relevantes,
+        conclusao_executiva=conclusao_executiva,
     )
 
 
@@ -240,8 +279,20 @@ def validar_dossier_final(dossie):
         raise ValueError(f"Perfil operacional invalido: {dossie.perfil_operacional}")
     if dossie.perfil_operacional != derivar_perfil_operacional(dossie.contexto_operacional):
         raise ValueError("Perfil operacional inconsistente com o contexto operacional.")
+    if not dossie.coletor_responsavel.strip():
+        raise ValueError("Dossie Final sem coletor responsavel.")
+    if dossie.area_operacional not in AREAS_OPERACIONAIS:
+        raise ValueError(f"Area operacional invalida: {dossie.area_operacional}")
+    if dossie.area_operacional != dossie.contexto_operacional:
+        raise ValueError("Area operacional inconsistente com o contexto operacional.")
+    if dossie.ponto_principal_coleta not in PONTOS_PRINCIPAIS_COLETA:
+        raise ValueError(f"Ponto principal de coleta invalido: {dossie.ponto_principal_coleta}")
     if dossie.status_projeto not in (STATUS_ENCERRADO, STATUS_ARQUIVADO):
         raise ValueError("Dossie Final exige Projeto encerrado ou arquivado.")
+    if not isinstance(dossie.quantidade_total_medicoes, int):
+        raise ValueError("Quantidade total de medicoes deve ser inteira.")
+    if dossie.quantidade_total_medicoes < 0:
+        raise ValueError("Quantidade total de medicoes nao pode ser negativa.")
     return True
 
 

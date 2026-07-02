@@ -154,10 +154,23 @@ class ProjetoMonitoramentoTests(unittest.TestCase):
         self.assertEqual(projeto.cliente, dossie.cliente)
         self.assertEqual(projeto.area_operacional, dossie.contexto_operacional)
         self.assertEqual(projeto.perfil_operacional, dossie.perfil_operacional)
+        self.assertEqual(projeto.coletor_responsavel, dossie.coletor_responsavel)
+        self.assertEqual(projeto.area_operacional, dossie.area_operacional)
+        self.assertEqual(projeto.ponto_principal_coleta, dossie.ponto_principal_coleta)
         self.assertEqual(STATUS_ENCERRADO, dossie.status_projeto)
         self.assertEqual("", dossie.periodo_inicio)
         self.assertEqual("", dossie.periodo_fim)
         self.assertEqual("", dossie.data_encerramento)
+        self.assertEqual(0, dossie.quantidade_total_medicoes)
+        self.assertEqual("", dossie.resumo_estatistico_medicoes)
+        self.assertEqual("", dossie.water_health_score_final)
+        self.assertEqual("", dossie.tendencias_identificadas)
+        self.assertEqual("", dossie.alertas_relevantes)
+        self.assertEqual("", dossie.recomendacoes_emitidas)
+        self.assertEqual("", dossie.situacao_final)
+        self.assertEqual("", dossie.historico_resumido)
+        self.assertEqual("", dossie.eventos_relevantes)
+        self.assertEqual("", dossie.conclusao_executiva)
         self.assertTrue(validar_dossier_final(dossie))
 
     def test_dossie_final_rejeita_projeto_ativo(self):
@@ -176,6 +189,16 @@ class ProjetoMonitoramentoTests(unittest.TestCase):
                 periodo_inicio="2026-06-01",
                 periodo_fim="2026-06-30",
                 data_encerramento="2026-07-01T10:00:00",
+                quantidade_total_medicoes=18,
+                resumo_estatistico_medicoes="pH medio 7.2; turbidez maxima 4.1 NTU",
+                water_health_score_final="82 - Bom",
+                tendencias_identificadas="Turbidez estavel; cloro em queda leve",
+                alertas_relevantes="1 alerta relevante de cloro residual",
+                recomendacoes_emitidas="Manter frequencia de monitoramento",
+                situacao_final="Projeto encerrado com indicadores consolidados",
+                historico_resumido="Ciclo mensal concluido sem pendencias criticas",
+                eventos_relevantes="Evento operacional de cloro acompanhado e resolvido",
+                conclusao_executiva="Condicao final adequada com acompanhamento preventivo",
             )
 
             salvo = store.salvar(dossie)
@@ -186,6 +209,38 @@ class ProjetoMonitoramentoTests(unittest.TestCase):
         self.assertEqual("2026-06-01", recarregado.periodo_inicio)
         self.assertEqual("2026-06-30", recarregado.periodo_fim)
         self.assertEqual("2026-07-01T10:00:00", recarregado.data_encerramento)
+        self.assertEqual(18, recarregado.quantidade_total_medicoes)
+        self.assertEqual("82 - Bom", recarregado.water_health_score_final)
+        self.assertEqual("Condicao final adequada com acompanhamento preventivo", recarregado.conclusao_executiva)
+
+    def test_store_preserva_dossie_final_imutavel_apos_geracao(self):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            path = Path(temp_dir) / "dossie_final_projeto.json"
+            store = DossierFinalStore(path)
+            projeto = encerrar_projeto(projeto_monitoramento_padrao(criado_em="2026-06-30T20:00:00"))
+            dossie = dossier_final_do_projeto(
+                projeto,
+                periodo_inicio="2026-06-01",
+                periodo_fim="2026-06-30",
+                data_encerramento="2026-07-01T10:00:00",
+                quantidade_total_medicoes=10,
+                situacao_final="Projeto encerrado",
+            )
+            alterado = dossier_final_do_projeto(
+                projeto,
+                periodo_inicio="2026-06-01",
+                periodo_fim="2026-06-30",
+                data_encerramento="2026-07-01T10:00:00",
+                quantidade_total_medicoes=11,
+                situacao_final="Projeto encerrado",
+            )
+
+            store.salvar(dossie)
+            idempotente = store.salvar(dossie)
+            with self.assertRaises(ValueError):
+                store.salvar(alterado)
+
+        self.assertEqual(dossie, idempotente)
 
     def test_modulo_de_projeto_nao_acessa_policy_engine_ou_motor_observacional(self):
         source = inspect.getsource(projeto_module)
