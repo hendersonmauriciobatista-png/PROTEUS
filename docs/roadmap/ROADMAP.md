@@ -114,6 +114,7 @@ Observação
 | GP-D03E | Implementacao dos Estados do Projeto | CONCLUIDA |
 | GP-D04A | Auditoria do Dossie Final do Projeto | AUDITORIA DOCUMENTAL CONCLUIDA |
 | GP-D04B | Implementacao da Estrutura do Dossie Final | CONCLUIDA |
+| GP-D04C | Auditoria do Conteudo do Dossie Final | AUDITORIA DOCUMENTAL CONCLUIDA |
 | GP-R02 | Investigacao Arquitetural: Progressao de Valor Entre Camadas | PESQUISA CONCLUIDA |
 | GP-R03 | Investigacao Arquitetural: Executive Context | PESQUISA CONCLUIDA |
 
@@ -539,7 +540,27 @@ Entregavel:
 
 Proximas GPs de dominio sugeridas:
 
-* GP-D04C - Auditoria da Geracao Minima do Dossie Final.
+* GP-D04C - Auditoria do Conteudo do Dossie Final.
+* GP-D05A - Auditoria do Planejamento de Monitoramento.
+
+GP-D04C:
+
+AUDITORIA DOCUMENTAL CONCLUIDA.
+
+Entregavel:
+
+* Relatorio `docs/domain/GP_D04C_PROJECT_DOSSIER_CONTENT_AUDIT.md`.
+* Conteudo permanente do Dossie classificado por valor, necessidade historica, reconstrutibilidade, dominio e forma de exibicao.
+* Inclusoes integrais recomendadas: identificacao do Projeto, cliente, contexto operacional, perfil operacional, coletor responsavel, area operacional, ponto principal de coleta, periodo monitorado, situacao final, data de encerramento e estado final.
+* Inclusoes consolidadas recomendadas: quantidade total de medicoes, resumo estatistico, Water Health Score final, tendencias, alertas relevantes, recomendacoes emitidas, historico resumido, eventos relevantes e conclusao executiva.
+* Exclusoes recomendadas: medicoes individuais, logs, dados temporarios, estados intermediarios, detalhes internos de calculo, dados de interface e informacoes reconstruiveis sem perda.
+* PA-01 preservado, GP-A23 preservada e nenhuma camada nova criada.
+* `DISCOVERY_CATALOG.md` consultado: PA-02 e PA-03 reforcadas, sem promocao automatica.
+* Veredito: Conteudo adequado com ressalvas.
+
+Proximas GPs de dominio sugeridas:
+
+* GP-D04D - Auditoria da Geracao Minima do Dossie Final.
 * GP-D05A - Auditoria do Planejamento de Monitoramento.
 
 Etapa executiva tambem sugerida:
