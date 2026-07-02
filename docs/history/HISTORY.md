@@ -1,5 +1,59 @@
 # HISTORY
 
+# GP-D06A - Auditoria Das Evidencias Do Projeto
+
+## Data
+
+02/07/2026
+
+## Status
+
+AUDITORIA DOCUMENTAL CONCLUIDA
+
+## Evento
+
+Auditoria documental do conceito de Evidencia do Projeto de Monitoramento.
+
+## Resultado
+
+* Evidencia do Projeto definida como referencia verificavel que sustenta existencia, conducao, decisao, encerramento ou memoria permanente do Projeto.
+* Diferencas entre evidencia, documento operacional, anexo e registro tecnico delimitadas.
+* Evidencias permanentes recomendadas apenas como referencias ou sinteses: laudos finais, certificados, pareceres, mapas, fotografias representativas, eventos relevantes, resultados consolidados, recomendacoes emitidas, termo de encerramento e referencia de custodia de arquivamento.
+* Evidencias operacionais excluidas da memoria permanente: medicoes individuais, logs, arquivos temporarios, arquivos laboratoriais brutos, rascunhos, estados intermediarios e anexos indiscriminados.
+* Entidade propria de Evidencia nao recomendada neste momento.
+* Colecao pertencente ao Projeto reconhecida apenas como candidata futura condicionada a necessidade objetiva.
+* Dossie Final preservado como memoria consolidada, sem virar repositorio integral de evidencias.
+
+## Testes
+
+Nao executados.
+
+Justificativa: GP exclusivamente documental, sem alteracao de codigo, runtime, interface ou persistencia.
+
+## Discovery Catalog
+
+`docs/research/DISCOVERY_CATALOG.md` foi consultado.
+
+Impacto registrado:
+
+* PA-02 reforcada: evidencias agregam valor quando enriquecem o dominio existente sem nova camada.
+* PA-03 reforcada: o conceito foi auditado antes de qualquer materializacao de entidade, colecao, persistencia ou anexo.
+* Nenhuma Discovery foi contradita.
+* Nenhuma Discovery foi promovida automaticamente.
+* Nenhuma nova Discovery candidata foi identificada.
+
+## Restricoes Mantidas
+
+* Nenhum codigo alterado.
+* Nenhuma persistencia alterada.
+* Nenhuma interface alterada.
+* Nenhum Dossie Final alterado.
+* Nenhuma camada arquitetural criada.
+* PA-01 preservado.
+* GP-A23 preservada.
+
+---
+
 # GP-D05A - Auditoria Das Responsabilidades Do Projeto
 
 ## Data
