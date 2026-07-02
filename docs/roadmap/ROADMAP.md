@@ -112,6 +112,7 @@ Observação
 | GP-D03C | Priorizacao Das Ressalvas Do Ciclo De Vida | AUDITORIA DOCUMENTAL CONCLUIDA |
 | GP-D03D | Auditoria dos Estados e Criterios de Encerramento do Projeto | AUDITORIA DOCUMENTAL CONCLUIDA |
 | GP-D03E | Implementacao dos Estados do Projeto | CONCLUIDA |
+| GP-D04A | Auditoria do Dossie Final do Projeto | AUDITORIA DOCUMENTAL CONCLUIDA |
 | GP-R02 | Investigacao Arquitetural: Progressao de Valor Entre Camadas | PESQUISA CONCLUIDA |
 | GP-R03 | Investigacao Arquitetural: Executive Context | PESQUISA CONCLUIDA |
 
@@ -419,7 +420,7 @@ Entregavel:
 
 Proximas GPs de dominio sugeridas:
 
-* GP-D04A - Auditoria do Planejamento de Monitoramento.
+* GP-D04B - Auditoria do Planejamento de Monitoramento.
 
 GP-D03B:
 
@@ -499,8 +500,27 @@ Entregavel:
 
 Proximas GPs de dominio sugeridas:
 
-* GP-D08A - Auditoria do Dossie Final do Projeto.
 * GP-D04A - Auditoria do Planejamento de Monitoramento.
+
+GP-D04A:
+
+AUDITORIA DOCUMENTAL CONCLUIDA.
+
+Entregavel:
+
+* Relatorio `docs/domain/GP_D04A_PROJECT_DOSSIER_AUDIT.md`.
+* Dossie Final definido como memoria documental oficial do Projeto encerrado.
+* Conteudo recomendado delimitado: identidade do Projeto, cliente, contexto, perfil, periodo, resumo de medicoes, indicadores, Water Health Score final, alertas, eventos, recomendacoes, situacao final, responsavel e data de encerramento.
+* Conteudo excluido delimitado: novas medicoes, recalculos observacionais, regras novas, workflow avancado, reabertura, multiplos Projetos, anexos obrigatorios e assinatura digital obrigatoria.
+* Relacao definida: Dossie pertence ao Encerramento e deve ser preservado pelo Arquivamento.
+* PA-01 preservado, GP-A23 preservada e nenhuma camada nova criada.
+* `DISCOVERY_CATALOG.md` consultado: PA-02 e PA-03 reforcadas, sem promocao automatica.
+* Veredito: Modelo suportado com ressalvas.
+
+Proximas GPs de dominio sugeridas:
+
+* GP-D04B - Auditoria do Planejamento de Monitoramento.
+* GP-D04C - Auditoria da Implementacao Minima do Dossie Final.
 
 Etapa executiva tambem sugerida:
 
