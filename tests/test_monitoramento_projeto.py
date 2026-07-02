@@ -173,6 +173,8 @@ class ProjetoMonitoramentoTests(unittest.TestCase):
         self.assertEqual("", dossie.eventos_relevantes)
         self.assertEqual("", dossie.conclusao_executiva)
         self.assertEqual("", dossie.referencias_evidencias_permanentes)
+        self.assertEqual("", dossie.objetivos_permanentes)
+        self.assertEqual("", dossie.resultados_permanentes)
         self.assertTrue(validar_dossier_final(dossie))
 
     def test_dossie_final_rejeita_projeto_ativo(self):
@@ -202,6 +204,8 @@ class ProjetoMonitoramentoTests(unittest.TestCase):
                 eventos_relevantes="Evento operacional de cloro acompanhado e resolvido",
                 conclusao_executiva="Condicao final adequada com acompanhamento preventivo",
                 referencias_evidencias_permanentes="Laudo final LF-2026-07; mapa do ponto ETA Central",
+                objetivos_permanentes="Acompanhar a qualidade da agua da ETA Central no ciclo mensal",
+                resultados_permanentes="Monitoramento concluido com indicadores consolidados e recomendacao preventiva",
             )
 
             salvo = store.salvar(dossie)
@@ -219,6 +223,14 @@ class ProjetoMonitoramentoTests(unittest.TestCase):
             "Laudo final LF-2026-07; mapa do ponto ETA Central",
             recarregado.referencias_evidencias_permanentes,
         )
+        self.assertEqual(
+            "Acompanhar a qualidade da agua da ETA Central no ciclo mensal",
+            recarregado.objetivos_permanentes,
+        )
+        self.assertEqual(
+            "Monitoramento concluido com indicadores consolidados e recomendacao preventiva",
+            recarregado.resultados_permanentes,
+        )
 
     def test_dossie_final_rejeita_referencias_de_evidencias_nao_textuais(self):
         projeto = encerrar_projeto(projeto_monitoramento_padrao(criado_em="2026-06-30T20:00:00"))
@@ -229,6 +241,22 @@ class ProjetoMonitoramentoTests(unittest.TestCase):
 
         with self.assertRaises(ValueError):
             validar_dossier_final(dossie)
+
+    def test_dossie_final_rejeita_objetivos_e_resultados_nao_textuais(self):
+        projeto = encerrar_projeto(projeto_monitoramento_padrao(criado_em="2026-06-30T20:00:00"))
+        dossie_com_objetivos_invalidos = replace(
+            dossier_final_do_projeto(projeto),
+            objetivos_permanentes=["objetivo"],
+        )
+        dossie_com_resultados_invalidos = replace(
+            dossier_final_do_projeto(projeto),
+            resultados_permanentes={"resultado": "consolidado"},
+        )
+
+        with self.assertRaises(ValueError):
+            validar_dossier_final(dossie_com_objetivos_invalidos)
+        with self.assertRaises(ValueError):
+            validar_dossier_final(dossie_com_resultados_invalidos)
 
     def test_store_preserva_dossie_final_imutavel_apos_geracao(self):
         with tempfile.TemporaryDirectory() as temp_dir:
@@ -267,6 +295,8 @@ class ProjetoMonitoramentoTests(unittest.TestCase):
         self.assertNotIn("projeto_id", source)
         self.assertNotIn("class Evidencia", source)
         self.assertNotIn("EvidenciaStore", source)
+        self.assertNotIn("class Objetivo", source)
+        self.assertNotIn("class Resultado", source)
 
 
 if __name__ == "__main__":

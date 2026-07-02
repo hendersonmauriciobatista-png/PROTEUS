@@ -121,6 +121,7 @@ Observação
 | GP-D06B | Implementacao das Evidencias do Projeto | CONCLUIDA |
 | GP-D07A | Auditoria dos Eventos Institucionais do Projeto | AUDITORIA DOCUMENTAL CONCLUIDA |
 | GP-D08A | Auditoria dos Objetivos e Resultados do Projeto | AUDITORIA DOCUMENTAL CONCLUIDA |
+| GP-D08B | Implementacao dos Objetivos e Resultados do Projeto | CONCLUIDA |
 | GP-R02 | Investigacao Arquitetural: Progressao de Valor Entre Camadas | PESQUISA CONCLUIDA |
 | GP-R03 | Investigacao Arquitetural: Executive Context | PESQUISA CONCLUIDA |
 
@@ -706,7 +707,27 @@ Proximas GPs de dominio sugeridas:
 
 * GP-D06C - Auditoria da Curadoria Das Evidencias Permanentes.
 * GP-D07B - Auditoria da Materializacao Minima de Eventos Institucionais, somente se houver necessidade objetiva.
-* GP-D08B - Auditoria da Materializacao Minima de Objetivos e Resultados, somente se houver necessidade objetiva.
+* GP-D09A - Auditoria do Planejamento de Monitoramento.
+
+GP-D08B:
+
+CONCLUIDA.
+
+Entregavel:
+
+* `DossierFinal` enriquecido com `objetivos_permanentes` e `resultados_permanentes`.
+* Objetivos e resultados permanentes materializados como texto simples, sem entidade propria, colecao complexa, workflow, criterio automatico de sucesso ou repositorio dedicado.
+* `dossier_final_do_projeto` atualizado para receber objetivos e resultados permanentes.
+* Validacao leve adicionada para impedir estrutura nao textual nesses campos.
+* Testes atualizados para persistencia, valor padrao, validacao textual e preservacao do limite arquitetural.
+* PA-01 preservado, GP-A23 preservada e nenhuma camada nova criada.
+* `DISCOVERY_CATALOG.md` consultado em `docs/research`: PA-02 reforcada, PA-03 reforcada, nenhuma Discovery contradita, nenhuma Discovery promovida e nenhuma nova Discovery candidata identificada.
+* Secao `Observacoes da IA / Hipoteses Metodologicas` registrada no historico como observacao simples e hipotese em monitoramento, sem promocao a regra ICFACTORY.
+
+Proximas GPs de dominio sugeridas:
+
+* GP-D06C - Auditoria da Curadoria Das Evidencias Permanentes.
+* GP-D07B - Auditoria da Materializacao Minima de Eventos Institucionais, somente se houver necessidade objetiva.
 * GP-D09A - Auditoria do Planejamento de Monitoramento.
 
 Etapa executiva tambem sugerida:

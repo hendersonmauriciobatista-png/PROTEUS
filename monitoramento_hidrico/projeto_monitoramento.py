@@ -68,6 +68,8 @@ class DossierFinal:
     eventos_relevantes: str = ""
     conclusao_executiva: str = ""
     referencias_evidencias_permanentes: str = ""
+    objetivos_permanentes: str = ""
+    resultados_permanentes: str = ""
 
 
 class ProjetoMonitoramentoStore:
@@ -172,6 +174,8 @@ def dossier_final_do_projeto(
     eventos_relevantes="",
     conclusao_executiva="",
     referencias_evidencias_permanentes="",
+    objetivos_permanentes="",
+    resultados_permanentes="",
 ):
     if projeto.status not in (STATUS_ENCERRADO, STATUS_ARQUIVADO):
         raise ValueError("Dossie Final exige Projeto encerrado.")
@@ -200,6 +204,8 @@ def dossier_final_do_projeto(
         eventos_relevantes=eventos_relevantes,
         conclusao_executiva=conclusao_executiva,
         referencias_evidencias_permanentes=referencias_evidencias_permanentes,
+        objetivos_permanentes=objetivos_permanentes,
+        resultados_permanentes=resultados_permanentes,
     )
 
 
@@ -298,6 +304,10 @@ def validar_dossier_final(dossie):
         raise ValueError("Quantidade total de medicoes nao pode ser negativa.")
     if not isinstance(dossie.referencias_evidencias_permanentes, str):
         raise ValueError("Referencias de evidencias permanentes devem ser texto.")
+    if not isinstance(dossie.objetivos_permanentes, str):
+        raise ValueError("Objetivos permanentes devem ser texto.")
+    if not isinstance(dossie.resultados_permanentes, str):
+        raise ValueError("Resultados permanentes devem ser texto.")
     return True
 
 

@@ -1,5 +1,77 @@
 # HISTORY
 
+# GP-D08B - Implementacao Dos Objetivos E Resultados Do Projeto
+
+## Data
+
+02/07/2026
+
+## Status
+
+CONCLUIDA
+
+## Evento
+
+Implementacao minima das referencias textuais de objetivos e resultados permanentes do Projeto conforme GP-D08A.
+
+## Resultado
+
+* `DossierFinal` recebeu os campos textuais `objetivos_permanentes` e `resultados_permanentes`.
+* `dossier_final_do_projeto` passou a aceitar objetivos e resultados permanentes como textos simples.
+* Validacao leve adicionada para impedir estruturas nao textuais nesses campos.
+* Dossie Final preservado como memoria consolidada, sem virar sistema de metas, aceite, workflow ou avaliacao automatica de sucesso.
+* Nenhuma entidade propria `Objetivo` ou `Resultado` criada.
+* Nenhuma colecao complexa de objetivos ou resultados criada.
+* Nenhum repositorio, servico ou camada dedicada criado.
+* Secao `Observacoes da IA / Hipoteses Metodologicas` registrada como observacao deste resultado, sem alterar escopo, PA-01, PA-02 ou PA-03.
+
+## Testes
+
+Comandos executados:
+
+`python -m py_compile monitoramento_hidrico\projeto_monitoramento.py monitoramento_hidrico\__init__.py tests\test_monitoramento_projeto.py projeto_monitoramento_page.py`
+
+`python -m unittest discover -s tests`
+
+Resultado:
+
+* Arquivos tocados compilados com sucesso.
+* Suite completa executada com sucesso.
+
+## Discovery Catalog
+
+`docs/research/DISCOVERY_CATALOG.md` foi consultado.
+
+Impacto registrado:
+
+* PA-02 reforcada: objetivos e resultados permanentes agregam valor por enriquecimento textual do Dossie Final existente, sem nova camada arquitetural.
+* PA-03 reforcada: apenas campos textuais simples foram materializados; entidade, colecao, persistencia dedicada, workflow e criterios automaticos de sucesso permanecem nao materializados.
+* Nenhuma Discovery foi contradita.
+* Nenhuma Discovery foi promovida automaticamente.
+* Nenhuma nova Discovery candidata foi identificada.
+* Observacoes metodologicas da IA foram registradas apenas como observacao simples ou hipotese em monitoramento, sem promocao a regra ICFACTORY.
+
+## Observacoes da IA / Hipoteses Metodologicas
+
+| Padrao observado | Evidencia usada | Possivel impacto | Recomendacao | Status sugerido |
+| --- | --- | --- | --- | --- |
+| A materializacao minima de conceitos documentais vem ocorrendo por campos textuais no Dossie Final quando o valor permanente esta comprovado, mas a estrutura propria ainda nao se justifica. | GP-D06B materializou referencias de evidencias permanentes; GP-D08B materializou objetivos e resultados permanentes como texto simples. | Mantem rastreabilidade sem criar entidades prematuras. | Continuar exigindo auditoria previa antes de transformar campos textuais em estruturas formais. | Hipotese em monitoramento |
+| Objetivos e resultados podem induzir futuramente avaliacao de sucesso, mas a implementacao atual evita calculo automatico. | GP-D08A proibiu motor de sucesso, workflow e recalculo; GP-D08B adicionou apenas texto validado. | Reduz risco de violar PA-01 ou confundir resultado institucional com indicador observacional. | Tratar qualquer criterio de sucesso estruturado em GP futura propria. | Observacao simples |
+
+## Restricoes Mantidas
+
+* Nenhuma entidade propria de Objetivo criada.
+* Nenhuma entidade propria de Resultado criada.
+* Nenhuma colecao complexa criada no Projeto.
+* Nenhum repositorio dedicado criado.
+* Nenhuma interface alterada.
+* Nenhum CSV alterado.
+* Nenhuma camada arquitetural criada.
+* PA-01 preservado.
+* GP-A23 preservada.
+
+---
+
 # GP-D08A - Auditoria Dos Objetivos E Resultados Do Projeto
 
 ## Data
