@@ -123,6 +123,7 @@ Observação
 | GP-D08A | Auditoria dos Objetivos e Resultados do Projeto | AUDITORIA DOCUMENTAL CONCLUIDA |
 | GP-D08B | Implementacao dos Objetivos e Resultados do Projeto | CONCLUIDA |
 | GP-D09A | Auditoria de Saturacao do Dominio do Projeto | AUDITORIA DOCUMENTAL CONCLUIDA |
+| GP-D10A | Auditoria das Instancias do Dominio Projeto | AUDITORIA DOCUMENTAL CONCLUIDA |
 | GP-R02 | Investigacao Arquitetural: Progressao de Valor Entre Camadas | PESQUISA CONCLUIDA |
 | GP-R03 | Investigacao Arquitetural: Executive Context | PESQUISA CONCLUIDA |
 
@@ -752,6 +753,29 @@ Proximas GPs de dominio sugeridas:
 
 * Consolidar o agregado Projeto sem expansao estrutural imediata.
 * Retomar Planejamento, Eventos Institucionais estruturados, responsabilidades formais adicionais ou curadoria de evidencias apenas mediante necessidade objetiva e GP propria.
+
+GP-D10A:
+
+AUDITORIA DOCUMENTAL CONCLUIDA.
+
+Entregavel:
+
+* Relatorio `docs/domain/GP_D10A_PROJECT_INSTANCE_AUDIT.md`.
+* Instancia do Dominio Projeto definida como aplicacao concreta do agregado Projeto a um contexto operacional ou ponto principal de monitoramento.
+* Urbano, Rural e Industrial classificados como contextos operacionais.
+* ETA, ETE, Rio, Lago, Nascente, Poco Artesiano e Reservatorio classificados como tipos de ponto ou ambiente monitorado.
+* Todas as categorias avaliadas podem reutilizar o mesmo Dominio Projeto.
+* Nenhuma categoria exige dominio proprio, comportamento estrutural proprio, entidade, colecao, camada, persistencia, interface ou alteracao do Dossie Final.
+* Diferencas entre instancias classificadas como operacionais, observacionais ou de configuracao, pertencentes a perfis, politicas, parametros, coleta, Analytics, Governanca ou Recommendation.
+* PA-01 preservado, GP-D09A preservada e nenhuma camada nova criada.
+* `DISCOVERY_CATALOG.md` consultado em `docs/research`: PA-02 reforcada, PA-03 reforcada, nenhuma Discovery contradita, nenhuma Discovery promovida e nenhuma nova Discovery candidata identificada.
+* Observacoes da IA registradas separadamente como observacao simples ou hipotese em monitoramento, sem promocao a regra ICFACTORY.
+* Veredito: as categorias avaliadas representam instancias validas do Dominio Projeto, nao novos dominios.
+
+Proximas GPs de dominio sugeridas:
+
+* Auditar novas instancias apenas quando houver contexto operacional real.
+* Tratar necessidades especificas primeiro em perfis, politicas, parametros, configuracao ou coleta, antes de propor alteracao no Dominio Projeto.
 
 Etapa executiva tambem sugerida:
 
