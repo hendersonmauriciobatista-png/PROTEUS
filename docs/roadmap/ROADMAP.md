@@ -125,6 +125,7 @@ Observação
 | GP-D09A | Auditoria de Saturacao do Dominio do Projeto | AUDITORIA DOCUMENTAL CONCLUIDA |
 | GP-D10A | Auditoria das Instancias do Dominio Projeto | AUDITORIA DOCUMENTAL CONCLUIDA |
 | OP-00 | Auditoria de Delimitacao do Escopo Operacional | AUDITORIA DOCUMENTAL CONCLUIDA |
+| OP-01 | Auditoria do Fluxo Operacional Interno da Informacao | AUDITORIA DOCUMENTAL CONCLUIDA |
 | GP-R02 | Investigacao Arquitetural: Progressao de Valor Entre Camadas | PESQUISA CONCLUIDA |
 | GP-R03 | Investigacao Arquitetural: Executive Context | PESQUISA CONCLUIDA |
 
@@ -800,6 +801,29 @@ Proximas auditorias operacionais sugeridas:
 
 * Modelar fluxos operacionais apenas dentro da fronteira OP-00.
 * Antes de incluir logistica, laboratorio, campo ou gestao de recursos, exigir auditoria propria de necessidade objetiva.
+
+OP-01:
+
+AUDITORIA DOCUMENTAL CONCLUIDA.
+
+Entregavel:
+
+* Relatorio `docs/operational/OP_01_OPERATIONAL_INFORMATION_FLOW_AUDIT.md`.
+* Primeiro evento operacional interno definido como registro interno de informacao reconhecida pelo PROTEUS.
+* Fluxo operacional interno definido: registro, organizacao, avaliacao observacional quando aplicavel, analise, indicadores, alertas, governanca, recomendacoes/sintese executiva, apresentacao, relatorios e preservacao documental.
+* Fluxos paralelos identificados: contexto/coleta, qualidade avaliada, alertas/eventos, recomendacoes/sinteses e preservacao documental.
+* Ordem obrigatoria delimitada apenas por dependencia de autoridade ou insumo.
+* Nenhuma etapa operacional ausente identificada como impeditiva para orientar futuras implementacoes.
+* PA-01 preservado, Dominio Projeto preservado, Dossie Final preservado e nenhuma camada nova criada.
+* `DISCOVERY_CATALOG.md` consultado em `docs/research`: PA-02 reforcada, PA-03 reforcada, nenhuma Discovery contradita, nenhuma Discovery promovida e nenhuma nova Discovery candidata identificada.
+* Observacoes da IA registradas separadamente como observacao simples ou hipotese em monitoramento, sem promocao a regra ICFACTORY.
+* Veredito: fluxo operacional interno suficientemente definido para orientar futuras implementacoes.
+
+Proximas auditorias operacionais sugeridas:
+
+* Auditar criterios de relevancia para alertas e eventos antes de consolidacao documental.
+* Formalizar rastreabilidade de recomendacoes ate Analytics, Governanca e Nucleo sem criar autoridade paralela.
+* Auditar indicadores operacionais nao hidricos, como perdas e consumo, apenas se houver necessidade objetiva.
 
 Etapa executiva tambem sugerida:
 
