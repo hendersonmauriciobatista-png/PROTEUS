@@ -127,6 +127,7 @@ Observação
 | OP-00 | Auditoria de Delimitacao do Escopo Operacional | AUDITORIA DOCUMENTAL CONCLUIDA |
 | OP-01 | Auditoria do Fluxo Operacional Interno da Informacao | AUDITORIA DOCUMENTAL CONCLUIDA |
 | OP-02 | Auditoria da Unidade Fundamental de Informacao | AUDITORIA DOCUMENTAL CONCLUIDA |
+| OP-03 | Auditoria dos Tipos de Registros Informacionais | AUDITORIA DOCUMENTAL CONCLUIDA |
 | GP-R02 | Investigacao Arquitetural: Progressao de Valor Entre Camadas | PESQUISA CONCLUIDA |
 | GP-R03 | Investigacao Arquitetural: Executive Context | PESQUISA CONCLUIDA |
 
@@ -848,6 +849,31 @@ Proximas auditorias operacionais sugeridas:
 * Auditar quando um registro informacional deve permanecer bruto, virar indicador, virar evento ou compor memoria permanente.
 * Definir criterios de relevancia para sinais derivados antes de qualquer materializacao adicional.
 * Reavaliar materializacao por entidade apenas diante de necessidade objetiva, como multiprojeto, rastreabilidade por linha ou persistencia relacional.
+
+OP-03:
+
+AUDITORIA DOCUMENTAL CONCLUIDA.
+
+Entregavel:
+
+* Relatorio `docs/operational/OP_03_INFORMATION_RECORD_TYPES_AUDIT.md`.
+* Categorias de registros classificadas: primarios, derivados, consolidados, transitorios e memoria documental consolidada.
+* Medicao reconhecida como registro primario e subtipo operacional central.
+* Observacoes operacionais e referencias externas reconhecidas como registros primarios/contextuais ou referenciais.
+* Alertas, eventos e recomendacoes classificados como registros derivados.
+* Indicadores, tendencias, score, snapshots e relatorios classificados como derivados, consolidados ou apresentacoes consolidadas.
+* Dossie Final classificado como memoria documental consolidada.
+* Categorias transitorias delimitadas sem promocao a entidade ou memoria permanente automatica.
+* PA-01 preservado, OP-00 preservada, OP-01 preservada, OP-02 preservada, Dominio Projeto preservado e Dossie Final preservado.
+* `DISCOVERY_CATALOG.md` consultado em `docs/research`: PA-02 reforcada, PA-03 reforcada, nenhuma Discovery contradita, nenhuma Discovery promovida e nenhuma nova Discovery candidata identificada.
+* Observacoes da IA registradas separadamente como observacao simples ou hipotese em monitoramento, sem promocao a regra ICFACTORY.
+* Veredito: classificacao dos registros suficientemente definida para orientar futuras implementacoes.
+
+Proximas auditorias operacionais sugeridas:
+
+* Auditar criterios de promocao de registro primario para sinal derivado ou consolidado.
+* Auditar criterios de relevancia para preservar alertas, eventos e recomendacoes no Dossie Final.
+* Auditar rastreabilidade entre registros primarios, derivados e consolidados antes de qualquer nova materializacao.
 
 Etapa executiva tambem sugerida:
 
