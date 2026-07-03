@@ -126,6 +126,7 @@ Observação
 | GP-D10A | Auditoria das Instancias do Dominio Projeto | AUDITORIA DOCUMENTAL CONCLUIDA |
 | OP-00 | Auditoria de Delimitacao do Escopo Operacional | AUDITORIA DOCUMENTAL CONCLUIDA |
 | OP-01 | Auditoria do Fluxo Operacional Interno da Informacao | AUDITORIA DOCUMENTAL CONCLUIDA |
+| OP-02 | Auditoria da Unidade Fundamental de Informacao | AUDITORIA DOCUMENTAL CONCLUIDA |
 | GP-R02 | Investigacao Arquitetural: Progressao de Valor Entre Camadas | PESQUISA CONCLUIDA |
 | GP-R03 | Investigacao Arquitetural: Executive Context | PESQUISA CONCLUIDA |
 
@@ -824,6 +825,29 @@ Proximas auditorias operacionais sugeridas:
 * Auditar criterios de relevancia para alertas e eventos antes de consolidacao documental.
 * Formalizar rastreabilidade de recomendacoes ate Analytics, Governanca e Nucleo sem criar autoridade paralela.
 * Auditar indicadores operacionais nao hidricos, como perdas e consumo, apenas se houver necessidade objetiva.
+
+OP-02:
+
+AUDITORIA DOCUMENTAL CONCLUIDA.
+
+Entregavel:
+
+* Relatorio `docs/operational/OP_02_INFORMATION_UNIT_AUDIT.md`.
+* Unidade fundamental definida como registro informacional reconhecido.
+* Medicao classificada como subtipo operacional principal, mas nao como unidade universal do fluxo.
+* Observacoes, referencias documentais, metadados, eventos e sinais consolidados reconhecidos como formas ou transformacoes de informacao reconhecida.
+* Unidade relacionada ao fluxo OP-01 sem criar entidade, colecao, dominio, camada, persistencia ou interface.
+* Dominio Projeto preservado: a unidade percorre o fluxo contextualizada pelo Projeto e nao altera o agregado Projeto.
+* PA-01 preservado, OP-00 preservada, OP-01 preservada e Dossie Final preservado.
+* `DISCOVERY_CATALOG.md` consultado em `docs/research`: PA-02 reforcada, PA-03 reforcada, nenhuma Discovery contradita, nenhuma Discovery promovida e nenhuma nova Discovery candidata identificada.
+* Observacoes da IA registradas separadamente como observacao simples ou hipotese em monitoramento, sem promocao a regra ICFACTORY.
+* Veredito: unidade fundamental de informacao suficientemente definida para orientar futuras implementacoes.
+
+Proximas auditorias operacionais sugeridas:
+
+* Auditar quando um registro informacional deve permanecer bruto, virar indicador, virar evento ou compor memoria permanente.
+* Definir criterios de relevancia para sinais derivados antes de qualquer materializacao adicional.
+* Reavaliar materializacao por entidade apenas diante de necessidade objetiva, como multiprojeto, rastreabilidade por linha ou persistencia relacional.
 
 Etapa executiva tambem sugerida:
 
