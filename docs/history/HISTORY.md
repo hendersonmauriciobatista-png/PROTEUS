@@ -1,5 +1,67 @@
 # HISTORY
 
+# OP-00 - Auditoria De Delimitacao Do Escopo Operacional
+
+## Data
+
+03/07/2026
+
+## Status
+
+AUDITORIA DOCUMENTAL CONCLUIDA
+
+## Evento
+
+Auditoria documental da fronteira operacional do PROTEUS antes da modelagem de fluxos operacionais.
+
+## Resultado
+
+* Relatorio `docs/operational/OP_00_OPERATIONAL_SCOPE_BOUNDARY_AUDIT.md` criado.
+* Fronteira operacional definida: PROTEUS comeca no registro, organizacao, avaliacao, apresentacao e preservacao de informacoes de monitoramento hidrico.
+* Fim da responsabilidade operacional definido antes da execucao fisica, logistica, administrativa, laboratorial ou institucional externa.
+* Atividades internas confirmadas: cadastro de projetos, registro de medicoes, indicadores, alertas, dashboards, relatorios e Dossie Final.
+* Atividades externas confirmadas: planejamento logistico, roteiros, veiculos, agenda de equipe, coleta fisica, transporte, laboratorio, calibracao, manutencao, estoque e cadeia de custodia fisica.
+* Atividades parcialmente incluidas: cadastro de pontos de monitoramento, referencias de equipamentos, recipientes e conservantes, sempre como registro ou referencia, nao como gestao completa.
+* Criterios de inclusao futura definidos com foco em necessidade objetiva, valor interno ao sistema, preservacao de PA-01, nao absorcao de responsabilidade externa e auditoria previa.
+
+## Testes
+
+Nao executados.
+
+Justificativa: OP-00 exclusivamente documental, sem alteracao de codigo, runtime, interface ou persistencia.
+
+## Discovery Catalog
+
+`docs/research/DISCOVERY_CATALOG.md` foi consultado.
+
+Impacto registrado:
+
+* PA-02 reforcada: a delimitacao operacional agrega valor por orientar o uso das camadas existentes, sem criar nova camada arquitetural.
+* PA-03 reforcada: atividades externas podem ser reconhecidas, recebidas ou referenciadas sem materializacao automatica em entidade, colecao ou persistencia.
+* Nenhuma Discovery foi contradita.
+* Nenhuma Discovery foi promovida automaticamente.
+* Nenhuma nova Discovery candidata foi identificada.
+
+## Observacoes da IA / Hipoteses Metodologicas
+
+* Hipotese em monitoramento: a fase pos-saturacao desloca a pergunta de estrutura do dominio para responsabilidade operacional do sistema.
+* Observacao simples: informacoes externas podem ser recebidas ou referenciadas sem que o processo externo seja absorvido.
+* Observacao simples: inclusao parcial ajuda a controlar escopo quando uma atividade possui dados relevantes, mas execucao externa.
+
+## Restricoes Mantidas
+
+* Nenhum codigo alterado.
+* Nenhuma persistencia alterada.
+* Nenhuma interface alterada.
+* Nenhuma entidade criada.
+* Nenhuma colecao criada.
+* Nenhuma camada arquitetural criada.
+* Nenhum Dossie Final alterado.
+* PA-01 preservado.
+* Dominio Projeto preservado.
+
+---
+
 # GP-D10A - Auditoria Das Instancias Do Dominio Projeto
 
 ## Data

@@ -124,6 +124,7 @@ Observação
 | GP-D08B | Implementacao dos Objetivos e Resultados do Projeto | CONCLUIDA |
 | GP-D09A | Auditoria de Saturacao do Dominio do Projeto | AUDITORIA DOCUMENTAL CONCLUIDA |
 | GP-D10A | Auditoria das Instancias do Dominio Projeto | AUDITORIA DOCUMENTAL CONCLUIDA |
+| OP-00 | Auditoria de Delimitacao do Escopo Operacional | AUDITORIA DOCUMENTAL CONCLUIDA |
 | GP-R02 | Investigacao Arquitetural: Progressao de Valor Entre Camadas | PESQUISA CONCLUIDA |
 | GP-R03 | Investigacao Arquitetural: Executive Context | PESQUISA CONCLUIDA |
 
@@ -776,6 +777,29 @@ Proximas GPs de dominio sugeridas:
 
 * Auditar novas instancias apenas quando houver contexto operacional real.
 * Tratar necessidades especificas primeiro em perfis, politicas, parametros, configuracao ou coleta, antes de propor alteracao no Dominio Projeto.
+
+OP-00:
+
+AUDITORIA DOCUMENTAL CONCLUIDA.
+
+Entregavel:
+
+* Relatorio `docs/operational/OP_00_OPERATIONAL_SCOPE_BOUNDARY_AUDIT.md`.
+* Fronteira operacional definida antes da modelagem de fluxos.
+* PROTEUS inicia sua responsabilidade no registro, organizacao, avaliacao, apresentacao e preservacao de informacoes de monitoramento hidrico.
+* PROTEUS encerra sua responsabilidade antes da execucao fisica, logistica, administrativa, laboratorial ou institucional externa.
+* Atividades internas confirmadas: cadastro de projetos, registro de medicoes, indicadores, alertas, dashboards, relatorios e Dossie Final.
+* Atividades externas confirmadas: planejamento logistico, roteiros, veiculos, agenda de equipe, coleta fisica, transporte, laboratorio, calibracao, manutencao, estoque e cadeia de custodia fisica.
+* Atividades parcialmente incluidas tratadas apenas como registro ou referencia: pontos de monitoramento, equipamentos, recipientes e conservantes.
+* PA-01 preservado, Dominio Projeto preservado e nenhuma camada nova criada.
+* `DISCOVERY_CATALOG.md` consultado em `docs/research`: PA-02 reforcada, PA-03 reforcada, nenhuma Discovery contradita, nenhuma Discovery promovida e nenhuma nova Discovery candidata identificada.
+* Observacoes da IA registradas separadamente como observacao simples ou hipotese em monitoramento, sem promocao a regra ICFACTORY.
+* Veredito: PROTEUS deve receber ou referenciar processos externos, mas nao absorver responsabilidade logistica, laboratorial, administrativa ou fisica.
+
+Proximas auditorias operacionais sugeridas:
+
+* Modelar fluxos operacionais apenas dentro da fronteira OP-00.
+* Antes de incluir logistica, laboratorio, campo ou gestao de recursos, exigir auditoria propria de necessidade objetiva.
 
 Etapa executiva tambem sugerida:
 
