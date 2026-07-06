@@ -130,6 +130,7 @@ Observação
 | OP-03 | Auditoria dos Tipos de Registros Informacionais | AUDITORIA DOCUMENTAL CONCLUIDA |
 | AC-01 | Auditoria de Consolidacao Arquitetural | AUDITORIA DE CONSOLIDACAO CONCLUIDA |
 | PI-01 | Manual de Identidade Visual do PROTEUS | MANUAL INSTITUCIONAL CONCLUIDO |
+| PI-02 | Kit Institucional do PROTEUS | KIT INSTITUCIONAL CONCLUIDO |
 | GP-R02 | Investigacao Arquitetural: Progressao de Valor Entre Camadas | PESQUISA CONCLUIDA |
 | GP-R03 | Investigacao Arquitetural: Executive Context | PESQUISA CONCLUIDA |
 
@@ -941,6 +942,30 @@ Proximas acoes institucionais sugeridas:
 * Criar Splash Screen e Tela Sobre em PI futura propria, se houver necessidade institucional.
 * Aplicar o manual em README, Architecture Handbook, apresentacoes e website sem alterar identidade.
 * Manter governanca documental da marca antes de qualquer novo material publico.
+
+PI-02 - Kit Institucional do PROTEUS:
+
+KIT INSTITUCIONAL CONCLUIDO.
+
+Entregavel:
+
+* Apresentacao institucional `docs/institutional/INSTITUTIONAL_PRESENTATION.md`.
+* One Page institucional `docs/institutional/ONE_PAGE.md`.
+* Ficha tecnica `docs/institutional/TECHNICAL_DATASHEET.md`.
+* Visao arquitetural executiva `docs/institutional/ARCHITECTURE_OVERVIEW.md`.
+* Fluxo operacional oficial `docs/institutional/OPERATIONAL_FLOW.md`.
+* Casos de uso institucionais `docs/institutional/USE_CASES.md`.
+* Roteiro oficial de demonstracao `docs/institutional/DEMONSTRATION_GUIDE.md`.
+* Comunicacao executiva padronizada para universidades, instituicoes de pesquisa, empresas, orgaos publicos e partes interessadas.
+* Nenhum codigo alterado.
+* Nenhuma arquitetura alterada.
+* Nenhuma funcionalidade alterada.
+* Nenhuma identidade visual alterada.
+* Nenhuma Discovery criada.
+* Nenhuma Discovery promovida.
+* PA-01 preservada.
+* PA-02 preservada.
+* PA-03 preservada.
 
 Etapa executiva tambem sugerida:
 
