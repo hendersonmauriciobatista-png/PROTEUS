@@ -1,5 +1,147 @@
 # HISTORY
 
+# PI-01 - Manual De Identidade Visual Do PROTEUS
+
+## Data
+
+06/07/2026
+
+## Status
+
+MANUAL INSTITUCIONAL CONCLUIDO
+
+## Evento
+
+Inicio da Fase de Produto Institucional do CASE-01 - PROTEUS, apos a conclusao arquitetural da Engenharia registrada pela AC-01, com consolidacao da marca como ativo institucional oficial.
+
+## Resultado
+
+* Manual oficial `docs/branding/BRAND_GUIDELINES.md` criado.
+* Estrutura documental de branding criada em `docs/branding/`.
+* Documentos auxiliares criados: `COLOR_PALETTE.md`, `TYPOGRAPHY.md`, `LOGO_USAGE.md`, `ICONS.md` e `APPLICATIONS.md`.
+* Estrutura de ativos graficos organizada em `assets/logo/` e `assets/icons/`.
+* Registros de ativos reservados criados em `assets/logo/README.md` e `assets/icons/README.md`.
+* Engenharia do CASE-01 registrada como concluida em termos arquiteturais.
+* Identidade visual existente tratada como baseline oficial aprovada.
+* Nome institucional PROTEUS documentado.
+* Significado institucional do nome PROTEUS documentado.
+* Logo oficial e composicao institucional registrados como marca aprovada, sem proposta de alteracao.
+* Conceitos da marca documentados: Proteus, agua, inteligencia, monitoramento, ciclo continuo, transformacao e preservacao.
+* Paleta oficial registrada com HEX, RGB e CMYK aproximado.
+* Tipografia institucional documentada para marca, documentacao, dashboards e apresentacoes.
+* Area de protecao, tamanho minimo, versoes oficiais e restricoes de uso definidos.
+* Aplicacoes institucionais padronizadas para Dashboard, Splash Screen, Tela de Login, relatorios, documentacao tecnica, GitHub, README, website, apresentacoes, artigos cientificos, cartoes, assinatura institucional, favicon e icone de aplicativo.
+* Veredito: PROTEUS apto para iniciar apresentacao institucional com identidade visual consolidada.
+
+## Testes
+
+Nao executados.
+
+Justificativa: PI-01 exclusivamente institucional e documental, sem alteracao de codigo, runtime, interface, persistencia ou funcionalidade.
+
+## Discovery Catalog
+
+`docs/research/DISCOVERY_CATALOG.md` foi consultado.
+
+Impacto registrado:
+
+* PA-02 preservada, sem promocao.
+* PA-03 preservada, sem promocao.
+* Nenhuma Discovery foi contradita.
+* Nenhuma Discovery foi promovida automaticamente.
+* Nenhuma nova Discovery candidata foi identificada.
+
+## Observacoes da IA / Hipoteses Metodologicas
+
+* Observacao simples: marca de software pode ser governada documentalmente antes da publicacao de todos os arquivos finais de asset.
+* Hipotese em monitoramento: manual de marca reduz ambiguidade entre produto, aplicacao, documentacao e publicacao externa.
+* Observacao simples: em sistemas tecnicos, preservar consistencia costuma ser mais importante do que expandir variacoes visuais.
+
+## Restricoes Mantidas
+
+* Nenhum codigo alterado.
+* Nenhuma arquitetura alterada.
+* Nenhum dominio alterado.
+* Nenhuma implementacao alterada.
+* Nenhuma persistencia alterada.
+* Nenhuma funcionalidade alterada.
+* Nenhuma Discovery criada.
+* Nenhuma Discovery promovida.
+* PA-01 preservada.
+* PA-02 e PA-03 preservadas.
+* Alteracoes pendentes fora do escopo preservadas.
+
+---
+
+# AC-01 - Auditoria De Consolidacao Arquitetural
+
+## Data
+
+06/07/2026
+
+## Status
+
+AUDITORIA DE CONSOLIDACAO CONCLUIDA
+
+## Evento
+
+Auditoria de consolidacao da implementacao atual do PROTEUS contra a arquitetura, o Dominio Projeto e a operacao consolidada no CASE-01.
+
+## Resultado
+
+* Relatorio `docs/architecture/AC_01_ARCHITECTURAL_CONSOLIDATION_AUDIT.md` criado.
+* Fronteira OP-00 verificada como preservada pela implementacao atual.
+* Fluxo OP-01 verificado como representado por registro, organizacao, avaliacao observacional quando aplicavel, Analytics, Governanca, Recommendation, Executive Intelligence, apresentacao, relatorios e preservacao documental.
+* Unidade OP-02 verificada como representada implicitamente por registros CSV, registros JSON, eventos, snapshots, recomendacoes e referencias documentais.
+* Tipos OP-03 verificados como correspondentes a medicoes, contexto, consumo, resultados observacionais, alertas, eventos, recomendacoes, snapshots, relatorios e Dossie Final.
+* Dominio Projeto verificado como preservado, com Projeto unico, contexto/perfil, ciclo de vida e Dossie Final simples.
+* PA-01 verificada como preservada; nenhuma implementacao atual foi classificada como violacao.
+* Dashboard classificado como parcialmente conforme por preservar PA-01 no status de qualidade, mas manter acoplamento direto com componentes de Analytics para serie historica do Water Health Score.
+* Instancias GP-D10A classificadas como parcialmente conformes porque a implementacao materializa alguns tipos de ponto, mas nao todos os tipos reconhecidos documentalmente.
+* Governanca Operacional classificada como parcialmente conforme apenas por vigilancia sobre reavaliacao controlada no adapter, sem nao conformidade bloqueante.
+* Veredito: PROTEUS arquiteturalmente consistente com ressalvas evolutivas nao bloqueantes.
+* Engenharia do CASE-01 considerada concluida em termos arquiteturais, desde que as lacunas registradas permanecam como monitoramento futuro e nao como implementacao imediata.
+
+## Testes
+
+Nao executados.
+
+Justificativa: AC-01 exclusivamente documental e arquitetural, sem alteracao de codigo, runtime, persistencia ou interface. Testes existentes foram consultados como evidencia, mas a suite nao foi executada para preservar alteracoes pendentes fora do escopo.
+
+## Discovery Catalog
+
+`docs/research/DISCOVERY_CATALOG.md` foi consultado.
+
+Impacto registrado:
+
+* PA-02 reforcada: a implementacao demonstra progressao de valor por enriquecimento de camadas existentes, sem criacao de novas camadas.
+* PA-03 reforcada: conceitos documentais e unidades informacionais permanecem sem materializacao automatica quando nao ha necessidade objetiva.
+* Nenhuma Discovery foi contradita.
+* Nenhuma Discovery foi promovida automaticamente.
+* Nenhuma nova Discovery candidata foi identificada.
+
+## Observacoes da IA / Hipoteses Metodologicas
+
+* Hipotese em monitoramento: auditoria de consolidacao deve distinguir inconsistencia bloqueante de lacuna evolutiva nao estrutural.
+* Observacao simples: apresentacao pode consumir sinal consolidado sem violar PA-01, mas acoplamento direto aumenta risco de deslocamento de responsabilidade.
+* Observacao simples: instancias operacionais podem ser reconhecidas documentalmente antes de sua materializacao completa na interface.
+
+## Restricoes Mantidas
+
+* Nenhum codigo alterado.
+* Nenhuma persistencia alterada.
+* Nenhuma interface alterada.
+* Nenhuma entidade criada.
+* Nenhuma colecao criada.
+* Nenhuma camada arquitetural criada.
+* Nenhum Dominio Projeto alterado.
+* Nenhum Dossie Final alterado.
+* PA-01 preservada.
+* DISCOVERY_CATALOG.md consultado sem promocao de Discovery.
+* Alteracoes pendentes fora do escopo preservadas.
+
+---
+
 # OP-03 - Auditoria Dos Tipos De Registros Informacionais
 
 ## Data

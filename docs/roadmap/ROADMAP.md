@@ -128,6 +128,8 @@ Observação
 | OP-01 | Auditoria do Fluxo Operacional Interno da Informacao | AUDITORIA DOCUMENTAL CONCLUIDA |
 | OP-02 | Auditoria da Unidade Fundamental de Informacao | AUDITORIA DOCUMENTAL CONCLUIDA |
 | OP-03 | Auditoria dos Tipos de Registros Informacionais | AUDITORIA DOCUMENTAL CONCLUIDA |
+| AC-01 | Auditoria de Consolidacao Arquitetural | AUDITORIA DE CONSOLIDACAO CONCLUIDA |
+| PI-01 | Manual de Identidade Visual do PROTEUS | MANUAL INSTITUCIONAL CONCLUIDO |
 | GP-R02 | Investigacao Arquitetural: Progressao de Valor Entre Camadas | PESQUISA CONCLUIDA |
 | GP-R03 | Investigacao Arquitetural: Executive Context | PESQUISA CONCLUIDA |
 
@@ -874,6 +876,71 @@ Proximas auditorias operacionais sugeridas:
 * Auditar criterios de promocao de registro primario para sinal derivado ou consolidado.
 * Auditar criterios de relevancia para preservar alertas, eventos e recomendacoes no Dossie Final.
 * Auditar rastreabilidade entre registros primarios, derivados e consolidados antes de qualquer nova materializacao.
+
+AC-01:
+
+AUDITORIA DE CONSOLIDACAO CONCLUIDA.
+
+Entregavel:
+
+* Relatorio `docs/architecture/AC_01_ARCHITECTURAL_CONSOLIDATION_AUDIT.md`.
+* Implementacao atual auditada contra GP-D09A, GP-D10A, OP-00, OP-01, OP-02 e OP-03.
+* Fronteira operacional OP-00 confirmada como preservada.
+* Fluxo operacional OP-01 confirmado como representado na implementacao.
+* Unidade fundamental OP-02 confirmada como representada implicitamente por registros, eventos, snapshots, recomendacoes e referencias documentais.
+* Classificacao OP-03 confirmada como correspondente aos registros primarios, derivados, consolidados, transitorios e memoria documental.
+* PA-01 preservada; nenhuma violacao atual identificada.
+* Dashboard classificado como parcialmente conforme por preservar status via Nucleo, mas manter acoplamento direto com Analytics para serie historica do Water Health Score.
+* Instancias GP-D10A classificadas como parcialmente conformes por cobertura materializada ainda incompleta dos tipos de ponto auditados.
+* Governanca Operacional mantida sob vigilancia pelo adapter de enriquecimento observacional, sem nao conformidade bloqueante.
+* PA-02 reforcada, sem promocao.
+* PA-03 reforcada, sem promocao.
+* Nenhuma Discovery contradita.
+* Nenhuma Discovery promovida.
+* Nenhuma nova Discovery candidata identificada.
+* Veredito: PROTEUS arquiteturalmente consistente com ressalvas evolutivas nao bloqueantes.
+* Engenharia do CASE-01 considerada concluida em termos arquiteturais, desde que as lacunas registradas sejam mantidas como monitoramento futuro.
+
+Proximas acoes sugeridas:
+
+* Nao implementar automaticamente as lacunas da AC-01.
+* Auditar materializacao completa dos tipos de ponto apenas se houver necessidade operacional objetiva.
+* Monitorar a fronteira do Dashboard para evitar deslocamento de logica analitica para apresentacao.
+* Auditar indicadores nao hidricos de perdas, consumo e chuva antes de transforma-los em politica operacional formal.
+* Reavaliar persistencia CSV/JSON apenas diante de demanda real de volume, concorrencia, multiprojeto ou rastreabilidade transacional.
+
+Fase de Produto Institucional:
+
+INICIADA.
+
+Marco inaugural:
+
+PI-01 - Manual de Identidade Visual do PROTEUS.
+
+Entregavel:
+
+* Manual oficial `docs/branding/BRAND_GUIDELINES.md`.
+* Paleta oficial `docs/branding/COLOR_PALETTE.md`.
+* Tipografia institucional `docs/branding/TYPOGRAPHY.md`.
+* Regras de uso do logo `docs/branding/LOGO_USAGE.md`.
+* Diretrizes de icones `docs/branding/ICONS.md`.
+* Aplicacoes institucionais `docs/branding/APPLICATIONS.md`.
+* Estrutura reservada de ativos em `assets/logo/` e `assets/icons/`.
+* Identidade visual existente tratada como baseline oficial aprovada.
+* Nenhum novo logotipo criado.
+* Nenhum simbolo alterado.
+* Nenhuma cor institucional modificada.
+* Nenhuma Discovery criada.
+* Nenhuma Discovery promovida.
+* PA-02 preservada.
+* PA-03 preservada.
+
+Proximas acoes institucionais sugeridas:
+
+* Versionar arquivos oficiais de logo apenas quando fornecidos a partir da marca aprovada.
+* Criar Splash Screen e Tela Sobre em PI futura propria, se houver necessidade institucional.
+* Aplicar o manual em README, Architecture Handbook, apresentacoes e website sem alterar identidade.
+* Manter governanca documental da marca antes de qualquer novo material publico.
 
 Etapa executiva tambem sugerida:
 
