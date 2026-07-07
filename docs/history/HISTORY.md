@@ -1,5 +1,78 @@
 # HISTORY
 
+# PD-01 - Arquitetura Do Website Institucional Do PROTEUS
+
+## Data
+
+06/07/2026
+
+## Status
+
+ARQUITETURA DOCUMENTAL DO WEBSITE CONCLUIDA
+
+## Evento
+
+Definicao da arquitetura institucional do Website Oficial do PROTEUS como principal porta de entrada publica para universidades, pesquisadores, empresas, orgaos publicos e demais interessados, sem desenvolvimento de frontend, backend, API, banco de dados ou funcionalidade operacional.
+
+## Resultado
+
+* Estrutura `docs/website/` criada.
+* Arquitetura do website criada em `docs/website/WEBSITE_ARCHITECTURE.md`.
+* Mapa oficial de navegacao criado em `docs/website/SITE_MAP.md`.
+* Pagina Home especificada em `docs/website/HOME_PAGE.md`.
+* Pagina Sobre o PROTEUS especificada em `docs/website/ABOUT_PROTEUS.md`.
+* Pagina Funcionalidades especificada em `docs/website/FEATURES.md`.
+* Pagina Arquitetura especificada em `docs/website/ARCHITECTURE_PAGE.md`.
+* Pagina Documentacao especificada em `docs/website/DOCUMENTATION_PAGE.md`.
+* Pagina Contato especificada em `docs/website/CONTACT_PAGE.md`.
+* Guia de publicacao futura criado em `docs/website/DEPLOYMENT_GUIDE.md`.
+* Website definido como componente oficial de comunicacao institucional, nao como vitrine simples do software.
+* As quatro perguntas fundamentais foram cobertas: o que e o PROTEUS, qual problema resolve, como funciona e como conhecer ou avaliar o projeto.
+* Conteudo alinhado a AC-01, PI-01, PI-02, Kit Institucional, identidade visual, History e Roadmap.
+
+## Testes
+
+Nao executados.
+
+Justificativa: PD-01 exclusivamente institucional e documental, sem alteracao de codigo, runtime, interface, persistencia, arquitetura, dominio ou funcionalidade.
+
+## Discovery Catalog
+
+`docs/research/DISCOVERY_CATALOG.md` foi consultado.
+
+Impacto registrado:
+
+* PA-02 preservada, sem promocao.
+* PA-03 preservada, sem promocao.
+* Nenhuma Discovery foi contradita.
+* Nenhuma Discovery foi promovida automaticamente.
+* Nenhuma nova Discovery candidata foi identificada.
+
+## Observacoes da IA / Hipoteses Metodologicas
+
+* Observacao simples: website institucional pode ser tratado como arquitetura de comunicacao publica sem constituir camada de software do produto.
+* Observacao simples: mapa de navegacao reduz risco de criar paginas ficticias ou prometer funcionalidades futuras.
+* Hipotese em monitoramento: presenca web institucional exige guardrails documentais proprios para preservar fronteiras entre comunicacao, demonstracao e operacao.
+
+## Restricoes Mantidas
+
+* Nenhum frontend desenvolvido.
+* Nenhum backend desenvolvido.
+* Nenhuma API criada.
+* Nenhum banco de dados criado.
+* Nenhuma arquitetura existente alterada.
+* Nenhum modulo criado.
+* Nenhuma identidade visual modificada.
+* Nenhuma documentacao constitucional alterada.
+* Nenhuma funcionalidade criada.
+* Nenhuma Discovery criada.
+* Nenhuma Discovery promovida.
+* PA-01 preservada.
+* PA-02 e PA-03 preservadas.
+* Alteracoes pendentes fora do escopo preservadas.
+
+---
+
 # PI-02 - Kit Institucional Do PROTEUS
 
 ## Data

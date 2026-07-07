@@ -131,6 +131,7 @@ Observação
 | AC-01 | Auditoria de Consolidacao Arquitetural | AUDITORIA DE CONSOLIDACAO CONCLUIDA |
 | PI-01 | Manual de Identidade Visual do PROTEUS | MANUAL INSTITUCIONAL CONCLUIDO |
 | PI-02 | Kit Institucional do PROTEUS | KIT INSTITUCIONAL CONCLUIDO |
+| PD-01 | Arquitetura do Website Institucional do PROTEUS | ARQUITETURA DOCUMENTAL DO WEBSITE CONCLUIDA |
 | GP-R02 | Investigacao Arquitetural: Progressao de Valor Entre Camadas | PESQUISA CONCLUIDA |
 | GP-R03 | Investigacao Arquitetural: Executive Context | PESQUISA CONCLUIDA |
 
@@ -960,6 +961,34 @@ Entregavel:
 * Nenhum codigo alterado.
 * Nenhuma arquitetura alterada.
 * Nenhuma funcionalidade alterada.
+* Nenhuma identidade visual alterada.
+* Nenhuma Discovery criada.
+* Nenhuma Discovery promovida.
+* PA-01 preservada.
+* PA-02 preservada.
+* PA-03 preservada.
+
+PD-01 - Arquitetura do Website Institucional do PROTEUS:
+
+ARQUITETURA DOCUMENTAL DO WEBSITE CONCLUIDA.
+
+Entregavel:
+
+* Arquitetura institucional do website `docs/website/WEBSITE_ARCHITECTURE.md`.
+* Mapa oficial de navegacao `docs/website/SITE_MAP.md`.
+* Especificacao da Home `docs/website/HOME_PAGE.md`.
+* Especificacao da pagina Sobre `docs/website/ABOUT_PROTEUS.md`.
+* Especificacao da pagina Funcionalidades `docs/website/FEATURES.md`.
+* Especificacao da pagina Arquitetura `docs/website/ARCHITECTURE_PAGE.md`.
+* Especificacao da pagina Documentacao `docs/website/DOCUMENTATION_PAGE.md`.
+* Especificacao da pagina Contato `docs/website/CONTACT_PAGE.md`.
+* Guia de publicacao futura `docs/website/DEPLOYMENT_GUIDE.md`.
+* Website definido como componente de comunicacao institucional, nao como implementacao operacional.
+* Nenhum frontend desenvolvido.
+* Nenhum backend desenvolvido.
+* Nenhuma API criada.
+* Nenhum banco de dados criado.
+* Nenhuma arquitetura alterada.
 * Nenhuma identidade visual alterada.
 * Nenhuma Discovery criada.
 * Nenhuma Discovery promovida.
