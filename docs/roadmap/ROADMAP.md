@@ -132,6 +132,7 @@ Observação
 | PI-01 | Manual de Identidade Visual do PROTEUS | MANUAL INSTITUCIONAL CONCLUIDO |
 | PI-02 | Kit Institucional do PROTEUS | KIT INSTITUCIONAL CONCLUIDO |
 | PD-01 | Arquitetura do Website Institucional do PROTEUS | ARQUITETURA DOCUMENTAL DO WEBSITE CONCLUIDA |
+| PD-02 | Implementacao do Website Institucional do PROTEUS | WEBSITE INSTITUCIONAL IMPLEMENTADO |
 | GP-R02 | Investigacao Arquitetural: Progressao de Valor Entre Camadas | PESQUISA CONCLUIDA |
 | GP-R03 | Investigacao Arquitetural: Executive Context | PESQUISA CONCLUIDA |
 
@@ -989,6 +990,42 @@ Entregavel:
 * Nenhuma API criada.
 * Nenhum banco de dados criado.
 * Nenhuma arquitetura alterada.
+* Nenhuma identidade visual alterada.
+* Nenhuma Discovery criada.
+* Nenhuma Discovery promovida.
+* PA-01 preservada.
+* PA-02 preservada.
+* PA-03 preservada.
+
+PD-02 - Implementacao do Website Institucional do PROTEUS:
+
+WEBSITE INSTITUCIONAL IMPLEMENTADO.
+
+Entregavel:
+
+* Website estatico implementado em `website/`.
+* Home `website/index.html`.
+* Sobre o PROTEUS `website/about.html`.
+* Plataforma `website/platform.html`.
+* Funcionalidades `website/features.html`.
+* Arquitetura `website/architecture.html`.
+* Casos de Uso `website/use-cases.html`.
+* Documentacao `website/documentation.html`.
+* Demonstracao `website/demonstration.html`.
+* Roadmap `website/roadmap.html`.
+* Historia `website/history.html`.
+* Contato `website/contact.html`.
+* CSS responsivo `website/assets/css/styles.css`.
+* JavaScript leve de navegacao `website/assets/js/site.js`.
+* Ativo visual institucional nao-logotipo `website/assets/images/monitoring-panel.svg`.
+* Navegacao reproduzindo o SITE_MAP aprovado na PD-01.
+* Conteudo derivado exclusivamente da documentacao existente.
+* Compatibilidade com publicacao estatica e GitHub Pages preparada.
+* Nenhum backend criado.
+* Nenhuma API criada.
+* Nenhum banco de dados criado.
+* Nenhuma autenticacao criada.
+* Nenhuma funcionalidade operacional implementada no website.
 * Nenhuma identidade visual alterada.
 * Nenhuma Discovery criada.
 * Nenhuma Discovery promovida.

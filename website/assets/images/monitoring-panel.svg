@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 640" role="img" aria-labelledby="title desc">
+  <title id="title">Painel institucional de monitoramento hidrico</title>
+  <desc id="desc">Composicao visual abstrata com indicadores, fluxo de informacao e sinais hidricos do PROTEUS.</desc>
+  <rect width="960" height="640" fill="#0d1b2a"/>
+  <rect x="60" y="56" width="840" height="528" rx="18" fill="#112240" stroke="#1e3a5f" stroke-width="2"/>
+  <rect x="92" y="92" width="300" height="92" rx="10" fill="#0f2748" stroke="#1e3a5f"/>
+  <rect x="420" y="92" width="200" height="92" rx="10" fill="#0f2748" stroke="#1e3a5f"/>
+  <rect x="648" y="92" width="220" height="92" rx="10" fill="#0f2748" stroke="#1e3a5f"/>
+  <text x="116" y="130" fill="#4fc3f7" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700">Water Health Score</text>
+  <text x="116" y="164" fill="#f6fbff" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="700">82</text>
+  <text x="444" y="130" fill="#cfd8dc" font-family="Arial, Helvetica, sans-serif" font-size="19">Eventos</text>
+  <text x="444" y="164" fill="#66bb6a" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="700">Governados</text>
+  <text x="672" y="130" fill="#cfd8dc" font-family="Arial, Helvetica, sans-serif" font-size="19">Sinais</text>
+  <text x="672" y="164" fill="#ffa726" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="700">Analiticos</text>
+  <polyline points="116,420 210,360 304,378 398,298 492,318 586,242 680,258 806,190" fill="none" stroke="#4fc3f7" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+  <polyline points="116,470 210,442 304,454 398,414 492,430 586,386 680,392 806,344" fill="none" stroke="#66bb6a" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  <g fill="#1e3f6e" stroke="#4fc3f7" stroke-width="2">
+    <circle cx="116" cy="420" r="9"/>
+    <circle cx="398" cy="298" r="9"/>
+    <circle cx="586" cy="242" r="9"/>
+    <circle cx="806" cy="190" r="9"/>
+  </g>
+  <g fill="#0f2748" stroke="#1e3a5f">
+    <rect x="92" y="230" width="108" height="54" rx="8"/>
+    <rect x="224" y="230" width="108" height="54" rx="8"/>
+    <rect x="356" y="230" width="108" height="54" rx="8"/>
+    <rect x="488" y="230" width="108" height="54" rx="8"/>
+    <rect x="620" y="230" width="108" height="54" rx="8"/>
+    <rect x="752" y="230" width="108" height="54" rx="8"/>
+  </g>
+  <g fill="#cfd8dc" font-family="Arial, Helvetica, sans-serif" font-size="14" text-anchor="middle">
+    <text x="146" y="263">Registro</text>
+    <text x="278" y="263">Nucleo</text>
+    <text x="410" y="263">Analytics</text>
+    <text x="542" y="263">Eventos</text>
+    <text x="674" y="263">Recomend.</text>
+    <text x="806" y="263">Executive</text>
+  </g>
+</svg>
