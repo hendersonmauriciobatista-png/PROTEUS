@@ -340,7 +340,7 @@ Formula candidata, ainda nao oficial:
 
 Proximas pesquisas sugeridas:
 
-1. GP-R03 - Auditoria documental do H&A para validar a mesma matriz em Memory, Context, Guidance, Governance e Decision.
+1. GP-R06 - Auditoria documental do H&A para validar a mesma matriz em Memory, Context, Guidance, Governance e Decision.
 2. GP-R04 - Formular criterios formais para diferenciar progressao linear, dependencia lateral autorizada e violacao por autoridade paralela.
 3. GP-R05 - Avaliar se PA-02 deve virar principio oficial, padrao arquitetural recomendado ou apenas heuristica de auditoria.
 

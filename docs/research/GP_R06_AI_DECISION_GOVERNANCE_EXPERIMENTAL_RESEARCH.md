@@ -1,4 +1,4 @@
-# GP-R03 — Governança Experimental da Decisão por IA
+# GP-R06 — Governança Experimental da Decisão por IA
 
 > **PESQUISA EXPERIMENTAL — NÃO NORMATIVA — ESTADO CONGELADO**
 
@@ -6,7 +6,7 @@
 
 | Campo | Registro |
 | --- | --- |
-| Programa experimental | GP-R03 |
+| Programa experimental | GP-R06 |
 | Nome | Governança Experimental da Decisão por IA |
 | Natureza | PESQUISA EXPERIMENTAL — NÃO NORMATIVA |
 | Estado | CONGELADO |
@@ -17,7 +17,17 @@
 | Alteração da arquitetura do PROTEUS | Não autorizada |
 | Implementação de componentes | Não autorizada |
 
-Esta pesquisa foi inicialmente discutida sob a designação provisória **GP-R02**, mas recebeu o identificador definitivo **GP-R03** para evitar colisão documental com a pesquisa já registrada como `GP_R02_VALUE_PROGRESSION_AUDIT.md`.
+Esta pesquisa foi inicialmente discutida sob a designação **GP-R02 (proposta)**, passou a utilizar **GP-R03** como designação provisória e recebeu **GP-R06** como identificador canônico para corrigir a colisão documental certificada pela GP-PE-20B.
+
+```text
+Designação inicial: GP-R02 (proposta)
+  ↓
+Designação provisória: GP-R03
+  ↓
+Identificador canônico: GP-R06
+```
+
+Essa correção preserva a pesquisa já registrada como `GP_R02_VALUE_PROGRESSION_AUDIT.md` e mantém GP-R03 como identificador único da investigação arquitetural `GP_R03_EXECUTIVE_CONTEXT_AUDIT.md`.
 
 Este documento realiza exclusivamente uma consolidação documental passiva. Seu conteúdo não cria obrigação, requisito, princípio oficial, autoridade para IA, autorização de implementação ou alteração metodológica no ICFACTORY ou no PROTEUS.
 
@@ -61,7 +71,7 @@ São proposições candidatas ainda não comprovadas, destinadas apenas a futura
 
 ### 3.3 Conceitos experimentais
 
-O Inventário de Premissas, o Artefato de Fundamentação da Decisão — AFD, o IRP, o Harness Experimental GP-R03 e os possíveis Assessment, Improvement e Validation Engines são conceitos de pesquisa. Não representam especificações aprovadas nem componentes existentes.
+O Inventário de Premissas, o Artefato de Fundamentação da Decisão — AFD, o IRP, o Harness Experimental GP-R06 e os possíveis Assessment, Improvement e Validation Engines são conceitos de pesquisa. Não representam especificações aprovadas nem componentes existentes.
 
 ### 3.4 Limitações e condições de retomada
 
@@ -168,9 +178,9 @@ O AFD não é apresentado como explicação retrospectiva automática nem como p
 
 Não existe, nesta etapa, esquema oficial, template obrigatório, formato de persistência, integração ou mecanismo de execução do AFD.
 
-## 8. Harness Experimental GP-R03
+## 8. Harness Experimental GP-R06
 
-O **Harness Experimental GP-R03** é apenas um protocolo conceitual para organizar futuros ensaios de governança da decisão. Ele não é software, não substitui Harnesses existentes e não autoriza sua modificação.
+O **Harness Experimental GP-R06** é apenas um protocolo conceitual para organizar futuros ensaios de governança da decisão. Ele não é software, não substitui Harnesses existentes e não autoriza sua modificação.
 
 ### 8.1 Objetivo experimental
 
@@ -344,7 +354,7 @@ O acesso a uma fundamentação bem estruturada não elimina a necessidade de val
 
 ## 14. Estado congelado
 
-O programa experimental GP-R03 encontra-se **CONGELADO** após a consolidação do experimento inicial.
+O programa experimental GP-R06 encontra-se **CONGELADO** após a consolidação do experimento inicial.
 
 Enquanto esse estado permanecer:
 

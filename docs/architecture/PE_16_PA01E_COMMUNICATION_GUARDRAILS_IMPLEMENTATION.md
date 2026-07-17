@@ -30,7 +30,7 @@ Não integra o escopo:
 * formalizar exceções históricas como nova regra arquitetural;
 * criar factories, services, adapters, facades ou novas camadas;
 * alterar runtime, contratos, persistência, regras, políticas ou schemas;
-* modificar a Constituição do ICFACTORY, Harnesses ou conceitos da GP-R03;
+* modificar a Constituição do ICFACTORY, Harnesses ou conceitos da GP-R06;
 * corrigir falhas externas ao escopo desta GP.
 
 ## 3. Arquivos da intervenção

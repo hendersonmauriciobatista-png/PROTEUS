@@ -38,7 +38,7 @@ Esta GP auditou exclusivamente:
 * manutenção futura;
 * proveniência e reprodutibilidade.
 
-Não foram alterados testes, runtime, services, adapters, repositories, interfaces, contratos, `HISTORY.md`, `ROADMAP.md`, documentos constitucionais, Harnesses ou documentos da GP-R03.
+Não foram alterados testes, runtime, services, adapters, repositories, interfaces, contratos, `HISTORY.md`, `ROADMAP.md`, documentos constitucionais, Harnesses ou documentos da GP-R06.
 
 As mutações ocorreram exclusivamente em diretórios temporários externos ao repositório original. Nenhum artefato temporário foi incorporado.
 
