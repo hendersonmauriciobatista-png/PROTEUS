@@ -1,5 +1,108 @@
 # HISTORY
 
+# GP-PE-24 - Plano Oficial De Promocao Patrimonial Do Acervo Tecnico
+
+## Data
+
+17/07/2026
+
+## Status
+
+CONCLUIDA - PLANO APROVADO COM RESSALVAS
+
+## Evento
+
+Elaboracao documental da politica oficial, dos gates e dos lotes recomendados para futura promocao patrimonial do acervo tecnico inventariado pela GP-PE-23.
+
+## Resultado
+
+* Plano oficial criado em `docs/architecture/PE_24_PATRIMONIAL_PROMOTION_PLAN.md`.
+* Criterios de promocao, permanencia local, consolidacao, revisao, arquivamento futuro, ativos experimentais e patrimonio operacional definidos.
+* Politica de custodia constitucional, operacional, experimental e temporaria definida.
+* Oito lotes futuros estabelecidos com dependencias, riscos, prioridades, impactos, pre-requisitos e criterios de conclusao.
+* Gates G0 a G5 e cronograma exclusivamente logico registrados.
+* Veredito formal: PLANO APROVADO COM RESSALVAS.
+* Nenhum lote autorizado ou iniciado.
+* Nenhum artefato promovido e Onda B nao iniciada.
+
+## Restricoes Preservadas
+
+* Nenhum codigo, arquitetura, funcionalidade, arquivo, dado ou midia alterado por este planejamento.
+* Nenhum arquivo movido, excluido ou renomeado.
+* Nenhuma pesquisa, Discovery ou autoridade promovida.
+* ICFACTORY integralmente preservado.
+
+---
+
+# GP-PE-23 - Inventario E Classificacao Do Acervo Tecnico Do PROTEUS
+
+## Data
+
+17/07/2026
+
+## Status
+
+CONCLUIDA - ACERVO FRAGMENTADO
+
+## Evento
+
+Auditoria documental passiva do patrimonio tecnico preexistente do PROTEUS antes do inicio da Onda B.
+
+## Resultado
+
+* Relatorio oficial criado em `docs/architecture/PE_23_TECHNICAL_ASSET_INVENTORY.md`.
+* 346 artefatos preexistentes auditados, totalizando 425.773.327 bytes.
+* Classificacao unica: 87 OFICIAL, 5 CERTIFICADO, 73 OPERACIONAL, 61 SUPORTE, 5 PESQUISA, 31 EXPERIMENTAL, 84 TEMPORÁRIO e 0 OBSOLETO.
+* 173 artefatos rastreados e 173 ainda locais.
+* Acervo local correspondente a 99,51% do volume fisico auditado.
+* Patrimonio critico, certificado, local e recomendado para promocao identificado.
+* Condicoes para promocao, revisao, consolidacao e permanencia experimental registradas.
+* Veredito formal: ACERVO FRAGMENTADO.
+* Nenhuma promocao executada e Onda B nao iniciada.
+
+## Restricoes Preservadas
+
+* Nenhum codigo, funcionalidade, arquitetura, arquivo, dado ou midia alterado por esta auditoria.
+* Nenhum arquivo movido, excluido ou renomeado.
+* Nenhuma pesquisa, Discovery ou autoridade promovida.
+* ICFACTORY integralmente preservado.
+
+---
+
+# GP-PE-22 - Auditoria De Elegibilidade Da Onda B
+
+## Data
+
+17/07/2026
+
+## Status
+
+CONCLUIDA - ELEGIVEL COM RESSALVAS
+
+## Evento
+
+Auditoria passiva do estado arquitetural, tecnico e documental consolidado apos a Onda A para decisao formal de elegibilidade da Onda B.
+
+## Resultado
+
+* Relatorio oficial criado em `docs/architecture/PE_22_WAVE_B_ELIGIBILITY_AUDIT.md`.
+* Arquitetura atual considerada apta a suportar a Onda B.
+* PA-01 e seus desdobramentos considerados preservados na baseline versionada.
+* Suite completa executada com 110 testes aprovados.
+* Nenhuma pendencia obrigatoria da Onda A identificada.
+* Ressalvas documentais, de reproducibilidade e de robustez preventiva registradas.
+* Nenhuma ressalva classificada como bloqueante para a abertura formal da Onda B.
+* Veredito formal: ELEGIVEL COM RESSALVAS.
+* Onda B nao iniciada automaticamente.
+
+## Restricoes Preservadas
+
+* Nenhum codigo, teste, funcionalidade, arquitetura, modulo, schema ou dado alterado por esta auditoria.
+* Nenhuma Constituicao, Discovery, pesquisa ou autoridade reservada promovida.
+* ICFACTORY integralmente preservado.
+
+---
+
 # GP-PE-21 - Consolidacao Documental Da Onda A
 
 ## Data

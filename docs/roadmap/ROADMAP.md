@@ -139,6 +139,9 @@ Observação
 | GP-PE-18B | Restauracao da Proveniencia Tecnica da PA-01 | CONCLUIDA - 28 ARQUIVOS PROMOVIDOS |
 | GP-PE-20D | Resolucao dos Bloqueadores Estruturais do Gate 0 | CONCLUIDA |
 | GP-PE-20E | Certificacao Final do Gate 0 | CONCLUIDA - GATE 0 CERTIFICADO COM RESSALVAS |
+| GP-PE-22 | Auditoria de Elegibilidade da Onda B | CONCLUIDA - ELEGIVEL COM RESSALVAS |
+| GP-PE-23 | Inventario e Classificacao do Acervo Tecnico | CONCLUIDA - ACERVO FRAGMENTADO |
+| GP-PE-24 | Plano de Promocao Patrimonial do Acervo Tecnico | CONCLUIDA - PLANO APROVADO COM RESSALVAS |
 | GP-R02 | Investigacao Arquitetural: Progressao de Valor Entre Camadas | PESQUISA CONCLUIDA |
 | GP-R03 | Investigacao Arquitetural: Executive Context | PESQUISA CONCLUIDA |
 | GP-R06 | Governanca Experimental da Decisao por IA | PESQUISA EXPERIMENTAL - NAO NORMATIVA - ESTADO CONGELADO |
@@ -180,6 +183,62 @@ Ressalvas:
 
 ---
 
+# Elegibilidade Da Onda B
+
+Status: **ELEGIVEL COM RESSALVAS**
+
+Autoridade: `docs/architecture/PE_22_WAVE_B_ELIGIBILITY_AUDIT.md`.
+
+Decisao formal:
+
+* a arquitetura atual suporta a evolucao da Onda B;
+* PA-01 e seus desdobramentos permanecem preservados;
+* a suite completa foi aprovada com 110 testes;
+* nenhuma pendencia obrigatoria da Onda A foi identificada;
+* nao ha bloqueador arquitetural para a abertura formal;
+* ressalvas documentais, de reproducibilidade e de robustez dos guardrails devem ser tratadas de forma governada;
+* a abertura da Onda B nao autoriza implementacao automatica;
+* a primeira frente recomendada e documental: inventario, classificacao e reproducibilidade do acervo local reservado pela GP-PE-21.
+
+---
+
+# Inventario Do Acervo Tecnico
+
+Status: **ACERVO FRAGMENTADO**
+
+Autoridade: `docs/architecture/PE_23_TECHNICAL_ASSET_INVENTORY.md`.
+
+Resultado:
+
+* 346 artefatos preexistentes auditados;
+* 173 rastreados e 173 ainda locais;
+* classificacao unica aplicada a todo o universo;
+* 87 OFICIAL, 5 CERTIFICADO, 73 OPERACIONAL, 61 SUPORTE, 5 PESQUISA, 31 EXPERIMENTAL, 84 TEMPOR?RIO e 0 OBSOLETO;
+* acervo local concentra 99,51% do volume fisico;
+* pacotes aptos a promocao, sujeitos a revisao, dependentes de consolidacao e obrigatoriamente experimentais identificados;
+* nenhuma promocao executada;
+* Onda B nao iniciada.
+
+---
+
+# Plano De Promocao Patrimonial
+
+Status: **PLANO APROVADO COM RESSALVAS**
+
+Autoridade: `docs/architecture/PE_24_PATRIMONIAL_PROMOTION_PLAN.md`.
+
+Resultado:
+
+* politica oficial de promocao e custodia definida;
+* criterios de promocao, permanencia local, consolidacao, revisao e arquivamento futuro registrados;
+* patrimonio constitucional, operacional, experimental e temporario delimitado;
+* oito lotes futuros organizados em cronograma logico sem datas;
+* gates G0 a G5 definidos para cada execucao futura;
+* nenhum lote autorizado ou iniciado;
+* nenhum artefato promovido;
+* Onda B nao iniciada.
+
+---
 # Estado Arquitetural Consolidado
 
 ## Camada Operacional
