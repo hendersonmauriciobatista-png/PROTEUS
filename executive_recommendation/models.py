@@ -25,6 +25,9 @@ class RecommendationEvidence:
     metric: str
     value: Optional[float]
     description: str
+    origin_layer: str = ""
+    origin_artifact: str = ""
+    origin_reference: str = ""
 
 
 @dataclass(frozen=True)

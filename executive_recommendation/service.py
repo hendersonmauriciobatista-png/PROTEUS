@@ -71,6 +71,9 @@ class ExecutiveRecommendationService:
                     metric="water_health_score",
                     value=score,
                     description=f"Water Health Score consolidado: {score}/100.",
+                    origin_layer="Analytics",
+                    origin_artifact="WaterHealthScore",
+                    origin_reference="analytics_snapshot.water_health_score.score",
                 )
             )
             status = self._read_field(water_health_score, "status")
@@ -81,15 +84,21 @@ class ExecutiveRecommendationService:
                         metric="water_health_status",
                         value=None,
                         description=f"Status consolidado do Water Health Score: {status}.",
+                        origin_layer="Analytics",
+                        origin_artifact="WaterHealthScore",
+                        origin_reference="analytics_snapshot.water_health_score.status",
                     )
                 )
-            for explanation in self._read_list(water_health_score, "explanations")[:3]:
+            for index, explanation in enumerate(self._read_list(water_health_score, "explanations")[:3]):
                 evidence.append(
                     RecommendationEvidence(
                         source="analytics",
                         metric="water_health_score_explanation",
                         value=None,
                         description=explanation,
+                        origin_layer="Analytics",
+                        origin_artifact="WaterHealthScore",
+                        origin_reference=f"analytics_snapshot.water_health_score.explanations[{index}]",
                     )
                 )
         else:
@@ -99,6 +108,9 @@ class ExecutiveRecommendationService:
                     metric="water_health_score",
                     value=None,
                     description="Water Health Score nao disponivel em sinal consolidado.",
+                    origin_layer="Analytics",
+                    origin_artifact="AnalyticsSnapshot",
+                    origin_reference="analytics_snapshot.water_health_score",
                 )
             )
 
@@ -111,21 +123,27 @@ class ExecutiveRecommendationService:
                     metric="preventive_alerts",
                     value=len(alerts),
                     description=f"{len(alerts)} alerta(s) preventivo(s) consolidado(s): {self._format_counts(severities)}.",
+                    origin_layer="Analytics",
+                    origin_artifact="AnalyticsSnapshot.alerts",
+                    origin_reference="analytics_snapshot.alerts",
                 )
             )
-            for alert in alerts[:3]:
+            for index, alert in enumerate(alerts[:3]):
                 evidence.append(
                     RecommendationEvidence(
                         source="analytics",
                         metric=self._read_field(alert, "metric") or "alert",
                         value=None,
                         description=self._format_alert_evidence(alert),
+                        origin_layer="Analytics",
+                        origin_artifact="PreventiveAlert",
+                        origin_reference=f"analytics_snapshot.alerts[{index}]",
                     )
                 )
 
-        trends = self._read_list(analytics_snapshot, "quality_trends") + self._read_list(
-            analytics_snapshot, "consumption_trends"
-        )
+        quality_trends = self._read_list(analytics_snapshot, "quality_trends")
+        consumption_trends = self._read_list(analytics_snapshot, "consumption_trends")
+        trends = quality_trends + consumption_trends
         if trends:
             directions = self._count_by_field(trends, "direction")
             evidence.append(
@@ -134,9 +152,19 @@ class ExecutiveRecommendationService:
                     metric="trends",
                     value=len(trends),
                     description=f"{len(trends)} tendencia(s) consolidada(s): {self._format_counts(directions)}.",
+                    origin_layer="Analytics",
+                    origin_artifact="AnalyticsSnapshot.trends",
+                    origin_reference="analytics_snapshot.quality_trends + analytics_snapshot.consumption_trends",
                 )
             )
-            for trend in trends[:3]:
+            trend_entries = [
+                (trend, f"analytics_snapshot.quality_trends[{index}]")
+                for index, trend in enumerate(quality_trends)
+            ] + [
+                (trend, f"analytics_snapshot.consumption_trends[{index}]")
+                for index, trend in enumerate(consumption_trends)
+            ]
+            for trend, origin_reference in trend_entries[:3]:
                 evidence.append(
                     RecommendationEvidence(
                         source="analytics",
@@ -144,6 +172,9 @@ class ExecutiveRecommendationService:
                         value=None,
                         description=self._read_field(trend, "explanation")
                         or "Tendencia consolidada sem explicacao textual.",
+                        origin_layer="Analytics",
+                        origin_artifact="TrendResult",
+                        origin_reference=origin_reference,
                     )
                 )
 
@@ -160,6 +191,9 @@ class ExecutiveRecommendationService:
                         "Resumo de governanca consolidado recebido: "
                         f"{self._format_governance_snapshot(governance_snapshot)}."
                     ),
+                    origin_layer="Operational Governance",
+                    origin_artifact="governance_snapshot",
+                    origin_reference="governance_snapshot",
                 )
             )
 
@@ -176,10 +210,31 @@ class ExecutiveRecommendationService:
                     metric="observational_status",
                     value=None,
                     description=description,
+                    origin_layer="Nucleo Hidrologico",
+                    origin_artifact="observational_result",
+                    origin_reference=self._observational_origin_reference(observational_result),
                 )
             )
 
         return evidence
+
+    def _observational_origin_reference(self, observational_result):
+        references = []
+        for field_name in (
+            "policy_id",
+            "policy_name",
+            "observational_status",
+            "status",
+            "observational_severity",
+            "severity",
+            "limit_origin",
+            "explainability",
+        ):
+            if self._read_field(observational_result, field_name):
+                references.append(field_name)
+        if not references:
+            return "observational_result"
+        return "observational_result." + "|".join(references)
 
     def _enrich_rationale(self, rationale, analytics_snapshot, governance_snapshot):
         details = []

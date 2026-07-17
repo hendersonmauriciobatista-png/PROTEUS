@@ -5,6 +5,7 @@ from analytics.models import AnalyticsSnapshot, PreventiveAlert, TrendResult, Wa
 from executive_recommendation import ExecutiveRecommendationService
 from executive_recommendation.models import RecommendationAction, RecommendationPriority
 import executive_recommendation.service as recommendation_service_module
+from monitoramento_hidrico.status_semantics import WATER_HEALTH_SCORE_GOOD
 
 
 def analytics_snapshot_with_score(score, alerts=None, trends=None, explanations=None):
@@ -13,7 +14,7 @@ def analytics_snapshot_with_score(score, alerts=None, trends=None, explanations=
         quality_trends=trends,
         consumption_trends=[],
         alerts=alerts or [],
-        water_health_score=WaterHealthScore(score=score, status="Bom", explanations=explanations or []),
+        water_health_score=WaterHealthScore(score=score, status=WATER_HEALTH_SCORE_GOOD, explanations=explanations or []),
     )
 
 
@@ -136,6 +137,73 @@ class ExecutiveRecommendationServiceTests(unittest.TestCase):
         self.assertIn("trends", evidence_metrics)
         self.assertIn("governance_snapshot", evidence_metrics)
         self.assertGreaterEqual(recommendation.confidence, 0.95)
+
+    def test_recommendation_evidence_has_traceability_to_consolidated_origins(self):
+        alerts = [
+            PreventiveAlert(
+                severity="alto",
+                domain="qualidade_agua",
+                metric="ph",
+                message="Atencao preventiva",
+                evidence="Valor atual 5.5000",
+                recommendation="Acompanhar novas medicoes.",
+            )
+        ]
+        trends = [
+            TrendResult(
+                domain="qualidade_agua",
+                metric="ph",
+                direction="descendo",
+                previous_average=7.0,
+                recent_average=5.5,
+                delta=-1.5,
+                explanation="pH em tendencia de queda ja consolidada.",
+            )
+        ]
+
+        snapshot = ExecutiveRecommendationService().build_snapshot(
+            analytics_snapshot=analytics_snapshot_with_score(
+                64,
+                alerts=alerts,
+                trends=trends,
+                explanations=["Score penalizado por sinal observacional consolidado."],
+            ),
+            governance_snapshot={"ABERTO": 1, "MONITORAMENTO": 0},
+            observational_result={
+                "policy_id": "politica-ph",
+                "observational_status": "ATENCAO",
+                "observational_severity": "media",
+                "limit_origin": "catalogo:limite_observacional",
+                "explainability": "resultado ATENCAO ja consolidado",
+            },
+        )
+
+        evidence = snapshot.recommendations[0].evidence
+        trace_pairs = {(item.origin_layer, item.origin_artifact) for item in evidence}
+
+        self.assertIn(("Analytics", "WaterHealthScore"), trace_pairs)
+        self.assertIn(("Analytics", "PreventiveAlert"), trace_pairs)
+        self.assertIn(("Analytics", "TrendResult"), trace_pairs)
+        self.assertIn(("Operational Governance", "governance_snapshot"), trace_pairs)
+        self.assertIn(("Nucleo Hidrologico", "observational_result"), trace_pairs)
+        self.assertTrue(all(item.origin_reference for item in evidence))
+        self.assertTrue(
+            any("policy_id" in item.origin_reference for item in evidence if item.source == "observational_core_result")
+        )
+
+    def test_recommendation_evidence_traceability_is_contractual_and_backward_compatible(self):
+        snapshot = ExecutiveRecommendationService().build_snapshot(
+            analytics_snapshot=analytics_snapshot_with_score(91)
+        )
+
+        evidence = snapshot.recommendations[0].evidence[0]
+
+        self.assertEqual("analytics", evidence.source)
+        self.assertEqual("water_health_score", evidence.metric)
+        self.assertEqual(91, evidence.value)
+        self.assertEqual("Analytics", evidence.origin_layer)
+        self.assertEqual("WaterHealthScore", evidence.origin_artifact)
+        self.assertEqual("analytics_snapshot.water_health_score.score", evidence.origin_reference)
 
 
 if __name__ == "__main__":
