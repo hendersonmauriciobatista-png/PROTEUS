@@ -142,6 +142,7 @@ Observação
 | GP-PE-22 | Auditoria de Elegibilidade da Onda B | CONCLUIDA - ELEGIVEL COM RESSALVAS |
 | GP-PE-23 | Inventario e Classificacao do Acervo Tecnico | CONCLUIDA - ACERVO FRAGMENTADO |
 | GP-PE-24 | Plano de Promocao Patrimonial do Acervo Tecnico | CONCLUIDA - PLANO APROVADO COM RESSALVAS |
+| GP-PE-25 | Execucao do Lote 01 de Promocao Patrimonial | CONCLUIDA - LOTE 01 CONCLUIDO COM RESSALVAS |
 | GP-R02 | Investigacao Arquitetural: Progressao de Valor Entre Camadas | PESQUISA CONCLUIDA |
 | GP-R03 | Investigacao Arquitetural: Executive Context | PESQUISA CONCLUIDA |
 | GP-R06 | Governanca Experimental da Decisao por IA | PESQUISA EXPERIMENTAL - NAO NORMATIVA - ESTADO CONGELADO |
@@ -213,7 +214,7 @@ Resultado:
 * 346 artefatos preexistentes auditados;
 * 173 rastreados e 173 ainda locais;
 * classificacao unica aplicada a todo o universo;
-* 87 OFICIAL, 5 CERTIFICADO, 73 OPERACIONAL, 61 SUPORTE, 5 PESQUISA, 31 EXPERIMENTAL, 84 TEMPOR?RIO e 0 OBSOLETO;
+* 87 OFICIAL, 5 CERTIFICADO, 73 OPERACIONAL, 61 SUPORTE, 5 PESQUISA, 31 EXPERIMENTAL, 84 TEMPORÁRIO e 0 OBSOLETO;
 * acervo local concentra 99,51% do volume fisico;
 * pacotes aptos a promocao, sujeitos a revisao, dependentes de consolidacao e obrigatoriamente experimentais identificados;
 * nenhuma promocao executada;
@@ -239,6 +240,26 @@ Resultado:
 * Onda B nao iniciada.
 
 ---
+
+# Execucao Do Lote 01 De Promocao Patrimonial
+
+Status: **LOTE 01 CONCLUIDO COM RESSALVAS**
+
+Autoridade: `docs/architecture/PE_25_LOT01_PROMOTION_EXECUTION.md`.
+
+Resultado:
+
+* autoridades PE-22, PE-23 e PE-24 promovidas no commit `25aca33`;
+* rastreabilidade minima promovida em HISTORY e ROADMAP;
+* Gates G0 a G5 executados;
+* nenhuma alteracao de codigo, arquitetura, funcionalidade, dado ou midia;
+* publicacao no remoto permanece como ressalva nao bloqueante;
+* nenhum artefato dos lotes seguintes promovido;
+* Lote 02 nao autorizado e nao iniciado;
+* Onda B funcional nao iniciada.
+
+---
+
 # Estado Arquitetural Consolidado
 
 ## Camada Operacional

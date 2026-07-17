@@ -1,5 +1,39 @@
 # HISTORY
 
+# GP-PE-25 - Execucao Do Lote 01 De Promocao Patrimonial
+
+## Data
+
+17/07/2026
+
+## Status
+
+CONCLUIDA - LOTE 01 CONCLUIDO COM RESSALVAS
+
+## Evento
+
+Execucao controlada do Lote 01 definido pela GP-PE-24, limitada a promocao das autoridades GP-PE-22, GP-PE-23 e GP-PE-24 e de sua rastreabilidade minima.
+
+## Resultado
+
+* Relatorio oficial criado em `docs/architecture/PE_25_LOT01_PROMOTION_EXECUTION.md`.
+* PE-22, PE-23 e PE-24 promovidos ao patrimonio versionado no commit `25aca33`.
+* HISTORY e ROADMAP atualizados por selecao granular, sem absorver alteracoes alheias ao lote.
+* Gates G0 a G5 executados e registrados.
+* Custodia local concluida; publicacao remota permanece pendente e nao bloqueante.
+* Veredito formal: LOTE 01 CONCLUIDO COM RESSALVAS.
+* Lote 02 nao autorizado e nao iniciado.
+* Onda B funcional nao iniciada.
+
+## Restricoes Preservadas
+
+* Nenhum codigo, arquitetura, funcionalidade, dado ou midia alterado.
+* Nenhum arquivo movido, excluido ou renomeado.
+* Nenhum artefato dos Lotes 02 a 08 promovido.
+* ICFACTORY integralmente preservado.
+
+---
+
 # GP-PE-24 - Plano Oficial De Promocao Patrimonial Do Acervo Tecnico
 
 ## Data
