@@ -1,5 +1,92 @@
 # HISTORY
 
+# GP-PE-21 - Consolidacao Documental Da Onda A
+
+## Data
+
+16/07/2026
+
+## Status
+
+ONDA A CONSOLIDADA
+
+## Evento
+
+Consolidacao em HISTORY e ROADMAP das autoridades reproduziveis no HEAD, apos a certificacao final do Gate 0 pela GP-PE-20E.
+
+## Autoridades Consolidadas
+
+### GP-PE-17 - Auditoria De Efetividade Dos Guardrails Da PA-01E
+
+* Auditoria registrada como CONCLUIDA.
+* Autoridade: `docs/architecture/PE_17_PA01E_COMMUNICATION_GUARDRAILS_EFFECTIVENESS_AUDIT.md`.
+* Commit de promocao: `e381a2dd7f43da9014ee53e96b44f9ccafbc5e97`.
+* Parecer historico preservado: guardrails parcialmente efetivos na arvore entao auditada e nao reproduziveis no HEAD entao auditado.
+* A nao reprodutibilidade observada pela GP-PE-17 foi posteriormente tratada pelas promocoes controladas GP-PE-18A e GP-PE-18B; o resultado original da auditoria nao foi reescrito.
+
+### GP-PE-18A - Promocao Da Autoridade Documental Da PA-01
+
+* Promocao documental registrada como CONCLUIDA.
+* Commit: `6248f0da5d49f441f4333eab45b890a36f95ce40`.
+* Evidencia estrita do commit: adicao dos 14 documentos arquiteturais PE-02 a PE-15.
+* Nenhuma implementacao tecnica foi atribuida a esta promocao documental.
+
+### GP-PE-18B - Restauracao Da Proveniencia Tecnica Da PA-01
+
+* Promocao tecnica registrada como CONCLUIDA.
+* Commit: `a1dc51ac8836f24765c46b7a165f2c388fc7db26`.
+* Evidencia estrita do commit: promocao atomica de 16 arquivos de runtime e 12 arquivos de teste da PA-01.
+* Nenhum arquivo documental foi atribuido ao commit da GP-PE-18B.
+
+### GP-A22E - Rastreabilidade Das Recomendacoes Executivas
+
+* GP-A22E confirmada como CONCLUIDA.
+* Autoridade documental: `docs/architecture/GP_A22E_EXECUTIVE_RECOMMENDATION_TRACEABILITY.md`.
+* Commit de promocao: `1b755361726fee04e4a01faa1a746cc4cc7dca70`.
+* Evidencia estrita do commit: documento de rastreabilidade, dois modulos de recomendacao executiva e teste diretamente relacionado.
+* Estado consolidado no HISTORY e no ROADMAP: CONCLUIDA.
+
+### GP-R03 E GP-R06 - Unicidade E Proveniencia
+
+* GP-R03 preservada exclusivamente como `Executive Context`, com autoridade em `docs/research/GP_R03_EXECUTIVE_CONTEXT_AUDIT.md`.
+* A pesquisa `Governanca Experimental da Decisao por IA` recebeu o identificador canonico GP-R06.
+* Natureza da GP-R06: PESQUISA EXPERIMENTAL - NAO NORMATIVA - ESTADO CONGELADO.
+* Cadeia historica preservada: GP-R02 (proposta) -> GP-R03 (designacao provisoria) -> GP-R06 (identificador canonico).
+* A GP-R06 nao recebeu autoridade normativa, constitucional ou de implementacao.
+
+### Preservacao De `ARCHITECTURAL_PRINCIPLES.md`
+
+* `docs/architecture/ARCHITECTURAL_PRINCIPLES.md` permanece como autoridade arquitetural fundacional vigente da PA-01.
+* A decisao registrada e de preservacao, nao de recriacao.
+* A exclusao local sem autoridade foi cancelada.
+* Regras e motivacoes arquiteturais permaneceram identicas ao conteudo versionado.
+
+### GP-PE-20D - Resolucao Dos Bloqueadores Estruturais Do Gate 0
+
+* Implementacao documental registrada como CONCLUIDA.
+* Commit: `bc6573330bb57720d9c7a81002b99ffbd19fa8c1`.
+* Colisao documental GP-R03 eliminada pela identificacao canonica GP-R06 da pesquisa experimental.
+* Exclusao local de `ARCHITECTURAL_PRINCIPLES.md` cancelada sem alteracao de seu conteudo.
+
+### GP-PE-20E - Certificacao Final Do Gate 0
+
+* Decisao formal: GATE 0 CERTIFICADO COM RESSALVAS.
+* Os dois bloqueadores estruturais foram eliminados.
+* As ressalvas remanescentes pertencem as ondas documentais posteriores e nao impedem a abertura da Onda A.
+* Abertura da Onda A autorizada.
+
+## Restricoes Preservadas
+
+* Nenhuma autoridade PAC promovida.
+* Nenhuma autoridade PI promovida.
+* Nenhuma autoridade HA local promovida.
+* Nenhum documento de adocao, midia ou dominio local promovido.
+* README institucional reservado para onda posterior.
+* Nenhuma autoridade futura ou nao reproduzivel no HEAD promovida.
+* Nenhum runtime, teste, dado operacional ou comportamento do sistema alterado por esta consolidacao documental.
+
+---
+
 # PD-02 - Implementacao Do Website Institucional Do PROTEUS
 
 ## Data

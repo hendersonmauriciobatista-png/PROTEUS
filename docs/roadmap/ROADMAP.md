@@ -101,6 +101,7 @@ Observação
 | GP-A22B | ExecutiveRecommendationService v1 | CONCLUIDA |
 | GP-A22C | Integracao do ExecutiveRecommendationService ao Painel Executivo | CONCLUIDA |
 | GP-A22D | Evolucao das Recomendacoes Executivas | CONCLUIDA |
+| GP-A22E | Rastreabilidade das Recomendacoes Executivas | CONCLUIDA |
 | GP-A23 | Auditoria Arquitetural Global do CASE-01 | AUDITORIA CONCLUIDA |
 | GP-A25 | Grafico Executivo do Water Health Score no Dashboard | CONCLUIDA |
 | GP-D01A | Auditoria do Modelo de Projeto de Monitoramento | AUDITORIA DOCUMENTAL CONCLUIDA |
@@ -133,8 +134,49 @@ Observação
 | PI-02 | Kit Institucional do PROTEUS | KIT INSTITUCIONAL CONCLUIDO |
 | PD-01 | Arquitetura do Website Institucional do PROTEUS | ARQUITETURA DOCUMENTAL DO WEBSITE CONCLUIDA |
 | PD-02 | Implementacao do Website Institucional do PROTEUS | WEBSITE INSTITUCIONAL IMPLEMENTADO |
+| GP-PE-17 | Auditoria de Efetividade dos Guardrails da PA-01E | CONCLUIDA - PARECER HISTORICO PRESERVADO |
+| GP-PE-18A | Promocao da Autoridade Documental da PA-01 | CONCLUIDA - 14 DOCUMENTOS PROMOVIDOS |
+| GP-PE-18B | Restauracao da Proveniencia Tecnica da PA-01 | CONCLUIDA - 28 ARQUIVOS PROMOVIDOS |
+| GP-PE-20D | Resolucao dos Bloqueadores Estruturais do Gate 0 | CONCLUIDA |
+| GP-PE-20E | Certificacao Final do Gate 0 | CONCLUIDA - GATE 0 CERTIFICADO COM RESSALVAS |
 | GP-R02 | Investigacao Arquitetural: Progressao de Valor Entre Camadas | PESQUISA CONCLUIDA |
 | GP-R03 | Investigacao Arquitetural: Executive Context | PESQUISA CONCLUIDA |
+| GP-R06 | Governanca Experimental da Decisao por IA | PESQUISA EXPERIMENTAL - NAO NORMATIVA - ESTADO CONGELADO |
+
+---
+
+# Consolidacao Documental Da Onda A
+
+Status: CONCLUIDA
+
+Gate de entrada: **GATE 0 CERTIFICADO COM RESSALVAS** pela GP-PE-20E.
+
+Autoridades concluidas e versionadas no HEAD:
+
+* GP-PE-17 - auditoria de efetividade da PA-01E, preservada em seu contexto historico pelo commit `e381a2dd7f43da9014ee53e96b44f9ccafbc5e97`;
+* GP-PE-18A - promocao dos 14 documentos arquiteturais PE-02 a PE-15 pelo commit `6248f0da5d49f441f4333eab45b890a36f95ce40`;
+* GP-PE-18B - promocao atomica de 16 arquivos de runtime e 12 testes pelo commit `a1dc51ac8836f24765c46b7a165f2c388fc7db26`;
+* GP-A22E - rastreabilidade das recomendacoes executivas concluida e promovida pelo commit `1b755361726fee04e4a01faa1a746cc4cc7dca70`;
+* GP-R03 - autoridade canonica exclusiva da pesquisa `Executive Context`;
+* GP-R06 - pesquisa `Governanca Experimental da Decisao por IA`, congelada e sem autoridade normativa;
+* `ARCHITECTURAL_PRINCIPLES.md` - autoridade arquitetural fundacional preservada, sem recriacao ou alteracao de regras;
+* GP-PE-20D - bloqueadores estruturais resolvidos pelo commit `bc6573330bb57720d9c7a81002b99ffbd19fa8c1`;
+* GP-PE-20E - Gate 0 certificado com ressalvas e Onda A autorizada.
+
+Classificacao documental apos a Onda A:
+
+* CONCLUIDO E VERSIONADO: autoridades enumeradas nesta secao;
+* CONCLUIDO APENAS LOCALMENTE: permanece fora desta promocao e depende de onda propria;
+* FUTURO: planejamento sem evidencia de implementacao no HEAD;
+* PESQUISA CONGELADA: GP-R06, experimental e nao normativa;
+* RESERVADO PARA ONDAS POSTERIORES: PAC, PI, HA local, README institucional, adocao, midia, artefatos operacionais e demais autoridades nao reproduziveis.
+
+Ressalvas:
+
+* as pendencias das ondas posteriores nao sao bloqueadores estruturais da Onda A;
+* nenhuma autoridade local ou futura e promovida por este registro;
+* a sequencia de consolidacao permanece Autoridade -> HISTORY -> ROADMAP -> README;
+* README permanece reservado para onda posterior.
 
 ---
 
@@ -1032,18 +1074,6 @@ Entregavel:
 * PA-01 preservada.
 * PA-02 preservada.
 * PA-03 preservada.
-
-Etapa executiva tambem sugerida:
-
-GP-A22E - Formalizar rastreabilidade das recomendacoes ate Analytics, Governanca e Nucleo sem criar nova autoridade.
-
-Prioridade:
-
-ALTA.
-
-Motivo:
-
-A GP-A23 confirmou que a arquitetura esta madura com pequenas ressalvas e pode crescer por enriquecimento das camadas existentes. O proximo avanco natural e formalizar rastreabilidade ponta a ponta, mantendo o Nucleo de Monitoramento Hidrico como autoridade observacional central.
 
 ---
 
