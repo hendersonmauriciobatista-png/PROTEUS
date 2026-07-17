@@ -21,7 +21,7 @@ from PyQt5.QtGui import QColor
 
 from monitoramento_hidrico import AvaliacaoObservacionalService, PolicyEngine
 from monitoramento_hidrico.qualidade_agua_adapter import (
-    STATUS_DENTRO_PADRAO,
+    STATUS_QUALIDADE_OBSERVACIONAL_NORMAL,
     QualidadeAguaMonitoringAdapter,
 )
 
@@ -190,7 +190,7 @@ class QualidadeAguaPage(QWidget):
                 self.table.setItem(row_index, column_index, item)
 
     def _apply_status_style(self, item, status):
-        if status == STATUS_DENTRO_PADRAO:
+        if status == STATUS_QUALIDADE_OBSERVACIONAL_NORMAL:
             item.setBackground(QColor("#1b5e20"))
             item.setForeground(QColor("#ffffff"))
             return

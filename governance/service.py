@@ -1,6 +1,9 @@
 from analytics import AnalyticsService
 from monitoramento_hidrico import AvaliacaoObservacionalService, PolicyEngine
-from monitoramento_hidrico.governance_adapter import OperationalGovernanceHydricMonitoringAdapter
+from monitoramento_hidrico.governance_adapter import (
+    OperationalGovernanceHydricMonitoringAdapter,
+    decidir_reavaliacao_controlada,
+)
 
 from .models import EventState
 from .repositories import OperationalEventRepository
@@ -23,7 +26,8 @@ class OperationalGovernanceService:
     def sync_from_analytics(self):
         events = self.repository.load_events()
         snapshot = self.analytics_service.build_snapshot()
-        signals = self.monitoring_adapter.enriquecer_alertas(snapshot.alerts)
+        decisions = [self._decidir_reavaliacao_controlada(alert) for alert in snapshot.alerts]
+        signals = self.monitoring_adapter.enriquecer_alertas(snapshot.alerts, decisions)
         created, updated = self.rules.sync_alerts(events, signals)
         self.repository.save_events(events)
         return {
@@ -32,6 +36,15 @@ class OperationalGovernanceService:
             "total": len(events),
             "alerts": len(signals),
         }
+
+    def _decidir_reavaliacao_controlada(self, alert):
+        policy_engine = getattr(self.monitoring_adapter, "policy_engine", PolicyEngine())
+        perfil_operacional = getattr(self.monitoring_adapter, "perfil_operacional", None)
+        return decidir_reavaliacao_controlada(
+            alert,
+            policy_engine,
+            perfil_operacional,
+        )
 
     def move_to_monitoring(self, event_id):
         return self._transition(event_id, EventState.MONITORAMENTO.value)

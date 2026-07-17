@@ -5,6 +5,7 @@ from analytics.models import AnalyticsSnapshot, PreventiveAlert, TrendResult, Wa
 from executive.models import EXECUTIVE_ATTENTION, EXECUTIVE_CRITICAL, EXECUTIVE_NORMAL
 from executive.rules import ExecutiveRules
 from governance.models import EventState, OperationalEvent
+from monitoramento_hidrico.status_semantics import WATER_HEALTH_SCORE_GOOD
 
 
 def make_snapshot(score=85, alerts=None, quality_trends=None, consumption_trends=None):
@@ -12,7 +13,7 @@ def make_snapshot(score=85, alerts=None, quality_trends=None, consumption_trends
         quality_trends=quality_trends or [],
         consumption_trends=consumption_trends or [],
         alerts=alerts or [],
-        water_health_score=WaterHealthScore(score=score, status="Bom", explanations=[]),
+        water_health_score=WaterHealthScore(score=score, status=WATER_HEALTH_SCORE_GOOD, explanations=[]),
     )
 
 

@@ -17,11 +17,12 @@ from PyQt5.QtWidgets import (
     QWidget,
 )
 
-from analytics.repositories import AnalyticsRepository
-from analytics.scoring import WaterHealthScoreCalculator
+from analytics.dashboard_snapshot import DashboardAnalyticsSnapshotService
 from consumo_distribuicao import ConsumoDistribuicaoPage
 from dados_ambientais import DadosAmbientaisPage
 from governanca_operacional import GovernancaOperacionalPage
+from monitoramento_hidrico import AvaliacaoObservacionalService, PolicyEngine
+from monitoramento_hidrico.dashboard_adapter import DashboardMonitoringAdapter
 from painel_executivo import PainelExecutivoPage
 from previsao_analitica import PrevisaoAnaliticaPage
 from projeto_monitoramento_page import ProjetoMonitoramentoPage
@@ -191,8 +192,11 @@ class DashboardPage(QWidget):
         info_layout.addWidget(self.score_chart)
         layout.addWidget(info)
         layout.addStretch()
-        self.analytics_repository = AnalyticsRepository()
-        self.score_calculator = WaterHealthScoreCalculator()
+        self.monitoring_adapter = DashboardMonitoringAdapter(
+            policy_engine=PolicyEngine(),
+            evaluation_service=AvaliacaoObservacionalService(),
+        )
+        self.dashboard_analytics = DashboardAnalyticsSnapshotService()
         self.refresh()
 
     def _create_card(self, title, color):
@@ -224,7 +228,7 @@ class DashboardPage(QWidget):
             f"Ambiente: {len(ambiente_rows)}\n"
             f"Consumo: {len(consumo_rows)}"
         )
-        self.score_chart.set_points(self._water_health_score_series())
+        self.score_chart.set_points(self.dashboard_analytics.water_health_score_series())
 
     def _read_csv(self, path):
         if not path.exists():
@@ -260,64 +264,13 @@ class DashboardPage(QWidget):
         return f"Consumo diário: {consumo_diario:.2f} m³\nPerdas: {perdas:.2f} %"
 
     def _quality_status(self, row):
-        checks = [
-            (self._to_float(row.get("ph")), 6.0, 9.0),
-            (self._to_float(row.get("turbidez")), 0.0, 5.0),
-            (self._to_float(row.get("oxigenio_dissolvido")), 5.0, 10.0),
-            (self._to_float(row.get("temperatura")), 15.0, 30.0),
-            (self._to_float(row.get("agrotoxicos")), 0.0, 0.1),
-        ]
-
-        for value, minimum, maximum in checks:
-            if value < minimum or value > maximum:
-                return "Fora do padrão"
-        return "Dentro do padrão"
+        return self.monitoring_adapter.quality_status(row)
 
     def _to_float(self, value):
         try:
             return float(value or 0)
         except ValueError:
             return 0.0
-
-    def _water_health_score_series(self):
-        quality = self.analytics_repository.load_quality()
-        if len(quality) < 2:
-            return []
-
-        environment = self.analytics_repository.load_environment()
-        consumption = self.analytics_repository.load_consumption()
-        points = []
-        for index, quality_measurement in enumerate(quality):
-            timestamp = quality_measurement.timestamp
-            score = self.score_calculator.calculate(
-                quality[: index + 1],
-                self._measurements_until(environment, timestamp),
-                self._measurements_until(consumption, timestamp),
-            )
-            points.append(
-                {
-                    "label": self._format_chart_label(timestamp, index),
-                    "score": score.score,
-                    "status": score.status,
-                }
-            )
-
-        return points[-12:]
-
-    def _measurements_until(self, measurements, timestamp):
-        if timestamp is None:
-            return list(measurements)
-
-        return [
-            measurement
-            for measurement in measurements
-            if measurement.timestamp is None or measurement.timestamp <= timestamp
-        ]
-
-    def _format_chart_label(self, timestamp, index):
-        if timestamp is None:
-            return str(index + 1)
-        return timestamp.strftime("%d/%m")
 
 
 def make_placeholder_page(icon, title, subtitle, desc):

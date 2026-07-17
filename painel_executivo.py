@@ -36,7 +36,7 @@ class PainelExecutivoPage(QWidget):
         layout.addWidget(subtitle)
 
         top_cards = QHBoxLayout()
-        self.status_card, self.status_label = self._create_card("Status Executivo", "#4fc3f7")
+        self.status_card, self.status_label = self._create_card("Status executivo observacional", "#4fc3f7")
         self.score_card, self.score_label = self._create_card("Water Health Score", "#66bb6a")
         self.open_card, self.open_label = self._create_card("ABERTO", "#4fc3f7")
         self.monitoring_card, self.monitoring_label = self._create_card("MONITORAMENTO", "#ffa726")

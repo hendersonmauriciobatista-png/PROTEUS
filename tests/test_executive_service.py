@@ -6,6 +6,7 @@ from executive import ExecutiveIntelligenceService
 from executive.models import EXECUTIVE_ATTENTION
 from executive_recommendation.models import RecommendationPriority
 from governance.models import EventState, OperationalEvent
+from monitoramento_hidrico.status_semantics import WATER_HEALTH_SCORE_GOOD
 
 
 class FakeAnalyticsService:
@@ -33,7 +34,7 @@ class FakeAnalyticsService:
                     recommendation="Acompanhar novas medicoes.",
                 )
             ],
-            water_health_score=WaterHealthScore(score=82, status="Bom", explanations=[]),
+            water_health_score=WaterHealthScore(score=82, status=WATER_HEALTH_SCORE_GOOD, explanations=[]),
         )
 
 

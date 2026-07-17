@@ -1,17 +1,14 @@
 from .avaliacao import STATUS_ATENCAO, STATUS_CRITICO, STATUS_NAO_AVALIAVEL
 from .politicas import MOTOR_OBSERVACIONAL
+from .quality_parameter_mapping import quality_parameter_triples
+from .status_semantics import (
+    QUALITY_STATUS_OBSERVATIONAL_ATTENTION,
+    QUALITY_STATUS_OBSERVATIONAL_NORMAL,
+)
 
 
-REPORT_STATUS_DENTRO = "Dentro do padrão"
-REPORT_STATUS_FORA = "Fora do padrão"
-
-REPORT_QUALITY_PARAMETERS = [
-    ("ph", "ph", "quimicos"),
-    ("turbidez", "turbidez", "fisicos"),
-    ("oxigenio_dissolvido", "oxigenio_dissolvido", "quimicos"),
-    ("temperatura", "temperatura_agua", "fisicos"),
-    ("agrotoxicos", "agrotoxicos", "contaminantes_agricolas"),
-]
+REPORT_STATUS_OBSERVACIONAL_NORMAL = QUALITY_STATUS_OBSERVATIONAL_NORMAL
+REPORT_STATUS_OBSERVACIONAL_ATENCAO = QUALITY_STATUS_OBSERVATIONAL_ATTENTION
 
 
 class OperationalReportsHydricMonitoringAdapter:
@@ -24,12 +21,12 @@ class OperationalReportsHydricMonitoringAdapter:
         resultados = self.avaliar_linha(row)
         for resultado in resultados:
             if resultado.status in {STATUS_ATENCAO, STATUS_CRITICO}:
-                return REPORT_STATUS_FORA
-        return REPORT_STATUS_DENTRO
+                return REPORT_STATUS_OBSERVACIONAL_ATENCAO
+        return REPORT_STATUS_OBSERVACIONAL_NORMAL
 
     def avaliar_linha(self, row):
         resultados = []
-        for field_name, parametro_id, categoria in REPORT_QUALITY_PARAMETERS:
+        for field_name, parametro_id, categoria in quality_parameter_triples():
             policy = self.policy_engine.selecionar_politica(
                 perfil_operacional=self.perfil_operacional,
                 categoria=categoria,
@@ -42,8 +39,11 @@ class OperationalReportsHydricMonitoringAdapter:
 
         return resultados
 
+    def contar_observacional_atencao(self, rows):
+        return sum(1 for row in rows if self.status_linha(row) == REPORT_STATUS_OBSERVACIONAL_ATENCAO)
+
     def contar_fora_padrao(self, rows):
-        return sum(1 for row in rows if self.status_linha(row) == REPORT_STATUS_FORA)
+        return self.contar_observacional_atencao(rows)
 
     def possui_resultados_nao_avaliaveis(self, row):
         return any(resultado.status == STATUS_NAO_AVALIAVEL for resultado in self.avaliar_linha(row))

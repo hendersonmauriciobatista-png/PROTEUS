@@ -2,6 +2,13 @@ import unittest
 
 from analytics.models import ConsumptionMeasurement, EnvironmentMeasurement, QualityMeasurement
 from analytics.scoring import WaterHealthScoreCalculator
+from monitoramento_hidrico.status_semantics import (
+    WATER_HEALTH_SCORE_ATTENTION,
+    WATER_HEALTH_SCORE_CRITICAL,
+    WATER_HEALTH_SCORE_EXCELLENT,
+    WATER_HEALTH_SCORE_GOOD,
+    WATER_HEALTH_SCORE_VERY_CRITICAL,
+)
 
 
 class WaterHealthScoreCalculatorTests(unittest.TestCase):
@@ -13,7 +20,7 @@ class WaterHealthScoreCalculatorTests(unittest.TestCase):
         )
 
         self.assertEqual(100, score.score)
-        self.assertEqual("Excelente", score.status)
+        self.assertEqual(WATER_HEALTH_SCORE_EXCELLENT, score.status)
         self.assertTrue(score.explanations)
         self.assertTrue(any("avaliacao observacional" in explanation for explanation in score.explanations))
 
@@ -26,7 +33,16 @@ class WaterHealthScoreCalculatorTests(unittest.TestCase):
 
         self.assertGreaterEqual(score.score, 0)
         self.assertLessEqual(score.score, 100)
-        self.assertIn(score.status, ["Excelente", "Bom", "Atencao", "Critico", "Muito critico"])
+        self.assertIn(
+            score.status,
+            [
+                WATER_HEALTH_SCORE_EXCELLENT,
+                WATER_HEALTH_SCORE_GOOD,
+                WATER_HEALTH_SCORE_ATTENTION,
+                WATER_HEALTH_SCORE_CRITICAL,
+                WATER_HEALTH_SCORE_VERY_CRITICAL,
+            ],
+        )
 
     def test_score_uses_observational_results_for_quality_penalties(self):
         score = WaterHealthScoreCalculator().calculate(
@@ -36,7 +52,7 @@ class WaterHealthScoreCalculatorTests(unittest.TestCase):
         )
 
         self.assertLess(score.score, 100)
-        self.assertTrue(any("status CRITICO" in explanation for explanation in score.explanations))
+        self.assertTrue(any("avaliacao observacional critica" in explanation for explanation in score.explanations))
         self.assertFalse(any("faixa configurada" in explanation for explanation in score.explanations))
 
 

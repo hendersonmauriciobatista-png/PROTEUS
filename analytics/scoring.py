@@ -5,6 +5,15 @@ from monitoramento_hidrico.analytics_adapter import (
     resultado_nao_avaliavel,
     resultado_normal,
 )
+from monitoramento_hidrico.status_semantics import (
+    WATER_HEALTH_SCORE_ATTENTION,
+    WATER_HEALTH_SCORE_CRITICAL,
+    WATER_HEALTH_SCORE_EXCELLENT,
+    WATER_HEALTH_SCORE_GOOD,
+    WATER_HEALTH_SCORE_NO_DATA,
+    WATER_HEALTH_SCORE_VERY_CRITICAL,
+    observational_status_label,
+)
 
 
 QUALITY_SCORE_WEIGHTS = {
@@ -30,7 +39,7 @@ class WaterHealthScoreCalculator:
         if not quality:
             return WaterHealthScore(
                 score=0,
-                status="Sem dados",
+                status=WATER_HEALTH_SCORE_NO_DATA,
                 explanations=["Sem registros de qualidade da agua para calcular o score."],
             )
 
@@ -86,7 +95,8 @@ class WaterHealthScoreCalculator:
             penalty = max_penalty if resultado.status == "CRITICO" else max_penalty * 0.5
             total_penalty += penalty
             explanations.append(
-                f"{item['label']} {float(resultado.valor_avaliado):.4f} com status {resultado.status}; "
+                f"{item['label']} {float(resultado.valor_avaliado):.4f} com "
+                f"{observational_status_label(resultado.status).lower()}; "
                 f"reduz {penalty:.2f} pontos."
             )
 
@@ -94,11 +104,11 @@ class WaterHealthScoreCalculator:
 
     def _status(self, score):
         if score >= 85:
-            return "Excelente"
+            return WATER_HEALTH_SCORE_EXCELLENT
         if score >= 70:
-            return "Bom"
+            return WATER_HEALTH_SCORE_GOOD
         if score >= 50:
-            return "Atencao"
+            return WATER_HEALTH_SCORE_ATTENTION
         if score >= 30:
-            return "Critico"
-        return "Muito critico"
+            return WATER_HEALTH_SCORE_CRITICAL
+        return WATER_HEALTH_SCORE_VERY_CRITICAL

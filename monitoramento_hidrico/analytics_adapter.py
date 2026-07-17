@@ -1,14 +1,6 @@
 from .avaliacao import STATUS_ATENCAO, STATUS_CRITICO, STATUS_NAO_AVALIAVEL, STATUS_NORMAL
 from .politicas import MOTOR_OBSERVACIONAL
-
-
-QUALITY_ANALYTICS_PARAMETERS = [
-    ("ph", "ph", "quimicos", "pH"),
-    ("turbidez", "turbidez", "fisicos", "Turbidez"),
-    ("oxigenio_dissolvido", "oxigenio_dissolvido", "quimicos", "Oxigenio dissolvido"),
-    ("temperatura", "temperatura_agua", "fisicos", "Temperatura da agua"),
-    ("agrotoxicos", "agrotoxicos", "contaminantes_agricolas", "Agrotoxicos"),
-]
+from .quality_parameter_mapping import quality_parameter_analytics_entries
 
 
 class AnalyticsHydricMonitoringAdapter:
@@ -19,7 +11,7 @@ class AnalyticsHydricMonitoringAdapter:
 
     def avaliar_qualidade(self, measurement):
         resultados = []
-        for field_name, parametro_id, categoria, label in QUALITY_ANALYTICS_PARAMETERS:
+        for field_name, parametro_id, categoria, label in quality_parameter_analytics_entries():
             policy = self.policy_engine.selecionar_politica(
                 perfil_operacional=self.perfil_operacional,
                 categoria=categoria,

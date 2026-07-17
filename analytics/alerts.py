@@ -4,6 +4,7 @@ from monitoramento_hidrico.analytics_adapter import (
     AnalyticsHydricMonitoringAdapter,
     resultado_requer_atencao,
 )
+from monitoramento_hidrico.status_semantics import observational_status_label
 
 
 class PreventiveAlertService:
@@ -43,7 +44,10 @@ class PreventiveAlertService:
                     severity=_severity_from_observational_status(resultado.status),
                     domain="qualidade_agua",
                     metric=item["field_name"],
-                    message=f"Atencao preventiva: {item['label']} com avaliacao observacional {resultado.status}.",
+                    message=(
+                        f"Atencao preventiva: {item['label']} com "
+                        f"{observational_status_label(resultado.status).lower()}."
+                    ),
                     evidence=(
                         f"Valor atual {float(resultado.valor_avaliado):.4f}; "
                         f"{resultado.mensagem}; origem {resultado.origem_limite}."

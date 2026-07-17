@@ -7,24 +7,24 @@ from .status_semantics import (
 )
 
 
-STATUS_QUALIDADE_OBSERVACIONAL_NORMAL = QUALITY_STATUS_OBSERVATIONAL_NORMAL
-STATUS_QUALIDADE_OBSERVACIONAL_ATENCAO = QUALITY_STATUS_OBSERVATIONAL_ATTENTION
+DASHBOARD_STATUS_OBSERVACIONAL_NORMAL = QUALITY_STATUS_OBSERVATIONAL_NORMAL
+DASHBOARD_STATUS_OBSERVACIONAL_ATENCAO = QUALITY_STATUS_OBSERVATIONAL_ATTENTION
 
 
-class QualidadeAguaMonitoringAdapter:
+class DashboardMonitoringAdapter:
     def __init__(self, policy_engine, evaluation_service, perfil_operacional=None):
         self.policy_engine = policy_engine
         self.evaluation_service = evaluation_service
         self.perfil_operacional = perfil_operacional
 
-    def status_medicao(self, measurement):
-        resultados = self.avaliar_medicao(measurement)
+    def quality_status(self, row):
+        resultados = self.evaluate_quality_row(row)
         for resultado in resultados:
             if resultado.status in {STATUS_ATENCAO, STATUS_CRITICO}:
-                return STATUS_QUALIDADE_OBSERVACIONAL_ATENCAO
-        return STATUS_QUALIDADE_OBSERVACIONAL_NORMAL
+                return DASHBOARD_STATUS_OBSERVACIONAL_ATENCAO
+        return DASHBOARD_STATUS_OBSERVACIONAL_NORMAL
 
-    def avaliar_medicao(self, measurement):
+    def evaluate_quality_row(self, row):
         resultados = []
         for field_name, parametro_id, categoria in quality_parameter_triples():
             policy = self.policy_engine.selecionar_politica(
@@ -35,9 +35,9 @@ class QualidadeAguaMonitoringAdapter:
             if policy.motor_destino != MOTOR_OBSERVACIONAL:
                 continue
 
-            resultados.append(self.evaluation_service.avaliar(parametro_id, measurement.get(field_name)))
+            resultados.append(self.evaluation_service.avaliar(parametro_id, row.get(field_name)))
 
         return resultados
 
-    def possui_resultados_nao_avaliaveis(self, measurement):
-        return any(resultado.status == STATUS_NAO_AVALIAVEL for resultado in self.avaliar_medicao(measurement))
+    def has_non_evaluable_results(self, row):
+        return any(resultado.status == STATUS_NAO_AVALIAVEL for resultado in self.evaluate_quality_row(row))

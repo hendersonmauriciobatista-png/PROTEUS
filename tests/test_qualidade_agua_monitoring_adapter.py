@@ -3,8 +3,8 @@ import unittest
 
 from monitoramento_hidrico import AvaliacaoObservacionalService, PolicyEngine
 from monitoramento_hidrico.qualidade_agua_adapter import (
-    STATUS_DENTRO_PADRAO,
-    STATUS_FORA_PADRAO,
+    STATUS_QUALIDADE_OBSERVACIONAL_ATENCAO,
+    STATUS_QUALIDADE_OBSERVACIONAL_NORMAL,
     QualidadeAguaMonitoringAdapter,
 )
 
@@ -27,7 +27,7 @@ class QualidadeAguaMonitoringAdapterTests(unittest.TestCase):
             }
         )
 
-        self.assertEqual(STATUS_DENTRO_PADRAO, status)
+        self.assertEqual(STATUS_QUALIDADE_OBSERVACIONAL_NORMAL, status)
 
     def test_status_fora_do_padrao_quando_motor_observacional_indica_alerta(self):
         status = self.adapter.status_medicao(
@@ -40,7 +40,7 @@ class QualidadeAguaMonitoringAdapterTests(unittest.TestCase):
             }
         )
 
-        self.assertEqual(STATUS_FORA_PADRAO, status)
+        self.assertEqual(STATUS_QUALIDADE_OBSERVACIONAL_ATENCAO, status)
 
     def test_valor_invalido_usa_resultado_nao_avaliavel_sem_quebrar_status(self):
         measurement = {
@@ -54,7 +54,7 @@ class QualidadeAguaMonitoringAdapterTests(unittest.TestCase):
         resultados = self.adapter.avaliar_medicao(measurement)
 
         self.assertIn("NAO_AVALIAVEL", {resultado.status for resultado in resultados})
-        self.assertEqual(STATUS_DENTRO_PADRAO, self.adapter.status_medicao(measurement))
+        self.assertEqual(STATUS_QUALIDADE_OBSERVACIONAL_NORMAL, self.adapter.status_medicao(measurement))
 
     def test_tela_qualidade_agua_nao_mantem_autoridade_local_de_status(self):
         source = Path("qualidade_agua.py").read_text(encoding="utf-8")

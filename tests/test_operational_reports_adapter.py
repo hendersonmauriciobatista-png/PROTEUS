@@ -4,8 +4,8 @@ import unittest
 from monitoramento_hidrico import AvaliacaoObservacionalService, PolicyEngine
 from monitoramento_hidrico.operational_reports_adapter import (
     OperationalReportsHydricMonitoringAdapter,
-    REPORT_STATUS_DENTRO,
-    REPORT_STATUS_FORA,
+    REPORT_STATUS_OBSERVACIONAL_ATENCAO,
+    REPORT_STATUS_OBSERVACIONAL_NORMAL,
 )
 
 
@@ -27,7 +27,7 @@ class OperationalReportsHydricMonitoringAdapterTests(unittest.TestCase):
             }
         )
 
-        self.assertEqual(REPORT_STATUS_DENTRO, status)
+        self.assertEqual(REPORT_STATUS_OBSERVACIONAL_NORMAL, status)
 
     def test_status_fora_do_padrao_quando_motor_observacional_indica_alerta(self):
         status = self.adapter.status_linha(
@@ -40,7 +40,7 @@ class OperationalReportsHydricMonitoringAdapterTests(unittest.TestCase):
             }
         )
 
-        self.assertEqual(REPORT_STATUS_FORA, status)
+        self.assertEqual(REPORT_STATUS_OBSERVACIONAL_ATENCAO, status)
 
     def test_conta_registros_fora_do_padrao_usando_resultados_observacionais(self):
         rows = [
@@ -60,7 +60,7 @@ class OperationalReportsHydricMonitoringAdapterTests(unittest.TestCase):
             },
         ]
 
-        self.assertEqual(1, self.adapter.contar_fora_padrao(rows))
+        self.assertEqual(1, self.adapter.contar_observacional_atencao(rows))
 
     def test_relatorios_nao_mantem_autoridade_local_de_status(self):
         source = Path("relatorios.py").read_text(encoding="utf-8")
@@ -69,6 +69,7 @@ class OperationalReportsHydricMonitoringAdapterTests(unittest.TestCase):
         self.assertNotIn("CONAMA", source)
         self.assertNotIn("QUALITY_LIMITS", source)
         self.assertIn("monitoring_adapter.status_linha", source)
+        self.assertIn("contar_observacional_atencao", source)
 
 
 if __name__ == "__main__":

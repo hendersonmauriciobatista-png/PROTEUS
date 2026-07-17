@@ -28,7 +28,7 @@ class PreventiveAlertServiceTests(unittest.TestCase):
 
         turbidity_alert = next(alert for alert in alerts if alert.metric == "turbidez")
         self.assertEqual("alto", turbidity_alert.severity)
-        self.assertIn("CRITICO", turbidity_alert.message)
+        self.assertIn("avaliacao observacional critica", turbidity_alert.message)
 
     def test_alerts_combine_rain_and_rising_turbidity(self):
         quality = [

@@ -87,7 +87,7 @@ class RelatoriosPage(QWidget):
         qualidade_rows = self._read_csv(QUALIDADE_CSV)
         ambiente_rows = self._read_csv(AMBIENTE_CSV)
         consumo_rows = self._read_csv(CONSUMO_CSV)
-        fora_padrao = self.monitoring_adapter.contar_fora_padrao(qualidade_rows)
+        registros_observacionais_atencao = self.monitoring_adapter.contar_observacional_atencao(qualidade_rows)
 
         lines = [
             "RELATÃ“RIO OPERACIONAL",
@@ -104,7 +104,7 @@ class RelatoriosPage(QWidget):
             f"- Consumo: {self._format_latest_consumption(consumo_rows)}",
             "",
             "QUALIDADE DA ÃGUA",
-            f"- Registros fora do padrÃ£o: {fora_padrao}",
+            f"- Registros com avaliacao observacional em atencao: {registros_observacionais_atencao}",
             f"- MÃ©dia de pH: {self._format_average(qualidade_rows, 'ph')}",
             f"- MÃ©dia de turbidez: {self._format_average(qualidade_rows, 'turbidez')}",
             f"- MÃ©dia de temperatura da Ã¡gua: {self._format_average(qualidade_rows, 'temperatura')}",
