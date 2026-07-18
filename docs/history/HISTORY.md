@@ -1,5 +1,471 @@
 # HISTORY
 
+# OEG-GIT-01 A OEG-GIT-06 - Regularizacao Documental E Publicacao Cientifica Da Fase I GDC-R
+
+## Data
+
+18/07/2026
+
+## Status
+
+DOCUMENTACAO INSTITUCIONAL PREPARADA - PUSH CIENTIFICO CONCLUIDO; COMMIT INSTITUCIONAL PENDENTE
+
+## Evento
+
+Regularizacao governada do estado Git da pesquisa GDC-R, com auditoria do acervo pendente, particionamento do corpus, versionamento cientifico incremental, autorizacao metodologica do push, publicacao remota e preparacao da documentacao administrativa da Fase I.
+
+## Resultado
+
+* OEG-GIT-01 interrompeu corretamente o encerramento institucional diante da arvore mista e preservou todo o trabalho pendente.
+* OEG-GIT-02 classificou o snapshot de 249 arquivos nao rastreados e 6 modificados; o estado recebeu `NAO_PRONTO` para commit institucional unico.
+* OEG-GIT-03 publicou localmente 68 documentos cientificos em quatro commits lineares:
+  * `2c9c852dcdb696a8d19a7e12d371ee5ccd5eed4e` - fundamentos, PI-07/PI-07A e RG-01 a RG-05;
+  * `1ef244c761513f9d3e109c77967ecd5000d3305f` - evolucao experimental RG-06 a RG-08;
+  * `dcf0acbbd5bc1a0bb8131ac815a6f06067040979` - piloto sintetico RG-09 e fixtures;
+  * `4db23befc6d983c1fdb5c90342258127c58c9ef7` - relatorio consolidado da Fase I.
+* `docs/research/PHASE_I_CONSOLIDATED_REPORT.md` formaliza a conclusao cientifica da Fase I e delimita as recomendacoes condicionadas para a Fase II.
+* OEG-GIT-04 auditou a cadeia, confirmou 68/68 arquivos, validou os digests RG-09 e emitiu parecer `GO` para autorizacao posterior do push.
+* OEG-GIT-05 confirmou o remoto em `fee8f66ef12e7f41f29973094915aab64e4ac8c7` e publicou a cadeia por fast-forward na branch `feature/environment-data-v1`.
+* HEAD local, remote-tracking ref e branch remota foram confirmados em `4db23befc6d983c1fdb5c90342258127c58c9ef7`, sem commits adicionais.
+* OEG-GIT-06 regularizou HISTORY e ROADMAP e preparou os tres relatorios de governanca Git para futuro commit institucional.
+* A Fase I permanece cientificamente concluida, com H1 apoiada somente no contexto sintetico testado e sem alegacao de validade externa ou universal.
+
+## Produtos Institucionais Preparados
+
+* `docs/research/GIT_PENDING_STATE_AUDIT.md`;
+* `docs/research/OEG_GIT_04_PUSH_AUTHORIZATION_AUDIT.md`;
+* `docs/research/OEG_GIT_05_PUSH_EXECUTION_REPORT.md`;
+* atualizacao registral de `docs/history/HISTORY.md`;
+* atualizacao de planejamento de `docs/roadmap/ROADMAP.md`.
+
+## Transicao De Pesquisa
+
+* A Fase II permanece nao iniciada e depende de nova autoridade.
+* A proxima fase prevista concentra-se em validacao externa, diferentes modelos e Harnesses, ambientes reais, novos dominios, reproducao independente e ampliacao experimental.
+* O commit institucional de encerramento permanece pendente e devera conter somente a documentacao administrativa autorizada.
+
+## Restricoes Preservadas
+
+* Nenhum dos 68 arquivos cientificos publicados foi alterado.
+* Nenhum commit cientifico existente foi reescrito.
+* Nenhum codigo, dado operacional, modulo do PROTEUS, midia ou tooling foi alterado.
+* Nenhum commit, tag ou push foi executado pela OEG-GIT-06.
+* As demais iniciativas pendentes permanecem fora do futuro commit institucional da Fase I.
+
+---
+
+# GP-RG-09 - Piloto Sintetico de Validacao do Gate GX-PKG
+
+## Data
+
+18/07/2026
+
+## Status
+
+CONCLUIDA - H1 APOIADA NO CONTEXTO SINTETICO TESTADO
+
+## Evento
+
+Primeiro piloto experimental do protocolo GX-PKG, com quatro pacotes sinteticos congelados e duas passagens de verificacao no mesmo Harness e ambiente.
+
+## Casos
+
+* Caso A: INTEGRALMENTE EXECUTAVEL - GO.
+* Caso B: EXECUTAVEL COM RESSALVAS - GO CONDICIONAL.
+* Caso C: PARCIALMENTE EXECUTAVEL - NO-GO por input obrigatorio ausente.
+* Caso D: NAO EXECUTAVEL - NO-GO por ausencia estrutural de Manifesto, autoridade e procedimento.
+
+## Resultado
+
+* 288 avaliacoes de check registradas em V1/V2.
+* 8/8 classes e decisoes coincidiram com a verdade de referencia congelada.
+* 144/144 estados de check coincidiram entre as passagens.
+* Zero falso GO e zero falso NO-GO.
+* O Gate bloqueou C/D antes de qualquer procedimento substantivo.
+* Oito cadeias completas de Premissas, Evidencias, Inferencias, Fundamentacao, Decisao, Limitacoes e Validacao.
+* H1-RG09: `APOIADA_NO_CONTEXTO_SINTETICO_TESTADO`.
+* H0-RG09: nao apoiada nos quatro cenarios, sem rejeicao estatistica ou universal.
+
+## Produtos
+
+* `docs/research/RG_09_SYNTHETIC_EXPERIMENT_PLAN.md`;
+* `docs/research/RG_09_TEST_CASES.md`;
+* `docs/research/RG_09_EXECUTION_REPORT.md`;
+* `docs/research/RG_09_RESULTS_MATRIX.md`;
+* `docs/research/RG_09_FINAL_ANALYSIS.md`;
+* `docs/research/RG_09_THREATS_TO_VALIDITY.md`;
+* `docs/research/RG_09_CLOSURE_REPORT.md`;
+* fixtures em `docs/research/rg09_fixtures/`.
+
+## Limitacoes e restricoes
+
+* Repetibilidade interna completa; reproducao independente nao testada.
+* Quatro casos construidos, mesmo Harness, uma plataforma e baixa validade externa.
+* Nenhuma alteracao em RG-08, RG-07 ou resultado anterior.
+* Nenhum codigo, dado, teste, interface, funcionalidade ou componente do PROTEUS alterado.
+* Nenhuma generalizacao universal declarada.
+
+---
+
+# GP-RG-08 - Verificacao de Executabilidade e Integridade do Pacote Experimental
+
+## Data
+
+18/07/2026
+
+## Status
+
+CONCLUIDA DOCUMENTALMENTE - ETAPA METODOLOGICA FORMALIZADA, PENDENTE DE APROVACAO E PILOTO PROSPECTIVO
+
+## Evento
+
+Execucao da OEG-RG-08 para institucionalizar um preflight obrigatorio de executabilidade e integridade antes de futuras execucoes experimentais GDC-R.
+
+## Fundamentacao
+
+* RG-07 entregou a ambos os avaliadores um pacote nominal de 13 itens, mas a OEG-RG-06 possuia nome, bytes e hash sem copia ou localizador resolvivel.
+* A/B confirmaram 12/13 itens e suspenderam antes da selecao substantiva.
+* A falha foi preservada como NC-RG07-01/D3; RG-07 permanece `TESTE_INCONCLUSIVO`.
+* RG-05 ja exigia congelamento e hashes, mas nao continha etapa autonoma de verificacao de resolucao, acesso, dry-run, classificacao e certificacao.
+
+## Produtos
+
+* `docs/research/RG_08_EXECUTABILITY_FRAMEWORK.md`;
+* `docs/research/RG_08_PACKAGE_INTEGRITY_PROTOCOL.md`;
+* `docs/research/RG_08_EXECUTABILITY_CHECKLIST.md`;
+* `docs/research/RG_08_CLASSIFICATION_CRITERIA.md`;
+* `docs/research/RG_08_ARCHITECTURAL_IMPACTS.md`;
+* `docs/research/RG_08_CLOSURE_REPORT.md`.
+
+## Resultado
+
+* Executabilidade Experimental e Integridade do Pacote formalmente definidas.
+* Gate aditivo `GX-PKG` proposto entre congelamento e inicio substantivo.
+* Protocolo reutilizavel P0-P9 e checklist de 36 verificacoes produzidos.
+* Classes `INTEGRALMENTE EXECUTAVEL`, `EXECUTAVEL COM RESSALVAS`, `PARCIALMENTE EXECUTAVEL` e `NAO EXECUTAVEL` objetivamente definidas.
+* Somente as duas classes sem falha bloqueante permitem GO; parcial permanece NO-GO.
+* GP-RG-09 recomendada como piloto sintetico/controlado do protocolo, sem inicio automatico.
+
+## Restricoes Preservadas
+
+* RG-07 nao repetida e nenhum experimento reexecutado.
+* Resultados RG-06/RG-07 nao corrigidos, reclassificados ou reinterpretados.
+* Nenhuma hipotese promovida e nenhuma validacao universal declarada.
+* Nenhum codigo, arquitetura de software, funcionalidade, dado, teste, interface, midia ou componente do PROTEUS alterado.
+
+---
+
+# GP-RG-07 - Validacao Interavaliadores E Inter-Harnesses
+
+## Data
+
+18/07/2026
+
+## Status
+
+EXECUCAO SUSPENSA E ENCERRADA DOCUMENTALMENTE - TESTE INCONCLUSIVO
+
+## Evento
+
+Duas instancias independentes receberam o mesmo plano, protocolo e pacote para replicar a OEG-RG-06. Ambas suspenderam antes da selecao porque o plano forneceu hash/nome, mas nao um caminho resolvivel para o anexo da OEG-RG-06.
+
+## Resultado
+
+* Avaliadores A/B executados em contextos separados e paralelos.
+* 12/13 hashes confirmados por ambos; mesmo artefato obrigatorio nao localizado.
+* Nenhum caso selecionado, reconstruido ou auditado.
+* OV-01, OV-02, OV-04, OV-05 e OV-06: `TESTE_INCONCLUSIVO` em A/B.
+* H-RG-004: `TESTE_INCONCLUSIVO` em A/B.
+* Convergencia procedural na suspensao; nenhuma evidencia sobre reproducao documental aplicada a caso.
+* Duas divergencias interpretativas materiais preservadas em H-RG-001 e H-RG-007.
+* Sete documentos RG-07 produzidos; execucoes individuais mantidas imutaveis por hash.
+
+## Restricoes Preservadas
+
+* Nenhuma conclusao alheia compartilhada durante as execucoes.
+* Nenhum documento RG-06, codigo, arquitetura, funcionalidade, midia ou PROTEUS alterado.
+* Nenhuma hipotese promovida, eficacia/generalidade declarada ou ausencia convertida em apoio.
+* Nova tentativa depende de nova autoridade e pacote resolvivel; GP-RG-08 nao iniciada.
+
+---
+
+# GP-RG-06 - Primeiro Piloto Experimental Controlado Da GDC-R
+
+## Data
+
+18/07/2026
+
+## Status
+
+CONCLUIDA COM RESSALVAS - PRIMEIRO PILOTO EXECUTADO SEM PROMOCAO DE HIPOTESES
+
+## Evento
+
+Execucao governada da OEG-RG-06: avaliacao de CP-01 a CP-05, selecao formal de CP-01, pre-registro, duas reconstrucoes documentais, metricas, interpretacao limitada e auditoria.
+
+## Resultado
+
+* CP-01 selecionado como unico candidato com unidade delimitada e pacote historico congelavel.
+* OV-01, OV-02, OV-04, OV-05 e OV-06 executados; OV-03, OV-07 e OV-08 permaneceram `NAO_TESTADO`.
+* Quatro decisoes e uma revisao reconstruidas.
+* Reconstrucoes A/B convergiram em 46/47 unidades, com uma divergencia material preservada.
+* OV-04 recebeu `APOIADO_NO_CONTEXTO_TESTADO`; OV-06 recebeu `TESTE_INCONCLUSIVO` por ausencia de avaliadores independentes.
+* Cadeia original classificada `NAO_CONFORME` aos controles formais posteriores, apesar da rastreabilidade semantica.
+* H-RG-001 ficou `PARCIALMENTE_APOIADO` somente no contexto; nenhuma hipotese foi promovida.
+* Seis documentos RG-06 produzidos em `docs/research`.
+
+## Restricoes Preservadas
+
+* Nenhum codigo, arquitetura, funcionalidade ou midia alterado.
+* Nenhuma eficacia, validacao definitiva ou generalidade declarada.
+* Ausencias, nao conformidades e divergencias nao foram corrigidas retrospectivamente.
+* Proximo piloto nao iniciado automaticamente.
+
+---
+
+# GP-RG-05 - Protocolo Experimental De Validacao Da GDC-R
+
+## Data
+
+17/07/2026
+
+## Status
+
+CONCLUIDA - PROTOCOLO FORMALIZADO SEM EXECUCAO DE VALIDACAO EMPIRICA
+
+## Evento
+
+Resolucao formal do escopo da GP-RG-05 e construcao exclusivamente documental do protocolo que governara futuras validacoes da GDC-R.
+
+## Resultado
+
+* Protocolo criado em `docs/research/RG_05_EXPERIMENTAL_PROTOCOL.md`.
+* Operacionalizacao criada em `docs/research/RG_05_HYPOTHESIS_OPERATIONALIZATION.md`.
+* Framework de casos criado em `docs/research/RG_05_CASE_SELECTION_FRAMEWORK.md`.
+* Metricas e interpretacao criadas em `docs/research/RG_05_METRICS_AND_INTERPRETATION.md`.
+* Ameacas a validade criadas em `docs/research/RG_05_THREATS_TO_VALIDITY.md`.
+* Relatorio final criado em `docs/research/RG_05_CLOSURE_REPORT.md`.
+* OV-01 a OV-08 e QE-01 a QE-10 formalizados.
+* Fases experimentais A a E, doze gates, pre-registro, desvios e encerramento definidos.
+* H-RG-001 a H-RG-011 inventariadas: seis aptas para teste futuro e cinco parcialmente operacionalizadas.
+* CP-01 a CP-05 apenas registrados; nenhum caso selecionado ou aplicado.
+* Metricas candidatas e oito estados de interpretacao definidos sem calculo de resultados.
+* Quarenta e seis ameacas gerais e cinco ameacas DGA-01 registradas com risco residual.
+* Papeis de agentes e governanca especifica para IA formalizados.
+* `Criterio de Avaliacao` preservado como hipotese observacional externa.
+* DGA-01 preservada; generalidade permanece nao comprovada.
+* Quatorze documentos RG-01 a RG-04 preservados por hashes.
+
+## Resolucao De Roadmap
+
+A Deliberacao Formal definiu RG-05 como Protocolo Experimental. A validacao nao foi executada. RG-06 passa a ser candidata aos primeiros pilotos controlados, condicionada a autorizacao, selecao e pre-registro proprios.
+
+## Restricoes Preservadas
+
+* Nenhum codigo, arquitetura de software, funcionalidade ou midia alterado.
+* Nenhum documento GP-RG-01 a GP-RG-04 modificado.
+* Nenhum experimento ou caso executado.
+* Nenhuma metrica calculada.
+* Nenhuma hipotese promovida e nenhuma eficacia/generalidade declarada.
+* GP-RG-06 permanece nao iniciada.
+
+---
+
+# GP-RG-04 - Dinamica Da Arquitetura GDC-R
+
+## Data
+
+17/07/2026
+
+## Status
+
+CONCLUIDA - DINAMICA GDC-R FORMALIZADA COM VALIDACAO EMPIRICA PENDENTE
+
+## Evento
+
+Formalizacao exclusivamente documental do comportamento temporal da GDC-R, incluindo estados compostos, transicoes, dependencias, propagacao, versoes, estabilidade, conflitos, encerramento e preservacao integral da DGA-01.
+
+## Resultado
+
+* Modelo dinamico criado em `docs/research/RG_04_DYNAMIC_MODEL.md`.
+* Maquina de estados criada em `docs/research/RG_04_STATE_MACHINE.md`.
+* Modelo de propagacao criado em `docs/research/RG_04_PROPAGATION_MODEL.md`.
+* Relatorio final criado em `docs/research/RG_04_CLOSURE_REPORT.md`.
+* Estado composto `?=(L,Q,K,X)` formalizado para ciclo de vida, verificacao, estabilidade e conformidade.
+* Onze estados de ciclo de vida, sete de verificacao e cinco de estabilidade definidos.
+* Quarenta e seis transicoes catalogadas, alem de regras de conformidade e doze proibicoes.
+* Dependencias obrigatorias/opcionais, fortes/fracas, diretas/transitivas e criticas/nao criticas modeladas.
+* Algoritmo de propagacao, seis niveis de impacto, versionamento e compatibilidade formalizados.
+* Conflitos entre E/I/F/D/V tratados por estrategias candidatas nao definitivas.
+* Vinte invariantes dinamicos centrais estabelecidos.
+* H-RG-008 a H-RG-011 registradas como hipoteses documentais pendentes.
+* H-RG-001 a H-RG-007 preservadas sem promocao.
+* `Criterio de Avaliacao` mantido como hipotese observacional externa.
+* DGA-01 preservada em estados, transicoes, dependencias e exemplos.
+
+## Divergencia De Roadmap
+
+O titulo prospectivo anterior ?GP-RG-04 ? Protocolo Experimental? foi substituido pela autorizacao posterior e especifica ?GP-RG-04 ? Dinamica da Arquitetura GDC-R?. Nenhuma renumeracao do protocolo ou redefinicao da GP-RG-05 foi inferida.
+
+## Restricoes Preservadas
+
+* Nenhum codigo, sistema, arquitetura de software, funcionalidade ou midia alterado.
+* Nenhum documento GP-RG-01, GP-RG-02 ou GP-RG-03 modificado.
+* Nenhuma validacao empirica ou multidominio executada.
+* Protocolo experimental permanece nao formalizado.
+* Proxima GP-RG permanece nao iniciada e depende de deliberacao de escopo.
+
+---
+
+# GP-RG-03 - Arquitetura Da Cadeia De Governanca Da Fundamentacao Das Decisoes
+
+## Data
+
+17/07/2026
+
+## Status
+
+CONCLUIDA - ARQUITETURA GDC-R FORMALIZADA COM VALIDACAO EMPIRICA PENDENTE
+
+## Evento
+
+Formalizacao exclusivamente documental da arquitetura geral da cadeia de governanca, com relacoes tipadas, ciclos controlados de revisao, integridade, propriedades, invariantes e independencia de dominio conforme DGA-01.
+
+## Resultado
+
+* Arquitetura criada em `docs/research/RG_03_ARCHITECTURE.md`.
+* Representacao criada em `docs/research/RG_03_ARCHITECTURAL_DIAGRAM.md`.
+* Invariantes criados em `docs/research/RG_03_INVARIANTS.md`.
+* Relatorio final criado em `docs/research/RG_03_CLOSURE_REPORT.md`.
+* GDC-R definido como grafo dirigido, tipado, versionado e com revisoes controladas.
+* Vinte relacoes permitidas, quinze proibicoes e ciclo de revisao em dez etapas formalizados.
+* Dezoito regras de integridade, dez propriedades e trinta e um invariantes registrados.
+* Perfis PMG/PCP, estados verificaveis e classes de conformidade definidos.
+* Nucleo mantido independente de PROTEUS, ICFACTORY, dominio, tecnologia e tipo de agente.
+* Generalidade estabelecida como requisito arquitetural; aplicabilidade multidominio permanece nao validada.
+* `Criterio de Avaliacao` mantido como hipotese observacional externa ao nucleo.
+* H-RG-001 a H-RG-007 preservadas sem promocao.
+
+## Restricoes Preservadas
+
+* Nenhum codigo, arquitetura de projeto, funcionalidade, midia ou artefato do PROTEUS alterado.
+* Nenhum documento das GP-RG-01 e GP-RG-02 modificado.
+* Nenhuma validacao empirica ou multidominio alegada.
+* GP-RG-04 permanece nao iniciada.
+
+---
+
+# GP-RG-02 - Modelo Conceitual Da Governanca Da Fundamentacao Das Decisoes
+
+## Data
+
+17/07/2026
+
+## Status
+
+CONCLUIDA - MODELO CONCEITUAL FORMALIZADO COM VALIDACAO EMPIRICA PENDENTE
+
+## Evento
+
+Formalizacao semantica documental dos conceitos da cadeia observavel constituida pela GP-RG-01, sem promocao de hipoteses e sem alteracao dos documentos da etapa anterior.
+
+## Resultado
+
+* Modelo criado em `docs/research/RG_02_CONCEPTUAL_MODEL.md`.
+* Matriz comparativa criada em `docs/research/RG_02_SEMANTIC_MATRIX.md`.
+* Relatorio final criado em `docs/research/RG_02_CLOSURE_REPORT.md`.
+* Premissa, Evidencia, Inferencia, Fundamentacao, Decisao e Validacao formalizadas para pesquisa.
+* Definicoes, objetivos, limites, exemplos, contraexemplos, relacoes, estados e papeis registrados.
+* Cadeia representada como grafo documental com ciclos de revisao, sem alegacao sobre processos internos.
+* Regras conceituais, cardinalidades provisorias, invariantes e testes de classificacao registrados.
+* Ambiguidades obrigatorias e adicionais explicitadas.
+* `Criterio de Avaliacao` preservado como hipotese observacional fora da cadeia oficial.
+* Hipoteses H-RG-001 a H-RG-007 mantidas sem promocao.
+
+## Restricoes Preservadas
+
+* Nenhum codigo, arquitetura, funcionalidade ou midia alterado.
+* Nenhum documento da GP-RG-01 ou resultado da GP-PI-07A modificado.
+* Nenhuma validacao multidominio alegada.
+* GP-RG-03 permanece nao iniciada.
+
+---
+
+# GP-RG-01 - Constituicao Da Pesquisa Governanca Da Fundamentacao Das Decisoes
+
+## Data
+
+17/07/2026
+
+## Status
+
+CONCLUIDA - LINHA DE PESQUISA CONSTITUIDA COM HIPOTESES EM VALIDACAO
+
+## Evento
+
+Constituicao documental da linha de pesquisa originada pelo experimento GP-PI-07A, limitada a cadeia observavel utilizada para fundamentar decisoes em tarefas complexas.
+
+## Resultado
+
+* Constituicao criada em `docs/research/RG_01_RESEARCH_CONSTITUTION.md`.
+* Roadmap inicial criado em `docs/research/RG_01_RESEARCH_ROADMAP.md`.
+* Relatorio de encerramento criado em `docs/research/RG_01_CLOSURE_REPORT.md`.
+* Objeto e nao objeto formalmente delimitados.
+* Hipotese central registrada como hipotese de pesquisa nao validada.
+* Seis conceitos iniciais registrados em fase de consolidacao.
+* `Criterio de Avaliacao` mantido como hipotese observacional.
+* Doze principios metodologicos e limites epistemicos formalizados.
+* Sequencia GP-RG-01 a GP-RG-05 definida sem inicio automatico das etapas futuras.
+* Nenhuma hipotese promovida a principio ou conclusao definitiva.
+
+## Restricoes Preservadas
+
+* Nenhum codigo, arquitetura, funcionalidade ou midia alterado.
+* Nenhum resultado da GP-PI-07 ou GP-PI-07A modificado.
+* Nenhum estado interno de modelo inferido.
+* GP-RG-02 a GP-RG-05 permanecem nao iniciadas.
+
+---
+
+# GP-PI-07 / GP-PI-07A - Pos-Producao Visual E Governanca Da Fundamentacao Das Decisoes
+
+## Data
+
+17/07/2026
+
+## Status
+
+CONCLUIDA COM RESSALVAS
+
+## Evento
+
+Auditoria previa, pos-producao visual nao destrutiva do Video Institucional V1 e experimento de governanca da cadeia observavel de premissas, evidencias, inferencias, fundamentacoes, decisoes e validacoes.
+
+## Resultado
+
+* Auditoria previa criada em `docs/presentation/PI_07_KDENLIVE_PRE_POSTPRODUCTION_AUDIT.md`.
+* Relatorio de execucao criado em `docs/presentation/PI_07_POST_PRODUCTION_EXECUTION_REPORT.md`.
+* Artefato experimental criado em `docs/research/PI_07A_DECISION_FOUNDATION_GOVERNANCE_REPORT.md`.
+* Projeto Kdenlive preservado com SHA-256 anterior e posterior identicos.
+* Timeline de 108 segundos renderizada em modo nao destrutivo.
+* Legenda especifica de 12 blocos criada e validada.
+* Fades, legendas abertas e cartela final oficial aplicados.
+* Primeira escala tipografica rejeitada por obstrucao visual; configuracao corrigida e revalidada com rastreabilidade integral.
+* Saida final H.264, 1920x1080, 30 fps, 111,966667 segundos e decodificacao integral aprovada.
+* Narracao e trilha nao inseridas por ausencia de arquivos e licencas observaveis.
+* Veredito GP-PI-07: POS-PRODUCAO VISUAL V1 CONCLUIDA COM RESSALVAS.
+* Resultado GP-PI-07A: CADEIA DE GOVERNANCA CONSISTENTE COM RESSALVAS.
+
+## Restricoes Preservadas
+
+* Nenhuma arquitetura, codigo-fonte, funcionalidade ou dado alterado.
+* Nenhum ativo externo incorporado.
+* Nenhuma voz ou trilha presumida.
+* Nenhum arquivo-fonte audiovisual sobrescrito.
+* Nenhuma publicacao externa executada.
+
+---
+
 # GP-PE-25 - Execucao Do Lote 01 De Promocao Patrimonial
 
 ## Data

@@ -146,6 +146,16 @@ Observação
 | GP-R02 | Investigacao Arquitetural: Progressao de Valor Entre Camadas | PESQUISA CONCLUIDA |
 | GP-R03 | Investigacao Arquitetural: Executive Context | PESQUISA CONCLUIDA |
 | GP-R06 | Governanca Experimental da Decisao por IA | PESQUISA EXPERIMENTAL - NAO NORMATIVA - ESTADO CONGELADO |
+| GP-RG-01 | Constituicao da Pesquisa Governanca da Fundamentacao das Decisoes | CONCLUIDA - LINHA CONSTITUIDA COM HIPOTESES EM VALIDACAO |
+| GP-RG-02 | Modelo Conceitual da Fundamentacao das Decisoes | CONCLUIDA - MODELO FORMALIZADO COM VALIDACAO EMPIRICA PENDENTE |
+| GP-RG-03 | Arquitetura Documental da Cadeia de Governanca | CONCLUIDA - GDC-R FORMALIZADA COM VALIDACAO EMPIRICA PENDENTE |
+| GP-RG-04 | Dinamica da Arquitetura GDC-R | CONCLUIDA - DINAMICA FORMALIZADA COM VALIDACAO EMPIRICA PENDENTE |
+| GP-RG-05 | Protocolo Experimental de Validacao da GDC-R | CONCLUIDA - PROTOCOLO FORMALIZADO SEM EXECUCAO EMPIRICA |
+| GP-RG-06 | Primeiro Caso-Piloto Controlado da GDC-R | CONCLUIDA COM RESSALVAS - CP-01 EXECUTADO SEM PROMOCAO DE HIPOTESES |
+| GP-RG-07 | Validacao Interavaliadores e Inter-Harnesses | EXECUCAO SUSPENSA - TESTE INCONCLUSIVO POR PACOTE NAO RESOLVIVEL |
+| GP-RG-08 | Verificacao de Executabilidade e Integridade do Pacote Experimental | CONCLUIDA - GX-PKG FORMALIZADO E PILOTADO POSTERIORMENTE NA RG-09 |
+| GP-RG-09 | Piloto Sintetico de Validacao do Gate GX-PKG | CONCLUIDA - H1 APOIADA NO CONTEXTO SINTETICO TESTADO |
+| GDC-R Fase I | Baseline metodologica e corpus cientifico incremental | CONCLUIDA E PUBLICADA - COMMIT INSTITUCIONAL PENDENTE |
 
 ---
 
@@ -1158,6 +1168,152 @@ Entregavel:
 ---
 
 # Research
+
+## Familia GP-RG - Governanca Da Fundamentacao Das Decisoes
+
+Estado:
+
+FASE I CONCLUIDA E CORPUS CIENTIFICO PUBLICADO; RG-09 CONCLUIDA COM H1 APOIADA NO CONTEXTO SINTETICO; RG-08 PRESERVADA; RG-07 PRESERVADA COMO TESTE INCONCLUSIVO; RG-06 PRESERVADA SEM PROMOCAO DE HIPOTESES; COMMIT INSTITUCIONAL PENDENTE.
+
+### Marco Institucional Da Fase I
+
+Estado administrativo:
+
+DOCUMENTACAO PREPARADA PARA COMMIT INSTITUCIONAL, SEM COMMIT OU PUSH AUTORIZADO NESTA ETAPA.
+
+Execucoes Git concluidas:
+
+1. OEG-GIT-01 - auditoria inicial e interrupcao governada diante da arvore mista;
+2. OEG-GIT-02 - inventario, classificacao e parecer `NAO_PRONTO` para commit unico;
+3. OEG-GIT-03 - quatro commits cientificos incrementais, totalizando 68 arquivos;
+4. OEG-GIT-04 - auditoria metodologica com parecer `GO` para autorizacao do push;
+5. OEG-GIT-05 - push por fast-forward concluido e auditado na branch `feature/environment-data-v1`;
+6. OEG-GIT-06 - regularizacao de HISTORY/ROADMAP e preparacao dos relatorios institucionais, sem commit.
+
+Baseline cientifica publicada:
+
+* `2c9c852dcdb696a8d19a7e12d371ee5ccd5eed4e` - fundamentos e RG-01 a RG-05;
+* `1ef244c761513f9d3e109c77967ecd5000d3305f` - RG-06 a RG-08;
+* `dcf0acbbd5bc1a0bb8131ac815a6f06067040979` - RG-09 e fixtures;
+* `4db23befc6d983c1fdb5c90342258127c58c9ef7` - consolidacao cientifica da Fase I;
+* local, remote-tracking ref e remoto sincronizados em `4db23befc6d983c1fdb5c90342258127c58c9ef7` apos a OEG-GIT-05.
+
+Relatorios institucionais preparados:
+
+* `docs/research/GIT_PENDING_STATE_AUDIT.md`;
+* `docs/research/OEG_GIT_04_PUSH_AUTHORIZATION_AUDIT.md`;
+* `docs/research/OEG_GIT_05_PUSH_EXECUTION_REPORT.md`.
+
+Transicao prevista:
+
+* Fase II nao iniciada e condicionada a nova Deliberacao Formal e nova OEG;
+* validacoes externas com diferentes modelos de IA e diferentes Harnesses;
+* ambientes reais e novos dominios de aplicacao;
+* analises de reprodutibilidade independente;
+* ampliacao do conjunto experimental;
+* nenhuma promocao universal de H1 ou da baseline metodologica antes dessas validacoes.
+
+Objeto:
+
+* cadeia observavel utilizada para fundamentar decisoes produzidas durante tarefas complexas;
+* raciocinio interno, mecanismos de inferencia e arquitetura interna de modelos permanecem fora do objeto.
+
+Autoridades:
+
+* `docs/research/RG_01_RESEARCH_CONSTITUTION.md`;
+* `docs/research/RG_01_RESEARCH_ROADMAP.md`;
+* `docs/research/RG_01_CLOSURE_REPORT.md`;
+* `docs/research/RG_02_CONCEPTUAL_MODEL.md`;
+* `docs/research/RG_02_SEMANTIC_MATRIX.md`;
+* `docs/research/RG_02_CLOSURE_REPORT.md`;
+* `docs/research/RG_03_ARCHITECTURE.md`;
+* `docs/research/RG_03_ARCHITECTURAL_DIAGRAM.md`;
+* `docs/research/RG_03_INVARIANTS.md`;
+* `docs/research/RG_03_CLOSURE_REPORT.md`;
+* `docs/research/RG_04_DYNAMIC_MODEL.md`;
+* `docs/research/RG_04_STATE_MACHINE.md`;
+* `docs/research/RG_04_PROPAGATION_MODEL.md`;
+* `docs/research/RG_04_CLOSURE_REPORT.md`;
+* `docs/research/RG_05_EXPERIMENTAL_PROTOCOL.md`;
+* `docs/research/RG_05_HYPOTHESIS_OPERATIONALIZATION.md`;
+* `docs/research/RG_05_CASE_SELECTION_FRAMEWORK.md`;
+* `docs/research/RG_05_METRICS_AND_INTERPRETATION.md`;
+* `docs/research/RG_05_THREATS_TO_VALIDITY.md`;
+* `docs/research/RG_05_CLOSURE_REPORT.md`;
+* `docs/research/RG_06_CASE_SELECTION.md`;
+* `docs/research/RG_06_PREREGISTRATION.md`;
+* `docs/research/RG_06_CP01_EXECUTION.md`;
+* `docs/research/RG_06_CP01_RESULTS.md`;
+* `docs/research/RG_06_CP01_AUDIT.md`;
+* `docs/research/RG_06_CLOSURE_REPORT.md`;
+* `docs/research/RG_07_EXPERIMENT_PLAN.md`;
+* `docs/research/RG_07_INDEPENDENCE_PROTOCOL.md`;
+* `docs/research/RG_07_EXECUTION_A.md`;
+* `docs/research/RG_07_EXECUTION_B.md`;
+* `docs/research/RG_07_COMPARATIVE_MATRIX.md`;
+* `docs/research/RG_07_AUDIT.md`;
+* `docs/research/RG_07_CLOSURE_REPORT.md`;
+* `docs/research/RG_08_EXECUTABILITY_FRAMEWORK.md`;
+* `docs/research/RG_08_PACKAGE_INTEGRITY_PROTOCOL.md`;
+* `docs/research/RG_08_EXECUTABILITY_CHECKLIST.md`;
+* `docs/research/RG_08_CLASSIFICATION_CRITERIA.md`;
+* `docs/research/RG_08_ARCHITECTURAL_IMPACTS.md`;
+* `docs/research/RG_08_CLOSURE_REPORT.md`;
+* `docs/research/RG_09_SYNTHETIC_EXPERIMENT_PLAN.md`;
+* `docs/research/RG_09_TEST_CASES.md`;
+* `docs/research/RG_09_EXECUTION_REPORT.md`;
+* `docs/research/RG_09_RESULTS_MATRIX.md`;
+* `docs/research/RG_09_FINAL_ANALYSIS.md`;
+* `docs/research/RG_09_THREATS_TO_VALIDITY.md`;
+* `docs/research/RG_09_CLOSURE_REPORT.md`;
+* `docs/research/PHASE_I_CONSOLIDATED_REPORT.md`;
+* experimento fundador `docs/research/PI_07A_DECISION_FOUNDATION_GOVERNANCE_REPORT.md`.
+
+Sequencia logica:
+
+1. GP-RG-01 ??? Constituicao da Pesquisa ??? CONCLUIDA.
+2. GP-RG-02 ??? Modelo Conceitual ??? CONCLUIDA, VALIDACAO EMPIRICA PENDENTE.
+3. GP-RG-03 ??? Arquitetura Documental da Cadeia ??? CONCLUIDA, VALIDACAO EMPIRICA PENDENTE.
+4. GP-RG-04 ??? Dinamica da Arquitetura GDC-R ??? CONCLUIDA, VALIDACAO EMPIRICA PENDENTE.
+5. GP-RG-05 ??? Protocolo Experimental ??? CONCLUIDA, SEM EXECUCAO EMPIRICA.
+6. GP-RG-06 ??? Primeiro Caso-Piloto Controlado ??? CONCLUIDA COM RESSALVAS, CP-01 EXECUTADO.
+7. GP-RG-07 ??? Validacao Interavaliadores ??? EXECUCAO SUSPENSA, TESTE INCONCLUSIVO.
+8. GP-RG-08 ??? Verificacao de Executabilidade e Integridade ??? CONCLUIDA DOCUMENTALMENTE; PROTOCOLO PILOTADO POSTERIORMENTE NA RG-09.
+9. GP-RG-09 ??? Piloto Sintetico GX-PKG ??? CONCLUIDA, H1 APOIADA NO CONTEXTO SINTETICO TESTADO.
+
+Nota de governanca:
+
+* o roadmap RG-01 reservava prospectivamente RG-04 ao Protocolo Experimental;
+* a autorizacao especifica posterior executou RG-04 como Dinamica da GDC-R;
+* a Deliberacao Formal posterior resolveu RG-05 como Protocolo Experimental;
+* o protocolo experimental foi formalizado pela RG-05 sem execucao;
+* a denominacao anterior de RG-05 como Validacao Multidominio foi superada pela deliberacao, e a validacao plena permanece etapa futura;
+* RG-05 produziu planejamento, nao resultados;
+* RG-06 executou CP-01 apos autorizacao, selecao, pre-registro e congelamento de instrumentos; o resultado permanece contextual e OV-06 inconclusivo;
+* RG-07 preservou duas execucoes independentes, mas ambas suspenderam antes do caso por localizador ausente da OEG-RG-06; convergencia de suspensao nao valida reproducao;
+* RG-08 formalizou prospectivamente o gate aditivo `GX-PKG`, sem alterar RG-05, reclassificar RG-07 ou promover hipoteses;
+* RG-09 executou quatro cenarios sinteticos em duas passagens, obteve as quatro classes esperadas e zero falso GO/NO-GO; o apoio a H1 limita-se ao conjunto sintetico;
+* validacao multidominio plena permanece posterior aos primeiros pilotos e sem inicio automatico.
+
+Restricoes:
+
+* hipotese central nao validada;
+* seis conceitos formalizados para pesquisa, sem validacao empirica ou promocao metodologica;
+* GDC-R e arquitetura geral de pesquisa, independente de projeto e dominio conforme DGA-01;
+* dinamica, estados, transicoes, dependencias, propagacao, estabilidade e versionamento nao foram validados empiricamente;
+* H-RG-008 a H-RG-011 permanecem hipoteses documentais pendentes;
+* H-RG-001 a H-RG-011 permanecem sem promocao empirica;
+* protocolo experimental pilotado somente em CP-01 e ainda nao calibrado;
+* CP-01 foi selecionado e aplicado; CP-02 a CP-05 nao foram aplicados;
+* metricas do primeiro piloto sao descritivas e nao estabelecem limiares confirmatorios;
+* `Criterio de Avaliacao` permanece hipotese observacional externa;
+* GP-RG-06 concluiu somente o primeiro piloto CP-01; nenhum piloto adicional foi iniciado;
+* GP-RG-07 foi encerrada documentalmente como suspensa; H-RG-004 permanece nao validada;
+* GP-RG-08 foi autorizada pela OEG-RG-08 e concluida documentalmente; o protocolo de executabilidade foi pilotado sinteticamente na RG-09, mas ainda nao possui reproducao independente ou validade externa;
+* GP-RG-09 foi autorizada pela OEG-RG-09 e concluiu o primeiro piloto sintetico GX-PKG; repetibilidade interna foi observada, mas reproducao independente e validade externa permanecem pendentes;
+* qualquer experimento seguinte depende de nova Deliberacao Formal e nova OEG;
+* nenhuma etapa futura iniciada automaticamente;
+* nenhuma promocao metodologica executada.
 
 ## GP-R02 - Progressao de Valor Entre Camadas
 
