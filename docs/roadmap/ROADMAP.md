@@ -1,5 +1,19 @@
 # ROADMAP
 
+## Onda B - Sublote 03C
+
+Status: PROMOVIDO LOCALMENTE - PUBLICACAO REMOTA NAO AUTORIZADA
+
+* [x] GP-HA08 promovido como pesquisa metodologica governada e nao normativa.
+* [x] Fonte consolidada secundaria e ausencia dos estudos primarios preservadas.
+* [x] Classificacao cientifica da GP-PE-36 mantida sem ampliacao.
+* [x] Nenhuma validacao cientifica adicional, absorcao constitucional ou norma criada.
+* [x] Promocao limitada a preservacao institucional do dossie.
+* [x] Sublotes 03A e 03B mantidos fora desta promocao.
+* [ ] Publicacao remota depende de autorizacao humana explicita.
+
+---
+
 ## Onda B - Sublote 03B
 
 Status: PROMOVIDO LOCALMENTE - PUBLICACAO REMOTA NAO AUTORIZADA

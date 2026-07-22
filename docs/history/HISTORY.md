@@ -1,5 +1,33 @@
 # HISTORY
 
+# GP-PE-38 - Promocao Patrimonial Do Sublote 03C
+
+## Data
+
+22/07/2026
+
+## Status
+
+PROMOVIDO LOCALMENTE - PUBLICACAO REMOTA NAO AUTORIZADA
+
+## Evento
+
+Promocao patrimonial atomica do GP-HA08 como pesquisa metodologica governada, documental e nao normativa.
+
+## Resultado
+
+* `docs/research/HARNESS_GOVERNANCE_RESEARCH_DOSSIER.md` promovido sem alteracao de conteudo.
+* SHA-256 validado: `93D42D170DAC9AE5A2C2E8985D11B50EA0A81406CC3FE32D087CA06215228C8C`.
+* GP-HA08 preservado como fonte consolidada secundaria.
+* GP-H01 e GP-HA01 a GP-HA07 permanecem indisponiveis como artefatos primarios.
+* Classificacao da GP-PE-36 preservada: parcialmente validada em contexto interno, sem reproducao cientifica independente integral.
+* Nenhuma validacao cientifica adicional produzida.
+* Nenhuma absorcao constitucional ou autoridade normativa criada.
+* Promocao restrita ao estado de preservacao institucional do dossie.
+* Sublotes 03A e 03B excluidos desta promocao.
+
+---
+
 # GP-PE-35 - Promocao Patrimonial Do Sublote 03B
 
 ## Data
