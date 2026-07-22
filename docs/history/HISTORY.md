@@ -1,5 +1,31 @@
 # HISTORY
 
+# GP-PE-32 - Promocao Patrimonial Do Sublote 03A
+
+## Data
+
+22/07/2026
+
+## Status
+
+PROMOVIDO LOCALMENTE - PUBLICACAO REMOTA NAO AUTORIZADA
+
+## Evento
+
+Promocao patrimonial atomica da autoridade oficial vigente sobre a estrategia de persistencia Medicao -> Projeto.
+
+## Resultado
+
+* `docs/domain/GP_D01C_PERSISTENCE_STRATEGY_AUDIT.md` promovido sem alteracao de conteudo.
+* `GP-D01C-A` confirmado como artefato canonico vigente da familia institucional `GP-D01C`.
+* SHA-256 validado: `74A2503DCC54BDEEF225BA8222B6599FE4F6F184FB24ED0A44CDD832E0F24C80`.
+* Cadeia GP-D01A -> GP-D01B -> GP-D01C-A -> GP-D02A preservada.
+* PA-01 e OP-00 preservados.
+* Nenhuma implementacao funcional ou alteracao de persistencia executada.
+* Sublotes 03B e 03C excluidos da promocao.
+
+---
+
 # OEG-GIT-01 A OEG-GIT-06 - Regularizacao Documental E Publicacao Cientifica Da Fase I GDC-R
 
 ## Data

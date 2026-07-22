@@ -1,5 +1,17 @@
 # ROADMAP
 
+## Onda B - Sublote 03A
+
+Status: PROMOVIDO LOCALMENTE - PUBLICACAO REMOTA NAO AUTORIZADA
+
+* [x] Autoridade `GP-D01C-A`, da familia institucional `GP-D01C`, promovida como patrimonio oficial de dominio.
+* [x] Integridade SHA-256, proveniencia e cadeia GP-D01A -> GP-D01B -> GP-D01C-A -> GP-D02A validadas.
+* [x] PA-01 e OP-00 preservados sem implementacao funcional ou alteracao de persistencia.
+* [x] Sublotes 03B e 03C mantidos fora desta promocao.
+* [ ] Publicacao remota depende de autorizacao institucional especifica.
+
+---
+
 ## Fase 1 — Fundação
 
 Status: Concluída
