@@ -1,5 +1,18 @@
 # ROADMAP
 
+## Onda B - Sublote 03B
+
+Status: PROMOVIDO LOCALMENTE - PUBLICACAO REMOTA NAO AUTORIZADA
+
+* [x] `DISC-CAT` promovido como patrimonio metodologico, investigativo e nao normativo.
+* [x] Namespace `DISC-NNN`, itens `DISC-001`/`DISC-002` e aliases historicos preservados.
+* [x] Estados das Discoveries mantidos como `HIPOTESE`; `VALIDADA != ABSORVIDA`.
+* [x] Nenhuma norma, implementacao, absorcao ou alteracao arquitetural autorizada.
+* [x] Sublotes 03A e 03C mantidos fora desta promocao.
+* [ ] Publicacao remota depende de autorizacao institucional especifica.
+
+---
+
 ## Onda B - Sublote 03A
 
 Status: PROMOVIDO LOCALMENTE - PUBLICACAO REMOTA NAO AUTORIZADA

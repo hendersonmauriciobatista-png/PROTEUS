@@ -1,5 +1,32 @@
 # HISTORY
 
+# GP-PE-35 - Promocao Patrimonial Do Sublote 03B
+
+## Data
+
+22/07/2026
+
+## Status
+
+PROMOVIDO LOCALMENTE - PUBLICACAO REMOTA NAO AUTORIZADA
+
+## Evento
+
+Promocao patrimonial atomica do `DISC-CAT`, preservando sua natureza metodologica, investigativa e nao normativa.
+
+## Resultado
+
+* `docs/research/DISCOVERY_CATALOG.md` promovido sem alteracao de conteudo.
+* Namespace `DISC-NNN` preservado com `DISC-001` e `DISC-002`.
+* Aliases `PA-02 (Discovery)` e `PA-03 (Discovery)` preservados como registros historicos congelados.
+* SHA-256 validado: `C553F40065ED3F843BDA526CD7EBED84076F3E85DA5158EE59969AF01836ECCA`.
+* Estados das Discoveries mantidos como `HIPOTESE`.
+* Regra institucional preservada: `VALIDADA != ABSORVIDA`.
+* Nenhuma norma, absorcao, implementacao ou alteracao arquitetural criada.
+* Sublotes 03A e 03C excluidos desta promocao.
+
+---
+
 # GP-PE-32 - Promocao Patrimonial Do Sublote 03A
 
 ## Data
