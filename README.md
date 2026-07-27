@@ -261,12 +261,52 @@ Recursos adicionados:
 * Política observacional padrão quando não houver regra específica.
 * Separação explícita: o Policy Engine seleciona política, mas não executa avaliação.
 
+## Estado Congelado
+
+Núcleo de Monitoramento Hídrico - Ciclo Arquitetural 1:
+
+ENCERRADO E CONGELADO
+
+Componentes concluídos:
+
+* Arquitetura modular.
+* Configuração operacional.
+* Catálogo inteligente.
+* Motor de avaliação observacional.
+* Policy Engine.
+* PA-01 - Separação entre seleção e execução de políticas.
+
+O núcleo passa a existir como base arquitetural estável para auditoria de integração com os módulos já existentes.
+
+GP-A15 inicia a integração do Dashboard ao Núcleo de Monitoramento Hídrico.
+
+Resultado:
+
+* O Dashboard deixa de conter lógica própria hardcoded de avaliação observacional.
+* A seleção de política passa a ser feita pelo `PolicyEngine`.
+* A execução da avaliação passa a ser feita pelo `AvaliacaoObservacionalService`.
+* A leitura de CSVs permanece temporariamente no Dashboard.
+* A interface visual é preservada.
+
 ---
 
 # Próximos Passos
 
-A próxima expansão arquitetural deverá preparar a conformidade legal/normativa sobre o Policy Engine e os motores especializados, sem misturar seleção de política com execução de avaliação.
+A próxima etapa será uma auditoria de integração arquitetural entre o novo núcleo de Monitoramento Hídrico e os módulos existentes:
+
+* Dashboard.
+* Qualidade da Água / Monitoramento Hídrico.
+* Dados Ambientais.
+* Consumo e Distribuição.
+* Relatórios.
+* Previsão Analítica.
+* Governança Operacional.
+* Painel Executivo.
+
+Objetivo da auditoria:
+
+Identificar quais módulos ainda usam lógica própria e quais devem passar a consumir o novo núcleo de Monitoramento Hídrico.
 
 Próximo marco previsto:
 
-GP-A13 — Conformidade Legal/Normativa Inicial.
+AI-02 — Auditoria de Integração de Qualidade da Água / Monitoramento Hídrico.

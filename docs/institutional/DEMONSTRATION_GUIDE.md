@@ -1,5 +1,26 @@
 # Roteiro Oficial De Demonstracao Do PROTEUS
 
+## Controle Documental
+
+| Campo | Valor |
+| --- | --- |
+| Código documental | PRO-KIT-007 |
+| Versão | 1.2 |
+| Data-base | 26/07/2026 — implantação do controle documental; o roteiro de demonstração não foi revalidado nesta data |
+| Responsável pela elaboração | Evidência documental não encontrada. |
+| Custódia documental | Evidência documental não encontrada. |
+| Situação documental | Integrante de `DOC-002`, classificado como `Validado` quanto à existência e organização documental; estado institucional reconciliado pela GP-PD-02; conteúdo técnico não revalidado |
+| Responsabilidade documental | Procedimento institucional de demonstração |
+| Autoridade institucional | `docs/institutional/DOCUMENT_REGISTER.md`, seções 4 e 5 |
+
+### Histórico de Revisões
+
+| Versão | Data | Instrumento | Alteração |
+| --- | --- | --- | --- |
+| 1.0 | 26/07/2026 | GP-PD-01 | Implantação exclusiva de metadados e controle documental, sem alteração do conteúdo técnico ou institucional preexistente. |
+| 1.1 | 26/07/2026 | GP-PD-02 | Vinculação ao estado institucional oficial reconciliado no Registro Mestre, sem alteração do conteúdo técnico preexistente. |
+| 1.2 | 26/07/2026 | GP-PD-03 | Definição como autoridade primária do procedimento de demonstração e centralização da arquitetura documental no Registro Mestre, sem alteração técnica. |
+
 ## Objetivo
 
 Definir um roteiro oficial para demonstracoes consistentes e reproduziveis do PROTEUS perante universidades, instituicoes de pesquisa, empresas, orgaos publicos e demais partes interessadas.
