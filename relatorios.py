@@ -43,7 +43,7 @@ class RelatoriosPage(QWidget):
         layout.setContentsMargins(30, 20, 30, 20)
         layout.setSpacing(15)
 
-        title = QLabel("RelatÃ³rios")
+        title = QLabel("Relatórios")
         title.setObjectName("page_title")
         subtitle = QLabel("Resumo operacional consolidado em modo somente leitura")
         subtitle.setObjectName("page_subtitle")
@@ -67,7 +67,7 @@ class RelatoriosPage(QWidget):
         report_layout.addWidget(self.report_view)
         layout.addWidget(report_frame)
 
-        self.export_button = QPushButton("Exportar RelatÃ³rio TXT")
+        self.export_button = QPushButton("Exportar Relatório TXT")
         self.export_button.clicked.connect(self.export_report)
         layout.addWidget(self.export_button, alignment=Qt.AlignRight)
 
@@ -79,9 +79,9 @@ class RelatoriosPage(QWidget):
         try:
             REPORTS_DIR.mkdir(parents=True, exist_ok=True)
             REPORT_FILE.write_text(self.current_report, encoding="utf-8")
-            QMessageBox.information(self, "RelatÃ³rio exportado", f"RelatÃ³rio salvo em:\n{REPORT_FILE}")
+            QMessageBox.information(self, "Relatório exportado", f"Relatório salvo em:\n{REPORT_FILE}")
         except Exception as error:
-            QMessageBox.critical(self, "Erro ao exportar", f"Erro ao exportar relatÃ³rio: {error}")
+            QMessageBox.critical(self, "Erro ao exportar", f"Erro ao exportar relatório: {error}")
 
     def _build_report(self):
         qualidade_rows = self._read_csv(QUALIDADE_CSV)
@@ -90,24 +90,24 @@ class RelatoriosPage(QWidget):
         registros_observacionais_atencao = self.monitoring_adapter.contar_observacional_atencao(qualidade_rows)
 
         lines = [
-            "RELATÃ“RIO OPERACIONAL",
+            "RELATÓRIO OPERACIONAL",
             f"Gerado em: {datetime.now().isoformat(timespec='seconds')}",
             "",
             "TOTAL DE REGISTROS",
-            f"- Ãgua: {len(qualidade_rows)}",
+            f"- Água: {len(qualidade_rows)}",
             f"- Ambiente: {len(ambiente_rows)}",
             f"- Consumo: {len(consumo_rows)}",
             "",
-            "ÃšLTIMAS MEDIÃ‡Ã•ES",
-            f"- Ãgua: {self._format_latest_quality(qualidade_rows)}",
+            "ÚLTIMAS MEDIÇÕES",
+            f"- Água: {self._format_latest_quality(qualidade_rows)}",
             f"- Ambiente: {self._format_latest_environment(ambiente_rows)}",
             f"- Consumo: {self._format_latest_consumption(consumo_rows)}",
             "",
-            "QUALIDADE DA ÃGUA",
+            "QUALIDADE DA ÁGUA",
             f"- Registros com avaliacao observacional em atencao: {registros_observacionais_atencao}",
-            f"- MÃ©dia de pH: {self._format_average(qualidade_rows, 'ph')}",
-            f"- MÃ©dia de turbidez: {self._format_average(qualidade_rows, 'turbidez')}",
-            f"- MÃ©dia de temperatura da Ã¡gua: {self._format_average(qualidade_rows, 'temperatura')}",
+            f"- Média de pH: {self._format_average(qualidade_rows, 'ph')}",
+            f"- Média de turbidez: {self._format_average(qualidade_rows, 'turbidez')}",
+            f"- Média de temperatura da água: {self._format_average(qualidade_rows, 'temperatura')}",
         ]
         return "\n".join(lines)
 
@@ -137,7 +137,7 @@ class RelatoriosPage(QWidget):
         latest = rows[-1]
         return (
             f"{latest.get('timestamp', '')} | "
-            f"Temperatura {self._to_float(latest.get('temperatura_ambiente')):.2f} Â°C | "
+            f"Temperatura {self._to_float(latest.get('temperatura_ambiente')):.2f} °C | "
             f"Umidade {self._to_float(latest.get('umidade_relativa')):.2f} %"
         )
 
@@ -148,7 +148,7 @@ class RelatoriosPage(QWidget):
         latest = rows[-1]
         return (
             f"{latest.get('timestamp', '')} | "
-            f"Consumo diÃ¡rio {self._to_float(latest.get('consumo_diario')):.2f} mÂ³ | "
+            f"Consumo diário {self._to_float(latest.get('consumo_diario')):.2f} m³ | "
             f"Perdas {self._to_float(latest.get('perdas_estimadas')):.2f} %"
         )
 
@@ -163,4 +163,3 @@ class RelatoriosPage(QWidget):
             return float(value or 0)
         except ValueError:
             return 0.0
-

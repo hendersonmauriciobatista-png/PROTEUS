@@ -18,6 +18,7 @@ from PyQt5.QtWidgets import (
 )
 
 from analytics.dashboard_snapshot import DashboardAnalyticsSnapshotService
+from administracao import AdministracaoPage
 from consumo_distribuicao import ConsumoDistribuicaoPage
 from dados_ambientais import DadosAmbientaisPage
 from governanca_operacional import GovernancaOperacionalPage
@@ -337,6 +338,7 @@ class MainWindow(QMainWindow):
             ("Relatórios", 5),
             ("Previsao Analitica", 7),
             ("Governanca Operacional", 8),
+            ("Administração", 9),
         ]
         for index, item in enumerate(nav_items):
             label = item[0]
@@ -367,6 +369,7 @@ class MainWindow(QMainWindow):
         self.stack.addWidget(RelatoriosPage())
         self.stack.addWidget(PrevisaoAnaliticaPage())
         self.stack.addWidget(GovernancaOperacionalPage())
+        self.stack.addWidget(AdministracaoPage())
         content_layout.addWidget(self.stack)
         main_layout.addWidget(content)
 
