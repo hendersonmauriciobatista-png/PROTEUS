@@ -81,6 +81,8 @@ Constituição, arquitetura, documentação primária, registros operacionais, t
 
 Constituições, léxico, GPs, decisões, critérios, auditorias e histórico de evolução, respeitando autoridade e congelamento dos documentos vigentes.
 
+Referência de governança administrativa: `docs/institutional/AGIPI/DI_05_POLICY_AUTHORSHIP_OWNERSHIP_LICENSING_SUBMISSION.md`.
+
 ### Pesquisas
 
 Constituições de pesquisa, protocolos, instrumentos, dados, execuções, análises, ameaças à validade, relatórios e revisões.
@@ -97,7 +99,7 @@ Manifestos, origem das cenas, autorização de uso, data, versão, roteiro, corr
 
 1. Evidências de execução, cobertura de testes, implantação e operação contínua do H&A.
 2. Definição autorizada do OPTIMUS DRIVE.
-3. Representação institucional para interação externa.
-4. Mapa de autoria, titularidade e licenças.
+3. Autorização específica para submissão, exigida pela DI-05, e encaminhamento da documentação pelo representante institucional designado na DI-01.
+4. Mapa de autoria, titularidade e licenças previsto pela DI-05.
 5. Evidências externas ou pilotos relevantes do PROTEUS.
 6. Requisitos atuais do processo institucional pretendido.

@@ -10,6 +10,8 @@
 | Data-base | 27/07/2026 — reconciliada pela GP-AGIPI-PATCH-01 |
 | Apresentação agendada | Não |
 | Submissão autorizada | Não |
+| Representante institucional | Henderson Mauricio Batista |
+| Autoridade da representação | DI-01 — Representação Institucional, aprovada pela Direção do Projeto ICFACTORY |
 
 AGIPI é tratada neste plano como instituição destinatária potencial. Este documento não implica vínculo, anuência, agenda, seleção ou apoio.
 
@@ -37,7 +39,8 @@ Critérios:
 * documentos canônicos identificados;
 * autoridade de aprovação registrada;
 * conflitos e limitações explícitos;
-* forma jurídica e representação verificadas antes de uso externo.
+* forma jurídica verificada antes de uso externo;
+* representação institucional definida pela DI-01, observadas suas competências e seus limites.
 
 ### F2 — Portfólio e maturidade
 
@@ -90,7 +93,7 @@ Critérios:
 * definição institucional do OPTIMUS DRIVE;
 * análise de autoria e propriedade intelectual;
 * confirmação dos requisitos atuais da AGIPI antes de qualquer submissão;
-* definição de representante autorizado.
+* representação institucional definida pela DI-01, preservados os limites da decisão e a exigência de autorização prévia da documentação encaminhada.
 
 ## Riscos e respostas
 
@@ -118,7 +121,7 @@ A apresentação somente estará pronta quando:
 
 Fase 1 concluída documentalmente. A aprovação da Constituição Institucional está registrada na versão 1.1, aprovada pela Direção do Projeto ICFACTORY em 23/07/2026.
 
-A Fase 2 avançou documentalmente com o Inventário Institucional, o Mapa Institucional, a validação de evidências do Kit PROTEUS e a integração auditada das fontes primárias do H&A. Permanecem pendentes evidências operacionais, autoria, titularidade, licenças, requisitos atuais da AGIPI e representação externa. As Fases 3 a 6 não foram iniciadas por esta GP.
+A Fase 2 avançou documentalmente com o Inventário Institucional, o Mapa Institucional, a validação de evidências do Kit PROTEUS e a integração auditada das fontes primárias do H&A. A representação institucional foi definida pela DI-01, que designou Henderson Mauricio Batista para a interlocução institucional dentro das competências e dos limites nela registrados. Permanecem pendentes evidências operacionais, autoria, titularidade, licenças, requisitos atuais da AGIPI e autorização específica para submissão. As Fases 3 a 6 não foram iniciadas por esta GP.
 
 A GP-ARQ-01 foi examinada e permanece pesquisa arquitetural experimental, sem integração ao pacote institucional, à Constituição ou ao portfólio consolidado.
 

@@ -27,7 +27,8 @@ AGIPI é destinatária institucional potencial. Este pacote não declara víncul
 7. `docs/institutional/INSTITUTIONAL_MAP.md`;
 8. `docs/institutional/AGIPI/EVIDENCE_DOSSIER.md`;
 9. `docs/institutional/AGIPI/PRESENTATION_OUTLINE.md`;
-10. este Relatório de Reconciliação.
+10. `docs/institutional/AGIPI/DI_01_INSTITUTIONAL_REPRESENTATION.md`;
+11. este Relatório de Reconciliação.
 
 ### 2.2 Evidências anexas recomendadas
 
@@ -131,10 +132,13 @@ Esses itens permanecem no acervo e podem ser consultados sob necessidade e autor
 * CASE-02 sustentado por fontes primárias sem sobrestimar maturidade;
 * CASE-01 vinculado ao Registro Mestre e à auditoria de evidências;
 * pesquisas experimentais explicitamente segregadas.
+* política institucional de autoria, titularidade, licenciamento e submissão dotada de autoridade documental pela DI-05.
 
 ### Riscos remanescentes
 
-* forma jurídica, representação, autoria, titularidade e licenças ainda exigem validação;
+* forma jurídica e a identificação ou formalização concreta de autoria, titularidade e licenças ainda exigem documentação própria, conforme a DI-05;
+* a representação institucional está definida pela DI-01, sem autorização automática para submissão ou para obrigações jurídicas e contratuais;
+* qualquer submissão depende de decisão institucional específica da Direção do Projeto ICFACTORY, conforme a DI-05;
 * requisitos vigentes da AGIPI não foram verificados nesta GP;
 * não há vínculo ou agenda externa comprovada;
 * PROTEUS carece de validação externa;
@@ -144,7 +148,7 @@ Esses itens permanecem no acervo e podem ser consultados sob necessidade e autor
 ### Recomendações
 
 1. realizar revisão humana final do núcleo de envio;
-2. validar representante, autoria, titularidade, licenças e classificação de acesso;
+2. documentar autoria, titularidade, licenças e classificação de acesso conforme a DI-05, observando as competências e os limites do representante definidos pela DI-01;
 3. confirmar os requisitos atuais da AGIPI antes do envio;
 4. selecionar anexos proporcionais ao interlocutor;
 5. não incluir pesquisas experimentais no deck principal;

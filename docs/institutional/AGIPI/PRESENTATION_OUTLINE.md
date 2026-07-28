@@ -14,7 +14,7 @@ Apresentação principal de 10 a 12 minutos, com 10 slides, seguida de demonstra
 
 Mensagem: organização de PD&I em consolidação institucional, orientada a tecnologias auditáveis.
 
-Evidência: Constituição Institucional e identidade do responsável autorizado.
+Evidência: Constituição Institucional e DI-01 — Representação Institucional, que designa Henderson Mauricio Batista como representante institucional.
 
 ### Slide 2 — O problema
 
@@ -72,7 +72,7 @@ Limite: Interface Institucional é visão futura, não funcionalidade.
 
 Mensagem: solicitar orientação sobre enquadramento, incubação, validação, parceiros e próximos requisitos.
 
-O pedido final deverá ser aprovado pelo representante humano antes da reunião.
+Henderson Mauricio Batista é o representante institucional designado pela DI-01. O pedido final e a documentação a encaminhar deverão estar previamente autorizados, conforme os limites da própria decisão.
 
 ## Demonstração opcional
 
@@ -101,7 +101,8 @@ Plano alternativo: capturas ou vídeo autorizado, caso o ambiente ao vivo não e
 
 ## Checklist antes de uso externo
 
-* [ ] Representante e pedido institucional aprovados.
+* [x] Representante institucional designado pela DI-01.
+* [ ] Pedido institucional e documentação previamente autorizados.
 * [ ] Requisitos atuais da instituição verificados.
 * [ ] Evidências do deck registradas no dossiê.
 * [ ] Alegações jurídicas, técnicas e de maturidade revisadas.
