@@ -1,5 +1,106 @@
 # ROADMAP
 
+## Linha de Evolução Institucional — ICFACTORY / GP-AGIPI
+
+Status: BASE DOCUMENTAL CRIADA — PREPARAÇÃO PARA INCUBAÇÃO E PARCERIAS EM ANDAMENTO
+
+Objetivo: preparar a ICFACTORY para processos de incubação, validação institucional e futuras parcerias estratégicas, preservando a governança e a maturidade comprovável dos ativos.
+
+* [x] GP-AGIPI-01 aberta e executada em 23/07/2026.
+* [x] Constituição e identidade institucional inicial formalizadas.
+* [x] Linhas de pesquisa e portfólio tecnológico inicial organizados.
+* [x] Posicionamento empresarial e roadmap institucional registrados.
+* [x] Plano executivo, dossiê de evidências e roteiro de apresentação para futura interação com a AGIPI criados.
+* [x] Auditoria documental de encerramento registrada.
+* [x] Aprovação humana da Constituição Institucional registrada na versão 1.1 pela GP-AGIPI-01B.
+* [ ] Curadoria de evidências primárias do PROTEUS e do H&A.
+* [ ] Definição autorizada e documentada do OPTIMUS DRIVE.
+* [ ] Análise jurídica de forma organizacional, representação, autoria e propriedade intelectual.
+* [ ] Validação do problema, público e modelo de relacionamento com parceiros.
+* [ ] Verificação dos requisitos atuais da instituição antes de qualquer aproximação ou submissão.
+* [ ] Preparação e ensaio da apresentação institucional.
+* [ ] Pilotos e validações externas proporcionais à maturidade pretendida.
+
+Restrições:
+
+* a AGIPI não é declarada parceira, apoiadora ou instituição vinculada;
+* nenhuma submissão, reunião ou representação externa foi autorizada;
+* a Interface Institucional ICFACTORY permanece apenas como visão estratégica futura;
+* nenhuma funcionalidade, arquitetura, código-fonte ou dado foi alterado.
+
+Referência detalhada: `docs/institutional/INSTITUTIONAL_ROADMAP.md`.
+
+---
+
+## GP-PD-01 — Implantação da Governança Documental
+
+Status: CONCLUÍDA EM 26/07/2026
+
+* [x] Perímetro oficial dos sete documentos do Kit Institucional confirmado por `DOC-002`.
+* [x] Códigos documentais `PRO-KIT-001` a `PRO-KIT-007` implantados.
+* [x] Versão, data-base, responsável pela elaboração, custódia, situação e histórico de revisões padronizados.
+* [x] Ausências de responsabilidade e custódia registradas sem inferência.
+* [x] Registro Mestre criado em `docs/institutional/DOCUMENT_REGISTER.md`.
+* [x] Relatório de implantação criado em `docs/institutional/GP_PD_01_DOCUMENT_GOVERNANCE_IMPLEMENTATION.md`.
+* [x] Conteúdo técnico, arquitetura, fluxos, funcionalidades, estados institucionais, maturidade e evidências preservados.
+
+Limite: esta GP implantou exclusivamente governança documental e não reconciliou inconsistências nem validou conteúdo.
+
+---
+
+## GP-PD-02 — Reconciliação Institucional
+
+Status: CONCLUÍDA EM 26/07/2026
+
+* [x] Estado institucional oficial do PROTEUS reconciliado no Registro Mestre.
+* [x] Situação da plataforma consolidada como `Parcialmente Validado para a plataforma`.
+* [x] Fase atual consolidada como `Produto Institucional`.
+* [x] Maturidade interna preservada como `M3 — protótipo integrado validado internamente`.
+* [x] Estado documental `Validado` de `DOC-002` delimitado à existência e organização do Kit.
+* [x] Aprovação da Constituição Institucional reconciliada com a versão 1.1 e a GP-AGIPI-01B.
+* [x] Constituição do Projeto preservada como `RASCUNHO INICIAL`.
+* [x] Sete documentos do Kit atualizados para versão 1.1 com referência institucional canônica.
+* [x] Arquitetura, funcionalidades, requisitos, fluxos operacionais, regras de negócio, evidências e lacunas preservados.
+
+Relatório: `docs/institutional/GP_PD_02_INSTITUTIONAL_RECONCILIATION_REPORT.md`.
+
+---
+
+## GP-PD-03 — Arquitetura Documental
+
+Status: CONCLUÍDA EM 26/07/2026
+
+* [x] Arquitetura documental definida no Registro Mestre.
+* [x] Documentos canônicos temáticos identificados.
+* [x] One Page classificado como síntese executiva secundária.
+* [x] Responsabilidades documentais distribuídas.
+* [x] Precedência por assunto estabelecida.
+* [x] Matrizes Documento → Responsabilidade e Documento → Autoridade incorporadas.
+* [x] Sete estruturas repetidas de referência canônica centralizadas.
+* [x] Sete documentos do Kit e Registro Mestre atualizados para versão 1.2.
+* [x] Conteúdo técnico, evidências, funcionalidades, arquitetura do software, fluxos e estado institucional preservados.
+
+Relatório: `docs/institutional/GP_PD_03_DOCUMENT_ARCHITECTURE_REPORT.md`.
+
+---
+
+## GP-PD-04 — Validação das Evidências Documentais
+
+Status: CONCLUÍDA COM LACUNAS DOCUMENTAIS EXPLÍCITAS EM 26/07/2026
+
+* [x] Afirmações dos sete documentos do Kit inventariadas por seção.
+* [x] Evidências documentais existentes vinculadas.
+* [x] Rastreabilidade classificada como direta, parcial, autorreferencial ou não localizada.
+* [x] Lacunas documentais registradas sem complementação.
+* [x] Registro Mestre atualizado para versão 1.3.
+* [x] Kit preservado na versão 1.2.
+* [x] Nenhuma evidência criada, promovida, modificada ou validada.
+* [x] Nenhum conteúdo, funcionalidade, arquitetura, regra, fluxo ou estado institucional alterado.
+
+Relatório: `docs/institutional/GP_PD_04_EVIDENCE_VALIDATION_REPORT.md`.
+
+---
+
 ## Onda B - Sublote 03C
 
 Status: PROMOVIDO LOCALMENTE - PUBLICACAO REMOTA NAO AUTORIZADA
@@ -171,6 +272,12 @@ Observação
 | AC-01 | Auditoria de Consolidacao Arquitetural | AUDITORIA DE CONSOLIDACAO CONCLUIDA |
 | PI-01 | Manual de Identidade Visual do PROTEUS | MANUAL INSTITUCIONAL CONCLUIDO |
 | PI-02 | Kit Institucional do PROTEUS | KIT INSTITUCIONAL CONCLUIDO |
+| PI-03 | Apresentacao Institucional Audiovisual do PROTEUS | DOCUMENTACAO AUDIOVISUAL CONCLUIDA |
+| PI-04 | Producao Audiovisual do PROTEUS - Animatic Institucional V1 | CONCLUIDA COM RESSALVAS |
+| PI-05 | Producao do Filme Institucional do PROTEUS | CONCLUIDA COM RESSALVAS |
+| PI-06 | Producao das Cenas Oficiais do Filme Institucional do PROTEUS | PLANO DE CENAS OFICIAIS CONCLUIDO |
+| GP-PI-07 | Pos-Producao do Video Institucional V1 | POS-PRODUCAO VISUAL V1 CONCLUIDA COM RESSALVAS |
+| GP-PI-07A | Governanca das Premissas e Fundamentacao das Decisoes | CADEIA DE GOVERNANCA CONSISTENTE COM RESSALVAS |
 | PD-01 | Arquitetura do Website Institucional do PROTEUS | ARQUITETURA DOCUMENTAL DO WEBSITE CONCLUIDA |
 | PD-02 | Implementacao do Website Institucional do PROTEUS | WEBSITE INSTITUCIONAL IMPLEMENTADO |
 | GP-PAC-01 | Governanca dos Achados do PAC-01 | CONCLUIDA |
@@ -189,11 +296,27 @@ Observação
 | GP-PAC-13 | Consolidacao Oficial das Convergencias do Primeiro Ciclo do PAC | CONCLUIDA |
 | GP-PAC-14 | Plano Oficial de Evolucao do PROTEUS | CONCLUIDA |
 | GP-PE-01 | Auditoria Arquitetural do Plano Oficial de Evolucao do PROTEUS | CONCLUIDA |
+| GP-PE-02 | Auditoria Arquitetural da PA-01 | CONCLUIDA |
+| GP-PE-03 | Decomposicao Executiva da PA-01 | CONCLUIDA |
+| GP-PE-04 | PA-01A - Governanca Semantica de Status | CONCLUIDA |
+| GP-PE-05 | Auditoria Pos-Implementacao da PA-01A | CONCLUIDA |
+| GP-PE-06 | Auditoria Arquitetural da PA-01B | CONCLUIDA |
+| GP-PE-07 | PA-01B - Desacoplamento entre Dashboard e Analytics | CONCLUIDA |
+| GP-PE-08 | Auditoria Pos-Implementacao da PA-01B | CONCLUIDA - PA-01B CERTIFICADA COM RESSALVAS |
+| GP-PE-09 | Auditoria Arquitetural da PA-01C | CONCLUIDA |
+| GP-PE-10 | PA-01C - Centralizacao Controlada do Mapeamento de Parametros de Qualidade | CONCLUIDA - PA-01C IMPLEMENTADA + TESTADA |
+| GP-PE-11 | Auditoria Pos-Implementacao da PA-01C | CONCLUIDA - PA-01C CERTIFICADA COM RESSALVAS |
+| GP-PE-12 | Auditoria Arquitetural da PA-01D | CONCLUIDA - PA-01D APTA PARA IMPLEMENTACAO COM RESSALVAS |
+| GP-PE-13 | PA-01D - Governanca da Reavaliacao Controlada | CONCLUIDA - PA-01D IMPLEMENTADA + TESTADA |
+| GP-PE-14 | Auditoria Pos-Implementacao da PA-01D | CONCLUIDA - PA-01D CERTIFICADA COM RESSALVAS |
+| GP-PE-15 | Auditoria Arquitetural da PA-01E | CONCLUIDA - PA-01E APTA PARA IMPLEMENTACAO COM RESSALVAS |
+| GP-PE-16 | PA-01E - Guardrails de Comunicacao entre Camadas | CONCLUIDA - PA-01E IMPLEMENTADA + VALIDADA |
 | GP-PE-17 | Auditoria de Efetividade dos Guardrails da PA-01E | CONCLUIDA - PARECER HISTORICO PRESERVADO |
 | GP-PE-18A | Promocao da Autoridade Documental da PA-01 | CONCLUIDA - 14 DOCUMENTOS PROMOVIDOS |
 | GP-PE-18B | Restauracao da Proveniencia Tecnica da PA-01 | CONCLUIDA - 28 ARQUIVOS PROMOVIDOS |
 | GP-PE-20D | Resolucao dos Bloqueadores Estruturais do Gate 0 | CONCLUIDA |
 | GP-PE-20E | Certificacao Final do Gate 0 | CONCLUIDA - GATE 0 CERTIFICADO COM RESSALVAS |
+| GP-PE-21 | Consolidacao Documental da Onda A | CONCLUIDA - ONDA A CONSOLIDADA |
 | GP-PE-22 | Auditoria de Elegibilidade da Onda B | CONCLUIDA - ELEGIVEL COM RESSALVAS |
 | GP-PE-23 | Inventario e Classificacao do Acervo Tecnico | CONCLUIDA - ACERVO FRAGMENTADO |
 | GP-PE-24 | Plano de Promocao Patrimonial do Acervo Tecnico | CONCLUIDA - PLANO APROVADO COM RESSALVAS |
@@ -211,6 +334,7 @@ Observação
 | GP-RG-08 | Verificacao de Executabilidade e Integridade do Pacote Experimental | CONCLUIDA - GX-PKG FORMALIZADO E PILOTADO POSTERIORMENTE NA RG-09 |
 | GP-RG-09 | Piloto Sintetico de Validacao do Gate GX-PKG | CONCLUIDA - H1 APOIADA NO CONTEXTO SINTETICO TESTADO |
 | GDC-R Fase I | Baseline metodologica e corpus cientifico incremental | CONCLUIDA E PUBLICADA - COMMIT INSTITUCIONAL PENDENTE |
+| GP-HA08 | Dossie Oficial De Pesquisa Metodologica Da Governanca De Harnesses | CONCLUIDA |
 
 ---
 
@@ -516,6 +640,25 @@ Entregavel:
 * Alertas, tendencias, explicacoes do score e resumo de governanca passaram a enriquecer justificativas e evidencias.
 * `confidence` opcional adicionado a `ExecutiveRecommendation`, baseado em completude de sinais consolidados.
 * `RecommendationSnapshot`, `ExecutiveSnapshot` e Painel Executivo preservados.
+
+GP-A22E:
+
+CONCLUIDA.
+
+Entregavel:
+
+* Documento oficial `docs/architecture/GP_A22E_EXECUTIVE_RECOMMENDATION_TRACEABILITY.md`.
+* Rastreabilidade das recomendacoes executivas formalizada no contrato existente de evidencias.
+* `RecommendationEvidence` enriquecido com `origin_layer`, `origin_artifact` e `origin_reference`.
+* Evidencias de Analytics rastreaveis ate Water Health Score, alertas, tendencias e explicacoes consolidadas.
+* Evidencias de Governanca rastreaveis ate o snapshot/resumo consolidado recebido.
+* Evidencias do Nucleo Hidrologico rastreaveis apenas quando resultado observacional consolidado e fornecido ao servico.
+* Nenhuma nova camada, autoridade, politica, decisao, pipeline ou calculo criado.
+* `ExecutiveRules`, `ExecutiveIntelligenceService`, `AnalyticsService`, `OperationalGovernanceService`, Nucleo Hidrologico, persistencias, Dashboard e guardrails PA-01E preservados.
+* Testes direcionados aprovados: `python -m unittest tests.test_executive_recommendation_service`.
+* Guardrails PA-01E aprovados: `python -m unittest tests.test_pa01_communication_guardrails`.
+* Regressao completa aprovada: `python -m unittest discover -s tests`.
+* PA-01 preservado.
 
 GP-A25:
 
@@ -1156,6 +1299,113 @@ Entregavel:
 * PA-02 preservada.
 * PA-03 preservada.
 
+PI-03 - Apresentacao Institucional Audiovisual do PROTEUS:
+
+DOCUMENTACAO AUDIOVISUAL CONCLUIDA.
+
+Entregavel:
+
+* Roteiro principal do video institucional `docs/presentation/PROTEUS_INSTITUTIONAL_VIDEO_SCRIPT.md`.
+* Storyboard cena a cena `docs/presentation/PROTEUS_INSTITUTIONAL_VIDEO_STORYBOARD.md`.
+* Plano oficial de captura de telas `docs/presentation/PROTEUS_SCREEN_CAPTURE_PLAN.md`.
+* Guia de edicao audiovisual `docs/presentation/PROTEUS_VIDEO_EDITING_GUIDE.md`.
+* Roteiro curto de 60 a 90 segundos `docs/presentation/PROTEUS_SHORT_VIDEO_SCRIPT.md`.
+* Materiais audiovisuais preparados documentalmente para futura gravacao, narracao, edicao, legendagem e publicacao.
+* Producao e gravacao final do video mantidas como etapa futura separada.
+* Nenhum video gerado.
+* Nenhuma alteracao de codigo, runtime, banco de dados, schema, contrato funcional, arquitetura, comportamento do sistema, Constituicao, Lexico Constitucional ou identidade visual.
+
+PI-04 - Producao Audiovisual do PROTEUS - Animatic Institucional V1:
+
+CONCLUIDA COM RESSALVAS.
+
+Entregavel:
+
+* Auditoria de prontidao audiovisual `docs/presentation/PROTEUS_AUDIOVISUAL_PRODUCTION_READINESS.md`.
+* Estrutura de producao `media/proteus_institutional_video/`.
+* Manifesto do animatic `media/proteus_institutional_video/manifests/ANIMATIC_V1_MANIFEST.md`.
+* Capturas reais da aplicacao geradas para os principais modulos.
+* Cartelas provisoriais de abertura, fluxo, limites e encerramento.
+* Narracao textual master e segmentada.
+* Legendas provisorias em portugues.
+* Scripts auxiliares de captura e build.
+* Relatorio de revisao `docs/presentation/PROTEUS_ANIMATIC_V1_REVIEW.md`.
+* Duracao planejada: 6 minutos e 12 segundos.
+* Estado final: pacote reprodutivel de animatic APROVADO COM RESSALVAS.
+* MP4 nao gerado por ausencia de `ffmpeg`/`ffprobe` e bloqueio local de execucao direta de `.ps1`.
+* Narracao em audio, trilha e ambiencia permanecem pendentes para etapa futura com ferramentas e licencas adequadas.
+* Proxima etapa audiovisual recomendada: PI-05 - Exportacao e revisao do MP4 do Animatic v1 em ambiente com ferramenta audiovisual autorizada, seguida de gravacao/narracao final.
+* Nenhuma alteracao de codigo, runtime, dados, schema, contrato funcional, arquitetura, comportamento do sistema, Constituicao, Lexico Constitucional, norma ou identidade visual.
+
+PI-05 - Producao do Filme Institucional do PROTEUS:
+
+CONCLUIDA COM RESSALVAS.
+
+Entregavel:
+
+* Manifesto final do filme `media/proteus_institutional_video/manifests/INSTITUTIONAL_FILM_V1_MANIFEST.md`.
+* Organizacao narrativa em cinco capitulos: COMPREENDER, REGISTRAR, INTERPRETAR, ACOMPANHAR e DECIDIR.
+* Narracao final textual e segmentada.
+* Legendas finais em portugues.
+* Instrucoes de renderizacao e script `.cmd` para ambiente com `ffmpeg`.
+* Revisao institucional `docs/presentation/PROTEUS_FILM_REVIEW.md`.
+* Relatorio de producao `docs/presentation/PROTEUS_INSTITUTIONAL_FILM_PRODUCTION_REPORT.md`.
+* Duracao final planejada: 6 minutos e 30 segundos.
+* Estado da producao: pacote final reproduzivel preparado; MP4 nao renderizado no ambiente atual.
+* Pendencias tecnicas: disponibilidade de `ffmpeg`/`ffprobe`, narracao em audio, trilha licenciada e validacao final de codec/resolucao.
+* Proxima etapa recomendada: PI-06 - Renderizacao supervisionada do MP4 e revisao final em ambiente audiovisual adequado.
+* Nenhuma alteracao funcional, arquitetural, constitucional, lexical, normativa ou de identidade visual.
+
+PI-06 - Producao das Cenas Oficiais do Filme Institucional do PROTEUS:
+
+PLANO DE CENAS OFICIAIS CONCLUIDO.
+
+Entregavel:
+
+* Guia operacional de captura `media/proteus_institutional_video/project/SCENE_CAPTURE_GUIDE.md`.
+* Guia de configuracao do OBS Studio `media/proteus_institutional_video/project/OBS_RECORDING_GUIDE.md`.
+* Manifesto das cenas oficiais `media/proteus_institutional_video/project/SCENE_MANIFEST.md`.
+* Checklist operacional por cena `media/proteus_institutional_video/project/SCENE_CHECKLIST.md`.
+* Estrutura oficial de midia `media/proteus_institutional_video/project/MEDIA_STRUCTURE.md`.
+* Pastas oficiais preparadas para cenas reais em `media/proteus_institutional_video/official_scenes/`.
+* Dez cenas oficiais documentadas com objetivo, mensagem institucional, tela, preparacao, dados, duracao, movimento, cursor, pontos visiveis, pontos proibidos e transicoes.
+* Padrao definido: 1920x1080, 30 FPS, MP4, H264, captura exclusiva da janela do PROTEUS.
+* Nenhuma gravacao, captura automatica, video ou render executado.
+* Nenhuma alteracao funcional, arquitetural, constitucional, lexical, normativa ou de identidade visual.
+* Proxima etapa recomendada: gravacao manual supervisionada das cenas reais seguindo o guia PI-06.
+
+GP-PI-07 - Pos-Producao do Video Institucional V1:
+
+POS-PRODUCAO VISUAL V1 CONCLUIDA COM RESSALVAS.
+
+Entregavel:
+
+* Auditoria previa `docs/presentation/PI_07_KDENLIVE_PRE_POSTPRODUCTION_AUDIT.md`.
+* Relatorio de execucao `docs/presentation/PI_07_POST_PRODUCTION_EXECUTION_REPORT.md`.
+* Projeto Kdenlive validado e preservado sem alteracao de hash.
+* Timeline de 108 segundos renderizada com `melt`.
+* SRT especifico de 12 cenas criado em `media/proteus_institutional_video/subtitles/proteus_post_production_v1_pt-BR.srt`.
+* Pipeline reproduzivel criado em `media/proteus_institutional_video/scripts/build_post_production_v1.cmd`.
+* Video pos-produzido gerado em `media/proteus_institutional_video/exports/post_production_v1/PROTEUS_INSTITUTIONAL_VIDEO_V1_POST_PRODUCED.mp4`.
+* Saida H.264, 1920x1080, 30 fps, 111,966667 segundos e sem audio.
+* Fades, legendas abertas e cartela final com logo oficial aplicados.
+* Decodificacao integral aprovada e folhas de contato validadas.
+* Narracao humana e trilha licenciada permanecem pendentes.
+
+GP-PI-07A - Governanca das Premissas e Fundamentacao das Decisoes:
+
+CADEIA DE GOVERNANCA CONSISTENTE COM RESSALVAS.
+
+Entregavel:
+
+* Artefato experimental `docs/research/PI_07A_DECISION_FOUNDATION_GOVERNANCE_REPORT.md`.
+* 8 premissas, 18 evidencias, 8 inferencias e 4 decisoes formalmente rastreadas.
+* Cadeia Premissas -> Evidencias -> Inferencias -> Fundamentacao -> Decisao -> Validacao registrada.
+* Primeira configuracao tipografica rejeitada e revisada com historico preservado.
+* Nenhuma inferencia apresentada como evidencia.
+* Nenhuma ausencia de evidencia substituida por hipotese tratada como fato.
+* Objeto experimental limitado a cadeia observavel; raciocinio interno de modelo fora do escopo.
+
 PD-01 - Arquitetura do Website Institucional do PROTEUS:
 
 ARQUITETURA DOCUMENTAL DO WEBSITE CONCLUIDA.
@@ -1551,7 +1801,311 @@ Entregavel:
 * Nenhuma Discovery congelada implantada.
 * ICFACTORY mantido integralmente congelado.
 
----
+GP-PE-02 - Auditoria Arquitetural da PA-01:
+
+CONCLUIDA.
+
+Entregavel:
+
+* Documento oficial `docs/architecture/PE_02_PA01_ARCHITECTURAL_AUDIT.md`.
+* Estado arquitetural atual do PROTEUS analisado em relacao aos objetivos da PA-01.
+* Limites entre modulos, camadas, services, repositories, adapters e interfaces mapeados.
+* Comunicacoes diretas e indiretas entre componentes registradas.
+* Nao conformidades evolutivas registradas com impacto, risco, evidencias e recomendacao tecnica.
+* Componentes conformes com PA-01 registrados explicitamente.
+* Riscos arquiteturais e pontos de comunicacao insegura registrados.
+* Recomendacoes para futura implementacao da PA-01 registradas.
+* Parecer final: PA-01 preservada no nucleo essencial, com nao conformidades evolutivas nao bloqueantes.
+* Nenhum codigo alterado.
+* Nenhuma refatoracao executada.
+* Nenhuma arquitetura alterada.
+* Nenhuma documentacao normativa alterada.
+* PA-01 nao implementada.
+* Nenhuma Discovery criada.
+* Nenhuma Discovery promovida.
+* Nenhuma Discovery congelada implantada.
+* ICFACTORY mantido integralmente congelado.
+
+GP-PE-03 - Decomposicao Executiva da PA-01:
+
+CONCLUIDA.
+
+Entregavel:
+
+* Documento oficial `docs/architecture/PE_03_PA01_IMPLEMENTATION_DECOMPOSITION.md`.
+* PA-01 decomposta em frentes executivas de implementacao.
+* Frentes definidas: PA-01A - Governanca Semantica de Status; PA-01B - Desacoplamento entre Dashboard e Analytics; PA-01C - Centralizacao de Listas e Catalogos Duplicados; PA-01D - Governanca da Reavaliacao Controlada; PA-01E - Guardrails de Comunicacao entre Camadas.
+* Componentes afetados, dependencias, riscos, complexidade, criterios de aceite, estrategia de testes e rollback registrados.
+* Ordem recomendada: PA-01A, PA-01E, PA-01C, PA-01B e PA-01D.
+* Primeira unidade recomendada para implementacao futura: GP-PE-04 - PA-01A - Governanca Semantica de Status.
+* Nenhuma alteracao de codigo-fonte, arquitetura, ICFACTORY ou Discoveries congeladas foi realizada.
+
+GP-PE-04 - PA-01A - Governanca Semantica de Status:
+
+CONCLUIDA.
+
+Entregavel:
+
+* Documento oficial `docs/architecture/PE_04_PA01A_SEMANTIC_STATUS_GOVERNANCE.md`.
+* Vocabulario oficial de status implementado em `monitoramento_hidrico/status_semantics.py`.
+* Rotulos de qualidade, score analitico e status executivo padronizados.
+* Codigos tecnicos internos, regras de avaliacao, thresholds, severidades, schema e arquitetura preservados.
+* Testes impactados executados: 32 testes com sucesso.
+* Regressao completa executada: 86 testes com sucesso.
+* GP-PE-04 registrada como CONCLUIDA.
+
+GP-PE-05 - Auditoria Pos-Implementacao da PA-01A:
+
+CONCLUIDA.
+
+Entregavel:
+
+* Documento oficial `docs/architecture/PE_05_PA01A_IMPLEMENTATION_AUDIT.md`.
+* Implementacao da PA-01A auditada contra a GP-PE-03 e a GP-PE-04.
+* Confirmada existencia e uso consistente do vocabulario oficial de status.
+* Confirmada preservacao de limites arquiteturais, responsabilidades, codigos tecnicos internos, regras, thresholds, severidades e schemas.
+* Nenhuma nao conformidade bloqueante identificada.
+* Nenhum codigo alterado e nenhum novo teste executado nesta GP.
+* GP-PE-05 registrada como CONCLUIDA.
+
+GP-PE-06 - Auditoria Arquitetural da PA-01B:
+
+CONCLUIDA.
+
+Entregavel:
+
+* Documento oficial `docs/architecture/PE_06_PA01B_ARCHITECTURAL_AUDIT.md`.
+* Dependencias entre Dashboard e Analytics mapeadas.
+* Dependencias conformes registradas: `DashboardMonitoringAdapter` para status observacional e `WaterHealthScoreChart` como componente visual.
+* Dependencias nao conformes/evolutivas registradas: uso direto de `AnalyticsRepository`, uso direto de `WaterHealthScoreCalculator` e composicao da serie historica no `DashboardPage`.
+* Recomendacao futura: criar contrato intermediario de snapshot visual do Dashboard, preservando formula, dados, schemas e resultado visual.
+* Nenhum codigo alterado e nenhum teste executado nesta GP.
+* GP-PE-06 registrada como CONCLUIDA.
+
+GP-PE-07 - Implementacao da PA-01B:
+
+CONCLUIDA.
+
+Entregavel:
+
+* Documento oficial `docs/architecture/PE_07_PA01B_DASHBOARD_ANALYTICS_DECOUPLING.md`.
+* Contrato `DashboardAnalyticsSnapshotService` criado em `analytics/dashboard_snapshot.py`.
+* `DashboardPage` desacoplado de `AnalyticsRepository` e `WaterHealthScoreCalculator`.
+* Composicao temporal da serie historica do Water Health Score removida do Dashboard.
+* `DashboardMonitoringAdapter` e `WaterHealthScoreChart` preservados.
+* Formula do Water Health Score, persistencia CSV, modelos analiticos e semantica oficial de status preservados.
+* Testes direcionados aprovados: `python -m unittest tests.test_dashboard_analytics_snapshot`.
+* Testes correlatos aprovados: `python -m unittest tests.test_water_health_score tests.test_dashboard_monitoring_adapter tests.test_analytics_repository tests.test_analytics_trends`.
+* Regressao completa aprovada: `python -m unittest discover -s tests` com 91 testes OK.
+* GP-PE-07 registrada como CONCLUIDA.
+
+GP-PE-08 - Auditoria Pos-Implementacao da PA-01B:
+
+CONCLUIDA.
+
+Entregavel:
+
+* Documento oficial `docs/architecture/PE_08_PA01B_POST_IMPLEMENTATION_AUDIT.md`.
+* Tres acoplamentos certificados pela GP-PE-06 auditados e classificados como ELIMINADOS.
+* Contrato `DashboardAnalyticsSnapshotService` auditado como pequeno, proporcional e restrito a composicao analitica para consumo visual.
+* `DashboardMonitoringAdapter`, `WaterHealthScoreChart`, formula do Water Health Score, modelos analiticos, persistencia CSV e PA-01A preservados.
+* Nao conformidades identificadas: 0.
+* Ressalvas nao bloqueantes registradas: 3.
+* Testes direcionados aprovados: `python -m unittest tests.test_dashboard_analytics_snapshot` com 5 testes OK.
+* Testes correlatos aprovados: `python -m unittest tests.test_water_health_score tests.test_dashboard_monitoring_adapter tests.test_analytics_repository tests.test_analytics_trends` com 10 testes OK.
+* Regressao completa aprovada: `python -m unittest discover -s tests` com 91 testes OK.
+* Veredito: PA-01B CERTIFICADA COM RESSALVAS.
+* Estado final: PA-01B IMPLEMENTADA, TESTADA, AUDITADA E CERTIFICADA COM RESSALVAS NAO BLOQUEANTES.
+* Recomendacao: avancar para a proxima frente governada da PA-01 conforme priorizacao vigente.
+* GP-PE-08 registrada como CONCLUIDA.
+
+GP-PE-09 - Auditoria Arquitetural da PA-01C:
+
+CONCLUIDA.
+
+Entregavel:
+
+* Documento oficial `docs/architecture/PE_09_PA01C_LIST_CENTRALIZATION_AUDIT.md`.
+* Total de listas relevantes inventariadas: 28.
+* Duplicidades reais encontradas: 8.
+* Candidatos a centralizacao obrigatoria: 1.
+* Candidatos a centralizacao recomendada: 3.
+* Listas que devem permanecer locais ou em fonte atual: 12.
+* Achados registrados: 9.
+* Nao conformidades arquiteturais/evolutivas registradas: 4.
+* Ressalvas registradas: 3.
+* Parecer final: PA-01C APTA PARA IMPLEMENTACAO COM RESSALVAS.
+* Recomendacao para GP-PE-10: implementar apenas a centralizacao do mapeamento compartilhado de parametros de qualidade usado pelos adapters, sem alterar catalogo, configuracoes, schemas CSV, semantica PA-01A ou desacoplamento PA-01B.
+* Nenhum codigo funcional alterado e nenhum teste executado nesta GP.
+* GP-PE-09 registrada como CONCLUIDA.
+
+GP-PE-10 - Implementacao da PA-01C:
+
+CONCLUIDA.
+
+Entregavel:
+
+* Documento oficial `docs/architecture/PE_10_PA01C_LIST_CENTRALIZATION_IMPLEMENTATION.md`.
+* Fonte oficial especifica `monitoramento_hidrico/quality_parameter_mapping.py` criada.
+* Cinco adapters migrados para consumir o contrato compartilhado:
+  * `monitoramento_hidrico/qualidade_agua_adapter.py`;
+  * `monitoramento_hidrico/dashboard_adapter.py`;
+  * `monitoramento_hidrico/operational_reports_adapter.py`;
+  * `monitoramento_hidrico/analytics_adapter.py`;
+  * `monitoramento_hidrico/governance_adapter.py`.
+* Autoridades locais duplicadas removidas: `PARAMETROS_QUALIDADE_AGUA`, `QUALITY_PARAMETER_FIELDS`, `REPORT_QUALITY_PARAMETERS`, `QUALITY_ANALYTICS_PARAMETERS` e `GOVERNANCE_QUALITY_PARAMETERS`.
+* Teste de contrato compartilhado `tests/test_quality_parameter_mapping.py` criado.
+* Testes direcionados aprovados: `python -m unittest tests.test_quality_parameter_mapping` com 6 testes OK.
+* Testes de adapters e componentes relacionados aprovados: 21 testes OK.
+* Testes de preservacao PA-01A aprovados: `python -m unittest tests.test_status_semantics` com 3 testes OK.
+* Testes de preservacao PA-01B aprovados: `python -m unittest tests.test_dashboard_analytics_snapshot` com 5 testes OK.
+* Regressao completa aprovada: `python -m unittest discover -s tests` com 97 testes OK.
+* Catalogos, configuracoes, schemas CSV, PA-01A, PA-01B, ICFACTORY e Discoveries congeladas preservados.
+* Centralizacoes recomendadas C-REC-01, C-REC-02 e C-REC-03 nao implementadas nesta GP.
+* Estado final: PA-01C IMPLEMENTADA + TESTADA, ainda nao auditada/certificada.
+* GP-PE-10 registrada como CONCLUIDA.
+
+GP-PE-11 - Auditoria Pos-Implementacao da PA-01C:
+
+CONCLUIDA.
+
+Entregavel:
+
+* Documento oficial `docs/architecture/PE_11_PA01C_POST_IMPLEMENTATION_AUDIT.md`.
+* Centralizacao obrigatoria C-OBR-01 classificada como TOTALMENTE IMPLEMENTADA.
+* Fonte oficial `monitoramento_hidrico/quality_parameter_mapping.py` auditada como especifica, independente e adequada com ressalva de imutabilidade Python.
+* Cinco adapters consumidores auditados como CONFORMES.
+* Copias funcionais residuais da centralizacao obrigatoria: 0.
+* Conteudo, ordem, categorias, labels, nomes persistidos e caso `temperatura` -> `temperatura_agua` preservados.
+* Catalogo, configuracoes, schemas CSV, PA-01A e PA-01B preservados.
+* Centralizacoes recomendadas C-REC-01, C-REC-02 e C-REC-03 nao antecipadas.
+* Testes direcionados aprovados: 6, 21, 3 e 5 testes OK.
+* Regressao completa aprovada: `python -m unittest discover -s tests` com 97 testes OK.
+* Achados registrados: 3.
+* Nao conformidades registradas: 0.
+* Ressalvas nao bloqueantes registradas: 2.
+* Parecer final: PA-01C CERTIFICADA COM RESSALVAS.
+* Estado final: PA-01C IMPLEMENTADA + TESTADA + AUDITADA + CERTIFICADA COM RESSALVAS.
+* Recomendacao: avancar para auditoria/preparacao da PA-01D - Governanca da Reavaliacao Controlada.
+* GP-PE-11 registrada como CONCLUIDA.
+
+GP-PE-12 - Auditoria Arquitetural da PA-01D:
+
+CONCLUIDA.
+
+Entregavel:
+
+* Documento oficial `docs/architecture/PE_12_PA01D_CONTROLLED_REEVALUATION_AUDIT.md`.
+* Mecanismos relevantes de reavaliacao, recomposicao, sincronizacao, refresh e recarregamento identificados: 14.
+* Candidatos a governanca obrigatoria: 3.
+* Candidatos a governanca recomendada: 5.
+* Mecanismos considerados locais/desnecessarios para governanca PA-01D: 6.
+* Cadeia critica mapeada: `sync_from_analytics()` -> `enriquecer_alertas()` -> `sync_alerts()` -> persistencia de eventos.
+* Confirmada preservacao da PA-01A, PA-01B e PA-01C.
+* Testes existentes avaliados como cobertura parcial para PA-01D.
+* Achados registrados: 7.
+* Nao conformidades evolutivas registradas: 3.
+* Ressalvas registradas: 4.
+* Parecer final: PA-01D APTA PARA IMPLEMENTACAO COM RESSALVAS.
+* Recomendacao para GP-PE-13: implementar apenas a governanca da reavaliacao na cadeia de Governanca Operacional, sem alterar Analytics, Dashboard, Executive, CSV, ICFACTORY ou Discoveries congeladas.
+* GP-PE-12 registrada como CONCLUIDA.
+
+GP-PE-13 - Implementacao da PA-01D:
+
+CONCLUIDA.
+
+Entregavel:
+
+* Documento oficial `docs/architecture/PE_13_PA01D_CONTROLLED_REEVALUATION_IMPLEMENTATION.md`.
+* Cadeia operacional implementada: `sync_from_analytics()` -> `enriquecer_alertas()` -> `sync_alerts()` -> persistencia de eventos.
+* Ponto explicito de decisao de reavaliacao controlada criado.
+* Pre-condicoes formais implementadas: dominio de qualidade, metrica mapeada, politica selecionavel, valor numerico e motor observacional.
+* Adapter de Governanca Hidrico passou a executar decisoes recebidas da Governanca Operacional.
+* Reprocessamento decisorio redundante dentro da cadeia operacional eliminado.
+* Sincronizacao repetida preservada sem duplicacao de evento operacional.
+* PA-01A, PA-01B e PA-01C preservadas.
+* Analytics, Dashboard, Painel Executivo, catalogos, configuracoes, schemas CSV, persistencia, ICFACTORY e Discoveries congeladas preservados.
+* Testes focados de Governanca Operacional: 14 testes OK.
+* Testes obrigatorios de preservacao: status semantics 3 testes OK; Dashboard Analytics Snapshot 5 testes OK; Quality Parameter Mapping 6 testes OK.
+* Regressao completa: `python -m unittest discover -s tests` - 103 testes OK.
+* Estado final: PA-01D IMPLEMENTADA + TESTADA, ainda nao auditada/certificada.
+* Recomendacao para proxima etapa: executar auditoria pos-implementacao da PA-01D antes de avancar para PA-01E.
+* GP-PE-13 registrada como CONCLUIDA.
+
+GP-PE-14 - Auditoria Pos-Implementacao da PA-01D:
+
+CONCLUIDA.
+
+Entregavel:
+
+* Documento oficial `docs/architecture/PE_14_PA01D_POST_IMPLEMENTATION_AUDIT.md`.
+* Cadeia critica auditada: `sync_from_analytics()` -> `enriquecer_alertas()` -> `sync_alerts()` -> persistencia de eventos.
+* Cadeia critica classificada como TOTALMENTE IMPLEMENTADA.
+* Decisao explicita de reavaliacao confirmada.
+* Determinismo da cadeia confirmado.
+* Adapter classificado como conforme com ressalva por manter rota de compatibilidade para chamadas diretas sem `decisions`.
+* Reprocessamento decisorio redundante eliminado na cadeia critica.
+* Ausencia de duplicacao de eventos confirmada.
+* PA-01A, PA-01B e PA-01C preservadas.
+* Analytics, Dashboard, Executive, catalogos, configuracoes, politicas, schemas CSV e persistencia preservados.
+* Testes focados de Governanca Operacional: 14 testes OK.
+* Testes obrigatorios de preservacao: status semantics 3 testes OK; Dashboard Analytics Snapshot 5 testes OK; Quality Parameter Mapping 6 testes OK.
+* Regressao completa: `python -m unittest discover -s tests` - 103 testes OK.
+* Achados registrados: 10.
+* Nao conformidades bloqueantes registradas: 0.
+* Ressalvas registradas: 3.
+* Parecer final: PA-01D CERTIFICADA COM RESSALVAS.
+* Estado final: PA-01D IMPLEMENTADA + TESTADA + AUDITADA + CERTIFICADA COM RESSALVAS.
+* Recomendacao para GP-PE-15: iniciar PA-01E - Guardrails de Comunicacao entre Camadas.
+* GP-PE-14 registrada como CONCLUIDA.
+
+GP-PE-15 - Auditoria Arquitetural da PA-01E:
+
+CONCLUIDA.
+
+Entregavel:
+
+* Documento oficial `docs/architecture/PE_15_PA01E_COMMUNICATION_GUARDRAILS_AUDIT.md`.
+* Fluxos de comunicacao inventariados: 22.
+* Comunicacoes conformes ou conformes com ressalva: 19.
+* Dividas arquiteturais nao bloqueantes identificadas: 3.
+* Violacoes bloqueantes identificadas: 0.
+* Guardrails obrigatorios candidatos: 5.
+* Guardrails recomendados candidatos: 4.
+* Comunicacoes com guardrail adicional desnecessario no momento: 7.
+* PA-01A preservada.
+* PA-01B preservada.
+* PA-01C preservada.
+* PA-01D preservada.
+* Achados registrados: 9.
+* Nao conformidades bloqueantes registradas: 0.
+* Ressalvas registradas: 4.
+* Parecer final: PA-01E APTA PARA IMPLEMENTACAO COM RESSALVAS.
+* Recomendacao para GP-PE-16: implementar matriz de comunicacoes permitidas/proibidas, checklist PA-01 e testes estaticos proporcionais.
+* GP-PE-15 registrada como CONCLUIDA.
+
+GP-PE-16 - Implementacao da PA-01E:
+
+CONCLUIDA.
+
+Entregavel:
+
+* Documento oficial `docs/architecture/PE_16_PA01E_COMMUNICATION_GUARDRAILS_IMPLEMENTATION.md`.
+* Matriz formal de comunicacoes permitidas e proibidas implementada.
+* Checklist PA-01 para novas comunicacoes entre camadas criado.
+* Excecoes historicas de CSV local formalizadas como excecoes governadas, nao replicaveis sem GP propria.
+* Guardrails obrigatorios G-OBR-01 a G-OBR-05 implementados documentalmente.
+* Teste estatico `tests/test_pa01_communication_guardrails.py` criado.
+* PA-01A preservada por guardrail de vocabulario oficial.
+* PA-01B preservada por guardrail contra acesso direto da UI a dependencias internas de Analytics.
+* PA-01C preservada por guardrail contra recriacao de listas locais de parametros.
+* PA-01D preservada por guardrail de autoridade primaria da Governanca Operacional na reavaliacao controlada.
+* Executive preservado como consumidor de sinais consolidados, sem acesso direto a CSV, motores ou adapters hidricos.
+* Nenhum runtime, schema, politica, catalogo, regra analitica, regra executiva, adapter funcional, camada ou dependencia nova criada.
+* Testes direcionados aprovados: `python -m unittest tests.test_pa01_communication_guardrails`.
+* Regressao completa aprovada: `python -m unittest discover -s tests`.
+* Parecer final: PA-01E IMPLEMENTADA, VALIDADA E COMPATIVEL COM A ARQUITETURA CONSOLIDADA DO PROTEUS.
+* GP-PE-16 registrada como CONCLUIDA.
 
 # Research
 
@@ -1657,15 +2211,15 @@ Autoridades:
 
 Sequencia logica:
 
-1. GP-RG-01 ??? Constituicao da Pesquisa ??? CONCLUIDA.
-2. GP-RG-02 ??? Modelo Conceitual ??? CONCLUIDA, VALIDACAO EMPIRICA PENDENTE.
-3. GP-RG-03 ??? Arquitetura Documental da Cadeia ??? CONCLUIDA, VALIDACAO EMPIRICA PENDENTE.
-4. GP-RG-04 ??? Dinamica da Arquitetura GDC-R ??? CONCLUIDA, VALIDACAO EMPIRICA PENDENTE.
-5. GP-RG-05 ??? Protocolo Experimental ??? CONCLUIDA, SEM EXECUCAO EMPIRICA.
-6. GP-RG-06 ??? Primeiro Caso-Piloto Controlado ??? CONCLUIDA COM RESSALVAS, CP-01 EXECUTADO.
-7. GP-RG-07 ??? Validacao Interavaliadores ??? EXECUCAO SUSPENSA, TESTE INCONCLUSIVO.
-8. GP-RG-08 ??? Verificacao de Executabilidade e Integridade ??? CONCLUIDA DOCUMENTALMENTE; PROTOCOLO PILOTADO POSTERIORMENTE NA RG-09.
-9. GP-RG-09 ??? Piloto Sintetico GX-PKG ??? CONCLUIDA, H1 APOIADA NO CONTEXTO SINTETICO TESTADO.
+1. GP-RG-01 — Constituicao da Pesquisa — CONCLUIDA.
+2. GP-RG-02 — Modelo Conceitual — CONCLUIDA, VALIDACAO EMPIRICA PENDENTE.
+3. GP-RG-03 — Arquitetura Documental da Cadeia — CONCLUIDA, VALIDACAO EMPIRICA PENDENTE.
+4. GP-RG-04 — Dinamica da Arquitetura GDC-R — CONCLUIDA, VALIDACAO EMPIRICA PENDENTE.
+5. GP-RG-05 — Protocolo Experimental — CONCLUIDA, SEM EXECUCAO EMPIRICA.
+6. GP-RG-06 — Primeiro Caso-Piloto Controlado — CONCLUIDA COM RESSALVAS, CP-01 EXECUTADO.
+7. GP-RG-07 — Validacao Interavaliadores — EXECUCAO SUSPENSA, TESTE INCONCLUSIVO.
+8. GP-RG-08 — Verificacao de Executabilidade e Integridade — CONCLUIDA DOCUMENTALMENTE; PROTOCOLO PILOTADO POSTERIORMENTE NA RG-09.
+9. GP-RG-09 — Piloto Sintetico GX-PKG — CONCLUIDA, H1 APOIADA NO CONTEXTO SINTETICO TESTADO.
 
 Nota de governanca:
 
@@ -1735,3 +2289,53 @@ Entregavel:
 Proxima pesquisa sugerida:
 
 GP-R04 - Desenhar criterios formais para diferenciar contexto executivo, recomendacao executiva e inteligencia executiva antes de qualquer implementacao.
+
+## GP-BW-01 - Auditoria de Elegibilidade OpenAI Build Week
+
+Status:
+
+INICIATIVA EXTRAORDINARIA PRIORITARIA - AUDITORIA DOCUMENTAL CONCLUIDA.
+
+Janela:
+
+* inicio e auditoria: 18/07/2026;
+* limite externo: 21/07/2026, 17:00 Pacific Time;
+* iniciativa limitada ao prazo da OpenAI Build Week, sem reordenar, reabrir ou alterar a conclusao de GPs anteriores.
+
+Entregaveis:
+
+* auditoria `docs/buildweek/BW_01_OPENAI_BUILD_WEEK_AUDIT.md`;
+* plano priorizado `docs/buildweek/BW_01_ACTION_PLAN.md`;
+* registro de fontes `docs/buildweek/BW_01_SOURCE_REGISTER.md`.
+
+Resultado de Gate 0:
+
+* veredito: NAO APTO NO ESTADO ATUAL;
+* residente ou organizacao domiciliada no Brasil consta como expressamente excluido nas Official Rules;
+* elegibilidade do entrante real depende de verificacao humana;
+* adequacoes P0 so devem prosseguir se houver entrante genuinamente elegivel, com autoria, direitos e representacao verificaveis;
+* nenhuma submissao, publicacao, aceitacao de termos ou alteracao funcional autorizada por esta iniciativa.
+
+Restricoes:
+
+* natureza exclusivamente documental e tecnica;
+* nenhuma mudanca em codigo, arquitetura, dados, testes, interface ou licenca;
+* nenhum commit ou push realizado pela GP-BW-01;
+* nenhuma etapa futura iniciada automaticamente.
+
+## GP-HA08 - Dossie Oficial De Pesquisa Metodologica Da Governanca De Harnesses
+
+Status:
+
+CONCLUIDA.
+
+Entregavel:
+
+* Documento `docs/research/HARNESS_GOVERNANCE_RESEARCH_DOSSIER.md`.
+* Pesquisa metodologica GP-H01 a GP-HA07 consolidada em um unico dossie institucional.
+* Arquitetura conceitual da Governanca de Harnesses registrada.
+* Processo completo de execucao assistida registrado.
+* Cadeia de autoridade e cadeia de governanca preservadas.
+* Artefatos identificados, conceitos consolidados, conceitos ainda investigativos, limitacoes, recomendacoes e proximas etapas registrados.
+* Nenhum codigo funcional, runtime, Constituicao, Lexico Constitucional ou norma metodologica alterado.
+* Nenhuma Discovery promovida automaticamente.

@@ -1,5 +1,820 @@
 # HISTORY
 
+# GP-CLS-04 — Incorporação Documental da DI-05
+
+## Data
+
+27/07/2026
+
+## Status
+
+CONCLUÍDA
+
+## Evento
+
+Criação do documento canônico da DI-05 e incorporação de suas referências no Inventário Institucional, no Relatório de Reconciliação do Pacote AGIPI e no Dossiê de Evidências.
+
+---
+
+# GP-CLS-01 — Consolidação Documental da DI-03 Histórica
+
+## Data
+
+27/07/2026
+
+## Status
+
+CONCLUÍDA
+
+## Evento
+
+Incorporação documental da DI-03 como decisão histórica, superada pela DI-04 e preservada exclusivamente para rastreabilidade institucional, sem efeitos normativos vigentes.
+
+---
+
+# GP-ADM-02C — Incorporação Normativa do PAR-ICF-001
+
+## Data
+
+27/07/2026
+
+## Status
+
+CONCLUÍDA
+
+## Evento
+
+Criação dos documentos canônicos DI-02 e DI-04, incorporação normativa do PAR-ICF-001 e adoção da Política de Namespaces Institucionais.
+
+---
+
+# GP-ADM-02A — Incorporação Documental da DI-01
+
+## Data
+
+27/07/2026
+
+## Status
+
+CONCLUÍDA
+
+## Evento
+
+Incorporação documental da DI-01 — Representação Institucional, aprovada pela Direção do Projeto ICFACTORY.
+
+## Resultado
+
+* Henderson Mauricio Batista registrado como representante institucional da ICFACTORY para a interlocução prevista na DI-01.
+* Origem, competências e limites da representação preservados por referência direta à DI-01.
+* Registro limitado à incorporação documental da decisão, sem alteração de seu conteúdo.
+
+## Restrições preservadas
+
+* Nenhuma nova decisão institucional criada.
+* Nenhuma competência adicional atribuída.
+* Nenhuma autoridade modificada.
+* Nenhuma autorização de submissão presumida.
+* Nenhuma alteração de Constituição, patrimônio, maturidade, pesquisa, arquitetura, titularidade ou licenciamento.
+
+---
+
+# GP-PD-04 — Validação das Evidências Documentais
+
+## Data
+
+26/07/2026
+
+## Status
+
+CONCLUÍDA COM LACUNAS DOCUMENTAIS EXPLÍCITAS
+
+## Evento
+
+Auditoria da rastreabilidade documental das afirmações institucionais presentes nos sete documentos do Kit Institucional do PROTEUS.
+
+## Resultado
+
+* Afirmações inventariadas por documento e seção.
+* Evidências existentes vinculadas às afirmações correspondentes.
+* Rastreabilidade classificada como direta, parcial, autorreferencial ou não localizada.
+* Afirmações técnicas e arquiteturais vinculadas a documentos oficiais existentes.
+* Benefícios, eficácia comunicacional, caráter real dos casos de uso e reprodutibilidade de demonstrações mantidos com lacunas explícitas quando não comprovados documentalmente.
+* Registro Mestre atualizado para versão 1.3 com referência à auditoria.
+* Sete documentos do Kit preservados na versão 1.2.
+* Nenhuma informação, funcionalidade, arquitetura, regra, evidência ou estado institucional criado ou alterado.
+
+## Arquivos criados
+
+* `docs/institutional/GP_PD_04_EVIDENCE_VALIDATION_REPORT.md`
+
+## Arquivos atualizados
+
+* `docs/institutional/DOCUMENT_REGISTER.md`
+* `docs/history/HISTORY.md`
+* `docs/roadmap/ROADMAP.md`
+
+## Veredito
+
+RASTREABILIDADE DOCUMENTAL AUDITADA COM EVIDÊNCIAS E LACUNAS EXPLICITAMENTE SEPARADAS.
+
+---
+
+# GP-PD-03 — Arquitetura Documental
+
+## Data
+
+26/07/2026
+
+## Status
+
+CONCLUÍDA
+
+## Evento
+
+Consolidação da arquitetura documental do Kit Institucional do PROTEUS, com definição de autoridades primárias, documentos secundários, responsabilidades e precedência temática.
+
+## Resultado
+
+* Registro Mestre atualizado para a versão 1.2.
+* Arquitetura documental centralizada no Registro Mestre.
+* Sete documentos do Kit atualizados para a versão 1.2.
+* Autoridades primárias definidas para narrativa, caracterização técnica, casos de uso, arquitetura, fluxo e demonstração.
+* One Page classificado como síntese executiva secundária e transversal.
+* Matrizes Documento → Responsabilidade e Documento → Autoridade incorporadas.
+* Sete seções estruturais repetidas de referência canônica substituídas por campos padronizados de responsabilidade e autoridade.
+* Conteúdo técnico duplicado preservado, por ausência de autoridade para removê-lo.
+* Nenhuma informação técnica, evidência, funcionalidade, arquitetura do software, fluxo ou estado institucional alterado.
+
+## Arquivos criados
+
+* `docs/institutional/GP_PD_03_DOCUMENT_ARCHITECTURE_REPORT.md`
+
+## Arquivos atualizados
+
+* `docs/institutional/DOCUMENT_REGISTER.md`
+* `docs/institutional/INSTITUTIONAL_PRESENTATION.md`
+* `docs/institutional/ONE_PAGE.md`
+* `docs/institutional/TECHNICAL_DATASHEET.md`
+* `docs/institutional/USE_CASES.md`
+* `docs/institutional/ARCHITECTURE_OVERVIEW.md`
+* `docs/institutional/OPERATIONAL_FLOW.md`
+* `docs/institutional/DEMONSTRATION_GUIDE.md`
+* `docs/history/HISTORY.md`
+* `docs/roadmap/ROADMAP.md`
+
+## Veredito
+
+ARQUITETURA DOCUMENTAL DO KIT CONSOLIDADA COM PRECEDÊNCIA TEMÁTICA E CONTEÚDO TÉCNICO PRESERVADO.
+
+---
+
+# GP-PD-02 — Reconciliação Institucional
+
+## Data
+
+26/07/2026
+
+## Status
+
+CONCLUÍDA
+
+## Evento
+
+Reconciliação exclusivamente documental do estado institucional do PROTEUS e das referências de aprovação do Kit Institucional.
+
+## Resultado
+
+* Estado institucional oficial consolidado no Registro Mestre.
+* Situação da plataforma preservada como `Parcialmente Validado para a plataforma`.
+* Fase atual preservada como `Produto Institucional`.
+* Maturidade tecnológica interna preservada como `M3 — protótipo integrado validado internamente`.
+* Estado `Validado` de `DOC-002` delimitado à existência e organização documental do Kit.
+* Aprovação da Constituição Institucional reconciliada com a versão 1.1 e a GP-AGIPI-01B.
+* Constituição do Projeto preservada como `RASCUNHO INICIAL`.
+* Documentos `PRO-KIT-001` a `PRO-KIT-007` atualizados para versão 1.1 e vinculados à referência institucional canônica.
+* Pendências sem evidência preservadas.
+* Nenhuma arquitetura, funcionalidade, requisito, fluxo operacional, regra de negócio, evidência ou lacuna alterada.
+
+## Arquivos criados
+
+* `docs/institutional/GP_PD_02_INSTITUTIONAL_RECONCILIATION_REPORT.md`
+
+## Arquivos atualizados
+
+* `docs/institutional/DOCUMENT_REGISTER.md`
+* `docs/institutional/INSTITUTIONAL_PRESENTATION.md`
+* `docs/institutional/ONE_PAGE.md`
+* `docs/institutional/TECHNICAL_DATASHEET.md`
+* `docs/institutional/USE_CASES.md`
+* `docs/institutional/ARCHITECTURE_OVERVIEW.md`
+* `docs/institutional/OPERATIONAL_FLOW.md`
+* `docs/institutional/DEMONSTRATION_GUIDE.md`
+* `docs/institutional/AGIPI/EXECUTION_PLAN.md`
+* `docs/institutional/AGIPI/GP_AGIPI_01_AUDIT.md`
+* `docs/history/HISTORY.md`
+* `docs/roadmap/ROADMAP.md`
+
+## Veredito
+
+ESTADO INSTITUCIONAL DO PROTEUS RECONCILIADO COM RASTREABILIDADE DOCUMENTAL E SEM ALTERAÇÃO TÉCNICA.
+
+---
+
+# GP-PD-01 — Implantação da Governança Documental
+
+## Data
+
+26/07/2026
+
+## Status
+
+CONCLUÍDA
+
+## Evento
+
+Implantação exclusiva da infraestrutura de controle documental do Kit Institucional do PROTEUS, conforme perímetro `DOC-002`.
+
+## Resultado
+
+* Códigos `PRO-KIT-001` a `PRO-KIT-007` implantados nos sete documentos do Kit.
+* Versão documental inicial `1.0` e data-base de governança registradas.
+* Responsável pela elaboração, custódia, situação documental e histórico de revisões padronizados.
+* Ausências de responsabilidade, propriedade ou custódia preservadas como `Evidência documental não encontrada.`.
+* Registro Mestre criado em `docs/institutional/DOCUMENT_REGISTER.md`.
+* Relatório de implantação criado em `docs/institutional/GP_PD_01_DOCUMENT_GOVERNANCE_IMPLEMENTATION.md`.
+* Nenhum conteúdo técnico, arquitetura, fluxo operacional, funcionalidade, estado institucional, maturidade ou evidência alterado.
+
+## Arquivos criados
+
+* `docs/institutional/DOCUMENT_REGISTER.md`
+* `docs/institutional/GP_PD_01_DOCUMENT_GOVERNANCE_IMPLEMENTATION.md`
+
+## Arquivos atualizados
+
+* `docs/institutional/INSTITUTIONAL_PRESENTATION.md`
+* `docs/institutional/ONE_PAGE.md`
+* `docs/institutional/TECHNICAL_DATASHEET.md`
+* `docs/institutional/USE_CASES.md`
+* `docs/institutional/ARCHITECTURE_OVERVIEW.md`
+* `docs/institutional/OPERATIONAL_FLOW.md`
+* `docs/institutional/DEMONSTRATION_GUIDE.md`
+* `docs/history/HISTORY.md`
+* `docs/roadmap/ROADMAP.md`
+
+## Veredito
+
+GOVERNANÇA DOCUMENTAL DO KIT INSTITUCIONAL DO PROTEUS IMPLANTADA SEM ALTERAÇÃO DE CONTEÚDO TÉCNICO.
+
+---
+
+# GP-HA-08 — Dossiê Institucional do H&A
+
+## Data
+
+23/07/2026
+
+## Status
+
+CONCLUÍDA
+
+## Evento
+
+Criação do Dossiê Institucional oficial do H&A a partir exclusivamente dos sete documentos institucionais autorizados.
+
+## Resultado
+
+* Dossiê criado em `docs/institutional/HA/HA_INSTITUTIONAL_DOSSIER.md`.
+* Apresentação, contexto, finalidade, arquitetura, governança, patrimônio, evidências, estado atual e conclusão consolidados.
+* H&A apresentado como projeto integrante do portfólio institucional da ICFACTORY.
+* Classificação institucional `Projeto em Evolução` registrada.
+* Parecer `APROVADO COM RESSALVAS` e suas três ressalvas documentais preservados.
+* Patrimônio sintetizado sem reprodução integral do Inventário.
+* Autoridades constitucionais, SSOT e limites de comprovação preservados.
+* Somente Constituição, Perfil, Mapa, Inventário, Relatório de Integração, Reconciliação e Auditoria utilizados.
+* Nenhum conceito, classificação adicional, objetivo, previsão ou afirmação promocional criado.
+* Documentos-base, código, arquitetura de implementação, funcionalidades e testes preservados.
+
+## Arquivos alterados
+
+* `docs/institutional/HA/HA_INSTITUTIONAL_DOSSIER.md`
+* `docs/history/HISTORY.md`
+
+## Veredito
+
+DOSSIÊ INSTITUCIONAL CONCLUÍDO COM CLASSIFICAÇÃO “PROJETO EM EVOLUÇÃO” E COMPATIBILIDADE COM O PARECER “APROVADO COM RESSALVAS”.
+
+---
+
+# GP-HA-07 — Auditoria Final do Núcleo Institucional do H&A
+
+## Data
+
+23/07/2026
+
+## Status
+
+CONCLUÍDA
+
+## Evento
+
+Auditoria final, exclusivamente documental, da consistência, integridade, rastreabilidade, coerência terminológica, governança e classificação institucional do Núcleo Institucional do H&A.
+
+## Resultado
+
+* Auditoria criada em `docs/institutional/HA/HA_INSTITUTIONAL_CORE_AUDIT.md`.
+* Seis fontes obrigatórias examinadas, sem utilização de outras bases.
+* Identidade institucional e terminologia arquitetural confirmadas.
+* Alinhamento entre Constituição, Perfil e Mapa confirmado.
+* Integridade patrimonial confirmada com 20 incorporações correspondentes a `REC-007` a `REC-026`.
+* Dez ativos complementares e dez inéditos verificados.
+* Nenhum ativo `Já representado` duplicado e nenhum candidato `Não incorporar` incluído.
+* SSOT, autoridades constitucionais e separação entre auditoria e reconciliação preservados.
+* Classificação canônica `Projeto em Evolução` confirmada, com ressalva sobre referências históricas a validação parcial.
+* Três ressalvas documentais registradas: temporalidade das linhas históricas do Inventário, precedência da classificação institucional e custódia/referência imutável da Constituição.
+* Nenhuma proposta funcional, reorganização técnica ou nova classificação criada.
+* Documentos auditados, código, arquitetura de implementação, funcionalidades e testes preservados.
+
+## Arquivos alterados
+
+* `docs/institutional/HA/HA_INSTITUTIONAL_CORE_AUDIT.md`
+* `docs/history/HISTORY.md`
+
+## Veredito
+
+APROVADO COM RESSALVAS.
+
+---
+
+# GP-HA-06 — Mapa Arquitetural Institucional do H&A
+
+## Data
+
+23/07/2026
+
+## Status
+
+CONCLUÍDA
+
+## Evento
+
+Criação do Mapa Arquitetural Institucional oficial do H&A a partir exclusivamente dos cinco documentos institucionais autorizados.
+
+## Resultado
+
+* Mapa criado em `docs/institutional/HA/HA_ARCHITECTURAL_MAP.md`.
+* Visão geral, organização estrutural, fluxo, governança, limites, evidências, evolução e conclusão arquitetural consolidados.
+* Um único diagrama ASCII incluído com elementos já existentes nas fontes.
+* Autoridades, SSOT, fluxo institucional, auditoria passiva, reconciliação ativa e limites da interface preservados.
+* Blocos institucionais separados de classes, funções, arquivos e detalhes de implementação.
+* Limites de comprovação sobre runtime, testes, implantação, operação e maturidade explicitados.
+* Evolução restrita às lacunas e diretrizes já reconhecidas.
+* Rastreabilidade registrada para Constituição, Perfil, Inventário, Relatório de Integração e Reconciliação Patrimonial.
+* Nenhum componente, mecanismo de governança ou reorganização técnica criado.
+* Documentos-base, código, arquitetura de implementação, funcionalidades e testes preservados.
+
+## Arquivos alterados
+
+* `docs/institutional/HA/HA_ARCHITECTURAL_MAP.md`
+* `docs/history/HISTORY.md`
+
+## Veredito
+
+MAPA ARQUITETURAL INSTITUCIONAL CONCLUÍDO COM OITO SEÇÕES, UM DIAGRAMA ASCII E RASTREABILIDADE ÀS FONTES APROVADAS.
+
+---
+
+# GP-HA-05 — Perfil Institucional do H&A
+
+## Data
+
+23/07/2026
+
+## Status
+
+CONCLUÍDA
+
+## Evento
+
+Criação do Perfil Institucional oficial do H&A a partir exclusivamente da Constituição do H&A, do Inventário de Evidências, do Relatório de Integração e da Reconciliação Patrimonial.
+
+## Resultado
+
+* Perfil criado em `docs/institutional/HA/HA_INSTITUTIONAL_PROFILE.md`.
+* Identificação, finalidade, escopo tecnológico, estado de evolução, patrimônio, governança, evidências e perspectivas consolidados.
+* Classificação institucional `Projeto em Evolução` registrada conforme determinação da GP.
+* Patrimônio resumido sem reprodução integral do Inventário de Evidências.
+* Vínculo documental e metodológico com a ICFACTORY descrito sem criar relação institucional adicional.
+* Autoridades, SSOT, auditoria passiva, reconciliação ativa e evolução incremental preservados conforme a Constituição do H&A.
+* Limites de comprovação sobre execução, implantação, testes, operação e maturidade explicitados.
+* Somente as quatro fontes obrigatórias utilizadas.
+* Nenhum conceito, classificação adicional, previsão ou afirmação promocional criado.
+* Constituição, Inventário, Relatório de Integração, Reconciliação, código, arquitetura, funcionalidades e testes preservados.
+
+## Arquivos alterados
+
+* `docs/institutional/HA/HA_INSTITUTIONAL_PROFILE.md`
+* `docs/history/HISTORY.md`
+
+## Veredito
+
+PERFIL INSTITUCIONAL DO H&A CONCLUÍDO COM RASTREABILIDADE, LINGUAGEM OBJETIVA E CLASSIFICAÇÃO “PROJETO EM EVOLUÇÃO”.
+
+---
+
+# GP-HA-04 — Atualização Controlada do Inventário de Evidências do H&A
+
+## Data
+
+23/07/2026
+
+## Status
+
+CONCLUÍDA
+
+## Evento
+
+Consolidação controlada do Inventário de Evidências do H&A com incorporação exclusiva dos ativos aprovados como `Complementar` e `Inédito` na Reconciliação Patrimonial.
+
+## Resultado
+
+* `docs/institutional/HA/HA_EVIDENCE_INVENTORY.md` atualizado.
+* Somente o Inventário de Evidências e a Reconciliação Patrimonial utilizados como fontes.
+* Vinte ativos incorporados: dez complementares e dez inéditos.
+* IDs institucionais `HA-PAT-001` a `HA-PAT-020` atribuídos sem colisão com os IDs existentes.
+* Origem `Reconciliação Patrimonial` e referências `REC-007` a `REC-026` registradas em todas as novas linhas.
+* Seis ativos `Já representado` preservados sem nova inclusão.
+* Cinco candidatos `Não incorporar` mantidos fora do Inventário.
+* Estrutura, nomenclatura, ordem lógica, IDs e classificações anteriormente aprovados preservados.
+* Categorias patrimoniais separadas das classificações de evidência.
+* Nenhum ativo além dos aprovados na GP-HA-03 incorporado.
+* Reconciliação, relatório de integração, código, arquitetura, funcionalidades e testes preservados.
+
+## Arquivos alterados
+
+* `docs/institutional/HA/HA_EVIDENCE_INVENTORY.md`
+* `docs/history/HISTORY.md`
+
+## Veredito
+
+INVENTÁRIO CONSOLIDADO COM 20 ATIVOS APROVADOS, RASTREABILIDADE INTEGRAL E PRESERVAÇÃO DAS CLASSIFICAÇÕES EXISTENTES.
+
+---
+
+# GP-HA-03 — Reconciliação Patrimonial do H&A
+
+## Data
+
+23/07/2026
+
+## Status
+
+CONCLUÍDA
+
+## Evento
+
+Reconciliação técnica entre o Inventário de Evidências aprovado e o Relatório de Integração do Repositório Oficial do H&A, sem atualização do inventário ou alteração de classificações.
+
+## Resultado
+
+* Relatório criado em `docs/institutional/HA/HA_PATRIMONIAL_RECONCILIATION.md`.
+* Somente `HA_EVIDENCE_INVENTORY.md` e `HA_REPOSITORY_INTEGRATION_REPORT.md` utilizados como fontes.
+* 31 unidades patrimoniais ou candidatos reconciliados em categorias mutuamente exclusivas.
+* Seis ativos classificados como `Já representado`.
+* Dez ativos classificados como `Complementar`.
+* Dez ativos classificados como `Inédito`.
+* Cinco candidatos classificados como `Não incorporar`.
+* Ativos relacionados consolidados para impedir dupla contagem.
+* Presença documental separada de comprovação de execução, implantação, operação, qualidade ou maturidade.
+* Diretriz para futura integração registrada sem executar alterações.
+* Inventário, relatório de integração, classificações, código, arquitetura, funcionalidades e testes preservados.
+
+## Arquivos alterados
+
+* `docs/institutional/HA/HA_PATRIMONIAL_RECONCILIATION.md`
+* `docs/history/HISTORY.md`
+
+## Veredito
+
+RECONCILIAÇÃO PATRIMONIAL CONCLUÍDA: 6 ATIVOS JÁ REPRESENTADOS, 10 COMPLEMENTARES, 10 INÉDITOS E 5 NÃO INCORPORADOS.
+
+---
+
+# GP-HA-02 — Integração do Repositório Oficial do H&A
+
+## Data
+
+23/07/2026
+
+## Status
+
+CONCLUÍDA
+
+## Evento
+
+Integração diagnóstica do patrimônio documental do repositório oficial `hendersonmauriciobatista-png/handa-core`, sem alteração do Inventário de Evidências do H&A.
+
+## Resultado
+
+* Relatório criado em `docs/institutional/HA/HA_REPOSITORY_INTEGRATION_REPORT.md`.
+* Acesso ao repositório oficial confirmado por Git sobre HTTPS.
+* Branches `main` e `principal` e tag `icfactory-v1.0` consultadas.
+* Ponta de `principal` registrada no commit `95f23628319a969e1d89c3a89466d8533fb09140`.
+* 554 arquivos e 266 commits identificados na branch patrimonial.
+* Trinta candidatos documentais e de configuração inspecionados; 27 com conteúdo analisados e três descartados por ausência de conteúdo substantivo.
+* Documentação institucional, técnica, arquitetural, metodológica, de auditoria, roadmap, histórico, README, especificações e demais artefatos relevantes catalogados.
+* Acervo comparado ao inventário aprovado como já inventariado, complementar, inédito ou possível duplicidade.
+* Ausências e limites de cobertura registrados, sem inferir execução, implantação, qualidade ou operação.
+* Nenhum item ou classificação do inventário aprovado alterado.
+* Nenhum código, teste, arquitetura, funcionalidade ou outro documento institucional alterado.
+
+## Arquivos alterados
+
+* `docs/institutional/HA/HA_REPOSITORY_INTEGRATION_REPORT.md`
+* `docs/history/HISTORY.md`
+
+## Veredito
+
+REPOSITÓRIO OFICIAL ACESSADO E ACERVO DOCUMENTAL INTEGRADO AO DIAGNÓSTICO; INVENTÁRIO DE EVIDÊNCIAS PRESERVADO.
+
+---
+
+# GP-HA-01A-VER — Verificação das Fontes Documentais do H&A
+
+## Data
+
+23/07/2026
+
+## Status
+
+CONCLUÍDA
+
+## Evento
+
+Verificação do universo documental efetivamente consultado na GP-HA-01A, sem revisão do inventário ou alteração de classificações.
+
+## Resultado
+
+* Relatório criado em `docs/institutional/HA/HA_SOURCE_VERIFICATION.md`.
+* Único repositório Git consultado identificado como `SistemaAnaliseAgua`.
+* Repositório oficial do H&A confirmado como não consultado.
+* Ausência de caminho, remote, workspace, anexo ou conector do repositório oficial registrada.
+* Escopo de busca, diretórios analisados e exclusões documentados.
+* Quatorze documentos com conteúdo relativo ao H&A examinados.
+* Sete documentos utilizados como fonte e sete descartados como fonte direta.
+* Critérios de inclusão e exclusão formalizados.
+* Inventário confirmado como representação exclusiva do workspace analisado, não de todo o patrimônio documental do H&A.
+* Procedimento para futura auditoria do repositório oficial registrado.
+* Nenhum inventário, classificação, evidência, código, arquitetura ou funcionalidade alterado.
+
+## Arquivos alterados
+
+* `docs/institutional/HA/HA_SOURCE_VERIFICATION.md`
+* `docs/history/HISTORY.md`
+
+## Veredito
+
+FONTES DA GP-HA-01A VERIFICADAS; REPOSITÓRIO OFICIAL DO H&A NÃO INTEGROU A ANÁLISE.
+
+---
+
+# GP-HA-01A — Inventário de Evidências do H&A
+
+## Data
+
+23/07/2026
+
+## Status
+
+CONCLUÍDA COM AUSÊNCIA DE EVIDÊNCIAS PRIMÁRIAS
+
+## Evento
+
+Inventário exclusivo das evidências locais relativas ao projeto H&A, com separação entre referências secundárias e comprovação primária.
+
+## Resultado
+
+* Inventário criado em `docs/institutional/HA/HA_EVIDENCE_INVENTORY.md`.
+* Infraestrutura, componentes, evidências operacionais, documentação, demonstrações e lacunas examinados.
+* Fluxo `Memory -> Context -> Guidance -> Governance -> Decision` registrado como `Parcialmente Comprovado`, por possuir apenas fonte secundária.
+* Documentos institucionais que mencionam H&A registrados como `Comprovado` somente quanto à sua existência.
+* Infraestrutura, arquitetura, código, dados, logs, testes, auditorias primárias e materiais de demonstração classificados como `Não Comprovado`.
+* Pesquisa de Governança de Harnesses explicitamente excluída como evidência do projeto H&A.
+* Classificações limitadas a `Comprovado`, `Parcialmente Comprovado` e `Não Comprovado`.
+* Nenhuma funcionalidade, descrição técnica, maturidade ou promoção do H&A inferida.
+* Nenhum código, arquitetura ou funcionalidade alterado.
+
+## Arquivos alterados
+
+* `docs/institutional/HA/HA_EVIDENCE_INVENTORY.md`
+* `docs/history/HISTORY.md`
+
+## Veredito
+
+REFERÊNCIAS SECUNDÁRIAS COMPROVADAS; INFRAESTRUTURA, IMPLEMENTAÇÃO E OPERAÇÃO PRIMÁRIA NÃO COMPROVADAS.
+
+---
+
+# GP-AGIPI-04 — Perfil Institucional da ICFACTORY
+
+## Data
+
+23/07/2026
+
+## Status
+
+CONCLUÍDA
+
+## Evento
+
+Produção do Perfil Institucional executivo da ICFACTORY a partir exclusivamente da Constituição Institucional, do Inventário Institucional de Ativos e do Mapa Institucional.
+
+## Resultado
+
+* Perfil criado em `docs/institutional/INSTITUTIONAL_PROFILE.md`.
+* Apresentação, identidade, forma de atuação, patrimônio, ativos estratégicos, governança, estágio atual e objetivo institucional sintetizados.
+* Propósito, missão, visão e valores preservados.
+* Situações e limitações de PROTEUS, H&A, OPTIMUS DRIVE e metodologia ICFACTORY reproduzidas sem alteração.
+* Preparação institucional distinguida de validação externa, parceria ou vínculo constituído.
+* Linguagem executiva mantida sem superlativos, promessas ou alegações de excelência.
+* Nenhuma fonte externa às três bases autorizadas utilizada.
+* Nenhum conceito, classificação, indicador ou informação institucional nova criada.
+* Nenhum código, arquitetura ou funcionalidade alterado.
+
+## Arquivos alterados
+
+* `docs/institutional/INSTITUTIONAL_PROFILE.md`
+* `docs/history/HISTORY.md`
+
+## Veredito
+
+PERFIL INSTITUCIONAL CONCLUÍDO COM FIDELIDADE ÀS FONTES E AO ESTÁGIO DOCUMENTADO.
+
+---
+
+# GP-AGIPI-03 — Mapa Institucional da ICFACTORY
+
+## Data
+
+23/07/2026
+
+## Status
+
+CONCLUÍDA
+
+## Evento
+
+Consolidação da arquitetura institucional da ICFACTORY em um mapa integrador, utilizando exclusivamente a Constituição Institucional versão 1.1 e o Inventário Institucional de Ativos.
+
+## Resultado
+
+* Mapa criado em `docs/institutional/INSTITUTIONAL_MAP.md`.
+* Identidade, governança, patrimônio e ativos estratégicos organizados hierarquicamente.
+* Diagrama textual da arquitetura institucional incorporado.
+* Propósito, missão, visão e valores preservados conforme a Constituição.
+* Hierarquia documental, autoridade e cinco pilares institucionais representados sem alteração.
+* Patrimônios metodológico, tecnológico, documental, científico e operacional integrados aos códigos do inventário.
+* PROTEUS, H&A, OPTIMUS DRIVE e metodologia ICFACTORY relacionados somente às situações já inventariadas.
+* Parceiros externos e iniciativas sem vínculo comprovado excluídos do mapa.
+* Nenhum conceito, classificação, área, ativo ou relacionamento novo criado.
+* Nenhum código, arquitetura de software ou funcionalidade alterado.
+
+## Arquivos alterados
+
+* `docs/institutional/INSTITUTIONAL_MAP.md`
+* `docs/history/HISTORY.md`
+
+## Veredito
+
+MAPA INSTITUCIONAL CONSOLIDADO COM HIERARQUIA E RASTREABILIDADE PRESERVADAS.
+
+---
+
+# GP-AGIPI-02 — Inventário Institucional de Evidências
+
+## Data
+
+23/07/2026
+
+## Status
+
+CONCLUÍDA COM LACUNAS DOCUMENTAIS EXPLÍCITAS
+
+## Evento
+
+Consolidação do primeiro Inventário Institucional de Ativos da ICFACTORY, limitada à identificação, classificação e organização do patrimônio já documentado.
+
+## Resultado
+
+* Inventário criado em `docs/institutional/AGIPI/INSTITUTIONAL_ASSET_INVENTORY.md`.
+* Patrimônios metodológico, tecnológico, documental, científico e operacional organizados.
+* Relacionamentos institucionais documentados apenas como iniciativas planejadas, sem presumir contato ou parceria.
+* Situações normalizadas exclusivamente como `Validado`, `Parcialmente Validado`, `Em Desenvolvimento` ou `Planejado`.
+* Fontes e observações registradas para cada ativo.
+* Ausência do artefato primário da Constituição Metodológica explicitada.
+* H&A limitado às referências secundárias disponíveis no repositório.
+* OPTIMUS DRIVE mantido no estágio planejado, sem capacidade técnica presumida.
+* Duplicidades, coerência documental e conformidade metodológica auditadas no próprio inventário.
+* Nenhum ativo novo, promoção, funcionalidade ou alteração arquitetural produzida.
+
+## Arquivos alterados
+
+* `docs/institutional/AGIPI/INSTITUTIONAL_ASSET_INVENTORY.md`
+* `docs/history/HISTORY.md`
+
+## Veredito
+
+INVENTÁRIO INSTITUCIONAL CONCLUÍDO COM RASTREABILIDADE E LACUNAS EXPRESSAS.
+
+---
+
+# GP-AGIPI-01B — Remediação da Auditoria da Constituição Institucional
+
+## Data
+
+23/07/2026
+
+## Status
+
+CONCLUÍDA
+
+## Evento
+
+Remediação pontual da Constituição Institucional da ICFACTORY, conforme itens aprovados pela Direção do Projeto a partir da auditoria da GP-AGIPI-01.
+
+## Resultado
+
+* Constituição Institucional atualizada para a versão 1.1.
+* Autoridade aprovadora, responsabilidade pela custódia e processos de revisão e atualização definidos.
+* Controle documental e histórico de revisão incorporados.
+* Hierarquia entre Constituição Metodológica, Constituição Institucional, Princípios Institucionais e documentos dos projetos esclarecida.
+* Definições curtas de tecnologia auditável, governança humana e conhecimento autorizado adicionadas.
+* Missão ajustada apenas para maior objetividade, com significado preservado.
+* Valores organizacionais separados das regras de engenharia.
+* Descrição do patrimônio tecnológico tornada objetiva, sem expressão promocional.
+* Visão, públicos institucionais, posicionamento estratégico e identidade de organização de PD&I preservados.
+* Nenhum novo arquivo criado.
+* Nenhum código, dado, arquitetura ou funcionalidade alterado.
+
+## Arquivos alterados
+
+* `docs/institutional/ICFACTORY_CONSTITUTION.md`
+* `docs/history/HISTORY.md`
+
+## Veredito
+
+REMEDIAÇÃO AUTORIZADA IMPLEMENTADA COM ESCOPO PRESERVADO.
+
+---
+
+# GP-AGIPI-01 — Constituição Institucional da ICFACTORY
+
+## Data
+
+23/07/2026
+
+## Status
+
+CONCLUÍDA DOCUMENTALMENTE — REVISÃO HUMANA E EVIDÊNCIAS EXTERNAS PENDENTES
+
+## Evento
+
+Abertura e execução da primeira consolidação institucional da ICFACTORY como organização de Pesquisa, Desenvolvimento e Inovação, limitada à documentação e sem alteração funcional.
+
+## Resultado
+
+* Estrutura institucional criada em `docs/institutional/`.
+* Constituição, missão, visão, valores, princípios, linhas de pesquisa, portfólio, posicionamento e roadmap institucional formalizados.
+* Pacote preparatório para a AGIPI criado em `docs/institutional/AGIPI/`.
+* PROTEUS classificado conservadoramente como protótipo integrado validado internamente.
+* H&A mantido em maturidade provisória por ausência de fontes primárias locais.
+* OPTIMUS DRIVE registrado como referência nominal sem capacidades presumidas.
+* Interface Institucional ICFACTORY registrada exclusivamente como visão futura.
+* Auditoria de encerramento registrada em `docs/institutional/AGIPI/GP_AGIPI_01_AUDIT.md`.
+* Nenhuma relação, anuência, agenda ou apoio da AGIPI declarado.
+* Nenhum código-fonte, dado, módulo, contrato, schema, arquitetura ou funcionalidade alterado.
+
+## Arquivos da GP
+
+* `docs/institutional/ICFACTORY_CONSTITUTION.md`
+* `docs/institutional/MISSION_VISION_VALUES.md`
+* `docs/institutional/INSTITUTIONAL_PRINCIPLES.md`
+* `docs/institutional/RESEARCH_LINES.md`
+* `docs/institutional/TECHNOLOGY_PORTFOLIO.md`
+* `docs/institutional/BUSINESS_POSITIONING.md`
+* `docs/institutional/INSTITUTIONAL_ROADMAP.md`
+* `docs/institutional/AGIPI/EXECUTION_PLAN.md`
+* `docs/institutional/AGIPI/EVIDENCE_DOSSIER.md`
+* `docs/institutional/AGIPI/PRESENTATION_OUTLINE.md`
+* `docs/institutional/AGIPI/GP_AGIPI_01_AUDIT.md`
+* `docs/history/HISTORY.md`
+* `docs/roadmap/ROADMAP.md`
+
+## Veredito
+
+BASE INSTITUCIONAL CRIADA E CONFORME COM RESSALVAS DE APROVAÇÃO HUMANA, PROPRIEDADE INTELECTUAL, FONTES PRIMÁRIAS E VALIDAÇÃO EXTERNA.
+
+---
+
 # GP-PE-38 - Promocao Patrimonial Do Sublote 03C
 
 ## Data
@@ -372,7 +1187,7 @@ Formalizacao exclusivamente documental do comportamento temporal da GDC-R, inclu
 * Maquina de estados criada em `docs/research/RG_04_STATE_MACHINE.md`.
 * Modelo de propagacao criado em `docs/research/RG_04_PROPAGATION_MODEL.md`.
 * Relatorio final criado em `docs/research/RG_04_CLOSURE_REPORT.md`.
-* Estado composto `?=(L,Q,K,X)` formalizado para ciclo de vida, verificacao, estabilidade e conformidade.
+* Estado composto `Ω=(L,Q,K,X)` formalizado para ciclo de vida, verificacao, estabilidade e conformidade.
 * Onze estados de ciclo de vida, sete de verificacao e cinco de estabilidade definidos.
 * Quarenta e seis transicoes catalogadas, alem de regras de conformidade e doze proibicoes.
 * Dependencias obrigatorias/opcionais, fortes/fracas, diretas/transitivas e criticas/nao criticas modeladas.
@@ -386,7 +1201,7 @@ Formalizacao exclusivamente documental do comportamento temporal da GDC-R, inclu
 
 ## Divergencia De Roadmap
 
-O titulo prospectivo anterior ?GP-RG-04 ? Protocolo Experimental? foi substituido pela autorizacao posterior e especifica ?GP-RG-04 ? Dinamica da Arquitetura GDC-R?. Nenhuma renumeracao do protocolo ou redefinicao da GP-RG-05 foi inferida.
+O titulo prospectivo anterior “GP-RG-04 — Protocolo Experimental” foi substituido pela autorizacao posterior e especifica “GP-RG-04 — Dinamica da Arquitetura GDC-R”. Nenhuma renumeracao do protocolo ou redefinicao da GP-RG-05 foi inferida.
 
 ## Restricoes Preservadas
 
@@ -768,6 +1583,1276 @@ Consolidacao em HISTORY e ROADMAP das autoridades reproduziveis no HEAD, apos a 
 * README institucional reservado para onda posterior.
 * Nenhuma autoridade futura ou nao reproduzivel no HEAD promovida.
 * Nenhum runtime, teste, dado operacional ou comportamento do sistema alterado por esta consolidacao documental.
+
+---
+
+# PI-06 - Producao Das Cenas Oficiais Do Filme Institucional Do PROTEUS
+
+## Data
+
+12/07/2026
+
+## Status
+
+CONCLUIDA
+
+## Evento
+
+Criacao da infraestrutura documental e operacional para gravacao padronizada das cenas reais oficiais do Filme Institucional do PROTEUS.
+
+## Resultado
+
+* Guia de captura das cenas oficiais criado em `media/proteus_institutional_video/project/SCENE_CAPTURE_GUIDE.md`.
+* Guia de configuracao do OBS Studio criado em `media/proteus_institutional_video/project/OBS_RECORDING_GUIDE.md`.
+* Manifesto das cenas oficiais criado em `media/proteus_institutional_video/project/SCENE_MANIFEST.md`.
+* Checklist operacional das cenas criado em `media/proteus_institutional_video/project/SCENE_CHECKLIST.md`.
+* Estrutura oficial da pasta de midia criada em `media/proteus_institutional_video/project/MEDIA_STRUCTURE.md`.
+* Pastas oficiais de cenas reais preparadas em `media/proteus_institutional_video/official_scenes/raw/`, `approved/` e `rejected/`.
+* Dez cenas oficiais documentadas: abertura, Dashboard, Qualidade da Agua, Dados Ambientais, Consumo e Distribuicao, Relatorios, Previsao Analitica, Governanca Operacional, Painel Executivo e encerramento.
+* Padrao de gravacao definido: 1920x1080, 30 FPS, MP4, H264, janela exclusiva do PROTEUS.
+* Nenhuma gravacao executada.
+* Nenhuma captura automatica executada.
+* Nenhum video gerado.
+* Nenhum render executado.
+* Nenhuma funcionalidade alterada.
+* Nenhuma arquitetura alterada.
+* Nenhuma Constituicao alterada.
+* Nenhum Lexico Constitucional alterado.
+
+## Arquivos Alterados
+
+* `media/proteus_institutional_video/project/SCENE_CAPTURE_GUIDE.md`;
+* `media/proteus_institutional_video/project/OBS_RECORDING_GUIDE.md`;
+* `media/proteus_institutional_video/project/SCENE_MANIFEST.md`;
+* `media/proteus_institutional_video/project/SCENE_CHECKLIST.md`;
+* `media/proteus_institutional_video/project/MEDIA_STRUCTURE.md`;
+* `docs/history/HISTORY.md`;
+* `docs/roadmap/ROADMAP.md`.
+
+## Validacoes
+
+Executadas:
+
+* Validacao documental por `git diff --check`.
+* Verificacao de ausencia de caracteres fora de ASCII nos novos documentos da PI-06.
+* Verificacao da existencia dos arquivos criados.
+
+Testes completos da aplicacao nao executados.
+
+Justificativa: PI-06 nao alterou codigo funcional, runtime, schemas, persistencia, contratos ou comportamento da aplicacao.
+
+## Restricoes Mantidas
+
+* Nenhuma gravacao executada.
+* Nenhuma captura automatica executada.
+* Nenhum video produzido.
+* Nenhum render executado.
+* Nenhuma alteracao funcional.
+* Nenhuma alteracao arquitetural.
+* Nenhuma alteracao constitucional.
+* Nenhuma alteracao do Lexico Constitucional.
+* Nenhuma identidade visual modificada.
+* Nenhum dado persistido alterado.
+
+---
+
+# PI-05 - Producao Do Filme Institucional Do PROTEUS
+
+## Data
+
+12/07/2026
+
+## Status
+
+CONCLUIDA COM RESSALVAS
+
+## Evento
+
+Producao da primeira versao institucional do Filme do PROTEUS como pacote final reproduzivel, com renderizacao MP4 bloqueada pelo ambiente local.
+
+## Resultado
+
+* Manifesto final do filme criado em `media/proteus_institutional_video/manifests/INSTITUTIONAL_FILM_V1_MANIFEST.md`.
+* Filme organizado em cinco capitulos: COMPREENDER, REGISTRAR, INTERPRETAR, ACOMPANHAR e DECIDIR.
+* Narracao final textual criada em `media/proteus_institutional_video/audio/narration/FINAL_FILM_NARRATION_PT_BR.txt`.
+* Narracao final segmentada criada em `media/proteus_institutional_video/audio/narration/FINAL_FILM_NARRATION_SEGMENTS_PT_BR.md`.
+* Legendas finais criadas em `media/proteus_institutional_video/subtitles/proteus_institutional_film_v1_pt-BR.srt`.
+* Instrucoes de renderizacao criadas em `media/proteus_institutional_video/project/INSTITUTIONAL_FILM_V1_BUILD_INSTRUCTIONS.md`.
+* Script de renderizacao futura criado em `media/proteus_institutional_video/scripts/build_institutional_film_v1.cmd`.
+* Revisao institucional criada em `docs/presentation/PROTEUS_FILM_REVIEW.md`.
+* Relatorio de producao criado em `docs/presentation/PROTEUS_INSTITUTIONAL_FILM_PRODUCTION_REPORT.md`.
+* Pasta de exportacao final criada em `media/proteus_institutional_video/exports/final/`.
+* Duracao final planejada: 6 minutos e 30 segundos.
+* MP4 nao renderizado porque `ffmpeg` nao foi encontrado no PATH.
+* Narracao em audio nao produzida por ausencia de ferramenta local adequada.
+* Trilha sonora nao incorporada por ausencia de ativo licenciado.
+* Encerramento oficial preservado: PROTEUS; Arquitetura rastreavel; Informacao confiavel; Decisao humana responsavel.
+* Nenhuma funcionalidade do PROTEUS alterada.
+* Nenhuma arquitetura, dominio, schema, contrato funcional ou comportamento da aplicacao alterado.
+* Nenhuma Constituicao alterada.
+* Nenhum Lexico Constitucional alterado.
+* Nenhuma norma criada.
+* Nenhuma Discovery promovida.
+* Nenhuma identidade visual modificada.
+
+## Arquivos Alterados
+
+* `media/proteus_institutional_video/manifests/INSTITUTIONAL_FILM_V1_MANIFEST.md`;
+* `media/proteus_institutional_video/audio/narration/FINAL_FILM_NARRATION_PT_BR.txt`;
+* `media/proteus_institutional_video/audio/narration/FINAL_FILM_NARRATION_SEGMENTS_PT_BR.md`;
+* `media/proteus_institutional_video/subtitles/proteus_institutional_film_v1_pt-BR.srt`;
+* `media/proteus_institutional_video/project/INSTITUTIONAL_FILM_V1_BUILD_INSTRUCTIONS.md`;
+* `media/proteus_institutional_video/scripts/build_institutional_film_v1.cmd`;
+* `docs/presentation/PROTEUS_FILM_REVIEW.md`;
+* `docs/presentation/PROTEUS_INSTITUTIONAL_FILM_PRODUCTION_REPORT.md`;
+* `docs/history/HISTORY.md`;
+* `docs/roadmap/ROADMAP.md`.
+
+## Validacoes
+
+Executadas:
+
+* Verificacao dos ativos herdados da PI-04.
+* Teste do script `build_institutional_film_v1.cmd`, bloqueado corretamente por ausencia de `ffmpeg`.
+* Validacao documental por `git diff --check`.
+
+Testes completos da aplicacao nao executados.
+
+Justificativa: PI-05 nao alterou codigo funcional, runtime, schemas, persistencia, contratos ou comportamento da aplicacao.
+
+## Restricoes Mantidas
+
+* Nenhuma funcionalidade alterada.
+* Nenhuma arquitetura alterada.
+* Nenhum dominio alterado.
+* Nenhuma Constituicao alterada.
+* Nenhum Lexico Constitucional alterado.
+* Nenhuma norma criada.
+* Nenhuma Discovery promovida.
+* Nenhuma identidade visual modificada.
+* Nenhum material externo sem licenca incorporado.
+* Nenhuma voz de pessoa real imitada.
+
+---
+
+# PI-04 - Producao Audiovisual Do PROTEUS - Animatic Institucional V1
+
+## Data
+
+12/07/2026
+
+## Status
+
+CONCLUIDA COM RESSALVAS
+
+## Evento
+
+Inicio da producao audiovisual pratica do PROTEUS por meio do pacote do Animatic Institucional v1.
+
+## Resultado
+
+* Auditoria de prontidao audiovisual criada em `docs/presentation/PROTEUS_AUDIOVISUAL_PRODUCTION_READINESS.md`.
+* Estrutura de producao criada em `media/proteus_institutional_video/`.
+* README de producao criado em `media/proteus_institutional_video/README.md`.
+* Manifesto do animatic criado em `media/proteus_institutional_video/manifests/ANIMATIC_V1_MANIFEST.md`.
+* Script de captura offscreen criado em `media/proteus_institutional_video/scripts/capture_animatic_assets.py`.
+* Script de build MP4 criado em `media/proteus_institutional_video/scripts/build_animatic_v1.ps1`.
+* Instrucoes de build criadas em `media/proteus_institutional_video/project/ANIMATIC_V1_BUILD_INSTRUCTIONS.md`.
+* Capturas reais da aplicacao geradas em PNG para Dashboard, Qualidade da Agua, Dados Ambientais, Consumo e Distribuicao, Relatorios, Previsao Analitica, Governanca Operacional e Painel Executivo.
+* Cartelas provisoriais geradas para abertura, fluxo conceitual, limite institucional, informacao organizada e encerramento.
+* Narracao master textual criada em `media/proteus_institutional_video/audio/narration/NARRATION_MASTER_PT_BR.txt`.
+* Narracao segmentada criada em `media/proteus_institutional_video/audio/narration/NARRATION_SEGMENTS_PT_BR.md`.
+* Legendas provisiorias criadas em `media/proteus_institutional_video/subtitles/proteus_animatic_v1_pt-BR.srt`.
+* Revisao de legendas criada em `media/proteus_institutional_video/subtitles/PROTEUS_SUBTITLE_REVIEW.md`.
+* Relatorio de revisao do animatic criado em `docs/presentation/PROTEUS_ANIMATIC_V1_REVIEW.md`.
+* Duracao planejada do animatic: 6 minutos e 12 segundos.
+* Ferramentas utilizadas: PyQt5 do ambiente virtual para capturas offscreen.
+* Limitacoes encontradas: `ffmpeg` e `ffprobe` ausentes; `cv2`, `imageio` e `moviepy` ausentes; execucao direta de `.ps1` bloqueada pela politica local de scripts do Windows.
+* MP4 nao gerado nesta etapa.
+* Narracao em audio nao gerada.
+* Trilha sonora e ambiencia nao geradas por ausencia de ativos licenciados.
+* Nenhum codigo funcional da aplicacao alterado.
+* Nenhum dado persistido alterado.
+* Nenhum schema, contrato funcional, arquitetura ou comportamento do sistema alterado.
+* Nenhuma Constituicao alterada.
+* Nenhum Lexico Constitucional alterado.
+* Nenhuma norma criada.
+* Nenhuma Discovery promovida.
+* Estado do animatic: pacote reprodutivel APROVADO COM RESSALVAS para orientar producao final.
+
+## Arquivos Alterados
+
+* `docs/presentation/PROTEUS_AUDIOVISUAL_PRODUCTION_READINESS.md`;
+* `docs/presentation/PROTEUS_ANIMATIC_V1_REVIEW.md`;
+* `media/proteus_institutional_video/README.md`;
+* `media/proteus_institutional_video/project/ANIMATIC_V1_BUILD_INSTRUCTIONS.md`;
+* `media/proteus_institutional_video/scripts/capture_animatic_assets.py`;
+* `media/proteus_institutional_video/scripts/build_animatic_v1.ps1`;
+* `media/proteus_institutional_video/manifests/ANIMATIC_V1_MANIFEST.md`;
+* `media/proteus_institutional_video/audio/narration/NARRATION_MASTER_PT_BR.txt`;
+* `media/proteus_institutional_video/audio/narration/NARRATION_SEGMENTS_PT_BR.md`;
+* `media/proteus_institutional_video/subtitles/proteus_animatic_v1_pt-BR.srt`;
+* `media/proteus_institutional_video/subtitles/PROTEUS_SUBTITLE_REVIEW.md`;
+* `media/proteus_institutional_video/captures/**`;
+* `media/proteus_institutional_video/titles/**`;
+* `docs/history/HISTORY.md`;
+* `docs/roadmap/ROADMAP.md`.
+
+## Validacoes
+
+Executadas:
+
+* Inspecao de tecnologia, dependencias, dados e ferramentas locais.
+* Instanciacao minima da aplicacao PyQt5 em modo offscreen.
+* Geracao de capturas reais por script.
+* Tentativa de execucao do build PowerShell, bloqueada por politica local de execucao de scripts.
+
+Testes completos da aplicacao nao executados.
+
+Justificativa: PI-04 nao alterou codigo funcional, runtime, schemas, persistencia, contratos ou comportamento da aplicacao.
+
+## Restricoes Mantidas
+
+* Nenhuma funcionalidade do PROTEUS alterada.
+* Nenhuma regra de dominio alterada.
+* Nenhuma arquitetura alterada.
+* Nenhum schema alterado.
+* Nenhum contrato funcional alterado.
+* Nenhum dado real alterado.
+* Nenhuma funcionalidade ficticia criada.
+* Nenhuma identidade visual modificada.
+* Nenhuma alteracao constitucional realizada.
+* Nenhum Lexico Constitucional alterado.
+* Nenhuma norma criada.
+* Nenhuma Discovery promovida.
+* Nenhum video publicado.
+* Nenhum material sem licenca incorporado.
+* Nenhuma voz de pessoa real imitada.
+* Animatic preservado como pacote provisorio, nao como versao final.
+
+---
+
+# PI-03 - Apresentacao Institucional Audiovisual Do PROTEUS
+
+## Data
+
+12/07/2026
+
+## Status
+
+CONCLUIDA
+
+## Evento
+
+Criacao do conjunto documental oficial para futura producao de video institucional audiovisual do PROTEUS.
+
+## Resultado
+
+* Diretorio `docs/presentation/` criado.
+* Roteiro principal do video institucional criado em `docs/presentation/PROTEUS_INSTITUTIONAL_VIDEO_SCRIPT.md`.
+* Storyboard cena a cena criado em `docs/presentation/PROTEUS_INSTITUTIONAL_VIDEO_STORYBOARD.md`.
+* Plano oficial de captura de telas criado em `docs/presentation/PROTEUS_SCREEN_CAPTURE_PLAN.md`.
+* Guia de edicao audiovisual criado em `docs/presentation/PROTEUS_VIDEO_EDITING_GUIDE.md`.
+* Roteiro curto de 60 a 90 segundos criado em `docs/presentation/PROTEUS_SHORT_VIDEO_SCRIPT.md`.
+* Conteudo alinhado ao roteiro oficial de demonstracao, identidade visual, kit institucional e limites institucionais do PROTEUS.
+* Material preparado para orientar futura gravacao de tela, narracao, edicao, trilha, transicoes, legendas e publicacao.
+* Producao e gravacao final do video preservadas como etapa futura separada.
+* Nenhum video foi gerado.
+* Nenhum codigo funcional foi alterado.
+* Nenhum runtime, banco de dados, schema, contrato funcional, arquitetura ou comportamento do sistema foi alterado.
+* Nenhuma Constituicao foi alterada.
+* Nenhum Lexico Constitucional foi alterado.
+* Nenhuma norma foi criada.
+* Nenhuma identidade visual foi alterada.
+* PI-03 registrada como CONCLUIDA.
+
+## Arquivos Alterados
+
+* `docs/presentation/PROTEUS_INSTITUTIONAL_VIDEO_SCRIPT.md`;
+* `docs/presentation/PROTEUS_INSTITUTIONAL_VIDEO_STORYBOARD.md`;
+* `docs/presentation/PROTEUS_SCREEN_CAPTURE_PLAN.md`;
+* `docs/presentation/PROTEUS_VIDEO_EDITING_GUIDE.md`;
+* `docs/presentation/PROTEUS_SHORT_VIDEO_SCRIPT.md`;
+* `docs/history/HISTORY.md`;
+* `docs/roadmap/ROADMAP.md`.
+
+## Testes
+
+Nao executados.
+
+Justificativa: PI-03 possui natureza exclusivamente documental e preparatoria. Nenhum codigo, runtime, schema, persistencia, contrato funcional ou comportamento da aplicacao foi alterado.
+
+## Restricoes Mantidas
+
+* Nenhuma implementacao audiovisual automatica realizada.
+* Nenhum arquivo de video gerado.
+* Nenhuma biblioteca de edicao instalada.
+* Nenhum codigo da aplicacao alterado.
+* Nenhum dado persistido alterado.
+* Nenhuma identidade visual alterada.
+* Nenhuma alteracao constitucional realizada.
+* Nenhuma norma criada.
+* Nenhum conceito investigativo promovido.
+
+---
+
+# GP-HA08 - Dossie Oficial De Pesquisa Metodologica Da Governanca De Harnesses
+
+## Data
+
+12/07/2026
+
+## Status
+
+CONCLUIDA
+
+## Evento
+
+Criacao documental do dossie oficial de pesquisa metodologica da Governanca da Execucao Assistida por Harnesses.
+
+## Resultado
+
+* Documento `docs/research/HARNESS_GOVERNANCE_RESEARCH_DOSSIER.md` criado.
+* Pesquisa metodologica GP-H01 a GP-HA07 consolidada em um unico dossie institucional.
+* Arquitetura conceitual, processo, cadeia de autoridade, cadeia de governanca, artefatos, conceitos consolidados, conceitos investigativos, limitacoes, recomendacoes e proximas etapas registrados.
+* Nenhum codigo implementado.
+* Nenhuma Constituicao alterada.
+* Nenhum Lexico Constitucional alterado.
+* Nenhuma norma criada.
+* Nenhuma Discovery promovida automaticamente.
+* GP-HA08 registrada como CONCLUIDA.
+
+## Arquivos Alterados
+
+* `docs/research/HARNESS_GOVERNANCE_RESEARCH_DOSSIER.md`;
+* `docs/history/HISTORY.md`;
+* `docs/roadmap/ROADMAP.md`.
+
+## Testes
+
+Nao executados.
+
+Justificativa: GP-HA08 possui natureza exclusivamente documental e nao alterou codigo, runtime, contratos funcionais, schemas ou testes.
+
+## Restricoes Mantidas
+
+* Nenhum codigo funcional alterado.
+* Nenhuma implementacao iniciada.
+* Nenhuma alteracao na Constituicao.
+* Nenhuma alteracao no Lexico Constitucional.
+* Nenhuma norma metodologica criada.
+* Nenhuma proposta constitucional iniciada.
+* Nenhuma Discovery promovida para norma.
+
+---
+
+# GP-A22E - Rastreabilidade Das Recomendacoes Executivas
+
+## Data
+
+12/07/2026
+
+## Status
+
+CONCLUIDA
+
+## Evento
+
+Implementacao controlada da rastreabilidade das recomendacoes executivas.
+
+## Resultado
+
+* Documento oficial `docs/architecture/GP_A22E_EXECUTIVE_RECOMMENDATION_TRACEABILITY.md` criado.
+* Contrato `RecommendationEvidence` enriquecido com metadados opcionais de rastreabilidade: `origin_layer`, `origin_artifact` e `origin_reference`.
+* `ExecutiveRecommendationService` passou a preencher rastreabilidade para evidencias de Analytics, Governanca Operacional e resultado observacional consolidado recebido.
+* Rastreabilidade baseada exclusivamente em sinais ja consolidados.
+* Nenhum acesso direto a CSV, `PolicyEngine`, `AvaliacaoObservacionalService`, adapters hidricos ou Nucleo Hidrologico foi introduzido.
+* Nenhuma nova camada criada.
+* Nenhum novo servico decisorio criado.
+* Nenhuma nova autoridade criada.
+* Nenhuma decisao de Analytics, Governanca ou Nucleo foi recalculada.
+* `ExecutiveRules`, `ExecutiveIntelligenceService`, `AnalyticsService`, `OperationalGovernanceService`, persistencias, Dashboard e guardrails PA-01E preservados.
+* PA-01A, PA-01B, PA-01C, PA-01D, PA-01E e GP-PE-16 preservadas.
+* GP-A22E registrada como CONCLUIDA.
+
+## Arquivos Alterados
+
+* `executive_recommendation/models.py`;
+* `executive_recommendation/service.py`;
+* `tests/test_executive_recommendation_service.py`;
+* `docs/architecture/GP_A22E_EXECUTIVE_RECOMMENDATION_TRACEABILITY.md`;
+* `docs/history/HISTORY.md`;
+* `docs/roadmap/ROADMAP.md`.
+
+## Testes
+
+Executados com sucesso:
+
+* `python -m unittest tests.test_executive_recommendation_service` - 8 testes OK.
+* `python -m unittest tests.test_pa01_communication_guardrails` - 6 testes OK.
+* `python -m unittest discover -s tests` - regressao completa OK.
+
+## Restricoes Mantidas
+
+* Nenhuma camada nova criada.
+* Nenhuma autoridade nova criada.
+* Nenhum fluxo decisorio alterado.
+* Nenhum calculo novo criado.
+* Nenhum schema CSV ou JSON alterado.
+* Nenhum catalogo alterado.
+* Nenhuma politica observacional alterada.
+* Nenhuma interface alterada.
+* Nenhuma alteracao no ICFACTORY.
+* Nenhuma Discovery promovida ou implantada.
+
+---
+
+# GP-PE-16 - Implementacao Da PA-01E
+
+## Data
+
+12/07/2026
+
+## Status
+
+CONCLUIDA
+
+## Evento
+
+Implementacao documental e verificavel da PA-01E - Guardrails de Comunicacao entre Camadas.
+
+## Resultado
+
+* Documento oficial `docs/architecture/PE_16_PA01E_COMMUNICATION_GUARDRAILS_IMPLEMENTATION.md` criado.
+* Matriz formal de comunicacoes permitidas e proibidas implementada.
+* Checklist PA-01 para novas comunicacoes entre camadas criado.
+* Excecoes historicas de CSV local formalizadas como excecoes governadas, nao replicaveis sem GP propria.
+* Guardrails obrigatorios G-OBR-01 a G-OBR-05 implementados documentalmente e cobertos por testes estaticos proporcionais.
+* Teste `tests/test_pa01_communication_guardrails.py` criado.
+* PA-01A preservada: vocabulario oficial protegido contra reintroducao de termos ambiguos.
+* PA-01B preservada: UI protegida contra acesso direto a `AnalyticsRepository` e `WaterHealthScoreCalculator`.
+* PA-01C preservada: adapters protegidos contra recriacao de listas locais de parametros de qualidade.
+* PA-01D preservada: autoridade primaria da reavaliacao controlada mantida na Governanca Operacional.
+* Executive preservado como consumidor de sinais consolidados, sem acesso direto a CSV, motores ou adapters hidricos.
+* Nenhum codigo funcional de runtime alterado.
+* Nenhuma nova camada, modulo, service, adapter, dependencia ou arquitetura paralela criada.
+* Parecer final: PA-01E IMPLEMENTADA, VALIDADA E COMPATIVEL COM A ARQUITETURA CONSOLIDADA DO PROTEUS.
+* GP-PE-16 registrada como CONCLUIDA.
+
+## Testes
+
+* `python -m unittest tests.test_pa01_communication_guardrails`
+* `python -m unittest discover -s tests`
+
+## Restricoes Mantidas
+
+* Nenhuma regra analitica alterada.
+* Nenhuma regra executiva alterada.
+* Nenhuma politica observacional alterada.
+* Nenhum schema CSV ou JSON alterado.
+* Nenhum catalogo alterado.
+* Nenhum adapter funcional alterado.
+* Nenhuma refatoracao paralela executada.
+* Nenhuma alteracao no ICFACTORY.
+* Nenhuma implantacao de Discoveries congeladas.
+
+---
+
+# GP-PE-15 - Auditoria Arquitetural Da PA-01E
+
+## Data
+
+11/07/2026
+
+## Status
+
+CONCLUIDA
+
+## Evento
+
+Auditoria arquitetural pre-implementacao da PA-01E - Guardrails de Comunicacao entre Camadas.
+
+## Resultado
+
+* Documento oficial `docs/architecture/PE_15_PA01E_COMMUNICATION_GUARDRAILS_AUDIT.md` criado.
+* Fluxos de comunicacao inventariados: 22.
+* Comunicacoes conformes ou conformes com ressalva: 19.
+* Dividas arquiteturais nao bloqueantes identificadas: 3.
+* Violacoes bloqueantes identificadas: 0.
+* Guardrails obrigatorios candidatos: 5.
+* Guardrails recomendados candidatos: 4.
+* Comunicacoes com guardrail adicional desnecessario no momento: 7.
+* Achados registrados: 9.
+* Nao conformidades bloqueantes registradas: 0.
+* Ressalvas registradas: 4.
+* PA-01A, PA-01B, PA-01C e PA-01D avaliadas como preservadas.
+* Parecer final: PA-01E APTA PARA IMPLEMENTACAO COM RESSALVAS.
+* Recomendacao: executar GP-PE-16 para implementar matriz de comunicacoes permitidas/proibidas, checklist PA-01 e testes estaticos proporcionais.
+* GP-PE-15 registrada como CONCLUIDA.
+
+## Testes
+
+Nao executados.
+
+Justificativa: GP-PE-15 exclusivamente analitica e pre-implementacao. Testes existentes foram inspecionados como evidencia de fronteiras ja governadas, sem criacao ou execucao de alteracoes funcionais.
+
+## Restricoes Mantidas
+
+* Nenhum codigo funcional alterado.
+* Nenhuma refatoracao executada.
+* Nenhum adapter criado.
+* Nenhum servico criado.
+* Nenhum contrato alterado.
+* Nenhuma alteracao em Analytics.
+* Nenhuma alteracao em Dashboard.
+* Nenhuma alteracao em Executive.
+* Nenhuma alteracao em persistencia.
+* PA-01E nao implementada.
+* Nenhuma alteracao no ICFACTORY.
+* Nenhuma implantacao de Discoveries congeladas.
+
+---
+
+# GP-PE-14 - Auditoria Pos-Implementacao Da PA-01D
+
+## Data
+
+11/07/2026
+
+## Status
+
+CONCLUIDA
+
+## Evento
+
+Auditoria pos-implementacao da GP-PE-13 - PA-01D - Governanca da Reavaliacao Controlada.
+
+## Resultado
+
+* Documento oficial `docs/architecture/PE_14_PA01D_POST_IMPLEMENTATION_AUDIT.md` criado.
+* Cadeia critica auditada: `sync_from_analytics()` -> `enriquecer_alertas()` -> `sync_alerts()` -> persistencia de eventos.
+* Cadeia critica classificada como TOTALMENTE IMPLEMENTADA.
+* Decisao de reavaliacao explicita confirmada.
+* Determinismo da cadeia confirmado.
+* Ausencia de duplicacao de eventos confirmada.
+* Reprocessamento decisorio redundante eliminado na cadeia critica.
+* Analytics, Dashboard, Executive, catalogos, configuracoes, politicas, schemas CSV e persistencia preservados.
+* PA-01A preservada.
+* PA-01B preservada.
+* PA-01C preservada.
+* Achados registrados: 10.
+* Nao conformidades bloqueantes registradas: 0.
+* Ressalvas registradas: 3.
+* Parecer final: PA-01D CERTIFICADA COM RESSALVAS.
+* Estado final: PA-01D IMPLEMENTADA + TESTADA + AUDITADA + CERTIFICADA COM RESSALVAS.
+* Recomendacao: iniciar GP-PE-15 - PA-01E - Guardrails de Comunicacao entre Camadas.
+* GP-PE-14 registrada como CONCLUIDA.
+
+## Testes
+
+Executados com sucesso:
+
+* `python -m unittest tests.test_governance_monitoring_adapter tests.test_governance_service tests.test_governance_rules tests.test_governance_repository` - 14 testes OK.
+* `python -m unittest tests.test_status_semantics` - 3 testes OK.
+* `python -m unittest tests.test_dashboard_analytics_snapshot` - 5 testes OK.
+* `python -m unittest tests.test_quality_parameter_mapping` - 6 testes OK.
+* `python -m unittest discover -s tests` - 103 testes OK.
+
+## Restricoes Mantidas
+
+* Nenhum codigo funcional alterado.
+* Nenhuma refatoracao executada.
+* Nenhum teste criado ou alterado.
+* Nenhuma alteracao em Analytics.
+* Nenhuma alteracao em Dashboard.
+* Nenhuma alteracao em Executive.
+* Nenhuma alteracao em catalogos.
+* Nenhuma alteracao em configuracoes.
+* Nenhuma alteracao em schemas CSV.
+* Nenhuma alteracao em persistencia.
+* PA-01E nao implementada.
+* Nenhuma alteracao no ICFACTORY.
+* Nenhuma implantacao de Discoveries congeladas.
+
+---
+
+# GP-PE-13 - Implementacao Da PA-01D
+
+## Data
+
+11/07/2026
+
+## Status
+
+CONCLUIDA
+
+## Evento
+
+Implementacao da PA-01D - Governanca da Reavaliacao Controlada.
+
+## Resultado
+
+* Documento oficial `docs/architecture/PE_13_PA01D_CONTROLLED_REEVALUATION_IMPLEMENTATION.md` criado.
+* Cadeia operacional implementada: `sync_from_analytics()` -> `enriquecer_alertas()` -> `sync_alerts()` -> persistencia de eventos.
+* Ponto explicito de decisao criado para reavaliacao controlada.
+* Pre-condicoes formais registradas: dominio de qualidade, metrica mapeada, politica selecionavel, valor numerico e motor observacional.
+* Adapter de Governanca Hidrico passou a executar decisoes recebidas da Governanca Operacional.
+* Reprocessamento decisorio redundante dentro da cadeia operacional eliminado.
+* Sincronizacao repetida preservada sem duplicacao de evento operacional.
+* PA-01A, PA-01B e PA-01C preservadas.
+* Analytics, Dashboard, Painel Executivo, catalogos, configuracoes, schemas CSV, persistencia, ICFACTORY e Discoveries congeladas preservados.
+* Estado final: PA-01D IMPLEMENTADA + TESTADA, ainda nao auditada/certificada.
+* GP-PE-13 registrada como CONCLUIDA.
+
+## Arquivos Alterados
+
+* `governance/service.py`;
+* `monitoramento_hidrico/governance_adapter.py`;
+* `tests/test_governance_monitoring_adapter.py`;
+* `tests/test_governance_service.py`;
+* `docs/architecture/PE_13_PA01D_CONTROLLED_REEVALUATION_IMPLEMENTATION.md`;
+* `docs/history/HISTORY.md`;
+* `docs/roadmap/ROADMAP.md`.
+
+## Testes
+
+Executados com sucesso:
+
+* `python -m unittest tests.test_governance_monitoring_adapter tests.test_governance_service tests.test_governance_rules tests.test_governance_repository` - 14 testes OK.
+* `python -m unittest tests.test_status_semantics` - 3 testes OK.
+* `python -m unittest tests.test_dashboard_analytics_snapshot` - 5 testes OK.
+* `python -m unittest tests.test_quality_parameter_mapping` - 6 testes OK.
+* `python -m unittest discover -s tests` - 103 testes OK.
+
+## Restricoes Mantidas
+
+* Analytics nao alterado.
+* Dashboard nao alterado.
+* Painel Executivo nao alterado.
+* `DashboardAnalyticsSnapshotService` nao alterado.
+* `DashboardMonitoringAdapter` nao alterado.
+* `status_semantics.py` nao alterado.
+* `quality_parameter_mapping.py` nao alterado.
+* Catalogos e configuracoes nao alterados.
+* Schemas CSV nao alterados.
+* Modelos e persistencia nao alterados.
+* Politicas de avaliacao nao alteradas.
+* PA-01E nao implementada.
+* Nenhuma alteracao no ICFACTORY.
+* Nenhuma implantacao de Discoveries congeladas.
+
+---
+
+# GP-PE-12 - Auditoria Arquitetural Da PA-01D
+
+## Data
+
+11/07/2026
+
+## Status
+
+CONCLUIDA
+
+## Evento
+
+Auditoria arquitetural pre-implementacao da PA-01D - Governanca da Reavaliacao Controlada.
+
+## Resultado
+
+* Documento oficial `docs/architecture/PE_12_PA01D_CONTROLLED_REEVALUATION_AUDIT.md` criado.
+* Mecanismos relevantes de reavaliacao, recomposicao, sincronizacao, refresh e recarregamento identificados: 14.
+* Candidatos a governanca obrigatoria: 3.
+* Candidatos a governanca recomendada: 5.
+* Mecanismos considerados locais/desnecessarios para governanca PA-01D: 6.
+* Cadeia critica mapeada: `sync_from_analytics()` -> `enriquecer_alertas()` -> `sync_alerts()` -> persistencia de eventos.
+* Confirmada preservacao da PA-01A, PA-01B e PA-01C.
+* Testes existentes avaliados como cobertura parcial para PA-01D.
+* Achados registrados: 7.
+* Nao conformidades evolutivas registradas: 3.
+* Ressalvas registradas: 4.
+* Parecer final: PA-01D APTA PARA IMPLEMENTACAO COM RESSALVAS.
+* GP-PE-12 registrada como CONCLUIDA.
+
+## Testes
+
+Nao executados.
+
+Justificativa: GP-PE-12 exclusivamente analitica e pre-implementacao. A GP solicitou identificar cobertura existente e nao criar, alterar ou executar implementacao funcional.
+
+## Restricoes Mantidas
+
+* Nenhum codigo funcional alterado.
+* Nenhuma refatoracao executada.
+* Nenhum servico criado.
+* Nenhum evento criado.
+* Nenhum modelo alterado.
+* Nenhuma persistencia alterada.
+* Dashboard nao alterado.
+* Analytics nao alterado.
+* PA-01D nao implementada.
+* PA-01E nao implementada.
+* Nenhuma alteracao no ICFACTORY.
+* Nenhuma implantacao de Discoveries congeladas.
+
+---
+
+# GP-PE-11 - Auditoria Pos-Implementacao Da PA-01C
+
+## Data
+
+11/07/2026
+
+## Status
+
+CONCLUIDA
+
+## Evento
+
+Auditoria pos-implementacao da GP-PE-10 - PA-01C - Centralizacao Controlada do Mapeamento de Parametros de Qualidade.
+
+## Resultado
+
+* Documento oficial `docs/architecture/PE_11_PA01C_POST_IMPLEMENTATION_AUDIT.md` criado.
+* Implementacao da PA-01C auditada contra GP-PE-09 e GP-PE-10.
+* Centralizacao obrigatoria C-OBR-01 classificada como TOTALMENTE IMPLEMENTADA.
+* Fonte oficial `monitoramento_hidrico/quality_parameter_mapping.py` auditada como especifica e independente.
+* Cinco adapters consumidores auditados como conformes.
+* Copias funcionais residuais da centralizacao obrigatoria: 0.
+* Conteudo, ordem, categorias, labels e nomes persistidos preservados.
+* Caso `temperatura` -> `temperatura_agua` preservado.
+* Catalogo, configuracoes, schemas CSV, PA-01A e PA-01B preservados.
+* Centralizacoes recomendadas C-REC-01, C-REC-02 e C-REC-03 nao antecipadas.
+* Achados registrados: 3.
+* Nao conformidades registradas: 0.
+* Ressalvas nao bloqueantes registradas: 2.
+* Parecer final: PA-01C CERTIFICADA COM RESSALVAS.
+* Estado final: PA-01C IMPLEMENTADA + TESTADA + AUDITADA + CERTIFICADA COM RESSALVAS.
+* GP-PE-11 registrada como CONCLUIDA.
+
+## Testes
+
+* `python -m unittest tests.test_quality_parameter_mapping` - 6 testes OK.
+* `python -m unittest tests.test_qualidade_agua_monitoring_adapter tests.test_dashboard_monitoring_adapter tests.test_operational_reports_adapter tests.test_analytics_alerts tests.test_water_health_score tests.test_governance_monitoring_adapter tests.test_governance_service` - 21 testes OK.
+* `python -m unittest tests.test_status_semantics` - 3 testes OK.
+* `python -m unittest tests.test_dashboard_analytics_snapshot` - 5 testes OK.
+* `python -m unittest discover -s tests` - 97 testes OK.
+
+## Restricoes Mantidas
+
+* Nenhum codigo funcional alterado.
+* Nenhuma correcao ou refatoracao executada.
+* Nenhum teste alterado.
+* Nenhum novo contrato criado.
+* Nenhum catalogo JSON alterado.
+* Nenhuma configuracao operacional alterada.
+* Nenhum schema CSV alterado.
+* Nenhuma tela PyQt alterada.
+* PA-01D nao implementada.
+* PA-01E nao implementada.
+* Nenhuma alteracao no ICFACTORY.
+* Nenhuma implantacao de Discoveries congeladas.
+
+---
+
+# GP-PE-10 - Implementacao Da PA-01C
+
+## Data
+
+11/07/2026
+
+## Status
+
+CONCLUIDA
+
+## Evento
+
+Implementacao restrita da PA-01C - Centralizacao Controlada do Mapeamento de Parametros de Qualidade.
+
+## Resultado
+
+* Documento oficial `docs/architecture/PE_10_PA01C_LIST_CENTRALIZATION_IMPLEMENTATION.md` criado.
+* Fonte oficial especifica `monitoramento_hidrico/quality_parameter_mapping.py` criada.
+* Cinco adapters migrados para consumir a fonte oficial:
+  * `monitoramento_hidrico/qualidade_agua_adapter.py`;
+  * `monitoramento_hidrico/dashboard_adapter.py`;
+  * `monitoramento_hidrico/operational_reports_adapter.py`;
+  * `monitoramento_hidrico/analytics_adapter.py`;
+  * `monitoramento_hidrico/governance_adapter.py`.
+* Autoridades locais duplicadas removidas: `PARAMETROS_QUALIDADE_AGUA`, `QUALITY_PARAMETER_FIELDS`, `REPORT_QUALITY_PARAMETERS`, `QUALITY_ANALYTICS_PARAMETERS` e `GOVERNANCE_QUALITY_PARAMETERS`.
+* Teste de contrato compartilhado `tests/test_quality_parameter_mapping.py` criado.
+* Mapeamento `temperatura` -> `temperatura_agua` preservado.
+* Campos persistidos `ph`, `turbidez`, `oxigenio_dissolvido`, `temperatura` e `agrotoxicos` preservados.
+* Labels atuais do Analytics preservados.
+* PA-01A preservada.
+* PA-01B preservada.
+* PA-01C registrada como IMPLEMENTADA + TESTADA, ainda nao auditada/certificada.
+* GP-PE-10 registrada como CONCLUIDA.
+
+## Testes
+
+* `python -m unittest tests.test_quality_parameter_mapping` - 6 testes OK.
+* `python -m unittest tests.test_qualidade_agua_monitoring_adapter tests.test_dashboard_monitoring_adapter tests.test_operational_reports_adapter tests.test_analytics_alerts tests.test_water_health_score tests.test_governance_monitoring_adapter tests.test_governance_service` - 21 testes OK.
+* `python -m unittest tests.test_status_semantics` - 3 testes OK.
+* `python -m unittest tests.test_dashboard_analytics_snapshot` - 5 testes OK.
+* `python -m unittest discover -s tests` - 97 testes OK.
+
+## Restricoes Mantidas
+
+* Nenhum catalogo JSON alterado.
+* Nenhuma configuracao operacional alterada.
+* Nenhum schema CSV alterado.
+* Nenhum campo persistido renomeado.
+* Nenhum limite observacional alterado.
+* Nenhuma tela PyQt alterada.
+* Nenhuma alteracao em `monitoramento_hidrico/status_semantics.py`.
+* Nenhum reacoplamento Dashboard x Analytics introduzido.
+* Nenhuma centralizacao recomendada da PE-09 implementada.
+* PA-01D nao implementada.
+* PA-01E nao implementada.
+* Nenhuma alteracao no ICFACTORY.
+* Nenhuma implantacao de Discoveries congeladas.
+
+---
+
+# GP-PE-09 - Auditoria Arquitetural Da PA-01C
+
+## Data
+
+11/07/2026
+
+## Status
+
+CONCLUIDA
+
+## Evento
+
+Auditoria arquitetural pre-implementacao da frente PA-01C - Centralizacao de listas.
+
+## Resultado
+
+* Documento oficial `docs/architecture/PE_09_PA01C_LIST_CENTRALIZATION_AUDIT.md` criado.
+* Listas, colecoes, mapeamentos, status, schemas, opcoes de interface, catálogos e fixtures relevantes auditados.
+* Total de listas relevantes inventariadas: 28.
+* Duplicidades reais encontradas: 8.
+* Candidatos a centralizacao obrigatoria: 1.
+* Candidatos a centralizacao recomendada: 3.
+* Listas que devem permanecer locais ou em fonte atual: 12.
+* Achados registrados: 9.
+* Nao conformidades arquiteturais/evolutivas registradas: 4.
+* Ressalvas registradas: 3.
+* Parecer final: PA-01C APTA PARA IMPLEMENTACAO COM RESSALVAS.
+* GP-PE-09 registrada como CONCLUIDA.
+
+## Testes
+
+Nao executados.
+
+Justificativa: GP-PE-09 exclusivamente analitica e pre-implementacao, sem alteracao de codigo, runtime, testes, persistencia ou arquitetura.
+
+## Restricoes Mantidas
+
+* Nenhum codigo funcional alterado.
+* Nenhuma refatoracao executada.
+* Nenhum modulo de constantes criado.
+* Nenhum enum criado.
+* Nenhum catalogo criado ou alterado.
+* Nenhuma alteracao de formularios.
+* Nenhuma alteracao de persistencia.
+* Nenhuma alteracao de modelos.
+* Nenhuma alteracao de testes.
+* PA-01C nao implementada.
+* PA-01D nao implementada.
+* PA-01E nao implementada.
+* Nenhuma alteracao no ICFACTORY.
+* Nenhuma implantacao de Discoveries congeladas.
+
+---
+
+# GP-PE-08 - Auditoria Pos-Implementacao Da PA-01B
+
+## Data
+
+11/07/2026
+
+## Status
+
+CONCLUIDA
+
+## Evento
+
+Auditoria pos-implementacao da GP-PE-07 - PA-01B - Desacoplamento entre Dashboard e Analytics.
+
+## Resultado
+
+* Documento oficial `docs/architecture/PE_08_PA01B_POST_IMPLEMENTATION_AUDIT.md` criado.
+* Implementacao da PA-01B auditada contra os acoplamentos certificados pela GP-PE-06.
+* Confirmada eliminacao de `DashboardPage` -> `AnalyticsRepository`.
+* Confirmada eliminacao de `DashboardPage` -> `WaterHealthScoreCalculator`.
+* Confirmada remocao da composicao temporal analitica do Dashboard.
+* Confirmado contrato intermediario `DashboardAnalyticsSnapshotService` como fronteira analitica proporcional.
+* `DashboardMonitoringAdapter`, `WaterHealthScoreChart`, formula do Water Health Score, modelos analiticos, persistencia CSV e semantica PA-01A preservados.
+* Nenhuma nao conformidade identificada.
+* Tres ressalvas nao bloqueantes registradas.
+* Veredito: PA-01B CERTIFICADA COM RESSALVAS.
+* GP-PE-08 registrada como CONCLUIDA.
+
+## Testes
+
+Executados com sucesso:
+
+```text
+python -m unittest tests.test_dashboard_analytics_snapshot
+Ran 5 tests
+OK
+
+python -m unittest tests.test_water_health_score tests.test_dashboard_monitoring_adapter tests.test_analytics_repository tests.test_analytics_trends
+Ran 10 tests
+OK
+
+python -m unittest discover -s tests
+Ran 91 tests
+OK
+```
+
+## Restricoes Mantidas
+
+* Nenhuma correcao de codigo executada durante a auditoria.
+* Nenhuma refatoracao executada.
+* Nenhuma ampliacao de escopo para PA-01C, PA-01D ou PA-01E.
+* Nenhuma alteracao no ICFACTORY.
+* Nenhuma implantacao de Discoveries congeladas.
+* Apenas `docs/architecture/PE_08_PA01B_POST_IMPLEMENTATION_AUDIT.md`, `docs/history/HISTORY.md` e `docs/roadmap/ROADMAP.md` foram alterados nesta GP.
+
+---
+
+# GP-PE-07 - Implementacao Da PA-01B
+
+## Data
+
+11/07/2026
+
+## Status
+
+CONCLUIDA
+
+## Evento
+
+Implementacao da frente PA-01B - Desacoplamento entre Dashboard e Analytics.
+
+## Resultado
+
+* Documento oficial `docs/architecture/PE_07_PA01B_DASHBOARD_ANALYTICS_DECOUPLING.md` criado.
+* Novo contrato `DashboardAnalyticsSnapshotService` criado em `analytics/dashboard_snapshot.py`.
+* `DashboardPage` deixou de importar, instanciar ou consultar diretamente `AnalyticsRepository`.
+* `DashboardPage` deixou de importar, instanciar ou executar diretamente `WaterHealthScoreCalculator`.
+* Composicao temporal analitica removida do Dashboard e encapsulada no contrato intermediario.
+* `DashboardMonitoringAdapter` preservado.
+* `WaterHealthScoreChart` preservado.
+* Formula, criterios, persistencia CSV e modelos analiticos preservados.
+* GP-PE-07 registrada como CONCLUIDA.
+
+## Testes
+
+Executados com sucesso:
+
+```text
+python -m unittest tests.test_dashboard_analytics_snapshot
+Ran 5 tests
+OK
+
+python -m unittest tests.test_water_health_score tests.test_dashboard_monitoring_adapter tests.test_analytics_repository tests.test_analytics_trends
+Ran 10 tests
+OK
+
+python -m unittest discover -s tests
+Ran 91 tests
+OK
+```
+
+## Restricoes Mantidas
+
+* Nenhuma implementacao de PA-01C, PA-01D ou PA-01E.
+* Nenhum redesenho visual do Dashboard.
+* Nenhuma mudanca de criterio do Water Health Score.
+* Nenhuma mudanca de persistencia ou schema CSV.
+* Nenhuma reorganizacao geral do pacote `analytics`.
+* Nenhuma alteracao no ICFACTORY.
+* Nenhuma implantacao de Discoveries congeladas.
+* Alteracoes pendentes fora do escopo preservadas.
+
+---
+
+# GP-PE-06 - Auditoria Arquitetural Da PA-01B
+
+## Data
+
+11/07/2026
+
+## Status
+
+CONCLUIDA
+
+## Evento
+
+Auditoria arquitetural da frente PA-01B - Desacoplamento entre Dashboard e Analytics.
+
+## Resultado
+
+* Documento oficial `docs/architecture/PE_06_PA01B_ARCHITECTURAL_AUDIT.md` criado.
+* Relacionamento atual entre Dashboard e Analytics auditado.
+* Dependencias diretas, indiretas, chamadas, contratos e responsabilidades mapeadas.
+* Dependencias conformes identificadas: uso de `DashboardMonitoringAdapter` para status de qualidade e `WaterHealthScoreChart` como componente visual.
+* Dependencias nao conformes/evolutivas identificadas: `DashboardPage` instancia `AnalyticsRepository`, instancia `WaterHealthScoreCalculator` e compoe serie historica do Water Health Score.
+* Impacto arquitetural classificado como medio-alto para acoplamento UI/Analytics.
+* Recomendado contrato intermediario futuro para snapshot visual do Dashboard, sem alterar formula, dados, schemas ou resultado visual.
+* GP-PE-06 registrada como CONCLUIDA.
+
+## Testes
+
+Nao executados.
+
+Justificativa: GP-PE-06 exclusivamente analitica e arquitetural, sem alteracao de codigo, runtime, interface, persistencia ou contratos.
+
+## Restricoes Mantidas
+
+* Nenhum codigo alterado.
+* Nenhuma refatoracao executada.
+* Nenhum adapter criado.
+* Nenhum contrato alterado.
+* Analytics nao alterado.
+* Dashboard nao alterado.
+* PA-01B nao implementada.
+* Nenhuma alteracao metodologica do ICFACTORY.
+* Nenhuma Discovery criada.
+* Nenhuma Discovery promovida.
+* Nenhuma Discovery congelada implantada.
+* Roadmap alterado apenas para registrar a atividade concluida.
+* Alteracoes pendentes fora do escopo preservadas.
+
+---
+
+# GP-PE-05 - Auditoria Pos-Implementacao Da PA-01A
+
+## Data
+
+11/07/2026
+
+## Status
+
+CONCLUIDA
+
+## Evento
+
+Auditoria arquitetural pos-implementacao da GP-PE-04 - PA-01A - Governanca Semantica de Status.
+
+## Resultado
+
+* Documento oficial `docs/architecture/PE_05_PA01A_IMPLEMENTATION_AUDIT.md` criado.
+* Implementacao da PA-01A auditada contra o planejamento da GP-PE-03 e o registro de implementacao da GP-PE-04.
+* Confirmada existencia de fonte oficial de vocabulario em `monitoramento_hidrico/status_semantics.py`.
+* Confirmada utilizacao consistente do vocabulario por adapters, Analytics, Executive e superficies de apresentacao auditadas.
+* Confirmada eliminacao das principais ambiguidades da GP-PE-02 nos componentes de runtime auditados.
+* Confirmada preservacao de responsabilidades, limites entre camadas, codigos tecnicos internos, regras de avaliacao, thresholds, severidades e schemas.
+* Nenhuma nao conformidade bloqueante identificada.
+* GP-PE-05 registrada como CONCLUIDA.
+
+## Testes
+
+Nao executados.
+
+Justificativa: GP-PE-05 exclusivamente analitica e pos-implementacao; a restricao da GP determinou nao executar novos testes, apenas avaliar os resultados existentes da GP-PE-04.
+
+Evidencias avaliadas:
+
+* Testes impactados da GP-PE-04: 32 testes executados com sucesso.
+* Regressao completa da GP-PE-04: 86 testes executados com sucesso.
+
+## Restricoes Mantidas
+
+* Nenhum codigo alterado.
+* Nenhuma refatoracao executada.
+* Nenhum novo teste criado.
+* Nenhum teste executado nesta GP.
+* PA-01B nao implementada.
+* PA-01C nao implementada.
+* PA-01D nao implementada.
+* PA-01E nao implementada.
+* Nenhuma alteracao metodologica do ICFACTORY.
+* Nenhuma Discovery criada.
+* Nenhuma Discovery promovida.
+* Nenhuma Discovery congelada implantada.
+* Roadmap alterado apenas para registrar a atividade concluida.
+* Alteracoes pendentes fora do escopo preservadas.
+
+---
+
+# GP-PE-04 - Implementacao Da PA-01A - Governanca Semantica De Status
+
+## Data
+
+11/07/2026
+
+## Status
+
+CONCLUIDA
+
+## Evento
+
+Implementacao da frente PA-01A - Governanca Semantica de Status.
+
+## Resultado
+
+* Documento oficial `docs/architecture/PE_04_PA01A_SEMANTIC_STATUS_GOVERNANCE.md` criado.
+* Vocabulario oficial de status criado em `monitoramento_hidrico/status_semantics.py`.
+* Status de qualidade comunicados por adapters atualizados para terminologia observacional.
+* Status do Water Health Score atualizados para terminologia de score analitico.
+* Status executivo atualizado para terminologia executiva observacional.
+* Mensagens de Analytics que comunicavam codigos tecnicos observacionais passaram a usar rotulos observacionais.
+* Compatibilidade com Dashboard, Analytics, Governanca e Painel Executivo preservada.
+* Nenhuma regra de avaliacao, threshold, score, severidade, persistencia, schema, arquitetura ou ICFACTORY foi alterado.
+* GP-PE-04 registrada como CONCLUIDA.
+
+## Arquivos Alterados
+
+* `monitoramento_hidrico/status_semantics.py`
+* `monitoramento_hidrico/qualidade_agua_adapter.py`
+* `monitoramento_hidrico/dashboard_adapter.py`
+* `monitoramento_hidrico/operational_reports_adapter.py`
+* `analytics/scoring.py`
+* `analytics/alerts.py`
+* `executive/models.py`
+* `qualidade_agua.py`
+* `relatorios.py`
+* `painel_executivo.py`
+* `tests/test_status_semantics.py`
+* testes impactados de adapters, analytics, executive e governance
+* `docs/architecture/PE_04_PA01A_SEMANTIC_STATUS_GOVERNANCE.md`
+* `docs/history/HISTORY.md`
+* `docs/roadmap/ROADMAP.md`
+
+## Testes
+
+Executados:
+
+* `python -m unittest tests.test_status_semantics tests.test_qualidade_agua_monitoring_adapter tests.test_dashboard_monitoring_adapter tests.test_operational_reports_adapter tests.test_water_health_score tests.test_analytics_alerts tests.test_executive_rules tests.test_executive_service tests.test_executive_recommendation_service`
+* Resultado: 32 testes executados com sucesso.
+* `python -m unittest discover -s tests`
+* Resultado: 86 testes executados com sucesso.
+
+Observacao: `pytest` nao estava instalado no ambiente; os testes foram executados com `unittest`.
+
+## Restricoes Mantidas
+
+* Nenhum desacoplamento Dashboard x Analytics implementado.
+* Nenhuma centralizacao de listas ou catalogos executada.
+* Nenhuma reavaliacao controlada implementada.
+* Nenhum guardrail comunicacional amplo implementado.
+* Nenhuma nova funcionalidade criada.
+* Nenhuma mudanca de comportamento funcional intencional.
+* Nenhuma alteracao metodologica do ICFACTORY.
+* Nenhuma Discovery criada.
+* Nenhuma Discovery promovida.
+* Nenhuma Discovery congelada implantada.
+* Alteracoes pendentes fora do escopo preservadas.
+
+---
+
+# GP-PE-03 - Decomposicao Executiva Da PA-01
+
+## Data
+
+11/07/2026
+
+## Status
+
+CONCLUIDA
+
+## Evento
+
+Decomposicao executiva da iniciativa PA-01 - Governanca de limites, responsabilidades e comunicacao segura em frentes de implementacao.
+
+## Resultado
+
+* Documento oficial `docs/architecture/PE_03_PA01_IMPLEMENTATION_DECOMPOSITION.md` criado.
+* Diagnostico da GP-PE-02 convertido em programa incremental de implementacao da PA-01.
+* Frentes PA-01A, PA-01B, PA-01C, PA-01D e PA-01E definidas.
+* Objetivos, problemas de origem, evidencias, componentes afetados, limites de intervencao, alteracoes permitidas e proibidas registrados por frente.
+* Dependencias, riscos, complexidade, criterios de aceite, estrategia de testes e rollback registrados.
+* Ordem recomendada definida: PA-01A, PA-01E, PA-01C, PA-01B e PA-01D.
+* Primeira unidade recomendada para implementacao futura: GP-PE-04 - PA-01A - Governanca Semantica de Status.
+* GP-PE-03 registrada como CONCLUIDA.
+
+## Testes
+
+Nao executados.
+
+Justificativa: GP-PE-03 exclusivamente analitica, documental e arquitetural, sem alteracao de codigo, runtime, interface, persistencia, arquitetura, website, identidade visual ou funcionalidade.
+
+## Restricoes Mantidas
+
+* Nenhum codigo alterado.
+* Nenhuma refatoracao executada.
+* Nenhuma arquitetura alterada.
+* Nenhuma documentacao normativa alterada.
+* PA-01 nao implementada.
+* Nenhum catalogo centralizado.
+* Nenhum guardrail implementado.
+* Nenhuma alteracao metodologica do ICFACTORY.
+* Nenhuma Discovery criada.
+* Nenhuma Discovery promovida.
+* Nenhuma Discovery congelada implantada.
+* Roadmap alterado apenas para registrar a atividade concluida.
+* Alteracoes pendentes fora do escopo preservadas.
+
+---
+
+# GP-PE-02 - Auditoria Arquitetural Da PA-01
+
+## Data
+
+11/07/2026
+
+## Status
+
+CONCLUIDA
+
+## Evento
+
+Auditoria arquitetural da iniciativa PA-01 - Governanca de limites, responsabilidades e comunicacao segura.
+
+## Resultado
+
+* Documento oficial `docs/architecture/PE_02_PA01_ARCHITECTURAL_AUDIT.md` criado.
+* Estado arquitetural atual do PROTEUS analisado em relacao aos objetivos da PA-01.
+* Limites entre camadas, modulos, services, repositories, adapters e interfaces mapeados.
+* Responsabilidades de componentes registradas.
+* Comunicacoes diretas e indiretas entre componentes registradas.
+* Nao conformidades evolutivas identificadas com componente afetado, situacao atual, impacto, risco, evidencias e recomendacao tecnica.
+* Componentes conformes com a PA-01 registrados explicitamente.
+* Riscos arquiteturais e pontos de comunicacao insegura registrados.
+* Recomendacoes para futura implementacao da PA-01 registradas.
+* Parecer final emitido: PA-01 preservada no nucleo essencial, com nao conformidades evolutivas nao bloqueantes.
+* GP-PE-02 registrada como CONCLUIDA.
+
+## Testes
+
+Nao executados.
+
+Justificativa: GP-PE-02 exclusivamente analitica, documental e arquitetural, sem alteracao de codigo, runtime, interface, persistencia, arquitetura, website, identidade visual ou funcionalidade.
+
+## Restricoes Mantidas
+
+* Nenhum codigo alterado.
+* Nenhuma refatoracao executada.
+* Nenhuma arquitetura alterada.
+* Nenhuma documentacao normativa alterada.
+* PA-01 nao implementada.
+* Nenhuma alteracao metodologica do ICFACTORY.
+* Nenhuma Discovery criada.
+* Nenhuma Discovery promovida.
+* Nenhuma Discovery congelada implantada.
+* Roadmap alterado apenas para registrar a atividade concluida.
+* Alteracoes pendentes fora do escopo preservadas.
 
 ---
 
@@ -4185,6 +6270,51 @@ Auditoria e decisao arquitetural sobre a integracao de Dados Ambientais com o Nu
 * CSVs operacionais nao alterados.
 * Telas PyQt nao alteradas.
 * Documentos constitucionais ICFACTORY nao alterados.
+
+---
+
+# GP-BW-01 - Auditoria de Elegibilidade OpenAI Build Week
+
+## Data
+
+18/07/2026
+
+## Status
+
+AUDITORIA DOCUMENTAL CONCLUIDA.
+
+## Objetivo
+
+Avaliar, a partir das fontes oficiais vigentes e das evidencias locais do PROTEUS, a elegibilidade e a prontidao do projeto para submissao a OpenAI Build Week.
+
+## Escopo
+
+* regras, elegibilidade territorial, categorias, prazos e criterios de julgamento;
+* exigencias para projeto preexistente, GPT-5.6, Codex, Session ID, video, repositorio, README, idioma, teste, licenca e propriedade intelectual;
+* README, documentacao, historico Git, testes, midia, remoto, dados e seguranca do repositorio local.
+
+## Entregaveis
+
+* `docs/buildweek/BW_01_OPENAI_BUILD_WEEK_AUDIT.md`;
+* `docs/buildweek/BW_01_ACTION_PLAN.md`;
+* `docs/buildweek/BW_01_SOURCE_REGISTER.md`.
+
+## Resultado
+
+* 36 requisitos avaliados em matriz rastreavel;
+* 110 testes executados com resultado OK;
+* evolucao Git posterior a abertura do periodo confirmada, sem prova suficiente de uso de GPT-5.6/Codex;
+* exclusao territorial expressa do Brasil registrada conforme Official Rules;
+* lacunas de elegibilidade, evidencia, video, repositorio, README, idioma, licenciamento e submissao registradas;
+* veredito preliminar: NAO APTO NO ESTADO ATUAL.
+
+## Natureza e restricoes mantidas
+
+* atuacao exclusivamente documental e tecnica de auditoria;
+* nenhum codigo, arquitetura, banco, teste ou interface alterado;
+* nenhuma funcionalidade implementada;
+* nenhuma licenca alterada;
+* nenhum commit, push, publicacao, aceite de termos ou submissao realizado.
 
 ---
 
