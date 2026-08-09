@@ -2339,3 +2339,27 @@ Entregavel:
 * Artefatos identificados, conceitos consolidados, conceitos ainda investigativos, limitacoes, recomendacoes e proximas etapas registrados.
 * Nenhum codigo funcional, runtime, Constituicao, Lexico Constitucional ou norma metodologica alterado.
 * Nenhuma Discovery promovida automaticamente.
+
+---
+
+## Fechamento documental do ciclo AI-02
+
+Status: ENCERRADO.
+
+Data de fechamento: 08/08/2026.
+
+Commit-base: `2e554439c5e7307fa455fce2420657f2e3b6962d`.
+
+Fases concluídas:
+
+* AI-02.01 - compartilhamento de dados e perfis;
+* AI-02.02 - integração de Qualidade da Água / Monitoramento Hídrico;
+* AI-02.03 - integração do Dashboard;
+* AI-02.04 - semântica de resultado não avaliável;
+* AI-02.05 - centralização dos limiares de perdas analíticas.
+
+Gate documental: FECHADO.
+
+Evidências técnicas: `analytics/loss_thresholds.py`, `analytics/alerts.py`, `analytics/scoring.py`, `tests/test_ai02_integration.py` e `tests/test_analytics_loss_thresholds.py`.
+
+Os itens funcionais abertos já existentes permanecem preservados, sem repriorização. Próximo ciclo e próxima operação: não atribuídos.

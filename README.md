@@ -290,23 +290,18 @@ Resultado:
 
 ---
 
-# Próximos Passos
+# Estado do Ciclo AI-02
 
-A próxima etapa será uma auditoria de integração arquitetural entre o novo núcleo de Monitoramento Hídrico e os módulos existentes:
+O ciclo AI-02 foi encerrado técnica e documentalmente em 08/08/2026, com base no commit `2e554439c5e7307fa455fce2420657f2e3b6962d`.
 
-* Dashboard.
-* Qualidade da Água / Monitoramento Hídrico.
-* Dados Ambientais.
-* Consumo e Distribuição.
-* Relatórios.
-* Previsão Analítica.
-* Governança Operacional.
-* Painel Executivo.
+Escopo concluído:
 
-Objetivo da auditoria:
+* compartilhamento de dados e perfis;
+* integração de Qualidade da Água / Monitoramento Hídrico;
+* integração do Dashboard;
+* semântica de resultado não avaliável;
+* centralização dos limiares de perdas analíticas em `analytics/loss_thresholds.py`, com acompanhamento em 15% e perda alta em 30%.
 
-Identificar quais módulos ainda usam lógica própria e quais devem passar a consumir o novo núcleo de Monitoramento Hídrico.
+Evidência de validação: `tests/test_ai02_integration.py` e `tests/test_analytics_loss_thresholds.py`.
 
-Próximo marco previsto:
-
-AI-02 — Auditoria de Integração de Qualidade da Água / Monitoramento Hídrico.
+Os itens funcionais já registrados no backlog permanecem sem alteração de prioridade. O próximo ciclo e a próxima operação não estão atribuídos.
