@@ -1,4 +1,5 @@
 from .alerts import PreventiveAlertService
+from .alert_provider import AlertProvider
 from .models import AnalyticsSnapshot
 from .repositories import AnalyticsRepository
 from .scoring import WaterHealthScoreCalculator
@@ -6,7 +7,13 @@ from .trends import TrendAnalyzer
 
 
 class AnalyticsService:
-    def __init__(self, repository=None, trend_analyzer=None, alert_service=None, score_calculator=None):
+    def __init__(
+        self,
+        repository=None,
+        trend_analyzer=None,
+        alert_service: AlertProvider | None = None,
+        score_calculator=None,
+    ):
         self.repository = repository or AnalyticsRepository()
         self.trend_analyzer = trend_analyzer or TrendAnalyzer()
         self.alert_service = alert_service or PreventiveAlertService()
