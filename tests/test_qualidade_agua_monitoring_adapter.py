@@ -14,6 +14,7 @@ class QualidadeAguaMonitoringAdapterTests(unittest.TestCase):
         self.adapter = QualidadeAguaMonitoringAdapter(
             policy_engine=PolicyEngine(),
             evaluation_service=AvaliacaoObservacionalService(),
+            perfil_operacional="urbano_saneamento",
         )
 
     def test_status_dentro_do_padrao_quando_avaliacoes_observacionais_normais(self):
@@ -61,7 +62,16 @@ class QualidadeAguaMonitoringAdapterTests(unittest.TestCase):
 
         self.assertNotIn("CONAMA", source)
         self.assertNotIn("def check_status", source)
-        self.assertIn("monitoring_adapter.status_medicao", source)
+        self.assertIn("quality_service.status_medicao", source)
+        self.assertNotIn("csv.DictReader", source)
+        self.assertNotIn("csv.DictWriter", source)
+
+    def test_adapter_exige_perfil_operacional_autoritativo(self):
+        with self.assertRaisesRegex(ValueError, "perfil operacional autoritativo"):
+            QualidadeAguaMonitoringAdapter(
+                policy_engine=PolicyEngine(),
+                evaluation_service=AvaliacaoObservacionalService(),
+            )
 
 
 if __name__ == "__main__":

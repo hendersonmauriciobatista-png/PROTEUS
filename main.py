@@ -20,9 +20,11 @@ from PyQt5.QtWidgets import (
 from analytics.dashboard_snapshot import DashboardAnalyticsSnapshotService
 from administracao import AdministracaoPage
 from consumo_distribuicao import ConsumoDistribuicaoPage
+from data_access import build_quality_water_repository
 from dados_ambientais import DadosAmbientaisPage
 from governanca_operacional import GovernancaOperacionalPage
-from monitoramento_hidrico import AvaliacaoObservacionalService, PolicyEngine
+from monitoramento_hidrico import AvaliacaoObservacionalService, PolicyEngine, carregar_projeto_ativo
+from monitoramento_hidrico.application_context import HydricApplicationContext
 from monitoramento_hidrico.dashboard_adapter import DashboardMonitoringAdapter
 from painel_executivo import PainelExecutivoPage
 from previsao_analitica import PrevisaoAnaliticaPage
@@ -295,6 +297,11 @@ def make_placeholder_page(icon, title, subtitle, desc):
 class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
+        projeto_ativo = carregar_projeto_ativo()
+        self.hydric_application_context = HydricApplicationContext.from_active_profile(
+            projeto_ativo.perfil_operacional
+        )
+        self.quality_water_repository = build_quality_water_repository()
         self.setWindowTitle("Sistema de Análise de Água v1.0")
         self.setMinimumSize(1100, 700)
         self.resize(1280, 780)
@@ -363,7 +370,12 @@ class MainWindow(QMainWindow):
         self.stack.addWidget(ProjetoMonitoramentoPage())
         self.stack.addWidget(DashboardPage())
         self.stack.addWidget(PainelExecutivoPage())
-        self.stack.addWidget(QualidadeAguaPage())
+        self.stack.addWidget(
+            QualidadeAguaPage(
+                repository=self.quality_water_repository,
+                application_context=self.hydric_application_context,
+            )
+        )
         self.stack.addWidget(ConsumoDistribuicaoPage())
         self.stack.addWidget(DadosAmbientaisPage())
         self.stack.addWidget(RelatoriosPage())

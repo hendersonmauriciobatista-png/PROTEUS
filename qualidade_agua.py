@@ -1,6 +1,4 @@
-import csv
 from datetime import datetime
-from pathlib import Path
 
 from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import (
@@ -19,34 +17,43 @@ from PyQt5.QtWidgets import (
 )
 from PyQt5.QtGui import QColor
 
-from monitoramento_hidrico import AvaliacaoObservacionalService, PolicyEngine
+from data_access import (
+    MeasurementRepository,
+    QUALITY_WATER_CSV_PATH,
+    QUALITY_WATER_FIELDS,
+    build_quality_water_repository,
+)
+from monitoramento_hidrico import carregar_projeto_ativo
+from monitoramento_hidrico.application_context import HydricApplicationContext
 from monitoramento_hidrico.qualidade_agua_adapter import (
     STATUS_QUALIDADE_OBSERVACIONAL_NORMAL,
+    QualidadeAguaApplicationService,
     QualidadeAguaMonitoringAdapter,
 )
 
 
-DATA_FILE = Path(__file__).resolve().parent / "data" / "qualidade_agua_medicoes.csv"
-CSV_FIELDS = [
-    "timestamp",
-    "ph",
-    "turbidez",
-    "oxigenio_dissolvido",
-    "temperatura",
-    "agrotoxicos",
-]
+DATA_FILE = QUALITY_WATER_CSV_PATH
+CSV_FIELDS = list(QUALITY_WATER_FIELDS)
 
 class QualidadeAguaPage(QWidget):
-    def __init__(self):
+    def __init__(self, repository: MeasurementRepository = None, application_context=None):
         super().__init__()
         self.inputs = {}
-        self.monitoring_adapter = QualidadeAguaMonitoringAdapter(
-            policy_engine=PolicyEngine(),
-            evaluation_service=AvaliacaoObservacionalService(),
+        self.repository = repository or build_quality_water_repository()
+        self.application_context = application_context or self._load_application_context()
+        self.monitoring_adapter = self.application_context.build_policy_adapter(
+            QualidadeAguaMonitoringAdapter
         )
-        self._ensure_storage()
+        self.quality_service = QualidadeAguaApplicationService(
+            repository=self.repository,
+            monitoring_adapter=self.monitoring_adapter,
+        )
         self._build_ui()
         self.load_history()
+
+    def _load_application_context(self):
+        projeto_ativo = carregar_projeto_ativo()
+        return HydricApplicationContext.from_active_profile(projeto_ativo.perfil_operacional)
 
     def _build_ui(self):
         layout = QVBoxLayout(self)
@@ -130,13 +137,6 @@ class QualidadeAguaPage(QWidget):
         )
         return field
 
-    def _ensure_storage(self):
-        DATA_FILE.parent.mkdir(parents=True, exist_ok=True)
-        if not DATA_FILE.exists():
-            with DATA_FILE.open("w", newline="", encoding="utf-8") as file:
-                writer = csv.DictWriter(file, fieldnames=CSV_FIELDS)
-                writer.writeheader()
-
     def save_measurement(self):
         measurement = {
             "timestamp": datetime.now().isoformat(timespec="seconds"),
@@ -148,10 +148,7 @@ class QualidadeAguaPage(QWidget):
         }
 
         try:
-            with DATA_FILE.open("a", newline="", encoding="utf-8") as file:
-                writer = csv.DictWriter(file, fieldnames=CSV_FIELDS)
-                writer.writerow(measurement)
-
+            self.quality_service.salvar_medicao(measurement)
             self.load_history()
             QMessageBox.information(self, "Medição salva", "Medição salva com sucesso")
         except Exception as error:
@@ -162,16 +159,13 @@ class QualidadeAguaPage(QWidget):
             self.inputs[field_name].setValue(default_value)
 
     def load_history(self):
-        self._ensure_storage()
-        with DATA_FILE.open("r", newline="", encoding="utf-8") as file:
-            rows = list(csv.DictReader(file))
-
+        rows = self.quality_service.listar_medicoes()
         rows.reverse()
         self.table.setRowCount(len(rows))
 
         for row_index, row in enumerate(rows):
             values = self._parse_row(row)
-            status = self.monitoring_adapter.status_medicao(values)
+            status = self.quality_service.status_medicao(values)
             display_values = [
                 row.get("timestamp", ""),
                 f"{values['ph']:.2f}",
