@@ -246,9 +246,30 @@ MÉDIA.
 
 Lacunas remanescentes:
 
-* A Governança ainda consome `AnalyticsService` como origem dos alertas.
+* A Governança consome `AnalyticsSnapshot.alerts` como fronteira pública preservada.
 * Alertas sem valor numérico explícito são preservados sem reavaliação pela Governança.
 * A tela ainda não exibe colunas específicas para política e status observacional.
+
+## Veredito C05 - Contrato de Origem de Alertas
+
+Status: ENCERRADO.
+
+O ponto mínimo de desacoplamento foi formalizado pelo protocolo `AlertProvider`, definido em `analytics/alert_provider.py`.
+
+Fronteira preservada:
+
+* `PreventiveAlertService` permanece como provedor padrão e proprietário atual da geração de alertas;
+* `AnalyticsService` permanece como orquestrador e raiz de composição;
+* `AnalyticsService.alert_service` conforma ao contrato `AlertProvider`;
+* existe exatamente uma invocação do provedor por `AnalyticsService.build_snapshot`;
+* os campos de `PreventiveAlert` permanecem `severity`, `domain`, `metric`, `message`, `evidence` e `recommendation`;
+* o tipo e o significado de `AnalyticsSnapshot.alerts` permanecem inalterados;
+* Governança Operacional, Inteligência Executiva, Recomendação Executiva e manutenção de histórico continuam consumindo a mesma fronteira pública;
+* nenhuma regra de alerta foi movida e nenhum provedor paralelo foi criado.
+
+Os testes contratuais estão registrados em `tests/test_alert_provider_contract.py` e cobrem encaminhamento de entradas, invocação única, equivalência do provedor padrão, ausência de geração paralela e preservação dos consumidores downstream.
+
+Uma Fase 2 não se justifica pelas evidências atuais. Esta conclusão não autoriza substituição do provedor, mudança de proprietário ou movimentação de regras. Proveniência em nível de regra e fiscalização de efeitos colaterais em runtime permanecem fora do escopo de C05 e não constituem requisitos criados por este fechamento.
 
 ## Testes
 

@@ -585,7 +585,7 @@ Pendência pós-GP-A15:
 * [x] Separar tendências analíticas próprias de decisões baseadas em limites hídricos.
 * [x] Preparar Water Health Score para usar avaliações observacionais nas penalidades de qualidade.
 * [x] Integrar Governança Operacional com eventos enriquecidos por metadados de avaliação.
-* Desacoplar futuramente a origem de alertas de `AnalyticsService` puro.
+* [x] C05 - Desacoplar a origem de alertas por meio do contrato `AlertProvider`, preservando `PreventiveAlertService` como provedor padrao e proprietario atual, com uma invocacao por `AnalyticsService.build_snapshot`.
 * Preservar transições de governança e histórico em `eventos_operacionais.json`.
 * Integrar Painel Executivo com sinais rastreáveis até política, motor e avaliação.
 * Preservar regras executivas como síntese, sem transformar o painel em motor de avaliação.
