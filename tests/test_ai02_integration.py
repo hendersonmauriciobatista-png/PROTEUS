@@ -5,6 +5,7 @@ from pathlib import Path
 from data_access import CSVMeasurementRepository, QUALITY_WATER_FIELDS
 from monitoramento_hidrico.application_context import HydricApplicationContext
 from monitoramento_hidrico.configuracoes import ConfiguracaoOperacionalService
+from monitoramento_hidrico.dashboard_adapter import DashboardMonitoringAdapter
 from monitoramento_hidrico.qualidade_agua_adapter import (
     QualidadeAguaApplicationService,
     QualidadeAguaMonitoringAdapter,
@@ -46,6 +47,7 @@ class AI02Phase2IntegrationTests(unittest.TestCase):
             repository=self.repository,
             monitoring_adapter=self.monitoring_adapter,
         )
+        self.dashboard_adapter = self.context.build_policy_adapter(DashboardMonitoringAdapter)
 
     def test_save_and_read_use_shared_repository_with_unchanged_schema(self):
         measurement = {
@@ -95,6 +97,39 @@ class AI02Phase2IntegrationTests(unittest.TestCase):
 
         self.assertEqual(page_result, comparison_result)
 
+    def test_same_measurement_is_consistent_between_quality_and_dashboard(self):
+        measurement = {
+            "ph": 7.2,
+            "turbidez": 10.0,
+            "oxigenio_dissolvido": 6.0,
+            "temperatura": 24.0,
+            "agrotoxicos": 0.0,
+        }
+
+        self.assertEqual(
+            self.quality_service.status_medicao(measurement),
+            self.dashboard_adapter.quality_status(measurement),
+        )
+
+    def test_dashboard_profile_reaches_policy_selection(self):
+        self.recording_policy_engine.calls.clear()
+
+        self.dashboard_adapter.quality_status(
+            {
+                "ph": 7.2,
+                "turbidez": 4.0,
+                "oxigenio_dissolvido": 6.0,
+                "temperatura": 24.0,
+                "agrotoxicos": 0.0,
+            }
+        )
+
+        self.assertTrue(self.recording_policy_engine.calls)
+        self.assertEqual(
+            {"urbano_saneamento"},
+            {call[0] for call in self.recording_policy_engine.calls},
+        )
+
     def test_quality_page_has_no_direct_csv_access(self):
         source = Path("qualidade_agua.py").read_text(encoding="utf-8")
 
@@ -102,6 +137,16 @@ class AI02Phase2IntegrationTests(unittest.TestCase):
         self.assertNotIn("DictReader", source)
         self.assertNotIn("DictWriter", source)
         self.assertNotIn(".open(", source)
+
+    def test_dashboard_reads_through_shared_repositories(self):
+        source = Path("main.py").read_text(encoding="utf-8")
+
+        self.assertNotIn("import csv", source)
+        self.assertNotIn("DictReader", source)
+        self.assertNotIn("def _read_csv", source)
+        self.assertIn("self.quality_repository.read_all()", source)
+        self.assertIn("self.environment_repository.read_all()", source)
+        self.assertIn("self.consumption_repository.read_all()", source)
 
 
 if __name__ == "__main__":

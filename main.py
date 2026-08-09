@@ -1,4 +1,3 @@
-import csv
 import sys
 from pathlib import Path
 
@@ -20,10 +19,10 @@ from PyQt5.QtWidgets import (
 from analytics.dashboard_snapshot import DashboardAnalyticsSnapshotService
 from administracao import AdministracaoPage
 from consumo_distribuicao import ConsumoDistribuicaoPage
-from data_access import build_quality_water_repository
+from data_access import CSVMeasurementRepository, build_quality_water_repository
 from dados_ambientais import DadosAmbientaisPage
 from governanca_operacional import GovernancaOperacionalPage
-from monitoramento_hidrico import AvaliacaoObservacionalService, PolicyEngine, carregar_projeto_ativo
+from monitoramento_hidrico import carregar_projeto_ativo
 from monitoramento_hidrico.application_context import HydricApplicationContext
 from monitoramento_hidrico.dashboard_adapter import DashboardMonitoringAdapter
 from painel_executivo import PainelExecutivoPage
@@ -34,9 +33,24 @@ from relatorios import RelatoriosPage
 
 
 DATA_DIR = Path(__file__).resolve().parent / "data"
-QUALIDADE_CSV = DATA_DIR / "qualidade_agua_medicoes.csv"
 AMBIENTE_CSV = DATA_DIR / "dados_ambientais_medicoes.csv"
 CONSUMO_CSV = DATA_DIR / "consumo_distribuicao_medicoes.csv"
+AMBIENTE_FIELDS = (
+    "timestamp",
+    "temperatura_ambiente",
+    "umidade_relativa",
+    "chuva",
+    "pressao_atmosferica",
+    "observacao",
+)
+CONSUMO_FIELDS = (
+    "timestamp",
+    "consumo_diario",
+    "consumo_mensal",
+    "volume_distribuido",
+    "perdas_estimadas",
+    "observacao",
+)
 
 
 STYLE_MAIN = """
@@ -158,8 +172,17 @@ class WaterHealthScoreChart(QWidget):
 
 
 class DashboardPage(QWidget):
-    def __init__(self):
+    def __init__(
+        self,
+        quality_repository,
+        environment_repository,
+        consumption_repository,
+        application_context,
+    ):
         super().__init__()
+        self.quality_repository = quality_repository
+        self.environment_repository = environment_repository
+        self.consumption_repository = consumption_repository
         layout = QVBoxLayout(self)
         layout.setContentsMargins(30, 20, 30, 20)
         layout.setSpacing(20)
@@ -195,9 +218,8 @@ class DashboardPage(QWidget):
         info_layout.addWidget(self.score_chart)
         layout.addWidget(info)
         layout.addStretch()
-        self.monitoring_adapter = DashboardMonitoringAdapter(
-            policy_engine=PolicyEngine(),
-            evaluation_service=AvaliacaoObservacionalService(),
+        self.monitoring_adapter = application_context.build_policy_adapter(
+            DashboardMonitoringAdapter
         )
         self.dashboard_analytics = DashboardAnalyticsSnapshotService()
         self.refresh()
@@ -219,9 +241,9 @@ class DashboardPage(QWidget):
         return card, value_label
 
     def refresh(self):
-        qualidade_rows = self._read_csv(QUALIDADE_CSV)
-        ambiente_rows = self._read_csv(AMBIENTE_CSV)
-        consumo_rows = self._read_csv(CONSUMO_CSV)
+        qualidade_rows = self.quality_repository.read_all()
+        ambiente_rows = self.environment_repository.read_all()
+        consumo_rows = self.consumption_repository.read_all()
 
         self.cards[0][1].setText(self._format_qualidade(qualidade_rows))
         self.cards[1][1].setText(self._format_ambiente(ambiente_rows))
@@ -232,13 +254,6 @@ class DashboardPage(QWidget):
             f"Consumo: {len(consumo_rows)}"
         )
         self.score_chart.set_points(self.dashboard_analytics.water_health_score_series())
-
-    def _read_csv(self, path):
-        if not path.exists():
-            return []
-
-        with path.open("r", newline="", encoding="utf-8") as file:
-            return list(csv.DictReader(file))
 
     def _format_qualidade(self, rows):
         if not rows:
@@ -302,6 +317,8 @@ class MainWindow(QMainWindow):
             projeto_ativo.perfil_operacional
         )
         self.quality_water_repository = build_quality_water_repository()
+        self.environment_repository = CSVMeasurementRepository(AMBIENTE_CSV, AMBIENTE_FIELDS)
+        self.consumption_repository = CSVMeasurementRepository(CONSUMO_CSV, CONSUMO_FIELDS)
         self.setWindowTitle("Sistema de Análise de Água v1.0")
         self.setMinimumSize(1100, 700)
         self.resize(1280, 780)
@@ -368,7 +385,14 @@ class MainWindow(QMainWindow):
         content_layout.setContentsMargins(0, 0, 0, 0)
         self.stack = QStackedWidget()
         self.stack.addWidget(ProjetoMonitoramentoPage())
-        self.stack.addWidget(DashboardPage())
+        self.stack.addWidget(
+            DashboardPage(
+                quality_repository=self.quality_water_repository,
+                environment_repository=self.environment_repository,
+                consumption_repository=self.consumption_repository,
+                application_context=self.hydric_application_context,
+            )
+        )
         self.stack.addWidget(PainelExecutivoPage())
         self.stack.addWidget(
             QualidadeAguaPage(

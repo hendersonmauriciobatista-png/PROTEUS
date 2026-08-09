@@ -13,7 +13,15 @@ class DashboardMonitoringAdapterTests(unittest.TestCase):
         self.adapter = DashboardMonitoringAdapter(
             policy_engine=PolicyEngine(),
             evaluation_service=AvaliacaoObservacionalService(),
+            perfil_operacional="urbano_saneamento",
         )
+
+    def test_adapter_exige_perfil_operacional_autoritativo(self):
+        with self.assertRaises(ValueError):
+            DashboardMonitoringAdapter(
+                policy_engine=PolicyEngine(),
+                evaluation_service=AvaliacaoObservacionalService(),
+            )
 
     def test_status_dentro_do_padrao_quando_avaliacoes_observacionais_normais(self):
         status = self.adapter.quality_status(

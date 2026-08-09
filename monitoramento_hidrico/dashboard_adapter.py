@@ -13,6 +13,8 @@ DASHBOARD_STATUS_OBSERVACIONAL_ATENCAO = QUALITY_STATUS_OBSERVATIONAL_ATTENTION
 
 class DashboardMonitoringAdapter:
     def __init__(self, policy_engine, evaluation_service, perfil_operacional=None):
+        if not perfil_operacional:
+            raise ValueError("O perfil operacional autoritativo e obrigatorio.")
         self.policy_engine = policy_engine
         self.evaluation_service = evaluation_service
         self.perfil_operacional = perfil_operacional
