@@ -102,6 +102,25 @@ class MonitoramentoHidricoConfiguracoesTests(unittest.TestCase):
             perfis,
         )
 
+    def test_perfil_ativo_resolve_exatamente_uma_configuracao(self):
+        configuracao = self.service.resolver_configuracao_por_perfil_ativo("eta")
+
+        self.assertEqual("config_eta_base", configuracao.identificador)
+        self.assertEqual("eta", configuracao.perfil_operacional_base)
+
+    def test_perfil_ativo_sem_configuracao_falha_explicitamente(self):
+        with self.assertRaisesRegex(ValueError, "Nenhuma configuracao operacional"):
+            self.service.resolver_configuracao_por_perfil_ativo("perfil_sem_configuracao", [])
+
+    def test_perfil_ativo_com_multiplas_configuracoes_falha_explicitamente(self):
+        configuracoes = [
+            ConfiguracaoOperacional("eta_1", "ETA 1", "eta"),
+            ConfiguracaoOperacional("eta_2", "ETA 2", "eta"),
+        ]
+
+        with self.assertRaisesRegex(ValueError, "Mais de uma configuracao operacional"):
+            self.service.resolver_configuracao_por_perfil_ativo("eta", configuracoes)
+
 
 if __name__ == "__main__":
     unittest.main()

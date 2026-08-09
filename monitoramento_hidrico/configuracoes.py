@@ -106,6 +106,26 @@ class ConfiguracaoOperacionalService:
 
         return configuracoes
 
+    def resolver_configuracao_por_perfil_ativo(self, perfil_operacional_ativo, configuracoes=None):
+        candidatas = [
+            configuracao
+            for configuracao in (
+                self.carregar_configuracoes() if configuracoes is None else configuracoes
+            )
+            if configuracao.perfil_operacional_base == perfil_operacional_ativo
+        ]
+        if not candidatas:
+            raise ValueError(
+                "Nenhuma configuracao operacional corresponde ao perfil ativo: "
+                f"{perfil_operacional_ativo}"
+            )
+        if len(candidatas) > 1:
+            raise ValueError(
+                "Mais de uma configuracao operacional corresponde ao perfil ativo: "
+                f"{perfil_operacional_ativo}"
+            )
+        return candidatas[0]
+
     def _validar_perfil(self, perfil_codigo):
         if perfil_codigo not in self.perfis:
             raise ValueError(f"Perfil operacional inexistente no catalogo: {perfil_codigo}")
