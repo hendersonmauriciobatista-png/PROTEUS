@@ -578,7 +578,7 @@ Pendência pós-GP-A15:
 * [x] Auditar Dados Ambientais e concluir que adapter hídrico não é necessário nesta etapa.
 * Avaliar catálogo/metadados futuros para parâmetros ambientais.
 * [x] Auditar Consumo e Distribuição e concluir que adapter hídrico não é necessário nesta etapa.
-* Avaliar política futura para perdas estimadas e consumo, se houver necessidade observacional.
+* [x] C04 - Avaliar política para perdas estimadas e consumo: limiares de 15% e 30% mantidos como referências analíticas não normativas; camada dedicada de política não justificada; nenhuma autoridade hídrica atribuída.
 * [x] Integrar Relatórios com adapter próprio e remover `_quality_status` da camada visual.
 * [x] Garantir que relatórios consumam avaliações observacionais do núcleo.
 * [x] Integrar Previsão Analítica com adapter analítico para consumir avaliações observacionais do núcleo.

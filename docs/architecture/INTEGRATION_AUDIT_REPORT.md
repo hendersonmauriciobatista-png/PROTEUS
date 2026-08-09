@@ -475,8 +475,28 @@ BAIXA-MEDIA.
 Lacunas remanescentes:
 
 * Leitura e escrita direta em CSV permanecem por decisao de compatibilidade.
-* Indicadores de perdas e consumo ainda nao possuem uma camada dedicada de politica operacional.
-* Regras preventivas de perdas continuam em Analytics e podem ser auditadas futuramente como inteligencia operacional, nao como conformidade hidrica.
+* Regras preventivas de perdas permanecem em Analytics como inteligencia operacional, nao como conformidade hidrica.
+
+## Veredito C04 - Perdas Estimadas e Consumo
+
+Status: ENCERRADO DOCUMENTALMENTE.
+
+Os limiares `LOSS_MONITORING_THRESHOLD = 15.0` e `LOSS_HIGH_THRESHOLD = 30.0`, definidos em `analytics/loss_thresholds.py`, sao referencias analiticas nao normativas. Nao foi comprovada proveniencia normativa externa ou legal para esses valores.
+
+Efeitos preservados no runtime:
+
+* 15% gera alerta analitico de severidade media e reducao de 6 pontos no Water Health Score;
+* 30% gera alerta analitico de severidade alta e reducao de 12 pontos no Water Health Score.
+
+O intervalo de 0% a 100% configurado no campo visual de perdas estimadas e somente validacao de entrada. Ele nao constitui limiar analitico, politica operacional, limite observacional ou regra de conformidade.
+
+Decisao arquitetural:
+
+* nenhuma conformidade hidrica e atribuida a consumo, distribuicao ou perdas;
+* o Policy Engine nao recebe autoridade sobre esses indicadores;
+* uma camada dedicada de politica operacional nao se justifica pelas evidencias atuais;
+* qualquer alteracao futura dos limiares exige nova autoridade e evidencia propria;
+* os testes de fronteira permanecem em `tests/test_analytics_loss_thresholds.py`.
 
 ## Classificacao das Lacunas
 
