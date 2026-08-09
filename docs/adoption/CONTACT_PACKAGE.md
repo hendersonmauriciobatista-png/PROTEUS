@@ -78,7 +78,7 @@ Coletar feedback estruturado após a utilização.
 
 Link oficial:
 
-https://github.com/hendersonmauriciobatista-png/sistema-analise-agua
+https://github.com/hendersonmauriciobatista-png/proteus
 
 Observação:
 

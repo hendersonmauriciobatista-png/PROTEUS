@@ -25,13 +25,13 @@ Antes de iniciar, verifique se possui:
 Clone o repositório:
 
 ```bash
-git clone https://github.com/hendersonmauriciobatista-png/sistema-analise-agua.git
+git clone https://github.com/hendersonmauriciobatista-png/proteus.git
 ```
 
 Acesse a pasta do projeto:
 
 ```bash
-cd sistema-analise-agua
+cd proteus
 ```
 
 Troque para a branch principal de desenvolvimento:
