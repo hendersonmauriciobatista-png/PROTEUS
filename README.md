@@ -1,8 +1,8 @@
-# Sistema De Análise De Água
+# PROTEUS
 
 ## Visão Geral
 
-O Sistema de Análise de Água é uma plataforma de monitoramento, análise e acompanhamento operacional de recursos hídricos. Sua arquitetura foi concebida para apoiar diferentes cenários de monitoramento da qualidade da água, incluindo aplicações ambientais, agrícolas, industriais e de saneamento, por meio de módulos especializados de análise. A Baseline Operacional Inteligente V1 concentra-se na gestão de indicadores de qualidade da água, dados ambientais e consumo/distribuição, constituindo o primeiro núcleo funcional da plataforma.
+O PROTEUS é uma plataforma de monitoramento e análise operacional de recursos hídricos. Sua arquitetura foi concebida para apoiar diferentes cenários de monitoramento da qualidade da água, incluindo aplicações ambientais, agrícolas, industriais e de saneamento, por meio de módulos especializados de análise. A Baseline Operacional Inteligente V1 concentra-se na gestão de indicadores de qualidade da água, dados ambientais e consumo/distribuição, constituindo o primeiro núcleo funcional da plataforma.
 
 O projeto foi desenvolvido seguindo a metodologia ICFACTORY, com foco em arquitetura determinística, rastreabilidade, explicabilidade e evolução incremental.
 
