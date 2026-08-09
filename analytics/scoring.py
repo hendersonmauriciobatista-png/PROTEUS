@@ -1,4 +1,5 @@
 from .models import WaterHealthScore
+from .loss_thresholds import LOSS_HIGH_THRESHOLD, LOSS_MONITORING_THRESHOLD
 from monitoramento_hidrico import AvaliacaoObservacionalService, PolicyEngine
 from monitoramento_hidrico.analytics_adapter import (
     AnalyticsHydricMonitoringAdapter,
@@ -48,12 +49,12 @@ class WaterHealthScoreCalculator:
 
         if consumption:
             latest_consumption = consumption[-1]
-            if latest_consumption.perdas_estimadas >= 30.0:
+            if latest_consumption.perdas_estimadas >= LOSS_HIGH_THRESHOLD:
                 score -= 12
                 explanations.append(
                     f"Perdas estimadas {latest_consumption.perdas_estimadas:.2f}% reduzem 12 pontos."
                 )
-            elif latest_consumption.perdas_estimadas >= 15.0:
+            elif latest_consumption.perdas_estimadas >= LOSS_MONITORING_THRESHOLD:
                 score -= 6
                 explanations.append(
                     f"Perdas estimadas {latest_consumption.perdas_estimadas:.2f}% reduzem 6 pontos."

@@ -1,4 +1,5 @@
 from .models import PreventiveAlert
+from .loss_thresholds import LOSS_HIGH_THRESHOLD, LOSS_MONITORING_THRESHOLD
 from monitoramento_hidrico import AvaliacaoObservacionalService, PolicyEngine
 from monitoramento_hidrico.analytics_adapter import (
     AnalyticsHydricMonitoringAdapter,
@@ -81,25 +82,31 @@ class PreventiveAlertService:
 
     def _consumption_alerts(self, measurement, trends):
         alerts = []
-        if measurement.perdas_estimadas >= 30.0:
+        if measurement.perdas_estimadas >= LOSS_HIGH_THRESHOLD:
             alerts.append(
                 PreventiveAlert(
                     severity="alto",
                     domain="consumo_distribuicao",
                     metric="perdas_estimadas",
                     message="Atencao preventiva: perdas estimadas elevadas.",
-                    evidence=f"Perdas atuais {measurement.perdas_estimadas:.2f}%; referencia preventiva 30.00%.",
+                    evidence=(
+                        f"Perdas atuais {measurement.perdas_estimadas:.2f}%; "
+                        f"referencia preventiva {LOSS_HIGH_THRESHOLD:.2f}%."
+                    ),
                     recommendation="Verificar registros de distribuicao e possiveis inconsistencias operacionais.",
                 )
             )
-        elif measurement.perdas_estimadas >= 15.0:
+        elif measurement.perdas_estimadas >= LOSS_MONITORING_THRESHOLD:
             alerts.append(
                 PreventiveAlert(
                     severity="medio",
                     domain="consumo_distribuicao",
                     metric="perdas_estimadas",
                     message="Atencao preventiva: perdas estimadas acima do patamar de acompanhamento.",
-                    evidence=f"Perdas atuais {measurement.perdas_estimadas:.2f}%; referencia preventiva 15.00%.",
+                    evidence=(
+                        f"Perdas atuais {measurement.perdas_estimadas:.2f}%; "
+                        f"referencia preventiva {LOSS_MONITORING_THRESHOLD:.2f}%."
+                    ),
                     recommendation="Acompanhar evolucao das perdas nas proximas medicoes.",
                 )
             )
