@@ -85,7 +85,7 @@ Versionar a base institucional geral e o diretório ICFACTORY Core.
 
 ### Conteúdo — 20 arquivos
 
-- 11 arquivos em `ICFACTORY_CORE_v1/`;
+- 11 arquivos então localizados em `ICFACTORY_CORE_v1/` — caminho histórico preservado; fonte vigente: [repositório canônico ICFACTORY](https://github.com/hendersonmauriciobatista-png/icfactory-framework);
 - 9 documentos institucionais gerais:
   - `BUSINESS_POSITIONING.md`;
   - `GP_PD_01_DOCUMENT_GOVERNANCE_IMPLEMENTATION.md`;

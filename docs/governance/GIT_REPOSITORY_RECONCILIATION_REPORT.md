@@ -201,7 +201,9 @@ Não foram identificados arquivos nomeados ou localizados explicitamente como ca
 
 ### 6.2 Documentação institucional — 28
 
-#### ICFACTORY Core — 11
+#### ICFACTORY Core — 11 — registro histórico dos antigos caminhos locais
+
+A lista abaixo preserva os caminhos observados na data da auditoria como evidência histórica. A fonte vigente do framework é o [repositório canônico ICFACTORY](https://github.com/hendersonmauriciobatista-png/icfactory-framework).
 
 - `ICFACTORY_CORE_v1/CONSTITUTION.md`
 - `ICFACTORY_CORE_v1/CONSTITUTIONAL_LEXICON.md`

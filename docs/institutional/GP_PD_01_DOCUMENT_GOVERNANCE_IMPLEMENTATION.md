@@ -17,7 +17,7 @@ Implantar a infraestrutura de governança documental do Kit Institucional do PRO
 ## 3. Autoridades Documentais Utilizadas
 
 * `docs/institutional/ICFACTORY_CONSTITUTION.md`;
-* `ICFACTORY_CORE_v1/PROJECT_CONSTITUTION_TEMPLATE.md`, seção Governança Documental;
+* [Project Constitution Template](https://github.com/hendersonmauriciobatista-png/icfactory-framework/blob/main/governance/PROJECT_CONSTITUTION_TEMPLATE.md), seção Governança Documental;
 * `docs/institutional/AGIPI/INSTITUTIONAL_ASSET_INVENTORY.md`, registro `DOC-002`;
 * documentação oficial preexistente do Kit Institucional do PROTEUS;
 * relatório GP-AGIPI-PROTEUS-01 fornecido como autoridade desta execução.

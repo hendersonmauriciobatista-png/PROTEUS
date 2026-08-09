@@ -308,10 +308,10 @@ Esta proposta foi delimitada para coexistir com a baseline vigente sem modificá
 
 Referências de compatibilidade examinadas:
 
-* `ICFACTORY_CORE_v1/CONSTITUTION.md`, versão 0.2, status ATIVA;
-* `ICFACTORY_CORE_v1/GOVERNANCE_ARCHITECTURE.md`, versão 1.0, status FUNDACIONAL;
-* `ICFACTORY_CORE_v1/PROJECT_CONSTITUTION_TEMPLATE.md`, versão 0.5, baseline documental oficial aprovada;
-* `ICFACTORY_CORE_v1/CONSTITUTIONAL_LEXICON.md`.
+* [Constituição ICFACTORY](https://github.com/hendersonmauriciobatista-png/icfactory-framework/blob/main/CONSTITUTION.md), versão 0.2, status ATIVA;
+* [Governance Architecture](https://github.com/hendersonmauriciobatista-png/icfactory-framework/blob/main/governance/GOVERNANCE_ARCHITECTURE.md), versão 1.0, status FUNDACIONAL;
+* [Project Constitution Template](https://github.com/hendersonmauriciobatista-png/icfactory-framework/blob/main/governance/PROJECT_CONSTITUTION_TEMPLATE.md), versão 0.5, baseline documental oficial aprovada;
+* [Constitutional Lexicon](https://github.com/hendersonmauriciobatista-png/icfactory-framework/blob/main/CONSTITUTIONAL_LEXICON.md).
 
 Em caso de conflito interpretativo, prevalecem a Constituição, a baseline e as autoridades vigentes. A GP-ARQ-01 deverá ser corrigida ou rejeitada; ela não pode reinterpretar a baseline para adquirir competência.
 
