@@ -2,7 +2,7 @@ import json
 from dataclasses import asdict
 from pathlib import Path
 
-from .models import CategoriaParametro, ParametroHidrico, PerfilOperacional
+from .models import CategoriaParametro, ParametroAmbientalContextual, ParametroHidrico, PerfilOperacional
 
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -28,6 +28,14 @@ def load_categorias_parametros(path=CATALOG_PATH):
 def load_parametros_hidricos(path=CATALOG_PATH):
     catalog = load_catalog(path)
     return [_build_parametro_hidrico(item) for item in catalog.get("parametros_hidricos", [])]
+
+
+def load_parametros_ambientais_contextuais(path=CATALOG_PATH):
+    catalog = load_catalog(path)
+    return [
+        ParametroAmbientalContextual(**item)
+        for item in catalog.get("parametros_ambientais_contextuais", [])
+    ]
 
 
 def listar_parametros_por_perfil(perfil_operacional, path=CATALOG_PATH):

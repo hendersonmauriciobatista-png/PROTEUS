@@ -32,6 +32,16 @@ class ParametroHidrico:
     descricao: str = ""
 
 
+@dataclass(frozen=True)
+class ParametroAmbientalContextual:
+    codigo: str
+    nome: str
+    unidade: str
+    tipo_valor: str = "numerico"
+    autoridade: str = "contexto"
+    descricao: str = ""
+
+
 @dataclass
 class ConfiguracaoOperacional:
     identificador: str

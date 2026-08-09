@@ -1,6 +1,7 @@
 from .catalog import (
     CATALOG_PATH,
     load_categorias_parametros,
+    load_parametros_ambientais_contextuais,
     load_parametros_hidricos,
     load_perfis_operacionais,
     listar_parametros_por_categoria,
@@ -16,6 +17,7 @@ from .configuracoes import CONFIGURACOES_PATH, ConfiguracaoOperacionalService
 from .models import (
     CategoriaParametro,
     ConfiguracaoOperacional,
+    ParametroAmbientalContextual,
     ParametroHidrico,
     PerfilOperacional,
     PoliticaAvaliacao,
@@ -81,6 +83,7 @@ __all__ = [
     "CategoriaParametro",
     "ConfiguracaoOperacional",
     "ConfiguracaoOperacionalService",
+    "ParametroAmbientalContextual",
     "ParametroHidrico",
     "PerfilOperacional",
     "PolicyEngine",
@@ -98,6 +101,7 @@ __all__ = [
     "dossier_final_do_projeto",
     "encerrar_projeto",
     "load_categorias_parametros",
+    "load_parametros_ambientais_contextuais",
     "load_parametros_hidricos",
     "load_perfis_operacionais",
     "listar_parametros_por_categoria",

@@ -1,5 +1,6 @@
 from .models import WaterHealthScore
 from .loss_thresholds import LOSS_HIGH_THRESHOLD, LOSS_MONITORING_THRESHOLD
+from .rain_thresholds import RAIN_CONTEXT_HIGH_THRESHOLD, RAIN_CONTEXT_MONITORING_THRESHOLD
 from monitoramento_hidrico import AvaliacaoObservacionalService, PolicyEngine
 from monitoramento_hidrico.analytics_adapter import (
     AnalyticsHydricMonitoringAdapter,
@@ -62,10 +63,10 @@ class WaterHealthScoreCalculator:
 
         if environment:
             latest_environment = environment[-1]
-            if latest_environment.chuva >= 50.0:
+            if latest_environment.chuva >= RAIN_CONTEXT_HIGH_THRESHOLD:
                 score -= 5
                 explanations.append(f"Chuva {latest_environment.chuva:.2f} mm reduz 5 pontos como contexto preventivo.")
-            elif latest_environment.chuva >= 20.0:
+            elif latest_environment.chuva >= RAIN_CONTEXT_MONITORING_THRESHOLD:
                 score -= 3
                 explanations.append(f"Chuva {latest_environment.chuva:.2f} mm reduz 3 pontos como contexto preventivo.")
 

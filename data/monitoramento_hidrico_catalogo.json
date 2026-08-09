@@ -1,6 +1,40 @@
 {
   "versao_catalogo": "GP-A11",
-  "descricao": "Catalogo inteligente inicial da arquitetura modular de Monitoramento Hidrico.",
+  "descricao": "Catalogo unico com parametros hidricos e metadados ambientais contextuais em namespaces separados.",
+  "parametros_ambientais_contextuais": [
+    {
+      "codigo": "temperatura_ambiente",
+      "nome": "Temperatura ambiente",
+      "unidade": "C",
+      "tipo_valor": "numerico",
+      "autoridade": "contexto",
+      "descricao": "Temperatura do ambiente associada ao registro operacional."
+    },
+    {
+      "codigo": "umidade_relativa",
+      "nome": "Umidade relativa",
+      "unidade": "%",
+      "tipo_valor": "numerico",
+      "autoridade": "contexto",
+      "descricao": "Umidade relativa do ambiente associada ao registro operacional."
+    },
+    {
+      "codigo": "chuva",
+      "nome": "Chuva",
+      "unidade": "mm",
+      "tipo_valor": "numerico",
+      "autoridade": "contexto",
+      "descricao": "Precipitacao usada exclusivamente como contexto analitico."
+    },
+    {
+      "codigo": "pressao_atmosferica",
+      "nome": "Pressao atmosferica",
+      "unidade": "hPa",
+      "tipo_valor": "numerico",
+      "autoridade": "contexto",
+      "descricao": "Pressao atmosferica associada ao registro operacional."
+    }
+  ],
   "perfis_operacionais": [
     {
       "codigo": "rural",

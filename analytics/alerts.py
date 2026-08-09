@@ -1,5 +1,6 @@
 from .models import PreventiveAlert
 from .loss_thresholds import LOSS_HIGH_THRESHOLD, LOSS_MONITORING_THRESHOLD
+from .rain_thresholds import RAIN_CONTEXT_MONITORING_THRESHOLD
 from monitoramento_hidrico import AvaliacaoObservacionalService, PolicyEngine
 from monitoramento_hidrico.analytics_adapter import (
     AnalyticsHydricMonitoringAdapter,
@@ -127,7 +128,11 @@ class PreventiveAlertService:
 
     def _environment_context_alerts(self, measurement, quality_trends):
         turbidity_trend = next((trend for trend in quality_trends if trend.metric == "turbidez"), None)
-        if measurement.chuva >= 20.0 and turbidity_trend and turbidity_trend.direction == "subindo":
+        if (
+            measurement.chuva >= RAIN_CONTEXT_MONITORING_THRESHOLD
+            and turbidity_trend
+            and turbidity_trend.direction == "subindo"
+        ):
             return [
                 PreventiveAlert(
                     severity="medio",
