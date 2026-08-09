@@ -443,3 +443,20 @@ PA-01 foi preservado.
 GP-A23 foi respeitada.
 
 Nenhuma Discovery foi promovida.
+
+## Veredito R01 - Cobertura de Ponto de Coleta
+
+Status: ENCERRADO.
+
+O runtime atual cobre um ponto principal de coleta por projeto. O campo escalar `ProjetoMonitoramento.ponto_principal_coleta` e validado pelo catalogo `PONTOS_PRINCIPAIS_COLETA`, persistido no projeto, editado por um unico controle na interface e propagado sem alteracao para `DossierFinal.ponto_principal_coleta`.
+
+Fronteira preservada:
+
+* ponto principal de coleta representa o contexto principal do projeto e nao um cadastro de pontos;
+* a cobertura atual permanece limitada a um ponto principal por projeto;
+* nao foi comprovada necessidade de registro multiponto;
+* cadastro multiponto permanece adiado ate existir requisito expressamente autorizado;
+* nenhuma alteracao de persistencia, interface, dossie, teste ou runtime e autorizada por este veredito;
+* GPS, fotos, cadeia de custodia, anexos, multiplos pontos e multiplos coletores permanecem fora deste fechamento.
+
+O item R01 do roadmap fica reconciliado com essa cobertura. O encerramento documenta o comportamento existente e nao cria requisito, prioridade ou autorizacao de implementacao futura.

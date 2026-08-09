@@ -157,7 +157,7 @@ Status: Em andamento
 * [x] Persistência de dados
 * [x] Histórico de medições
 * [ ] Exportação de relatórios
-* [ ] Cadastro de pontos de coleta
+* [x] R01 - Cobertura de ponto de coleta: runtime atual cobre um ponto principal de coleta por projeto; necessidade de cadastro multiponto nao comprovada e adiada ate existir requisito autorizado.
 * [ ] Registro de eventos críticos
 
 ---
