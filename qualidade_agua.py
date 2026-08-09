@@ -26,6 +26,8 @@ from data_access import (
 from monitoramento_hidrico import carregar_projeto_ativo
 from monitoramento_hidrico.application_context import HydricApplicationContext
 from monitoramento_hidrico.qualidade_agua_adapter import (
+    STATUS_QUALIDADE_OBSERVACIONAL_ATENCAO,
+    STATUS_QUALIDADE_OBSERVACIONAL_NAO_AVALIAVEL,
     STATUS_QUALIDADE_OBSERVACIONAL_NORMAL,
     QualidadeAguaApplicationService,
     QualidadeAguaMonitoringAdapter,
@@ -186,6 +188,16 @@ class QualidadeAguaPage(QWidget):
     def _apply_status_style(self, item, status):
         if status == STATUS_QUALIDADE_OBSERVACIONAL_NORMAL:
             item.setBackground(QColor("#1b5e20"))
+            item.setForeground(QColor("#ffffff"))
+            return
+
+        if status == STATUS_QUALIDADE_OBSERVACIONAL_NAO_AVALIAVEL:
+            item.setBackground(QColor("#455a64"))
+            item.setForeground(QColor("#ffffff"))
+            return
+
+        if status == STATUS_QUALIDADE_OBSERVACIONAL_ATENCAO:
+            item.setBackground(QColor("#e65100"))
             item.setForeground(QColor("#ffffff"))
             return
 

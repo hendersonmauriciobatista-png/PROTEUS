@@ -1,14 +1,19 @@
-from .avaliacao import STATUS_ATENCAO, STATUS_CRITICO, STATUS_NAO_AVALIAVEL
+from .avaliacao import STATUS_NAO_AVALIAVEL
 from .politicas import MOTOR_OBSERVACIONAL
 from .quality_parameter_mapping import quality_parameter_triples
 from .status_semantics import (
     QUALITY_STATUS_OBSERVATIONAL_ATTENTION,
+    QUALITY_STATUS_OBSERVATIONAL_CRITICAL,
+    QUALITY_STATUS_OBSERVATIONAL_NOT_EVALUABLE,
     QUALITY_STATUS_OBSERVATIONAL_NORMAL,
+    aggregate_observational_status,
 )
 
 
 DASHBOARD_STATUS_OBSERVACIONAL_NORMAL = QUALITY_STATUS_OBSERVATIONAL_NORMAL
 DASHBOARD_STATUS_OBSERVACIONAL_ATENCAO = QUALITY_STATUS_OBSERVATIONAL_ATTENTION
+DASHBOARD_STATUS_OBSERVACIONAL_CRITICO = QUALITY_STATUS_OBSERVATIONAL_CRITICAL
+DASHBOARD_STATUS_OBSERVACIONAL_NAO_AVALIAVEL = QUALITY_STATUS_OBSERVATIONAL_NOT_EVALUABLE
 
 
 class DashboardMonitoringAdapter:
@@ -21,10 +26,7 @@ class DashboardMonitoringAdapter:
 
     def quality_status(self, row):
         resultados = self.evaluate_quality_row(row)
-        for resultado in resultados:
-            if resultado.status in {STATUS_ATENCAO, STATUS_CRITICO}:
-                return DASHBOARD_STATUS_OBSERVACIONAL_ATENCAO
-        return DASHBOARD_STATUS_OBSERVACIONAL_NORMAL
+        return aggregate_observational_status(resultado.status for resultado in resultados)
 
     def evaluate_quality_row(self, row):
         resultados = []

@@ -10,6 +10,9 @@ from monitoramento_hidrico.qualidade_agua_adapter import (
     QualidadeAguaApplicationService,
     QualidadeAguaMonitoringAdapter,
 )
+from monitoramento_hidrico.status_semantics import (
+    QUALITY_STATUS_OBSERVATIONAL_NOT_EVALUABLE,
+)
 
 
 class RecordingPolicyEngine:
@@ -147,6 +150,24 @@ class AI02Phase2IntegrationTests(unittest.TestCase):
         self.assertIn("self.quality_repository.read_all()", source)
         self.assertIn("self.environment_repository.read_all()", source)
         self.assertIn("self.consumption_repository.read_all()", source)
+
+    def test_quality_and_dashboard_expose_only_non_evaluable_as_informational(self):
+        measurement = {
+            "ph": "invalido",
+            "turbidez": "invalido",
+            "oxigenio_dissolvido": "invalido",
+            "temperatura": "invalido",
+            "agrotoxicos": "invalido",
+        }
+
+        self.assertEqual(
+            QUALITY_STATUS_OBSERVATIONAL_NOT_EVALUABLE,
+            self.quality_service.status_medicao(measurement),
+        )
+        self.assertEqual(
+            QUALITY_STATUS_OBSERVATIONAL_NOT_EVALUABLE,
+            self.dashboard_adapter.quality_status(measurement),
+        )
 
 
 if __name__ == "__main__":

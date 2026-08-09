@@ -4,6 +4,7 @@ import unittest
 from monitoramento_hidrico import AvaliacaoObservacionalService, PolicyEngine
 from monitoramento_hidrico.qualidade_agua_adapter import (
     STATUS_QUALIDADE_OBSERVACIONAL_ATENCAO,
+    STATUS_QUALIDADE_OBSERVACIONAL_CRITICO,
     STATUS_QUALIDADE_OBSERVACIONAL_NORMAL,
     QualidadeAguaMonitoringAdapter,
 )
@@ -41,7 +42,7 @@ class QualidadeAguaMonitoringAdapterTests(unittest.TestCase):
             }
         )
 
-        self.assertEqual(STATUS_QUALIDADE_OBSERVACIONAL_ATENCAO, status)
+        self.assertEqual(STATUS_QUALIDADE_OBSERVACIONAL_CRITICO, status)
 
     def test_valor_invalido_usa_resultado_nao_avaliavel_sem_quebrar_status(self):
         measurement = {

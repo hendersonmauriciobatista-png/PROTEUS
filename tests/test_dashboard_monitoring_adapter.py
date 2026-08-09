@@ -3,6 +3,7 @@ import unittest
 from monitoramento_hidrico import AvaliacaoObservacionalService, PolicyEngine
 from monitoramento_hidrico.dashboard_adapter import (
     DASHBOARD_STATUS_OBSERVACIONAL_ATENCAO,
+    DASHBOARD_STATUS_OBSERVACIONAL_CRITICO,
     DASHBOARD_STATUS_OBSERVACIONAL_NORMAL,
     DashboardMonitoringAdapter,
 )
@@ -47,7 +48,7 @@ class DashboardMonitoringAdapterTests(unittest.TestCase):
             }
         )
 
-        self.assertEqual(DASHBOARD_STATUS_OBSERVACIONAL_ATENCAO, status)
+        self.assertEqual(DASHBOARD_STATUS_OBSERVACIONAL_CRITICO, status)
 
     def test_valor_invalido_usa_fallback_nao_avaliavel_sem_quebrar_dashboard(self):
         resultados = self.adapter.evaluate_quality_row(

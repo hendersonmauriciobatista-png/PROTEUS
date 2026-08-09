@@ -1,14 +1,19 @@
-from .avaliacao import STATUS_ATENCAO, STATUS_CRITICO, STATUS_NAO_AVALIAVEL
+from .avaliacao import STATUS_NAO_AVALIAVEL
 from .politicas import MOTOR_OBSERVACIONAL
 from .quality_parameter_mapping import quality_parameter_triples
 from .status_semantics import (
     QUALITY_STATUS_OBSERVATIONAL_ATTENTION,
+    QUALITY_STATUS_OBSERVATIONAL_CRITICAL,
+    QUALITY_STATUS_OBSERVATIONAL_NOT_EVALUABLE,
     QUALITY_STATUS_OBSERVATIONAL_NORMAL,
+    aggregate_observational_status,
 )
 
 
 STATUS_QUALIDADE_OBSERVACIONAL_NORMAL = QUALITY_STATUS_OBSERVATIONAL_NORMAL
 STATUS_QUALIDADE_OBSERVACIONAL_ATENCAO = QUALITY_STATUS_OBSERVATIONAL_ATTENTION
+STATUS_QUALIDADE_OBSERVACIONAL_CRITICO = QUALITY_STATUS_OBSERVATIONAL_CRITICAL
+STATUS_QUALIDADE_OBSERVACIONAL_NAO_AVALIAVEL = QUALITY_STATUS_OBSERVATIONAL_NOT_EVALUABLE
 
 
 class QualidadeAguaApplicationService:
@@ -36,10 +41,7 @@ class QualidadeAguaMonitoringAdapter:
 
     def status_medicao(self, measurement):
         resultados = self.avaliar_medicao(measurement)
-        for resultado in resultados:
-            if resultado.status in {STATUS_ATENCAO, STATUS_CRITICO}:
-                return STATUS_QUALIDADE_OBSERVACIONAL_ATENCAO
-        return STATUS_QUALIDADE_OBSERVACIONAL_NORMAL
+        return aggregate_observational_status(resultado.status for resultado in resultados)
 
     def avaliar_medicao(self, measurement):
         resultados = []
