@@ -178,6 +178,9 @@ class ConsumoDistribuicaoPage(QWidget):
                     item.setTextAlignment(Qt.AlignRight | Qt.AlignVCenter)
                 self.table.setItem(row_index, column_index, item)
 
+    def refresh(self):
+        self.load_history()
+
     def _to_float(self, value):
         try:
             return float(value or 0)
