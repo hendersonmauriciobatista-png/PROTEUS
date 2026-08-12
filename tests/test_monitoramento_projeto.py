@@ -20,6 +20,7 @@ from monitoramento_hidrico.projeto_monitoramento import (
     dossier_final_do_projeto,
     encerrar_projeto,
     projeto_monitoramento_padrao,
+    reativar_monitoramento,
     validar_dossier_final,
     validar_transicao_status,
     validar_projeto_monitoramento,
@@ -114,6 +115,29 @@ class ProjetoMonitoramentoTests(unittest.TestCase):
 
         with self.assertRaises(ValueError):
             validar_transicao_status(STATUS_ATIVO, STATUS_ARQUIVADO)
+
+    def test_reativa_projeto_arquivado_preservando_dados(self):
+        projeto = projeto_monitoramento_padrao(criado_em="2026-06-30T20:00:00")
+        arquivado = arquivar_projeto(encerrar_projeto(projeto))
+
+        reativado = reativar_monitoramento(arquivado)
+
+        self.assertEqual(STATUS_ATIVO, reativado.status)
+        self.assertEqual(replace(arquivado, status=STATUS_ATIVO), reativado)
+
+    def test_rejeita_reativacao_de_projeto_encerrado(self):
+        encerrado = encerrar_projeto(projeto_monitoramento_padrao(criado_em="2026-06-30T20:00:00"))
+
+        with self.assertRaises(ValueError):
+            reativar_monitoramento(encerrado)
+
+    def test_ete_e_ponto_principal_de_coleta_aprovado(self):
+        projeto = replace(
+            projeto_monitoramento_padrao(criado_em="2026-06-30T20:00:00"),
+            ponto_principal_coleta="ete",
+        )
+
+        self.assertTrue(validar_projeto_monitoramento(projeto))
 
     def test_store_persiste_estado_e_bloqueia_salto_direto_para_arquivado(self):
         with tempfile.TemporaryDirectory() as temp_dir:

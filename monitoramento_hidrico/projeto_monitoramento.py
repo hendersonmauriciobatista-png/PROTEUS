@@ -25,7 +25,7 @@ PERFIL_OPERACIONAL_POR_CONTEXTO = {
     "agricola": "rural",
 }
 AREAS_OPERACIONAIS = CONTEXTOS_OPERACIONAIS
-PONTOS_PRINCIPAIS_COLETA = ("rio", "poco", "reservatorio", "eta", "lago", "outro")
+PONTOS_PRINCIPAIS_COLETA = ("rio", "poco", "reservatorio", "eta", "ete", "lago", "outro")
 STATUS_PROJETO = (STATUS_ATIVO, STATUS_ENCERRADO, STATUS_ARQUIVADO)
 
 
@@ -232,6 +232,11 @@ def arquivar_projeto(projeto):
     return replace(projeto, status=STATUS_ARQUIVADO)
 
 
+def reativar_monitoramento(projeto):
+    validar_transicao_status(projeto.status, STATUS_ATIVO)
+    return replace(projeto, status=STATUS_ATIVO)
+
+
 def validar_transicao_status(status_atual, novo_status):
     if status_atual not in STATUS_PROJETO:
         raise ValueError(f"Status atual de projeto invalido: {status_atual}")
@@ -242,7 +247,7 @@ def validar_transicao_status(status_atual, novo_status):
     transicoes_permitidas = {
         STATUS_ATIVO: (STATUS_ENCERRADO,),
         STATUS_ENCERRADO: (STATUS_ARQUIVADO,),
-        STATUS_ARQUIVADO: (),
+        STATUS_ARQUIVADO: (STATUS_ATIVO,),
     }
     if novo_status not in transicoes_permitidas[status_atual]:
         raise ValueError(f"Transicao de status invalida: {status_atual} -> {novo_status}")

@@ -23,6 +23,7 @@ from monitoramento_hidrico.projeto_monitoramento import (
     arquivar_projeto,
     derivar_perfil_operacional,
     encerrar_projeto,
+    reativar_monitoramento,
 )
 
 
@@ -88,6 +89,9 @@ class ProjetoMonitoramentoPage(QWidget):
         self.archive_button = QPushButton("Arquivar Projeto")
         self.archive_button.clicked.connect(self.archive_project)
         form_layout.addRow("", self.archive_button)
+        self.reactivate_button = QPushButton("Reativar Monitoramento")
+        self.reactivate_button.clicked.connect(self.reactivate_monitoring)
+        form_layout.addRow("", self.reactivate_button)
         layout.addWidget(form_frame)
         layout.addStretch()
 
@@ -142,6 +146,19 @@ class ProjetoMonitoramentoPage(QWidget):
         except Exception as error:
             QMessageBox.critical(self, "Erro ao arquivar", f"Erro ao arquivar projeto: {error}")
 
+    def reactivate_monitoring(self):
+        try:
+            projeto = reativar_monitoramento(self.store.carregar())
+            self.store.salvar(projeto)
+            self.refresh()
+            QMessageBox.information(
+                self,
+                "Monitoramento reativado",
+                "Monitoramento do Projeto reativado com sucesso",
+            )
+        except Exception as error:
+            QMessageBox.critical(self, "Erro ao reativar", f"Erro ao reativar monitoramento: {error}")
+
     def _make_line_edit(self, max_length):
         field = QLineEdit()
         field.setMaxLength(max_length)
@@ -179,6 +196,7 @@ class ProjetoMonitoramentoPage(QWidget):
         self.save_button.setEnabled(projeto_ativo)
         self.close_button.setEnabled(projeto_ativo)
         self.archive_button.setEnabled(projeto_encerrado)
+        self.reactivate_button.setEnabled(projeto_arquivado)
 
         for field_name in ["nome", "cliente", "coletor_responsavel"]:
             self.inputs[field_name].setReadOnly(not projeto_ativo)
