@@ -185,6 +185,9 @@ class QualidadeAguaPage(QWidget):
                     self._apply_status_style(item, status)
                 self.table.setItem(row_index, column_index, item)
 
+    def refresh(self):
+        self.load_history()
+
     def _apply_status_style(self, item, status):
         if status == STATUS_QUALIDADE_OBSERVACIONAL_NORMAL:
             item.setBackground(QColor("#1b5e20"))
