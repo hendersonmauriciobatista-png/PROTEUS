@@ -75,6 +75,7 @@ class GovernancaOperacionalPage(QWidget):
         self.table.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
         self.table.setEditTriggers(QTableWidget.NoEditTriggers)
         self.table.setSelectionBehavior(QTableWidget.SelectRows)
+        self.table.itemSelectionChanged.connect(self._update_action_states)
         self.table.setAlternatingRowColors(True)
         self.table.setStyleSheet(
             "QTableWidget { background-color: #112240; color: #cfd8dc; "
@@ -103,6 +104,7 @@ class GovernancaOperacionalPage(QWidget):
         self.events = self.service.list_events()
         self._load_summary()
         self._load_table()
+        self._update_action_states()
 
     def sync_alerts(self):
         result = self.service.sync_from_analytics()
@@ -155,6 +157,13 @@ class GovernancaOperacionalPage(QWidget):
         if row < 0 or row >= len(self.events):
             return None
         return self.events[row]
+
+    def _update_action_states(self):
+        event = self._selected_event()
+        self.monitor_button.setEnabled(
+            event is not None
+            and event.state in {EventState.ABERTO.value, EventState.ARQUIVADO.value}
+        )
 
     def _load_summary(self):
         summary = {state.value: 0 for state in EventState}

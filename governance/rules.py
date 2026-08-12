@@ -10,7 +10,7 @@ VALID_TRANSITIONS = {
     EventState.ABERTO.value: {EventState.MONITORAMENTO.value, EventState.RESOLVIDO.value},
     EventState.MONITORAMENTO.value: {EventState.RESOLVIDO.value},
     EventState.RESOLVIDO.value: {EventState.ARQUIVADO.value},
-    EventState.ARQUIVADO.value: set(),
+    EventState.ARQUIVADO.value: {EventState.MONITORAMENTO.value},
 }
 
 
@@ -100,6 +100,11 @@ class OperationalGovernanceRules:
 
         event.state = target_state
         event.updated_at = now
+
+        if event.state == EventState.MONITORAMENTO.value:
+            event.closed_at = None
+            event.resolution_note = ""
+            event.archived_reason = ""
 
         if target_state == EventState.RESOLVIDO.value:
             event.closed_at = now

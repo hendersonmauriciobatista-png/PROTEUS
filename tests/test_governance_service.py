@@ -90,6 +90,51 @@ class OperationalGovernanceServiceTests(unittest.TestCase):
             self.assertEqual("Resolvido por observacao.", event.resolution_note)
             self.assertEqual("Arquivo historico.", event.archived_reason)
 
+    def test_archived_event_returns_to_monitoring_and_persists_cleared_terminal_fields(self):
+        alert = PreventiveAlert(
+            severity="alto",
+            domain="qualidade_agua",
+            metric="ph",
+            message="Atencao preventiva: pH fora da faixa.",
+            evidence="Valor atual 5.5000",
+            recommendation="Acompanhar novas coletas.",
+        )
+        with tempfile.TemporaryDirectory() as temp_dir:
+            repository = OperationalEventRepository(Path(temp_dir) / "eventos.json")
+            service = OperationalGovernanceService(
+                repository=repository,
+                analytics_service=FakeAnalyticsService([alert]),
+            )
+            service.sync_from_analytics()
+            original = service.list_events()[0]
+            event_id = original.event_id
+            service.resolve_event(event_id, "Resolvido por observacao.")
+            service.archive_event(event_id, "Arquivo historico.")
+            archived = service.list_events()[0]
+
+            self.assertTrue(service.move_to_monitoring(event_id))
+            reloaded = OperationalEventRepository(repository.path).load_events()[0]
+
+            self.assertEqual(EventState.MONITORAMENTO.value, reloaded.state)
+            self.assertIsNone(reloaded.closed_at)
+            self.assertEqual("", reloaded.resolution_note)
+            self.assertEqual("", reloaded.archived_reason)
+            for field_name in (
+                "event_id", "domain", "metric", "severity", "occurrence_count",
+                "evidence", "recommendation", "created_at",
+            ):
+                self.assertEqual(getattr(archived, field_name), getattr(reloaded, field_name))
+
+    def test_monitoring_ui_action_is_enabled_only_for_open_or_archived_events(self):
+        source = (Path(__file__).resolve().parent.parent / "governanca_operacional.py").read_text(encoding="utf-8")
+
+        self.assertIn("self.monitor_button.clicked.connect(self.move_selected_to_monitoring)", source)
+        self.assertIn("self.table.itemSelectionChanged.connect(self._update_action_states)", source)
+        self.assertIn(
+            "event.state in {EventState.ABERTO.value, EventState.ARQUIVADO.value}",
+            source,
+        )
+
     def test_sync_decides_controlled_reevaluation_before_enrichment(self):
         alert = PreventiveAlert(
             severity="alto",

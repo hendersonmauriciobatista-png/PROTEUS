@@ -1,4 +1,5 @@
 import unittest
+from copy import deepcopy
 from datetime import datetime
 
 from analytics.models import PreventiveAlert
@@ -65,6 +66,52 @@ class OperationalGovernanceRulesTests(unittest.TestCase):
         self.assertTrue(rules.transition_event(event, EventState.ARQUIVADO.value, "Historico preservado."))
         self.assertFalse(rules.transition_event(event, EventState.ABERTO.value))
         self.assertEqual("Historico preservado.", event.archived_reason)
+
+    def test_archived_event_returns_to_monitoring_with_data_preserved_and_terminal_fields_cleared(self):
+        alert = PreventiveAlert(
+            severity="medio",
+            domain="consumo_distribuicao",
+            metric="perdas_estimadas",
+            message="Atencao preventiva: perdas elevadas.",
+            evidence="Perdas atuais 20.00%",
+            recommendation="Acompanhar evolucao.",
+        )
+        rules = OperationalGovernanceRules()
+        event = rules.create_event_from_alert(alert, now=datetime(2026, 6, 23, 20, 0, 0))
+        rules.transition_event(event, EventState.RESOLVIDO.value, "Resolvido.", datetime(2026, 6, 23, 21, 0, 0))
+        rules.transition_event(event, EventState.ARQUIVADO.value, "Arquivado.", datetime(2026, 6, 23, 22, 0, 0))
+        archived = deepcopy(event)
+        reactivated_at = datetime(2026, 6, 24, 8, 0, 0)
+
+        self.assertTrue(rules.transition_event(event, EventState.MONITORAMENTO.value, now=reactivated_at))
+
+        self.assertEqual(EventState.MONITORAMENTO.value, event.state)
+        self.assertEqual(reactivated_at, event.updated_at)
+        self.assertIsNone(event.closed_at)
+        self.assertEqual("", event.resolution_note)
+        self.assertEqual("", event.archived_reason)
+        for field_name in (
+            "event_id", "domain", "metric", "severity", "occurrence_count",
+            "evidence", "recommendation", "created_at",
+        ):
+            self.assertEqual(getattr(archived, field_name), getattr(event, field_name))
+
+    def test_archived_event_denies_other_new_transitions(self):
+        alert = PreventiveAlert(
+            severity="baixo",
+            domain="qualidade_agua",
+            metric="turbidez",
+            message="Atencao preventiva.",
+            evidence="Evidencia.",
+            recommendation="Acompanhar.",
+        )
+        rules = OperationalGovernanceRules()
+        event = rules.create_event_from_alert(alert)
+        rules.transition_event(event, EventState.RESOLVIDO.value)
+        rules.transition_event(event, EventState.ARQUIVADO.value)
+
+        self.assertFalse(rules.transition_event(event, EventState.ABERTO.value))
+        self.assertFalse(rules.transition_event(event, EventState.RESOLVIDO.value))
 
 
 if __name__ == "__main__":
