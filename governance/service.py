@@ -1,3 +1,7 @@
+import shutil
+from dataclasses import dataclass
+from datetime import datetime
+
 from analytics import AnalyticsService
 from monitoramento_hidrico import AvaliacaoObservacionalService, PolicyEngine
 from monitoramento_hidrico.governance_adapter import (
@@ -8,6 +12,35 @@ from monitoramento_hidrico.governance_adapter import (
 from .models import EventState
 from .repositories import OperationalEventRepository
 from .rules import OperationalGovernanceRules
+
+
+TERMINAL_EVENT_STATES = {EventState.RESOLVIDO.value, EventState.ARQUIVADO.value}
+
+
+@dataclass(frozen=True)
+class GovernanceHistoryStatus:
+    open_events: int
+    monitoring_events: int
+    resolved_events: int
+    archived_events: int
+
+    @property
+    def active_events(self):
+        return self.open_events + self.monitoring_events
+
+    @property
+    def terminal_events(self):
+        return self.resolved_events + self.archived_events
+
+
+@dataclass(frozen=True)
+class GovernanceHistoryResetResult:
+    cleared: bool
+    status: GovernanceHistoryStatus
+    removed_events: int = 0
+    backup_path: str = ""
+    confirmation_required: bool = False
+    error: str = ""
 
 
 class OperationalGovernanceService:
@@ -60,6 +93,50 @@ class OperationalGovernanceService:
         for event in self.repository.load_events():
             summary[event.state] = summary.get(event.state, 0) + 1
         return summary
+
+    def governance_history_status(self):
+        summary = self.summarize_by_state()
+        return GovernanceHistoryStatus(
+            open_events=summary.get(EventState.ABERTO.value, 0),
+            monitoring_events=summary.get(EventState.MONITORAMENTO.value, 0),
+            resolved_events=summary.get(EventState.RESOLVIDO.value, 0),
+            archived_events=summary.get(EventState.ARQUIVADO.value, 0),
+        )
+
+    def reset_terminal_history(self, confirmed=False):
+        events = self.repository.load_events()
+        status = self.governance_history_status()
+        if status.active_events:
+            return GovernanceHistoryResetResult(False, status)
+        if status.terminal_events and not confirmed:
+            return GovernanceHistoryResetResult(
+                False,
+                status,
+                confirmation_required=True,
+            )
+        if not status.terminal_events:
+            return GovernanceHistoryResetResult(True, status)
+
+        source_path = self.repository.path
+        backup_path = source_path.with_name(
+            f"{source_path.stem}.backup-{datetime.now().strftime('%Y%m%d%H%M%S%f')}{source_path.suffix}"
+        )
+        try:
+            backup_path.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copy2(source_path, backup_path)
+        except (OSError, shutil.Error) as error:
+            return GovernanceHistoryResetResult(False, status, error=str(error))
+
+        remaining_events = [
+            event for event in events if event.state not in TERMINAL_EVENT_STATES
+        ]
+        self.repository.save_events(remaining_events)
+        return GovernanceHistoryResetResult(
+            True,
+            status,
+            removed_events=status.terminal_events,
+            backup_path=str(backup_path),
+        )
 
     def _transition(self, event_id, target_state, note=""):
         events = self.repository.load_events()

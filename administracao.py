@@ -206,12 +206,77 @@ class AdministracaoPage(QWidget):
             self.count_labels[module_id] = count
             layout.addWidget(card)
 
+        governance_card = QFrame()
+        governance_card.setStyleSheet(
+            "QFrame { background-color: #112240; border: 1px solid #1e3a5f; "
+            "border-radius: 6px; }"
+        )
+        governance_row = QHBoxLayout(governance_card)
+        governance_name = QLabel("Governança Operacional")
+        governance_name.setStyleSheet("font-size: 14px; font-weight: bold; color: #cfd8dc;")
+        self.governance_count_label = QLabel()
+        self.governance_count_label.setAlignment(Qt.AlignRight | Qt.AlignVCenter)
+        governance_button = QPushButton("Limpar histórico de Governança")
+        governance_button.setObjectName("clear_governance_history")
+        governance_button.clicked.connect(self._request_governance_cleaning)
+        governance_row.addWidget(governance_name, 1)
+        governance_row.addWidget(self.governance_count_label)
+        governance_row.addWidget(governance_button)
+        layout.addWidget(governance_card)
+
         layout.addStretch()
 
     def refresh(self):
         for module_id, label in self.count_labels.items():
             total = self.maintenance_service.record_count(module_id)
             label.setText(f"{total} registro(s)")
+        status = self.maintenance_service.governance_service.governance_history_status()
+        self.governance_count_label.setText(
+            f"Resolvidos: {status.resolved_events} | Arquivados: {status.archived_events}"
+        )
+
+    def _request_governance_cleaning(self):
+        service = self.maintenance_service.governance_service
+        status = service.governance_history_status()
+        if status.active_events:
+            QMessageBox.warning(
+                self,
+                "Limpeza bloqueada",
+                "A Governança possui eventos ativos.\n\n"
+                f"Abertos: {status.open_events}\n"
+                f"Em monitoramento: {status.monitoring_events}",
+            )
+            return
+
+        answer = QMessageBox.question(
+            self,
+            "Confirmar limpeza da Governança",
+            f"Eventos resolvidos que serão removidos: {status.resolved_events}\n"
+            f"Eventos arquivados que serão removidos: {status.archived_events}\n\n"
+            "Um backup será criado antes da limpeza. Esta operação é irreversível.\n"
+            "Deseja continuar?",
+            QMessageBox.Yes | QMessageBox.No,
+            QMessageBox.No,
+        )
+        if answer != QMessageBox.Yes:
+            return
+
+        result = service.reset_terminal_history(confirmed=True)
+        if not result.cleared:
+            QMessageBox.warning(
+                self,
+                "Limpeza bloqueada",
+                result.error or "A limpeza da Governança não pôde ser concluída.",
+            )
+            return
+
+        self.refresh()
+        QMessageBox.information(
+            self,
+            "Limpeza concluída",
+            f"{result.removed_events} evento(s) terminal(is) removido(s).\n"
+            f"Backup: {result.backup_path}",
+        )
 
     def _request_cleaning(self, module_id):
         module = self.maintenance_service.modules[module_id]

@@ -141,6 +141,16 @@ class HistoryMaintenanceServiceTests(unittest.TestCase):
         self.assertIn("Esta operação é irreversível", source)
         self.assertIn("clear_history(module_id, confirmed=True)", source)
 
+    def test_governance_reset_ui_requires_counts_confirmation_and_backup_result(self):
+        source = (Path(__file__).resolve().parent.parent / "administracao.py").read_text(encoding="utf-8")
+
+        self.assertIn('QPushButton("Limpar histórico de Governança")', source)
+        self.assertIn("Eventos resolvidos que serão removidos", source)
+        self.assertIn("Eventos arquivados que serão removidos", source)
+        self.assertIn("Esta operação é irreversível", source)
+        self.assertIn("reset_terminal_history(confirmed=True)", source)
+        self.assertIn("Backup: {result.backup_path}", source)
+
     def test_ignores_resolved_events_and_dependencies_from_other_modules(self):
         alerts = [SimpleNamespace(domain="dados_ambientais")]
         events = [
