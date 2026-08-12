@@ -80,11 +80,27 @@ class HistoryMaintenanceServiceTests(unittest.TestCase):
                         self.assertEqual(1, service.record_count(other_id))
                 self._restore_row(module_id)
 
-    def test_blocks_quality_cleaning_for_analysis_nonconformity(self):
+    def test_quality_nonconformity_requires_confirmation_but_does_not_block(self):
         service = self.make_service(nonconformities=1)
         result = service.clear_history("qualidade_agua")
         self.assertFalse(result.cleared)
+        self.assertTrue(result.confirmation_required)
         self.assertEqual(1, service.record_count("qualidade_agua"))
+
+        confirmed = service.clear_history("qualidade_agua", confirmed=True)
+        self.assertTrue(confirmed.cleared)
+        self.assertEqual(0, service.record_count("qualidade_agua"))
+
+    def test_quality_alert_requires_confirmation_but_does_not_block(self):
+        alert = SimpleNamespace(domain="qualidade_agua")
+        service = self.make_service(alerts=[alert])
+
+        pending = service.clear_history("qualidade_agua")
+        confirmed = service.clear_history("qualidade_agua", confirmed=True)
+
+        self.assertTrue(pending.confirmation_required)
+        self.assertFalse(pending.cleared)
+        self.assertTrue(confirmed.cleared)
 
     def test_blocks_cleaning_for_active_alert_in_same_module(self):
         alert = SimpleNamespace(domain="dados_ambientais")
@@ -102,6 +118,28 @@ class HistoryMaintenanceServiceTests(unittest.TestCase):
         result = service.clear_history("consumo_distribuicao")
         self.assertFalse(result.cleared)
         self.assertEqual(1, service.record_count("consumo_distribuicao"))
+
+    def test_active_quality_event_cannot_be_bypassed_by_confirmation(self):
+        event = SimpleNamespace(
+            domain="qualidade_agua",
+            state=EventState.MONITORAMENTO.value,
+        )
+        service = self.make_service(events=[event], nonconformities=1)
+
+        result = service.clear_history("qualidade_agua", confirmed=True)
+
+        self.assertFalse(result.cleared)
+        self.assertFalse(result.confirmation_required)
+        self.assertEqual(1, service.record_count("qualidade_agua"))
+
+    def test_quality_confirmation_displays_counts_and_irreversible_warning(self):
+        source = (Path(__file__).resolve().parent.parent / "administracao.py").read_text(encoding="utf-8")
+
+        self.assertIn("Medições que serão removidas", source)
+        self.assertIn("Não conformidades derivadas", source)
+        self.assertIn("Alertas analíticos ativos", source)
+        self.assertIn("Esta operação é irreversível", source)
+        self.assertIn("clear_history(module_id, confirmed=True)", source)
 
     def test_ignores_resolved_events_and_dependencies_from_other_modules(self):
         alerts = [SimpleNamespace(domain="dados_ambientais")]

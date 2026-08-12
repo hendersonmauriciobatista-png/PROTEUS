@@ -65,12 +65,21 @@ class DependencyStatus:
             )
         )
 
+    @property
+    def quality_reset_blocked(self):
+        return self.active_events > 0
+
+    @property
+    def quality_reset_warnings(self):
+        return self.analysis_nonconformities > 0 or self.active_alerts > 0
+
 
 @dataclass(frozen=True)
 class CleaningResult:
     cleared: bool
     removed_records: int
     dependencies: DependencyStatus
+    confirmation_required: bool = False
 
 
 class HistoryMaintenanceService:
@@ -116,9 +125,14 @@ class HistoryMaintenanceService:
         )
         return DependencyStatus(nonconformities, active_alerts, active_events)
 
-    def clear_history(self, module_id):
+    def clear_history(self, module_id, confirmed=False):
         dependencies = self.check_dependencies(module_id)
-        if dependencies.blocked:
+        if module_id == "qualidade_agua":
+            if dependencies.quality_reset_blocked:
+                return CleaningResult(False, 0, dependencies)
+            if dependencies.quality_reset_warnings and not confirmed:
+                return CleaningResult(False, 0, dependencies, confirmation_required=True)
+        elif dependencies.blocked:
             return CleaningResult(False, 0, dependencies)
 
         removed_records = self.record_count(module_id)
@@ -202,7 +216,13 @@ class AdministracaoPage(QWidget):
     def _request_cleaning(self, module_id):
         module = self.maintenance_service.modules[module_id]
         dependencies = self.maintenance_service.check_dependencies(module_id)
-        if dependencies.blocked:
+        quality_reset = module_id == "qualidade_agua"
+        reset_blocked = (
+            dependencies.quality_reset_blocked
+            if quality_reset
+            else dependencies.blocked
+        )
+        if reset_blocked:
             QMessageBox.warning(
                 self,
                 "Limpeza bloqueada",
@@ -214,17 +234,27 @@ class AdministracaoPage(QWidget):
             )
             return
 
+        confirmation_message = f"Confirma a limpeza do histórico de {module['label']}?"
+        if quality_reset:
+            confirmation_message = (
+                f"Medições que serão removidas: {self.maintenance_service.record_count(module_id)}\n"
+                f"Não conformidades derivadas: {dependencies.analysis_nonconformities}\n"
+                f"Alertas analíticos ativos: {dependencies.active_alerts}\n\n"
+                "Esta operação é irreversível e remove somente as medições de Qualidade da Água.\n"
+                "Deseja continuar?"
+            )
+
         answer = QMessageBox.question(
             self,
             "Confirmar limpeza",
-            f"Confirma a limpeza do histórico de {module['label']}?",
+            confirmation_message,
             QMessageBox.Yes | QMessageBox.No,
             QMessageBox.No,
         )
         if answer != QMessageBox.Yes:
             return
 
-        result = self.maintenance_service.clear_history(module_id)
+        result = self.maintenance_service.clear_history(module_id, confirmed=True)
         if not result.cleared:
             QMessageBox.warning(
                 self,
