@@ -319,7 +319,7 @@ class MainWindow(QMainWindow):
         self.quality_water_repository = build_quality_water_repository()
         self.environment_repository = CSVMeasurementRepository(AMBIENTE_CSV, AMBIENTE_FIELDS)
         self.consumption_repository = CSVMeasurementRepository(CONSUMO_CSV, CONSUMO_FIELDS)
-        self.setWindowTitle("Sistema de Análise de Água v1.0")
+        self.setWindowTitle("PROTEUS")
         self.setMinimumSize(1100, 700)
         self.resize(1280, 780)
         self.setStyleSheet(STYLE_MAIN)
