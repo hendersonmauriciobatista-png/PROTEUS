@@ -23,7 +23,11 @@ class ExecutiveRecommendationService:
         observational_result=None,
     ):
         score = self._extract_water_health_score(analytics_snapshot)
-        priority, action, recommendation_text, rationale = self.rules.evaluate_water_health_score(score)
+        score_status = self._extract_water_health_status(analytics_snapshot)
+        priority, action, recommendation_text, rationale = self.rules.evaluate_water_health_score(
+            score,
+            score_status,
+        )
         evidence = self._build_evidence(score, analytics_snapshot, governance_snapshot, observational_result)
         rationale = self._enrich_rationale(rationale, analytics_snapshot, governance_snapshot)
         confidence = self._calculate_confidence(score, analytics_snapshot, governance_snapshot, observational_result)
@@ -59,6 +63,10 @@ class ExecutiveRecommendationService:
             return self._coerce_score(water_health_score)
 
         return self._coerce_score(self._read_field(water_health_score, "score"))
+
+    def _extract_water_health_status(self, analytics_snapshot):
+        water_health_score = self._read_field(analytics_snapshot, "water_health_score")
+        return self._read_field(water_health_score, "status")
 
     def _build_evidence(self, score, analytics_snapshot, governance_snapshot, observational_result):
         evidence = []

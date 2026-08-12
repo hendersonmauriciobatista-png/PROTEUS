@@ -5,16 +5,24 @@ from analytics.models import AnalyticsSnapshot, PreventiveAlert, TrendResult, Wa
 from executive_recommendation import ExecutiveRecommendationService
 from executive_recommendation.models import RecommendationAction, RecommendationPriority
 import executive_recommendation.service as recommendation_service_module
-from monitoramento_hidrico.status_semantics import WATER_HEALTH_SCORE_GOOD
+from monitoramento_hidrico.status_semantics import (
+    WATER_HEALTH_SCORE_CRITICAL,
+    WATER_HEALTH_SCORE_GOOD,
+    WATER_HEALTH_SCORE_NO_DATA,
+)
 
 
-def analytics_snapshot_with_score(score, alerts=None, trends=None, explanations=None):
+def analytics_snapshot_with_score(score, alerts=None, trends=None, explanations=None, status=None):
     trends = trends or []
     return AnalyticsSnapshot(
         quality_trends=trends,
         consumption_trends=[],
         alerts=alerts or [],
-        water_health_score=WaterHealthScore(score=score, status=WATER_HEALTH_SCORE_GOOD, explanations=explanations or []),
+        water_health_score=WaterHealthScore(
+            score=score,
+            status=status or WATER_HEALTH_SCORE_GOOD,
+            explanations=explanations or [],
+        ),
     )
 
 
@@ -73,6 +81,30 @@ class ExecutiveRecommendationServiceTests(unittest.TestCase):
             "Coletar mais dados antes de recomendar acao operacional.",
             recommendation.recommendation,
         )
+
+    def test_no_data_score_collects_more_data_instead_of_high_priority(self):
+        snapshot = ExecutiveRecommendationService().build_snapshot(
+            analytics_snapshot=analytics_snapshot_with_score(
+                0,
+                status=WATER_HEALTH_SCORE_NO_DATA,
+            )
+        )
+
+        recommendation = snapshot.recommendations[0]
+        self.assertEqual(RecommendationPriority.UNKNOWN, recommendation.priority)
+        self.assertEqual(RecommendationAction.COLLECT_MORE_DATA, recommendation.action)
+
+    def test_valid_calculated_zero_remains_high_priority(self):
+        snapshot = ExecutiveRecommendationService().build_snapshot(
+            analytics_snapshot=analytics_snapshot_with_score(
+                0,
+                status=WATER_HEALTH_SCORE_CRITICAL,
+            )
+        )
+
+        recommendation = snapshot.recommendations[0]
+        self.assertEqual(RecommendationPriority.HIGH, recommendation.priority)
+        self.assertEqual(RecommendationAction.EXECUTE_OPERATIONAL_INSPECTION, recommendation.action)
 
     def test_service_preserves_pa_01_boundaries(self):
         source = inspect.getsource(recommendation_service_module)

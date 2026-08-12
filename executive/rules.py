@@ -5,6 +5,7 @@ from .models import (
     ExecutivePriority,
     ExecutiveTrendSummary,
 )
+from monitoramento_hidrico.status_semantics import WATER_HEALTH_SCORE_NO_DATA
 
 
 ACTIVE_EVENT_STATES = {"ABERTO", "MONITORAMENTO"}
@@ -20,11 +21,17 @@ SEVERITY_ORDER = {"alto": 0, "medio": 1, "baixo": 2}
 class ExecutiveRules:
     def classify_status(self, analytics_snapshot, events):
         score = analytics_snapshot.water_health_score.score
+        score_status = analytics_snapshot.water_health_score.status
         active_events = [event for event in events if event.state in ACTIVE_EVENT_STATES]
         high_active_events = [event for event in active_events if event.severity == "alto"]
         high_alerts = [alert for alert in analytics_snapshot.alerts if alert.severity == "alto"]
 
         explanations = []
+        if score_status == WATER_HEALTH_SCORE_NO_DATA:
+            return EXECUTIVE_ATTENTION, [
+                "Water Health Score sem dados; coletar mais medicoes antes da classificacao executiva."
+            ]
+
         if score < 50:
             explanations.append(f"Water Health Score {score}/100 abaixo de 50.")
         if high_active_events:

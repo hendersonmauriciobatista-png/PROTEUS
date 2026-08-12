@@ -7,11 +7,18 @@ from monitoramento_hidrico.status_semantics import (
     WATER_HEALTH_SCORE_CRITICAL,
     WATER_HEALTH_SCORE_EXCELLENT,
     WATER_HEALTH_SCORE_GOOD,
+    WATER_HEALTH_SCORE_NO_DATA,
     WATER_HEALTH_SCORE_VERY_CRITICAL,
 )
 
 
 class WaterHealthScoreCalculatorTests(unittest.TestCase):
+    def test_no_measurements_returns_zero_with_no_data_semantics(self):
+        score = WaterHealthScoreCalculator().calculate([], [], [])
+
+        self.assertEqual(0, score.score)
+        self.assertEqual(WATER_HEALTH_SCORE_NO_DATA, score.status)
+
     def test_score_is_high_when_latest_quality_is_within_limits(self):
         score = WaterHealthScoreCalculator().calculate(
             [QualityMeasurement(None, 7.0, 1.0, 6.0, 25.0, 0.0)],

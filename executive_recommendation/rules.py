@@ -1,9 +1,10 @@
 from .models import RecommendationAction, RecommendationPriority
+from monitoramento_hidrico.status_semantics import WATER_HEALTH_SCORE_NO_DATA
 
 
 class ExecutiveRecommendationRules:
-    def evaluate_water_health_score(self, score):
-        if score is None:
+    def evaluate_water_health_score(self, score, score_status=None):
+        if score is None or score_status == WATER_HEALTH_SCORE_NO_DATA:
             return (
                 RecommendationPriority.UNKNOWN,
                 RecommendationAction.COLLECT_MORE_DATA,

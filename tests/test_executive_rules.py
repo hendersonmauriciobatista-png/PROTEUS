@@ -5,15 +5,23 @@ from analytics.models import AnalyticsSnapshot, PreventiveAlert, TrendResult, Wa
 from executive.models import EXECUTIVE_ATTENTION, EXECUTIVE_CRITICAL, EXECUTIVE_NORMAL
 from executive.rules import ExecutiveRules
 from governance.models import EventState, OperationalEvent
-from monitoramento_hidrico.status_semantics import WATER_HEALTH_SCORE_GOOD
+from monitoramento_hidrico.status_semantics import (
+    WATER_HEALTH_SCORE_CRITICAL,
+    WATER_HEALTH_SCORE_GOOD,
+    WATER_HEALTH_SCORE_NO_DATA,
+)
 
 
-def make_snapshot(score=85, alerts=None, quality_trends=None, consumption_trends=None):
+def make_snapshot(score=85, alerts=None, quality_trends=None, consumption_trends=None, score_status=None):
     return AnalyticsSnapshot(
         quality_trends=quality_trends or [],
         consumption_trends=consumption_trends or [],
         alerts=alerts or [],
-        water_health_score=WaterHealthScore(score=score, status=WATER_HEALTH_SCORE_GOOD, explanations=[]),
+        water_health_score=WaterHealthScore(
+            score=score,
+            status=score_status or WATER_HEALTH_SCORE_GOOD,
+            explanations=[],
+        ),
     )
 
 
@@ -51,6 +59,36 @@ class ExecutiveRulesTests(unittest.TestCase):
 
         self.assertEqual(EXECUTIVE_CRITICAL, status)
         self.assertIn("49/100", explanations[0])
+
+    def test_no_data_score_is_attention_instead_of_critical(self):
+        status, explanations = ExecutiveRules().classify_status(
+            make_snapshot(score=0, score_status=WATER_HEALTH_SCORE_NO_DATA),
+            [],
+        )
+
+        self.assertEqual(EXECUTIVE_ATTENTION, status)
+        self.assertIn("sem dados", explanations[0])
+
+    def test_valid_calculated_zero_remains_critical(self):
+        status, _explanations = ExecutiveRules().classify_status(
+            make_snapshot(score=0, score_status=WATER_HEALTH_SCORE_CRITICAL),
+            [],
+        )
+
+        self.assertEqual(EXECUTIVE_CRITICAL, status)
+
+    def test_resolved_and_archived_history_does_not_elevate_no_data_status(self):
+        events = [
+            make_event(state=EventState.RESOLVIDO.value, severity="alto"),
+            make_event(state=EventState.ARQUIVADO.value, severity="alto"),
+        ]
+
+        status, _explanations = ExecutiveRules().classify_status(
+            make_snapshot(score=0, score_status=WATER_HEALTH_SCORE_NO_DATA),
+            events,
+        )
+
+        self.assertEqual(EXECUTIVE_ATTENTION, status)
 
     def test_classifies_critical_for_high_active_event(self):
         status, explanations = ExecutiveRules().classify_status(make_snapshot(score=90), [make_event(severity="alto")])
