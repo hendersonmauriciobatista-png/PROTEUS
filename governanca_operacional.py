@@ -73,6 +73,11 @@ class GovernancaOperacionalPage(QWidget):
             ["Estado", "Severidade", "Dominio", "Metrica", "Ocorrencias", "Atualizado", "Evidencia", "Recomendacao"]
         )
         self.table.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
+        for column_index in (0, 1, 2, 3, 4, 5):
+            self.table.horizontalHeader().setSectionResizeMode(column_index, QHeaderView.ResizeToContents)
+        for column_index in (6, 7):
+            self.table.horizontalHeader().setSectionResizeMode(column_index, QHeaderView.Stretch)
+        self.table.setWordWrap(True)
         self.table.setEditTriggers(QTableWidget.NoEditTriggers)
         self.table.setSelectionBehavior(QTableWidget.SelectRows)
         self.table.itemSelectionChanged.connect(self._update_action_states)
@@ -188,11 +193,14 @@ class GovernancaOperacionalPage(QWidget):
             ]
             for column_index, value in enumerate(values):
                 item = QTableWidgetItem(value)
+                if column_index in (6, 7):
+                    item.setToolTip(value)
                 if column_index == 0:
                     self._apply_state_style(item, event.state)
                 if column_index in (1, 4):
                     item.setTextAlignment(Qt.AlignCenter)
                 self.table.setItem(row_index, column_index, item)
+        self.table.resizeRowsToContents()
 
     def _apply_state_style(self, item, state):
         colors = {

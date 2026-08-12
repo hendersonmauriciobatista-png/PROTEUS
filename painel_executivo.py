@@ -60,18 +60,21 @@ class PainelExecutivoPage(QWidget):
             ["Prioridade", "Recomendacao", "Justificativa", "Confianca", "Evidencias"]
         )
         self._style_table(self.recommendations_table)
+        self._style_explanatory_table(self.recommendations_table, (0, 3), (1, 2, 4))
         layout.addWidget(self.recommendations_table)
 
         self.priorities_table = QTableWidget()
         self.priorities_table.setColumnCount(5)
         self.priorities_table.setHorizontalHeaderLabels(["Nivel", "Prioridade observacional", "Fonte", "Evidencia", "Recomendacao"])
         self._style_table(self.priorities_table)
+        self._style_explanatory_table(self.priorities_table, (0, 2), (1, 3, 4))
         layout.addWidget(self.priorities_table)
 
         self.signals_table = QTableWidget()
         self.signals_table.setColumnCount(4)
         self.signals_table.setHorizontalHeaderLabels(["Tipo", "Dominio", "Metrica", "Resumo"])
         self._style_table(self.signals_table)
+        self._style_explanatory_table(self.signals_table, (0, 1, 2), (3,))
         layout.addWidget(self.signals_table)
 
         self.refresh_button = QPushButton("Atualizar Painel")
@@ -107,6 +110,14 @@ class PainelExecutivoPage(QWidget):
             "font-weight: bold; border: 1px solid #1e3a5f; padding: 4px; }"
         )
 
+    def _style_explanatory_table(self, table, compact_columns, long_columns):
+        header = table.horizontalHeader()
+        for column_index in compact_columns:
+            header.setSectionResizeMode(column_index, QHeaderView.ResizeToContents)
+        for column_index in long_columns:
+            header.setSectionResizeMode(column_index, QHeaderView.Stretch)
+        table.setWordWrap(True)
+
     def refresh(self):
         snapshot = self.service.build_snapshot()
         self.status_label.setText(snapshot.executive_status)
@@ -139,9 +150,12 @@ class PainelExecutivoPage(QWidget):
             ]
             for column_index, value in enumerate(values):
                 item = QTableWidgetItem(value)
+                if column_index in (1, 2, 4):
+                    item.setToolTip(value)
                 if column_index == 0:
                     self._apply_recommendation_priority_style(item, priority)
                 self.recommendations_table.setItem(row_index, column_index, item)
+        self.recommendations_table.resizeRowsToContents()
 
     def _load_priorities(self, priorities):
         self.priorities_table.setRowCount(len(priorities))
@@ -149,9 +163,12 @@ class PainelExecutivoPage(QWidget):
             values = [priority.level, priority.title, priority.source, priority.evidence, priority.recommendation]
             for column_index, value in enumerate(values):
                 item = QTableWidgetItem(value)
+                if column_index in (1, 3, 4):
+                    item.setToolTip(value)
                 if column_index == 0:
                     self._apply_level_style(item, priority.level)
                 self.priorities_table.setItem(row_index, column_index, item)
+        self.priorities_table.resizeRowsToContents()
 
     def _format_recommendation_evidence(self, evidences):
         if not evidences:
@@ -186,9 +203,12 @@ class PainelExecutivoPage(QWidget):
         for row_index, values in enumerate(rows):
             for column_index, value in enumerate(values):
                 item = QTableWidgetItem(value)
+                if column_index == 3:
+                    item.setToolTip(value)
                 if column_index == 0:
                     item.setTextAlignment(Qt.AlignCenter)
                 self.signals_table.setItem(row_index, column_index, item)
+        self.signals_table.resizeRowsToContents()
 
     def _apply_status_style(self, status):
         colors = {
