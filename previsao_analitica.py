@@ -58,6 +58,7 @@ class PrevisaoAnaliticaPage(QWidget):
         self.alerts_table.setColumnCount(5)
         self.alerts_table.setHorizontalHeaderLabels(["Severidade", "Dominio", "Metrica", "Mensagem", "Evidencia"])
         self._style_table(self.alerts_table)
+        self._style_alerts_table()
         layout.addWidget(self.alerts_table)
 
         self.refresh_button = QPushButton("Atualizar Analise")
@@ -75,6 +76,14 @@ class PrevisaoAnaliticaPage(QWidget):
             "QHeaderView::section { background-color: #1e3f6e; color: #cfd8dc; "
             "font-weight: bold; border: 1px solid #1e3a5f; padding: 4px; }"
         )
+
+    def _style_alerts_table(self):
+        header = self.alerts_table.horizontalHeader()
+        for column_index in (0, 1, 2):
+            header.setSectionResizeMode(column_index, QHeaderView.ResizeToContents)
+        for column_index in (3, 4):
+            header.setSectionResizeMode(column_index, QHeaderView.Stretch)
+        self.alerts_table.setWordWrap(True)
 
     def refresh(self):
         snapshot = self.analytics_service.build_snapshot()
@@ -108,10 +117,13 @@ class PrevisaoAnaliticaPage(QWidget):
             values = [alert.severity, alert.domain, alert.metric, alert.message, alert.evidence]
             for column_index, value in enumerate(values):
                 item = QTableWidgetItem(value)
+                if column_index in (3, 4):
+                    item.setToolTip(value)
                 if column_index == 0:
                     self._apply_alert_style(item, alert.severity)
                     item.setTextAlignment(Qt.AlignCenter)
                 self.alerts_table.setItem(row_index, column_index, item)
+        self.alerts_table.resizeRowsToContents()
 
     def _apply_trend_style(self, item, direction):
         colors = {
