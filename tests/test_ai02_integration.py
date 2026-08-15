@@ -59,7 +59,6 @@ class AI02Phase2IntegrationTests(unittest.TestCase):
             "turbidez": 4.0,
             "oxigenio_dissolvido": 6.0,
             "temperatura": 24.0,
-            "agrotoxicos": 0.0,
         }
 
         self.quality_service.salvar_medicao(measurement)
@@ -67,6 +66,7 @@ class AI02Phase2IntegrationTests(unittest.TestCase):
         rows = self.quality_service.listar_medicoes()
         self.assertEqual(1, len(rows))
         self.assertEqual(list(QUALITY_WATER_FIELDS), list(rows[0]))
+        self.assertEqual("", rows[0]["agrotoxicos"])
 
     def test_profile_from_configuration_reaches_every_policy_selection(self):
         measurement = {
@@ -84,6 +84,7 @@ class AI02Phase2IntegrationTests(unittest.TestCase):
             {"urbano_saneamento"},
             {call[0] for call in self.recording_policy_engine.calls},
         )
+        self.assertNotIn("agrotoxicos", {call[2] for call in self.recording_policy_engine.calls})
 
     def test_same_measurement_produces_same_core_result(self):
         measurement = {

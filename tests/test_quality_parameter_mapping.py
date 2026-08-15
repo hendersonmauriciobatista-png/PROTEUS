@@ -15,7 +15,6 @@ EXPECTED_TRIPLES = (
     ("turbidez", "turbidez", "fisicos"),
     ("oxigenio_dissolvido", "oxigenio_dissolvido", "quimicos"),
     ("temperatura", "temperatura_agua", "fisicos"),
-    ("agrotoxicos", "agrotoxicos", "contaminantes_agricolas"),
 )
 
 EXPECTED_ANALYTICS_ENTRIES = (
@@ -23,7 +22,6 @@ EXPECTED_ANALYTICS_ENTRIES = (
     ("turbidez", "turbidez", "fisicos", "Turbidez"),
     ("oxigenio_dissolvido", "oxigenio_dissolvido", "quimicos", "Oxigenio dissolvido"),
     ("temperatura", "temperatura_agua", "fisicos", "Temperatura da agua"),
-    ("agrotoxicos", "agrotoxicos", "contaminantes_agricolas", "Agrotoxicos"),
 )
 
 EXPECTED_GOVERNANCE_MAPPING = {
@@ -31,7 +29,6 @@ EXPECTED_GOVERNANCE_MAPPING = {
     "turbidez": ("turbidez", "fisicos"),
     "oxigenio_dissolvido": ("oxigenio_dissolvido", "quimicos"),
     "temperatura": ("temperatura_agua", "fisicos"),
-    "agrotoxicos": ("agrotoxicos", "contaminantes_agricolas"),
 }
 
 ADAPTER_AUTHORITY_NAMES = (
@@ -60,6 +57,9 @@ class QualityParameterMappingTests(unittest.TestCase):
 
     def test_contract_preserves_governance_lookup_shape(self):
         self.assertEqual(EXPECTED_GOVERNANCE_MAPPING, quality_parameter_governance_mapping())
+
+    def test_parametro_descontinuado_nao_participa_do_contrato_operacional(self):
+        self.assertNotIn("agrotoxicos", {item.field_name for item in QUALITY_PARAMETER_MAPPINGS})
 
     def test_source_is_immutable_for_consumers(self):
         with self.assertRaises(FrozenInstanceError):

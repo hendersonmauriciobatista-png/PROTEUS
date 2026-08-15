@@ -71,6 +71,19 @@ class OperationalReportsHydricMonitoringAdapterTests(unittest.TestCase):
         self.assertIn("monitoring_adapter.status_linha", source)
         self.assertIn("contar_observacional_atencao", source)
 
+    def test_valor_historico_descontinuado_nao_entra_na_avaliacao(self):
+        resultados = self.adapter.avaliar_linha(
+            {
+                "ph": "7.2",
+                "turbidez": "4.0",
+                "oxigenio_dissolvido": "6.0",
+                "temperatura": "24.0",
+                "agrotoxicos": "999999.0",
+            }
+        )
+
+        self.assertNotIn("agrotoxicos", {resultado.parametro_id for resultado in resultados})
+
 
 if __name__ == "__main__":
     unittest.main()

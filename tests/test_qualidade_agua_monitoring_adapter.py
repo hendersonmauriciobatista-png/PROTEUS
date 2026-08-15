@@ -58,6 +58,21 @@ class QualidadeAguaMonitoringAdapterTests(unittest.TestCase):
         self.assertIn("NAO_AVALIAVEL", {resultado.status for resultado in resultados})
         self.assertEqual(STATUS_QUALIDADE_OBSERVACIONAL_NORMAL, self.adapter.status_medicao(measurement))
 
+    def test_valor_historico_descontinuado_nao_afeta_status(self):
+        measurement = {
+            "ph": "7.2",
+            "turbidez": "4.0",
+            "oxigenio_dissolvido": "6.0",
+            "temperatura": "24.0",
+        }
+
+        sem_legado = self.adapter.status_medicao(measurement)
+        com_legado = self.adapter.status_medicao({**measurement, "agrotoxicos": "999999.0"})
+        parametros = {resultado.parametro_id for resultado in self.adapter.avaliar_medicao({**measurement, "agrotoxicos": "999999.0"})}
+
+        self.assertEqual(sem_legado, com_legado)
+        self.assertNotIn("agrotoxicos", parametros)
+
     def test_tela_qualidade_agua_nao_mantem_autoridade_local_de_status(self):
         source = Path("qualidade_agua.py").read_text(encoding="utf-8")
 

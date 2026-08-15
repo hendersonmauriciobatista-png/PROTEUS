@@ -34,6 +34,14 @@ class AvaliacaoObservacionalService:
                 "catalogo:parametro_inexistente",
             )
 
+        if parametro.status != "ACTIVE":
+            return _resultado_nao_avaliavel(
+                parametro.codigo,
+                valor,
+                "Parametro fora do escopo operacional; avaliacao nao realizada.",
+                "catalogo:parametro_fora_escopo_operacional",
+            )
+
         if parametro.tipo_valor != "numerico":
             return _resultado_nao_avaliavel(
                 parametro.codigo,

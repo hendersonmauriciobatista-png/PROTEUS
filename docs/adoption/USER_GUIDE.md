@@ -67,7 +67,8 @@ Registrar e acompanhar indicadores relacionados à qualidade da água.
 * Turbidez
 * Oxigênio Dissolvido
 * Temperatura
-* Agrotóxicos
+
+O parâmetro genérico de agrotóxicos foi descontinuado e está fora do escopo operacional e planejado do PROTEUS. Registros históricos permanecem preservados sem reinterpretação e não constituem evidência regulatória.
 
 ## Funcionalidades
 

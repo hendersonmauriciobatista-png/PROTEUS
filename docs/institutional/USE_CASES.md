@@ -39,7 +39,7 @@ Registrar medicoes de qualidade da agua e obter status observacional rastreavel.
 ### Fluxo Resumido
 
 1. O operador acessa a tela Qualidade da Agua.
-2. Registra parametros como pH, turbidez, oxigenio dissolvido, temperatura e agrotoxicos.
+2. Registra pH, turbidez, oxigenio dissolvido e temperatura. O parametro generico de agrotoxicos esta descontinuado e fora do escopo operacional e planejado.
 3. O sistema persiste a medicao.
 4. O adapter consome o Nucleo de Monitoramento Hidrico.
 5. O status observacional e apresentado na interface.

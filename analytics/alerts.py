@@ -64,7 +64,6 @@ class PreventiveAlertService:
         alerts = []
         risk_directions = {
             "turbidez": "subindo",
-            "agrotoxicos": "subindo",
             "oxigenio_dissolvido": "caindo",
         }
         for trend in trends:

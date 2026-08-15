@@ -28,7 +28,7 @@ class MonitoramentoHidricoCatalogoInteligenteTests(unittest.TestCase):
         parametros_rurais = listar_parametros_por_perfil("rural")
         codigos = {parametro.codigo for parametro in parametros_rurais}
 
-        self.assertIn("agrotoxicos", codigos)
+        self.assertNotIn("agrotoxicos", codigos)
         self.assertIn("turbidez", codigos)
         self.assertNotIn("fenois", codigos)
 
@@ -48,6 +48,22 @@ class MonitoramentoHidricoCatalogoInteligenteTests(unittest.TestCase):
         self.assertEqual("unidade de pH", metadados["unidade_medida"])
         self.assertIn("eta", metadados["aplicabilidade_perfis"])
         self.assertIn("limite_observacional", metadados)
+
+    def test_agrotoxicos_permanece_catalogado_como_fora_do_escopo(self):
+        metadados = obter_metadados_parametro("agrotoxicos")
+
+        self.assertEqual("OUT_OF_SCOPE", metadados["status"])
+        self.assertEqual(
+            "Parametro descontinuado — fora do escopo do PROTEUS.",
+            metadados["mensagem_status"],
+        )
+        self.assertIn("Nao constitui evidencia regulatoria", metadados["observacoes_tecnicas"])
+
+        for codigo in ("herbicidas", "fungicidas", "inseticidas"):
+            with self.subTest(codigo=codigo):
+                relacionado = obter_metadados_parametro(codigo)
+                self.assertEqual("OUT_OF_SCOPE", relacionado["status"])
+                self.assertIsNone(relacionado["metodo_analise"])
 
     def test_metadados_minimos_inteligentes_sao_validos(self):
         self.assertTrue(validar_metadados_parametros())

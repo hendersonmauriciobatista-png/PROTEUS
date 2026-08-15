@@ -1,3 +1,5 @@
+from dataclasses import replace
+
 from .models import (
     EXECUTIVE_ATTENTION,
     EXECUTIVE_CRITICAL,
@@ -9,9 +11,9 @@ from monitoramento_hidrico.status_semantics import WATER_HEALTH_SCORE_NO_DATA
 
 
 ACTIVE_EVENT_STATES = {"ABERTO", "MONITORAMENTO"}
+OUT_OF_SCOPE_METRICS = frozenset({"agrotoxicos", "herbicidas", "fungicidas", "inseticidas"})
 RISK_TRENDS = {
     "turbidez": "subindo",
-    "agrotoxicos": "subindo",
     "oxigenio_dissolvido": "caindo",
     "perdas_estimadas": "subindo",
 }
@@ -19,12 +21,38 @@ SEVERITY_ORDER = {"alto": 0, "medio": 1, "baixo": 2}
 
 
 class ExecutiveRules:
+    def filter_analytics_snapshot(self, analytics_snapshot):
+        return replace(
+            analytics_snapshot,
+            alerts=[alert for alert in analytics_snapshot.alerts if self._is_operational(alert.metric)],
+            quality_trends=[
+                trend for trend in analytics_snapshot.quality_trends if self._is_operational(trend.metric)
+            ],
+            consumption_trends=[
+                trend for trend in analytics_snapshot.consumption_trends if self._is_operational(trend.metric)
+            ],
+        )
+
+    def filter_events(self, events):
+        return [event for event in events if self._is_operational(event.metric)]
+
+    @staticmethod
+    def _is_operational(metric):
+        return metric not in OUT_OF_SCOPE_METRICS
+
     def classify_status(self, analytics_snapshot, events):
         score = analytics_snapshot.water_health_score.score
         score_status = analytics_snapshot.water_health_score.status
-        active_events = [event for event in events if event.state in ACTIVE_EVENT_STATES]
+        active_events = [
+            event
+            for event in events
+            if event.state in ACTIVE_EVENT_STATES and self._is_operational(event.metric)
+        ]
         high_active_events = [event for event in active_events if event.severity == "alto"]
-        high_alerts = [alert for alert in analytics_snapshot.alerts if alert.severity == "alto"]
+        operational_alerts = [
+            alert for alert in analytics_snapshot.alerts if self._is_operational(alert.metric)
+        ]
+        high_alerts = [alert for alert in operational_alerts if alert.severity == "alto"]
 
         explanations = []
         if score_status == WATER_HEALTH_SCORE_NO_DATA:
@@ -45,7 +73,7 @@ class ExecutiveRules:
             return EXECUTIVE_CRITICAL, explanations
 
         medium_or_high_alerts = [
-            alert for alert in analytics_snapshot.alerts if alert.severity in ("medio", "alto")
+            alert for alert in operational_alerts if alert.severity in ("medio", "alto")
         ]
         risk_trends = self.select_key_trends(analytics_snapshot)
 
@@ -71,14 +99,15 @@ class ExecutiveRules:
         return "Estado geral observacional dentro do esperado."
 
     def select_relevant_alerts(self, alerts, limit=5):
-        ordered = sorted(alerts, key=lambda alert: SEVERITY_ORDER.get(alert.severity, 9))
+        operational_alerts = [alert for alert in alerts if self._is_operational(alert.metric)]
+        ordered = sorted(operational_alerts, key=lambda alert: SEVERITY_ORDER.get(alert.severity, 9))
         return ordered[:limit]
 
     def select_key_trends(self, analytics_snapshot, limit=5):
         trends = analytics_snapshot.quality_trends + analytics_snapshot.consumption_trends
         selected = []
         for trend in trends:
-            if trend.direction == RISK_TRENDS.get(trend.metric):
+            if self._is_operational(trend.metric) and trend.direction == RISK_TRENDS.get(trend.metric):
                 selected.append(
                     ExecutiveTrendSummary(
                         domain=trend.domain,
@@ -91,7 +120,11 @@ class ExecutiveRules:
 
     def build_priorities(self, analytics_snapshot, events, relevant_alerts, key_trends, limit=6):
         priorities = []
-        active_events = [event for event in events if event.state in ACTIVE_EVENT_STATES]
+        active_events = [
+            event
+            for event in events
+            if event.state in ACTIVE_EVENT_STATES and self._is_operational(event.metric)
+        ]
         ordered_events = sorted(active_events, key=lambda event: SEVERITY_ORDER.get(event.severity, 9))
 
         for event in ordered_events:

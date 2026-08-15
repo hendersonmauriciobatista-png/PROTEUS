@@ -25,7 +25,7 @@ def make_snapshot(score=85, alerts=None, quality_trends=None, consumption_trends
     )
 
 
-def make_event(state=EventState.ABERTO.value, severity="medio"):
+def make_event(state=EventState.ABERTO.value, severity="medio", metric="turbidez"):
     now = datetime(2026, 6, 23, 20, 0, 0)
     return OperationalEvent(
         event_id="evt-1",
@@ -35,7 +35,7 @@ def make_event(state=EventState.ABERTO.value, severity="medio"):
         state=state,
         severity=severity,
         domain="qualidade_agua",
-        metric="turbidez",
+        metric=metric,
         fingerprint="abc",
         title="Acompanhamento preventivo",
         description="Atencao preventiva",
@@ -100,7 +100,7 @@ class ExecutiveRulesTests(unittest.TestCase):
         alert = PreventiveAlert(
             severity="medio",
             domain="qualidade_agua",
-            metric="agrotoxicos",
+            metric="turbidez",
             message="Atencao preventiva",
             evidence="Valor atual 0.0800",
             recommendation="Acompanhar novas medicoes.",
@@ -126,6 +126,41 @@ class ExecutiveRulesTests(unittest.TestCase):
 
         self.assertEqual(EXECUTIVE_ATTENTION, status)
         self.assertTrue(any("tendencia" in explanation for explanation in explanations))
+
+    def test_familia_descontinuada_nao_participa_do_executivo(self):
+        rules = ExecutiveRules()
+
+        for metric in ("agrotoxicos", "herbicidas", "fungicidas", "inseticidas"):
+            with self.subTest(metric=metric):
+                alert = PreventiveAlert(
+                    severity="alto",
+                    domain="qualidade_agua",
+                    metric=metric,
+                    message="Alerta historico",
+                    evidence="Evidencia historica",
+                    recommendation="Nenhuma acao operacional.",
+                )
+                trend = TrendResult(
+                    domain="qualidade_agua",
+                    metric=metric,
+                    direction="subindo",
+                    previous_average=0.0,
+                    recent_average=1.0,
+                    delta=1.0,
+                    explanation="Tendencia historica.",
+                )
+                snapshot = make_snapshot(score=90, alerts=[alert], quality_trends=[trend])
+                event = make_event(severity="alto", metric=metric)
+
+                status, _explanations = rules.classify_status(snapshot, [event])
+
+                self.assertEqual(EXECUTIVE_NORMAL, status)
+                self.assertEqual([], rules.select_relevant_alerts([alert]))
+                self.assertEqual([], rules.select_key_trends(snapshot))
+                self.assertEqual([], rules.build_priorities(snapshot, [event], [], []))
+                self.assertEqual([], rules.filter_analytics_snapshot(snapshot).alerts)
+                self.assertEqual([], rules.filter_analytics_snapshot(snapshot).quality_trends)
+                self.assertEqual([], rules.filter_events([event]))
 
 
 if __name__ == "__main__":

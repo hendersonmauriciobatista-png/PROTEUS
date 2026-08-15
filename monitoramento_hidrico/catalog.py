@@ -42,7 +42,7 @@ def listar_parametros_por_perfil(perfil_operacional, path=CATALOG_PATH):
     return [
         parametro
         for parametro in load_parametros_hidricos(path)
-        if perfil_operacional in parametro.aplicabilidade_perfis
+        if parametro.status == "ACTIVE" and perfil_operacional in parametro.aplicabilidade_perfis
     ]
 
 
@@ -50,7 +50,7 @@ def listar_parametros_por_categoria(categoria, path=CATALOG_PATH):
     return [
         parametro
         for parametro in load_parametros_hidricos(path)
-        if parametro.categoria == categoria
+        if parametro.status == "ACTIVE" and parametro.categoria == categoria
     ]
 
 
@@ -65,6 +65,7 @@ def validar_metadados_parametros(path=CATALOG_PATH):
     perfis = {perfil.codigo for perfil in load_perfis_operacionais(path)}
     categorias = {categoria.codigo for categoria in load_categorias_parametros(path)}
     tipos_validos = {"numerico", "texto", "booleano", "observacional"}
+    status_validos = {"ACTIVE", "INACTIVE", "DEPRECATED", "OUT_OF_SCOPE"}
 
     for parametro in load_parametros_hidricos(path):
         if not parametro.codigo or not parametro.nome:
@@ -73,6 +74,8 @@ def validar_metadados_parametros(path=CATALOG_PATH):
             raise ValueError(f"Categoria invalida para parametro: {parametro.codigo}")
         if parametro.tipo_valor not in tipos_validos:
             raise ValueError(f"Tipo de valor invalido para parametro: {parametro.codigo}")
+        if parametro.status not in status_validos:
+            raise ValueError(f"Status invalido para parametro: {parametro.codigo}")
         if parametro.tipo_valor == "numerico" and not parametro.unidade_medida:
             raise ValueError(f"Parametro numerico sem unidade de medida: {parametro.codigo}")
         if not parametro.aplicabilidade_perfis:

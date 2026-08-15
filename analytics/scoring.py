@@ -23,7 +23,6 @@ QUALITY_SCORE_WEIGHTS = {
     "turbidez": 18,
     "oxigenio_dissolvido": 20,
     "temperatura": 10,
-    "agrotoxicos": 22,
 }
 
 

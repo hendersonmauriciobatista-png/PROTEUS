@@ -30,6 +30,8 @@ class ParametroHidrico:
     observacoes_tecnicas: Optional[str] = None
     limite_observacional: Optional[dict] = None
     descricao: str = ""
+    status: str = "ACTIVE"
+    mensagem_status: Optional[str] = None
 
 
 @dataclass(frozen=True)

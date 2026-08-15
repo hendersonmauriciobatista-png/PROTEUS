@@ -1,7 +1,7 @@
 import unittest
 
 from analytics.alerts import PreventiveAlertService
-from analytics.models import ConsumptionMeasurement, EnvironmentMeasurement, QualityMeasurement
+from analytics.models import ConsumptionMeasurement, EnvironmentMeasurement, QualityMeasurement, TrendResult
 from analytics.trends import TrendAnalyzer
 
 
@@ -51,6 +51,22 @@ class PreventiveAlertServiceTests(unittest.TestCase):
         rain_alert = next(alert for alert in alerts if alert.domain == "dados_ambientais")
         self.assertEqual("medio", rain_alert.severity)
         self.assertIn("25.00 mm", rain_alert.evidence)
+
+    def test_parametro_descontinuado_nao_gera_alerta(self):
+        quality = [QualityMeasurement(None, 7.0, 1.0, 6.0, 25.0, 1000.0)]
+        legacy_trend = TrendResult(
+            "qualidade_agua",
+            "agrotoxicos",
+            "subindo",
+            0.0,
+            1000.0,
+            1000.0,
+            "Tendencia historica descontinuada.",
+        )
+
+        alerts = PreventiveAlertService().build_alerts(quality, [], [], [legacy_trend], [])
+
+        self.assertNotIn("agrotoxicos", {alert.metric for alert in alerts})
 
 
 if __name__ == "__main__":

@@ -19,7 +19,6 @@ QUALITY_PARAMETER_MAPPINGS = (
         "Oxigenio dissolvido",
     ),
     QualityParameterMapping("temperatura", "temperatura_agua", "fisicos", "Temperatura da agua"),
-    QualityParameterMapping("agrotoxicos", "agrotoxicos", "contaminantes_agricolas", "Agrotoxicos"),
 )
 
 

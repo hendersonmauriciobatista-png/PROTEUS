@@ -44,6 +44,16 @@ class TrendAnalyzerTests(unittest.TestCase):
 
         self.assertEqual("estavel", ph.direction)
 
+    def test_parametro_descontinuado_nao_gera_tendencia(self):
+        measurements = [
+            QualityMeasurement(None, 7.0, 1.0, 6.0, 25.0, 0.0),
+            QualityMeasurement(None, 7.0, 1.0, 6.0, 25.0, 1000.0),
+        ]
+
+        metrics = {trend.metric for trend in TrendAnalyzer().quality_trends(measurements)}
+
+        self.assertNotIn("agrotoxicos", metrics)
+
 
 if __name__ == "__main__":
     unittest.main()

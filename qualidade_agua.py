@@ -84,20 +84,17 @@ class QualidadeAguaPage(QWidget):
         self.inputs["turbidez"] = self._make_spinbox(0.0, 1000.0, 0.0, 2, 0.1)
         self.inputs["oxigenio_dissolvido"] = self._make_spinbox(0.0, 30.0, 5.0, 2, 0.1)
         self.inputs["temperatura"] = self._make_spinbox(-10.0, 60.0, 25.0, 2, 0.1)
-        self.inputs["agrotoxicos"] = self._make_spinbox(0.0, 100.0, 0.0, 4, 0.01)
         self.default_values = {
             "ph": 7.0,
             "turbidez": 0.0,
             "oxigenio_dissolvido": 5.0,
             "temperatura": 25.0,
-            "agrotoxicos": 0.0,
         }
 
         form_layout.addRow("pH", self.inputs["ph"])
         form_layout.addRow("Turbidez (NTU)", self.inputs["turbidez"])
         form_layout.addRow("Oxigênio Dissolvido - OD (mg/L)", self.inputs["oxigenio_dissolvido"])
         form_layout.addRow("Temperatura (°C)", self.inputs["temperatura"])
-        form_layout.addRow("Agrotóxicos (mg/L)", self.inputs["agrotoxicos"])
 
         self.save_button = QPushButton("Salvar Medição")
         self.save_button.clicked.connect(self.save_measurement)
@@ -111,9 +108,9 @@ class QualidadeAguaPage(QWidget):
         layout.addWidget(form_frame)
 
         self.table = QTableWidget()
-        self.table.setColumnCount(7)
+        self.table.setColumnCount(6)
         self.table.setHorizontalHeaderLabels(
-            ["Timestamp", "pH", "Turbidez", "OD", "Temperatura", "Agrotóxicos", "Status"]
+            ["Timestamp", "pH", "Turbidez", "OD", "Temperatura", "Status"]
         )
         self.table.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
         self.table.setEditTriggers(QTableWidget.NoEditTriggers)
@@ -146,7 +143,6 @@ class QualidadeAguaPage(QWidget):
             "turbidez": self.inputs["turbidez"].value(),
             "oxigenio_dissolvido": self.inputs["oxigenio_dissolvido"].value(),
             "temperatura": self.inputs["temperatura"].value(),
-            "agrotoxicos": self.inputs["agrotoxicos"].value(),
         }
 
         try:
@@ -174,13 +170,12 @@ class QualidadeAguaPage(QWidget):
                 f"{values['turbidez']:.2f} NTU",
                 f"{values['oxigenio_dissolvido']:.2f} mg/L",
                 f"{values['temperatura']:.2f} °C",
-                f"{values['agrotoxicos']:.4f} mg/L",
                 status,
             ]
 
             for column_index, value in enumerate(display_values):
                 item = QTableWidgetItem(value)
-                if column_index == 6:
+                if column_index == 5:
                     item.setTextAlignment(Qt.AlignCenter)
                     self._apply_status_style(item, status)
                 self.table.setItem(row_index, column_index, item)
@@ -213,6 +208,5 @@ class QualidadeAguaPage(QWidget):
             "turbidez": float(row.get("turbidez") or 0),
             "oxigenio_dissolvido": float(row.get("oxigenio_dissolvido") or 0),
             "temperatura": float(row.get("temperatura") or 0),
-            "agrotoxicos": float(row.get("agrotoxicos") or 0),
         }
 

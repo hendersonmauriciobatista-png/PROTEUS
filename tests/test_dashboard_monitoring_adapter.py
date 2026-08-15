@@ -75,6 +75,19 @@ class DashboardMonitoringAdapterTests(unittest.TestCase):
             ),
         )
 
+    def test_valor_historico_descontinuado_nao_entra_na_avaliacao(self):
+        resultados = self.adapter.evaluate_quality_row(
+            {
+                "ph": "7.2",
+                "turbidez": "4.0",
+                "oxigenio_dissolvido": "6.0",
+                "temperatura": "24.0",
+                "agrotoxicos": "999999.0",
+            }
+        )
+
+        self.assertNotIn("agrotoxicos", {resultado.parametro_id for resultado in resultados})
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -53,6 +53,11 @@ class QualityPageRelatedTests(unittest.TestCase):
         self.assertIn("self.quality_service.salvar_medicao(measurement)", save_source)
         self.assertIn("self.load_history()", save_source)
 
+    def test_parametro_descontinuado_nao_aparece_na_entrada_ou_historico(self):
+        self.assertNotIn('self.inputs["agrotoxicos"]', self.quality_source)
+        self.assertNotIn('"Agrotóxicos', self.quality_source)
+        self.assertNotIn('values[\'agrotoxicos\']', self.quality_source)
+
 
 if __name__ == "__main__":
     unittest.main()

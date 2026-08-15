@@ -101,6 +101,24 @@ class MonitoramentoHidricoConfiguracoesTests(unittest.TestCase):
             },
             perfis,
         )
+        self.assertNotIn(
+            "agrotoxicos",
+            {
+                parametro
+                for configuracao in configuracoes
+                for parametro in configuracao.parametros_habilitados
+            },
+        )
+
+    def test_parametro_fora_do_escopo_nao_pode_ser_habilitado(self):
+        configuracao = self.service.criar_a_partir_de_perfil(
+            "teste_rural",
+            "Teste Rural",
+            "rural",
+        )
+
+        with self.assertRaisesRegex(ValueError, "Parametro inexistente no catalogo"):
+            self.service.habilitar_parametro(configuracao, "agrotoxicos")
 
     def test_perfil_ativo_resolve_exatamente_uma_configuracao(self):
         configuracao = self.service.resolver_configuracao_por_perfil_ativo("eta")

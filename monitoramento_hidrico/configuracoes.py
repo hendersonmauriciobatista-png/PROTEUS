@@ -21,7 +21,11 @@ class ConfiguracaoOperacionalService:
         self.configuracoes_path = Path(configuracoes_path)
         self.perfis = {perfil.codigo for perfil in load_perfis_operacionais(self.catalog_path)}
         self.categorias = {categoria.codigo for categoria in load_categorias_parametros(self.catalog_path)}
-        self.parametros = {parametro.codigo for parametro in load_parametros_hidricos(self.catalog_path)}
+        self.parametros = {
+            parametro.codigo
+            for parametro in load_parametros_hidricos(self.catalog_path)
+            if parametro.status == "ACTIVE"
+        }
 
     def criar_a_partir_de_perfil(
         self,

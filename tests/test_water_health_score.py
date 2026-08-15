@@ -1,7 +1,7 @@
 import unittest
 
 from analytics.models import ConsumptionMeasurement, EnvironmentMeasurement, QualityMeasurement
-from analytics.scoring import WaterHealthScoreCalculator
+from analytics.scoring import QUALITY_SCORE_WEIGHTS, WaterHealthScoreCalculator
 from monitoramento_hidrico.status_semantics import (
     WATER_HEALTH_SCORE_ATTENTION,
     WATER_HEALTH_SCORE_CRITICAL,
@@ -62,25 +62,27 @@ class WaterHealthScoreCalculatorTests(unittest.TestCase):
         self.assertTrue(any("avaliacao observacional critica" in explanation for explanation in score.explanations))
         self.assertFalse(any("faixa configurada" in explanation for explanation in score.explanations))
 
-    def test_score_caracteriza_parametros_nao_avaliaveis_sem_penalidade(self):
+    def test_score_exclui_parametro_descontinuado(self):
         calculator = WaterHealthScoreCalculator()
-        measurement = QualityMeasurement(None, 7.0, 1.0, 6.0, 25.0, 0.0)
+        measurement_a = QualityMeasurement(None, 7.0, 1.0, 6.0, 25.0, 0.0)
+        measurement_b = QualityMeasurement(None, 7.0, 1.0, 6.0, 25.0, 999999.0)
 
         resultados = {
             item["parametro_id"]: item["resultado"].status
-            for item in calculator.monitoring_adapter.avaliar_qualidade(measurement)
+            for item in calculator.monitoring_adapter.avaliar_qualidade(measurement_a)
         }
-        score = calculator.calculate([measurement], [], [])
+        score_a = calculator.calculate([measurement_a], [], [])
+        score_b = calculator.calculate([measurement_b], [], [])
 
         self.assertEqual("NAO_AVALIAVEL", resultados["temperatura_agua"])
-        self.assertEqual("NAO_AVALIAVEL", resultados["agrotoxicos"])
-        self.assertEqual(100, score.score)
+        self.assertNotIn("agrotoxicos", resultados)
+        self.assertNotIn("agrotoxicos", QUALITY_SCORE_WEIGHTS)
+        self.assertEqual(score_a.score, score_b.score)
+        self.assertEqual(score_a.explanations, score_b.explanations)
         self.assertTrue(
-            any("Temperatura da agua sem avaliacao observacional aplicavel ao score" in item for item in score.explanations)
+            any("Temperatura da agua sem avaliacao observacional aplicavel ao score" in item for item in score_a.explanations)
         )
-        self.assertTrue(
-            any("Agrotoxicos sem avaliacao observacional aplicavel ao score" in item for item in score.explanations)
-        )
+        self.assertFalse(any("Agrotoxicos" in item for item in score_a.explanations))
 
 
 if __name__ == "__main__":

@@ -16,9 +16,13 @@ class ExecutiveIntelligenceService:
         self.recommendation_service = recommendation_service or ExecutiveRecommendationService()
 
     def build_snapshot(self):
-        analytics_snapshot = self.analytics_service.build_snapshot()
-        events = self.governance_service.list_events()
-        summary = self.governance_service.summarize_by_state()
+        analytics_snapshot = self.rules.filter_analytics_snapshot(self.analytics_service.build_snapshot())
+        events = self.rules.filter_events(self.governance_service.list_events())
+        persisted_summary = self.governance_service.summarize_by_state()
+        summary = {
+            state: sum(1 for event in events if event.state == state)
+            for state in persisted_summary
+        }
 
         executive_status, explanations = self.rules.classify_status(analytics_snapshot, events)
         relevant_alerts = self.rules.select_relevant_alerts(analytics_snapshot.alerts)

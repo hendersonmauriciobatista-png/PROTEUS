@@ -28,6 +28,20 @@ class AnalyticsRepositoryTests(unittest.TestCase):
                 quality_path.read_text(encoding="utf-8"),
             )
 
+    def test_repository_tolera_arquivo_sem_coluna_legada(self):
+        with tempfile.TemporaryDirectory() as temp_dir:
+            quality_path = Path(temp_dir) / "qualidade.csv"
+            quality_path.write_text(
+                "timestamp,ph,turbidez,oxigenio_dissolvido,temperatura\n"
+                "2026-08-15T12:00:00,7.0,0.5,6.0,25.0\n",
+                encoding="utf-8",
+            )
+
+            rows = AnalyticsRepository(quality_path).load_quality()
+
+        self.assertEqual(1, len(rows))
+        self.assertEqual(0.0, rows[0].agrotoxicos)
+
 
 if __name__ == "__main__":
     unittest.main()

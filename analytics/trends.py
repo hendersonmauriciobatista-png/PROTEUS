@@ -6,7 +6,6 @@ QUALITY_TOLERANCES = {
     "turbidez": 0.05,
     "oxigenio_dissolvido": 0.05,
     "temperatura": 0.1,
-    "agrotoxicos": 0.001,
 }
 
 CONSUMPTION_TOLERANCES = {
@@ -24,7 +23,6 @@ class TrendAnalyzer:
             ("turbidez", "Turbidez"),
             ("oxigenio_dissolvido", "Oxigenio dissolvido"),
             ("temperatura", "Temperatura da agua"),
-            ("agrotoxicos", "Agrotoxicos"),
         ]
         return [
             self._calculate("qualidade_agua", attr, label, measurements, QUALITY_TOLERANCES[attr])
