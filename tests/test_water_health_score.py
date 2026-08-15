@@ -62,6 +62,26 @@ class WaterHealthScoreCalculatorTests(unittest.TestCase):
         self.assertTrue(any("avaliacao observacional critica" in explanation for explanation in score.explanations))
         self.assertFalse(any("faixa configurada" in explanation for explanation in score.explanations))
 
+    def test_score_caracteriza_parametros_nao_avaliaveis_sem_penalidade(self):
+        calculator = WaterHealthScoreCalculator()
+        measurement = QualityMeasurement(None, 7.0, 1.0, 6.0, 25.0, 0.0)
+
+        resultados = {
+            item["parametro_id"]: item["resultado"].status
+            for item in calculator.monitoring_adapter.avaliar_qualidade(measurement)
+        }
+        score = calculator.calculate([measurement], [], [])
+
+        self.assertEqual("NAO_AVALIAVEL", resultados["temperatura_agua"])
+        self.assertEqual("NAO_AVALIAVEL", resultados["agrotoxicos"])
+        self.assertEqual(100, score.score)
+        self.assertTrue(
+            any("Temperatura da agua sem avaliacao observacional aplicavel ao score" in item for item in score.explanations)
+        )
+        self.assertTrue(
+            any("Agrotoxicos sem avaliacao observacional aplicavel ao score" in item for item in score.explanations)
+        )
+
 
 if __name__ == "__main__":
     unittest.main()

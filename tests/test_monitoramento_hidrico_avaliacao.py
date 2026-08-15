@@ -16,6 +16,24 @@ class MonitoramentoHidricoAvaliacaoTests(unittest.TestCase):
     def setUp(self):
         self.service = AvaliacaoObservacionalService()
 
+    def test_limites_operacionais_observados_sem_inferencia_normativa(self):
+        casos = (
+            ("ph", 6.0, "NORMAL"),
+            ("ph", 9.5, "NORMAL"),
+            ("turbidez", 5.0, "NORMAL"),
+            ("turbidez", 6.0, "ATENCAO"),
+            ("oxigenio_dissolvido", 5.0, "NORMAL"),
+            ("oxigenio_dissolvido", 4.0, "ATENCAO"),
+        )
+
+        for parametro_id, valor, status_operacional_esperado in casos:
+            with self.subTest(parametro_id=parametro_id, valor=valor):
+                resultado = self.service.avaliar(parametro_id, valor)
+
+                self.assertEqual(status_operacional_esperado, resultado.status)
+                self.assertEqual("catalogo:limite_observacional", resultado.origem_limite)
+                self.assertIn("nao representa conformidade legal ou normativa", resultado.observacoes)
+
     def test_valor_dentro_do_limite_retorna_normal(self):
         resultado = self.service.avaliar("ph", 7.2)
 
