@@ -1,4 +1,4 @@
-# Pagina Arquitetura Do Website Institucional Do PROTEUS
+# Pagina Arquitetura do Website Institucional do Sistema de Monitoramento de Águas
 
 ## Objetivo
 
@@ -7,12 +7,12 @@ Especificar a pagina de arquitetura do Website Institucional em linguagem execut
 A pagina deve responder:
 
 ```text
-Como o PROTEUS funciona?
+Como o Sistema de Monitoramento de Águas funciona?
 ```
 
 ## Mensagem Central
 
-O PROTEUS organiza informacoes de monitoramento hidrico por camadas especializadas. Cada camada agrega valor sem assumir a autoridade da camada anterior.
+O Sistema de Monitoramento de Águas organiza informacoes de monitoramento hidrico por camadas especializadas. Cada camada agrega valor sem assumir a autoridade da camada anterior.
 
 ## Visao Em Alto Nivel
 

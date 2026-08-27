@@ -1,8 +1,8 @@
-# Pagina Funcionalidades Do Website Institucional Do PROTEUS
+# Pagina Funcionalidades do Website Institucional do Sistema de Monitoramento de Águas
 
 ## Objetivo
 
-Especificar a pagina de funcionalidades do Website Institucional, apresentando exclusivamente capacidades implementadas ou documentadas como existentes no PROTEUS.
+Especificar a pagina de funcionalidades do Website Institucional, apresentando exclusivamente capacidades implementadas ou documentadas como existentes no Sistema de Monitoramento de Águas.
 
 ## Regra Principal
 

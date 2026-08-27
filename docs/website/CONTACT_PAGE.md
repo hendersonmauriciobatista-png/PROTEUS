@@ -1,8 +1,8 @@
-# Pagina Contato Do Website Institucional Do PROTEUS
+# Pagina Contato do Website Institucional do Sistema de Monitoramento de Águas
 
 ## Objetivo
 
-Projetar a futura pagina de contato do Website Institucional do PROTEUS em nivel documental.
+Projetar a futura pagina de contato do Website Institucional do Sistema de Monitoramento de Águas em nivel documental.
 
 Esta pagina nao deve inserir contatos pessoais, telefones, e-mails reais ou formularios funcionais nesta PD.
 
@@ -24,7 +24,7 @@ Permitir que visitantes identifiquem, em implementacao futura, caminhos instituc
 Texto recomendado:
 
 ```text
-Entre em contato para conhecer, avaliar ou acompanhar o PROTEUS como plataforma institucional de monitoramento hidrico.
+Entre em contato para conhecer, avaliar ou acompanhar o Sistema de Monitoramento de Águas como plataforma institucional de monitoramento hidrico.
 ```
 
 ### Bloco 2 - Tipos De Interesse

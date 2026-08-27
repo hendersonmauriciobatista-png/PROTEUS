@@ -1,18 +1,18 @@
-# Pagina Sobre O PROTEUS
+# Pagina Sobre o Sistema de Monitoramento de Águas
 
 ## Objetivo
 
-Documentar a pagina "Sobre o PROTEUS" do Website Institucional.
+Documentar a pagina "Sobre" do Website Institucional do Sistema de Monitoramento de Águas. O nome físico deste arquivo permanece legado para preservar referências existentes.
 
 A pagina deve responder:
 
 ```text
-Por que o PROTEUS existe?
+Por que o Sistema de Monitoramento de Águas existe?
 ```
 
 ## Origem
 
-O PROTEUS nasceu no CASE-01 da metodologia ICFACTORY como uma plataforma deterministica para monitoramento hidrico, analise operacional, governanca observacional e inteligencia executiva.
+O Sistema de Monitoramento de Águas nasceu no CASE-01 da metodologia ICFACTORY sob a identidade histórica PROTEUS, como uma plataforma deterministica para monitoramento hidrico, analise operacional, governanca observacional e inteligencia executiva.
 
 Sua Engenharia foi consolidada pela AC-01, que concluiu a arquitetura como consistente, com ressalvas evolutivas nao bloqueantes. A fase institucional iniciou-se com a PI-01, que consolidou a identidade visual, e avancou com a PI-02, que consolidou o Kit Institucional.
 
@@ -49,12 +49,12 @@ Ser uma plataforma institucional de referencia para demonstrar monitoramento amb
 
 ## Proposito Tecnologico
 
-O PROTEUS existe para organizar dados de qualidade da agua, dados ambientais, consumo, distribuicao, alertas, eventos e recomendacoes em uma plataforma de acompanhamento institucional.
+O Sistema de Monitoramento de Águas existe para organizar dados de qualidade da agua, dados ambientais, consumo, distribuicao, alertas, eventos e recomendacoes em uma plataforma de acompanhamento institucional.
 
 ## Limites
 
-O PROTEUS nao substitui laboratorio, laudo regulatorio, decisao humana ou sistema oficial de conformidade legal. Seu papel e organizar, avaliar observacionalmente, apresentar e preservar informacoes de forma explicavel.
+O Sistema de Monitoramento de Águas nao executa analises laboratoriais, nao emite laudo regulatorio e nao substitui decisao humana ou sistema oficial de conformidade legal. Seu papel e organizar, avaliar observacionalmente, apresentar e preservar informacoes de forma explicavel.
 
 ## Veredito
 
-A pagina "Sobre" deve comunicar origem, missao e sentido institucional do PROTEUS sem alterar sua arquitetura ou seu escopo tecnico.
+A pagina "Sobre" deve comunicar origem, missao e sentido institucional do Sistema de Monitoramento de Águas, incluindo a transicao da identidade anterior PROTEUS em 2026-08-26, sem alterar sua arquitetura ou seu escopo tecnico.

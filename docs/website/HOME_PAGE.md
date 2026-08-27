@@ -1,18 +1,18 @@
-# Pagina Home Do Website Institucional Do PROTEUS
+# Pagina Home do Website Institucional do Sistema de Monitoramento de Águas
 
 ## Objetivo
 
-Especificar a pagina inicial do Website Institucional do PROTEUS.
+Especificar a pagina inicial do Website Institucional do Sistema de Monitoramento de Águas.
 
 A Home deve responder imediatamente:
 
 ```text
-O que e o PROTEUS?
+O que e o Sistema de Monitoramento de Águas?
 ```
 
 ## Mensagem Institucional
 
-PROTEUS e uma plataforma institucional de monitoramento hidrico que organiza registros, avaliacoes observacionais, sinais analiticos, governanca operacional e sintese executiva em uma arquitetura rastreavel e explicavel.
+O Sistema de Monitoramento de Águas e uma plataforma institucional de monitoramento hidrico que organiza registros, avaliacoes observacionais, sinais analiticos, governanca operacional e sintese executiva em uma arquitetura rastreavel e explicavel.
 
 ## Slogan Oficial
 
@@ -22,7 +22,7 @@ Monitoramento hidrico com rastreabilidade, inteligencia e governanca.
 
 ## Proposta De Valor
 
-PROTEUS transforma dados de monitoramento hidrico em informacao estruturada, analitica e institucionalmente apresentavel, reduzindo a distancia entre registro operacional, leitura tecnica e comunicacao executiva.
+O Sistema de Monitoramento de Águas transforma dados de monitoramento hidrico em informacao estruturada, analitica e institucionalmente apresentavel, reduzindo a distancia entre registro operacional, leitura tecnica e comunicacao executiva.
 
 ## Estrutura Recomendada
 
@@ -30,7 +30,7 @@ PROTEUS transforma dados de monitoramento hidrico em informacao estruturada, ana
 
 Conteudo:
 
-* nome PROTEUS;
+* identidade Sistema de Monitoramento de Águas, sem nome fantasia;
 * slogan oficial;
 * frase curta de apresentacao;
 * chamada para conhecer a plataforma;
@@ -46,7 +46,7 @@ Muitas iniciativas de monitoramento hidrico registram dados, mas enfrentam dific
 
 Mensagem:
 
-O PROTEUS organiza o percurso entre entrada de dados, avaliacao observacional, analise, alertas, governanca, recomendacoes executivas, dashboards e relatorios.
+O Sistema de Monitoramento de Águas organiza o percurso entre entrada de dados, avaliacao observacional, analise, alertas, governanca, recomendacoes executivas, dashboards e relatorios.
 
 ### Bloco 4 - Beneficios
 

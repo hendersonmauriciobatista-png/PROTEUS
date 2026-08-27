@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 640" role="img" aria-labelledby="title desc">
   <title id="title">Painel institucional de monitoramento hidrico</title>
-  <desc id="desc">Composicao visual abstrata com indicadores, fluxo de informacao e sinais hidricos do PROTEUS.</desc>
+  <desc id="desc">Composicao visual abstrata com indicadores, fluxo de informacao e sinais hidricos do Sistema de Monitoramento de Águas.</desc>
   <rect width="960" height="640" fill="#0d1b2a"/>
   <rect x="60" y="56" width="840" height="528" rx="18" fill="#112240" stroke="#1e3a5f" stroke-width="2"/>
   <rect x="92" y="92" width="300" height="92" rx="10" fill="#0f2748" stroke="#1e3a5f"/>

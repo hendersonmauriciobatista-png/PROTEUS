@@ -1,23 +1,23 @@
-# Arquitetura Do Website Institucional Do PROTEUS
+# Arquitetura do Website Institucional do Sistema de Monitoramento de Águas
 
 ## Objetivo
 
-Definir a arquitetura institucional do Website Oficial do PROTEUS como componente de comunicacao publica, apresentacao executiva e orientacao documental do produto.
+Definir a arquitetura institucional do Website Oficial do Sistema de Monitoramento de Águas como componente de comunicacao publica, apresentacao executiva e orientacao documental do produto.
 
 Esta PD nao implementa website, frontend, backend, API, banco de dados ou integracao operacional. O documento estabelece apenas a estrutura oficial de comunicacao digital para uma implementacao futura.
 
 ## Missao Institucional Do Website
 
-Apresentar o PROTEUS como plataforma institucional de monitoramento hidrico, analise operacional, governanca observacional e inteligencia executiva, permitindo que visitantes compreendam rapidamente:
+Apresentar o Sistema de Monitoramento de Águas como plataforma institucional de monitoramento hidrico, analise operacional, governanca observacional e inteligencia executiva, permitindo que visitantes compreendam rapidamente:
 
-* o que e o PROTEUS;
+* o que e o Sistema de Monitoramento de Águas;
 * qual problema ele resolve;
 * como a plataforma funciona em alto nivel;
 * como conhecer, avaliar ou acompanhar o projeto.
 
 ## Objetivos De Comunicacao
 
-* Explicar o PROTEUS em linguagem clara para publico tecnico, academico e executivo.
+* Explicar o Sistema de Monitoramento de Águas em linguagem clara para publico tecnico, academico e executivo.
 * Demonstrar o valor institucional da plataforma sem prometer funcionalidades futuras.
 * Organizar acesso a documentacao existente.
 * Reforcar a identidade visual oficial consolidada pela PI-01.
@@ -36,7 +36,7 @@ Apresentar o PROTEUS como plataforma institucional de monitoramento hidrico, ana
 
 ## Principios De Navegacao
 
-* A pagina inicial deve responder imediatamente o que e o PROTEUS.
+* A pagina inicial deve responder imediatamente o que e o Sistema de Monitoramento de Águas.
 * A navegacao deve ser curta, previsivel e institucional.
 * Cada pagina deve possuir uma responsabilidade de comunicacao clara.
 * Conteudos tecnicos devem ser apresentados em nivel executivo.
@@ -47,7 +47,7 @@ Apresentar o PROTEUS como plataforma institucional de monitoramento hidrico, ana
 
 O website deve seguir o Manual Oficial de Identidade Visual:
 
-* nome institucional PROTEUS;
+* identidade institucional Sistema de Monitoramento de Águas, sem nome fantasia;
 * paleta oficial;
 * tipografia institucional;
 * regras de uso do logo;
@@ -72,7 +72,7 @@ O website deve reutilizar e adaptar, sem contradizer, os documentos do Kit Insti
 
 ```text
 Home
-Sobre o PROTEUS
+Sobre o Sistema de Monitoramento de Águas
 Plataforma
 Funcionalidades
 Arquitetura
@@ -86,7 +86,7 @@ Contato
 
 ## Guardrails Institucionais
 
-* Nao apresentar o PROTEUS como laudo regulatorio.
+* Nao apresentar o Sistema de Monitoramento de Águas como executor de analises laboratoriais ou emissor de laudo regulatorio.
 * Nao afirmar que o sistema substitui laboratorio.
 * Nao declarar decisao operacional automatica.
 * Nao criar expectativa de coleta fisica, logistica ou cadeia de custodia.
@@ -95,4 +95,4 @@ Contato
 
 ## Veredito
 
-A arquitetura institucional do website fica definida como extensao da comunicacao oficial do PROTEUS, sem impacto sobre arquitetura de software, dominio, implementacao, persistencia, interface ou identidade visual.
+A arquitetura institucional do website fica definida como extensao da comunicacao oficial do Sistema de Monitoramento de Águas, sem impacto sobre arquitetura de software, dominio, implementacao, persistencia ou interface.

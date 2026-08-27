@@ -1,15 +1,15 @@
-# Mapa Oficial Do Website Institucional Do PROTEUS
+# Mapa Oficial do Website Institucional do Sistema de Monitoramento de Águas
 
 ## Objetivo
 
-Definir o mapa oficial de navegacao do Website Institucional do PROTEUS, refletindo exclusivamente conteudos existentes e documentados.
+Definir o mapa oficial de navegacao do Website Institucional do Sistema de Monitoramento de Águas, refletindo exclusivamente conteudos existentes e documentados.
 
 ## Mapa De Navegacao
 
 ```text
 Home
 |
-|-- Sobre o PROTEUS
+|-- Sobre
 |-- Plataforma
 |-- Funcionalidades
 |-- Arquitetura
@@ -25,8 +25,8 @@ Home
 
 | Pagina | Fonte documental | Responsabilidade |
 | --- | --- | --- |
-| Home | Kit Institucional, PI-01 | Responder o que e o PROTEUS e orientar o visitante. |
-| Sobre o PROTEUS | Apresentacao Institucional | Explicar origem, missao, visao, valores e proposito. |
+| Home | Kit Institucional, PI-01 | Responder o que e o Sistema de Monitoramento de Águas e orientar o visitante. |
+| Sobre | Apresentacao Institucional | Explicar origem, transicao da identidade anterior PROTEUS, missao, visao, valores e proposito. |
 | Plataforma | One Page, Ficha Tecnica | Apresentar a plataforma em linguagem executiva. |
 | Funcionalidades | One Page, Ficha Tecnica | Listar funcionalidades implementadas. |
 | Arquitetura | AC-01, Visao Arquitetural Executiva | Explicar camadas e fluxo em alto nivel. |
@@ -42,7 +42,7 @@ Home
 ### Primeiro Nivel
 
 * Home.
-* Sobre o PROTEUS.
+* Sobre.
 * Funcionalidades.
 * Arquitetura.
 * Documentacao.
@@ -70,4 +70,4 @@ Nao devem ser criadas paginas para:
 
 ## Veredito
 
-O mapa oficial cobre as quatro perguntas fundamentais do website e permanece aderente ao estado atual do PROTEUS.
+O mapa oficial cobre as quatro perguntas fundamentais do website e permanece aderente ao estado atual do Sistema de Monitoramento de Águas.

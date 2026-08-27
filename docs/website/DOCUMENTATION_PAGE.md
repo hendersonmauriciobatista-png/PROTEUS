@@ -1,8 +1,8 @@
-# Pagina Documentacao Do Website Institucional Do PROTEUS
+# Pagina Documentacao do Website Institucional do Sistema de Monitoramento de Águas
 
 ## Objetivo
 
-Organizar a documentacao publica disponivel do PROTEUS para consulta institucional.
+Organizar a documentacao publica disponivel do Sistema de Monitoramento de Águas para consulta institucional.
 
 ## Principio
 

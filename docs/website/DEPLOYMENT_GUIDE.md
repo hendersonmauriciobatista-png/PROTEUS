@@ -1,8 +1,8 @@
-# Guia De Publicacao Futura Do Website Institucional Do PROTEUS
+# Guia de Publicacao Futura do Website Institucional do Sistema de Monitoramento de Águas
 
 ## Objetivo
 
-Documentar recomendacoes para uma futura publicacao institucional do Website Oficial do PROTEUS.
+Documentar recomendacoes para uma futura publicacao institucional do Website Oficial do Sistema de Monitoramento de Águas.
 
 Esta PD nao realiza implantacao, nao cria frontend, nao configura hospedagem e nao publica dominio.
 
@@ -79,7 +79,7 @@ Atencoes:
 
 Uso recomendado:
 
-* consolidacao institucional publica do PROTEUS.
+* consolidacao institucional publica do Sistema de Monitoramento de Águas.
 
 Vantagens:
 
