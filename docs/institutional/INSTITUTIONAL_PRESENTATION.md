@@ -1,4 +1,4 @@
-# Apresentacao Institucional Do PROTEUS
+# Apresentacao Institucional Do Sistema de Monitoramento de Águas
 
 ## Controle Documental
 
@@ -10,7 +10,7 @@
 | Responsável pela elaboração | Evidência documental não encontrada. |
 | Custódia documental | Evidência documental não encontrada. |
 | Situação documental | Integrante de `DOC-002`, classificado como `Validado` quanto à existência e organização documental; estado institucional reconciliado pela GP-PD-02; conteúdo técnico não revalidado |
-| Responsabilidade documental | Narrativa institucional primária do PROTEUS |
+| Responsabilidade documental | Narrativa institucional primária do Sistema de Monitoramento de Águas |
 | Autoridade institucional | `docs/institutional/DOCUMENT_REGISTER.md`, seções 4 e 5 |
 
 ### Histórico de Revisões
@@ -23,19 +23,19 @@
 
 ## Objetivo
 
-Apresentar o PROTEUS em linguagem executiva para universidades, instituicoes de pesquisa, empresas, orgaos publicos e demais partes interessadas.
+Apresentar o Sistema de Monitoramento de Águas em linguagem executiva para universidades, instituicoes de pesquisa, empresas, orgaos publicos e demais partes interessadas.
 
 Este documento nao substitui a documentacao tecnica. Sua finalidade e comunicar origem, proposito, missao, beneficios e posicionamento institucional da plataforma.
 
 ## Origem
 
-O PROTEUS nasceu no CASE-01 da metodologia ICFACTORY como uma plataforma deterministica para monitoramento hidrico, analise operacional, governanca observacional e inteligencia executiva.
+O Sistema de Monitoramento de Águas nasceu no CASE-01 da metodologia ICFACTORY como uma plataforma deterministica para monitoramento hidrico, analise operacional, governanca observacional e inteligencia executiva.
 
 Sua evolucao ocorreu por auditorias sucessivas de arquitetura, dominio e operacao, culminando na AC-01, que concluiu a Engenharia do CASE-01 como arquiteturalmente consistente. A partir da PI-01, a identidade visual passou a ser tratada como ativo institucional. A PI-02 consolida a comunicacao executiva da plataforma.
 
 ## Proposito
 
-O PROTEUS existe para transformar registros de monitoramento hidrico em informacao estruturada, rastreavel e apresentavel, apoiando a leitura tecnica e institucional da qualidade da agua, do contexto ambiental, do consumo, da distribuicao, dos alertas e da governanca operacional.
+O Sistema de Monitoramento de Águas existe para transformar registros de monitoramento hidrico em informacao estruturada, rastreavel e apresentavel, apoiando a leitura tecnica e institucional da qualidade da agua, do contexto ambiental, do consumo, da distribuicao, dos alertas e da governanca operacional.
 
 ## Missao
 
@@ -57,7 +57,7 @@ Ser uma plataforma institucional de referencia para demonstrar monitoramento amb
 
 ## Problema Que A Plataforma Resolve
 
-Muitas iniciativas de monitoramento hidrico registram dados, mas enfrentam dificuldade para transformar esses dados em leitura institucional clara. O PROTEUS organiza esse percurso: entrada de dados, avaliacao observacional, analise, alertas, governanca, recomendacoes executivas, dashboards e relatorios.
+Muitas iniciativas de monitoramento hidrico registram dados, mas enfrentam dificuldade para transformar esses dados em leitura institucional clara. O Sistema de Monitoramento de Águas organiza esse percurso: entrada de dados, avaliacao observacional, analise, alertas, governanca, recomendacoes executivas, dashboards e relatorios.
 
 A plataforma reduz a distancia entre dado operacional e comunicacao institucional.
 
@@ -94,13 +94,13 @@ A plataforma reduz a distancia entre dado operacional e comunicacao instituciona
 
 ## Posicionamento Institucional
 
-O PROTEUS posiciona-se como uma plataforma de demonstracao e evolucao institucional para monitoramento hidrico auditavel.
+O Sistema de Monitoramento de Águas posiciona-se como uma plataforma de demonstracao e evolucao institucional para monitoramento hidrico auditavel.
 
 Ele nao substitui laboratorio, laudo regulatorio, decisao humana ou sistema oficial de conformidade legal. Seu papel e organizar, avaliar observacionalmente, apresentar e preservar informacoes de forma explicavel.
 
 ## Mensagem Institucional
 
-PROTEUS transforma monitoramento hidrico em informacao confiavel, rastreavel e institucionalmente apresentavel.
+Sistema de Monitoramento de Águas transforma monitoramento hidrico em informacao confiavel, rastreavel e institucionalmente apresentavel.
 
 ## Restricoes Preservadas
 

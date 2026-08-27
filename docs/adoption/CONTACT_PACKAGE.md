@@ -2,7 +2,7 @@
 
 ## Missão M-01B.2A
 
-Definir o material padrão a ser enviado para potenciais avaliadores do Sistema De Análise De Água.
+Definir o material padrão a ser enviado para potenciais avaliadores do Sistema de Monitoramento de Águas.
 
 ---
 
@@ -90,7 +90,7 @@ O acesso ao repositório deve seguir a estratégia definida para o projeto (priv
 
 Olá.
 
-Conforme solicitado, estou compartilhando o material de avaliação do Sistema De Análise De Água.
+Conforme solicitado, estou compartilhando o material de avaliação do Sistema de Monitoramento de Águas.
 
 O projeto encontra-se em fase de validação externa e tem como objetivo apoiar o monitoramento, análise e acompanhamento observacional de indicadores relacionados à qualidade da água, dados ambientais e consumo/distribuição.
 

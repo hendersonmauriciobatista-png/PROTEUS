@@ -2,7 +2,7 @@
 
 ## Missão M-01B.3A
 
-Identificação do primeiro candidato oficial para validação externa do Sistema De Análise De Água.
+Identificação do primeiro candidato oficial para validação externa do Sistema de Monitoramento de Águas.
 
 ---
 

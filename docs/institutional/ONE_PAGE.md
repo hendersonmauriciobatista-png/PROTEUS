@@ -1,4 +1,4 @@
-# PROTEUS - One Page Institucional
+# Sistema de Monitoramento de Águas - One Page Institucional
 
 ## Controle Documental
 
@@ -23,7 +23,7 @@
 
 ## Visao Geral
 
-PROTEUS e uma plataforma institucional de monitoramento hidrico, analise operacional, governanca observacional e inteligencia executiva. O sistema organiza dados de qualidade da agua, contexto ambiental, consumo e distribuicao em dashboards, relatorios, alertas, eventos e sinteses executivas.
+Sistema de Monitoramento de Águas e uma plataforma institucional de monitoramento hidrico, analise operacional, governanca observacional e inteligencia executiva. O sistema organiza dados de qualidade da agua, contexto ambiental, consumo e distribuicao em dashboards, relatorios, alertas, eventos e sinteses executivas.
 
 ## Principais Funcionalidades
 
@@ -87,4 +87,4 @@ Coleta e Registro
 
 ## Frase De Apresentacao
 
-PROTEUS organiza dados hidricos em informacao rastreavel, analitica e institucionalmente apresentavel.
+Sistema de Monitoramento de Águas organiza dados hidricos em informacao rastreavel, analitica e institucionalmente apresentavel.

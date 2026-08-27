@@ -1,6 +1,6 @@
 # Ativos Oficiais De Icones
 
-Este diretorio reserva os nomes oficiais dos arquivos de icones do PROTEUS.
+Este diretorio reserva os nomes oficiais dos arquivos de icones do Sistema de Monitoramento de Águas.
 
 Arquivos esperados:
 

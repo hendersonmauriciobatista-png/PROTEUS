@@ -2,7 +2,7 @@
 
 ## Missão
 
-Realizar a primeira adoção externa do Sistema De Análise De Água por um usuário real, coletando feedback estruturado para orientar a evolução futura do projeto.
+Realizar a primeira adoção externa do Sistema de Monitoramento de Águas por um usuário real, coletando feedback estruturado para orientar a evolução futura do projeto.
 
 ---
 

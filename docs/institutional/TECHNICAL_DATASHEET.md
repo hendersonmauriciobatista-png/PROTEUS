@@ -1,4 +1,4 @@
-# Ficha Tecnica Do PROTEUS
+# Ficha Tecnica Do Sistema de Monitoramento de Águas
 
 ## Controle Documental
 
@@ -23,13 +23,13 @@
 
 ## Objetivo
 
-Consolidar a ficha tecnica institucional do PROTEUS, refletindo exclusivamente o estado atual da plataforma.
+Consolidar a ficha tecnica institucional do Sistema de Monitoramento de Águas, refletindo exclusivamente o estado atual da plataforma.
 
 ## Identificacao
 
 | Campo | Valor |
 | --- | --- |
-| Produto | PROTEUS |
+| Produto | Sistema de Monitoramento de Águas |
 | Natureza | Plataforma desktop de monitoramento hidrico e inteligencia operacional |
 | Programa | CASE-01 - ICFACTORY |
 | Estado de Engenharia | Concluida pela AC-01 |

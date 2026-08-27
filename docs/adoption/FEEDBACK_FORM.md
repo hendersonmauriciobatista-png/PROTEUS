@@ -2,7 +2,7 @@
 
 ## Primeira Adoção Externa
 
-Obrigado por participar da validação do Sistema De Análise De Água.
+Obrigado por participar da validação do Sistema de Monitoramento de Águas.
 
 Este formulário tem como objetivo coletar sua experiência de uso e identificar oportunidades de melhoria.
 
@@ -212,6 +212,6 @@ Espaço livre para sugestões, críticas ou observações.
 
 # Agradecimento
 
-Obrigado por participar da primeira validação externa do Sistema De Análise De Água.
+Obrigado por participar da primeira validação externa do Sistema de Monitoramento de Águas.
 
 Seu feedback contribuirá diretamente para a evolução do projeto e para as próximas versões da plataforma.

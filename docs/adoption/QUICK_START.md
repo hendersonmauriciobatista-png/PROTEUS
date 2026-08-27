@@ -2,7 +2,7 @@
 
 ## Introdução
 
-Este guia apresenta os passos mínimos necessários para instalar e executar o Sistema De Análise De Água.
+Este guia apresenta os passos mínimos necessários para instalar e executar o Sistema de Monitoramento de Águas.
 
 Tempo estimado:
 
@@ -141,6 +141,6 @@ Verifique:
 
 # Observação
 
-O Sistema De Análise De Água possui finalidade educacional, demonstrativa e de apoio observacional.
+O Sistema de Monitoramento de Águas possui finalidade educacional, demonstrativa e de apoio observacional.
 
 O sistema não substitui análises laboratoriais ou pareceres técnicos especializados.

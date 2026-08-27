@@ -18,7 +18,7 @@ Olá.
 
 Meu nome é Henderson Batista.
 
-Desenvolvi um software denominado Sistema De Análise De Água, voltado ao monitoramento, análise e acompanhamento observacional de indicadores relacionados à qualidade da água, dados ambientais e consumo/distribuição.
+Desenvolvi um software denominado Sistema de Monitoramento de Águas, voltado ao monitoramento, análise e acompanhamento observacional de indicadores relacionados à qualidade da água, dados ambientais e consumo/distribuição.
 
 O projeto encontra-se atualmente em fase de validação externa e estou buscando profissionais, docentes, pesquisadores ou projetos que possam avaliar a ferramenta e fornecer feedback técnico ou educacional.
 
@@ -37,4 +37,4 @@ Atenciosamente,
 Henderson Batista
 
 Projeto CASE-01
-Sistema De Análise De Água
+Sistema de Monitoramento de Águas

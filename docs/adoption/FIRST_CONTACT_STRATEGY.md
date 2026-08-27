@@ -2,7 +2,7 @@
 
 ## Missão M-01B.2
 
-Preparar a primeira abordagem externa para validação do Sistema De Análise De Água.
+Preparar a primeira abordagem externa para validação do Sistema de Monitoramento de Águas.
 
 ---
 

@@ -1,4 +1,4 @@
-# Casos De Uso Institucionais Do PROTEUS
+# Casos De Uso Institucionais Do Sistema de Monitoramento de Águas
 
 ## Controle Documental
 
@@ -23,7 +23,7 @@
 
 ## Objetivo
 
-Registrar casos reais de utilizacao do PROTEUS no estado atual da plataforma.
+Registrar casos reais de utilizacao do Sistema de Monitoramento de Águas no estado atual da plataforma.
 
 ## Caso 01 - Monitoramento Da Qualidade Da Agua
 

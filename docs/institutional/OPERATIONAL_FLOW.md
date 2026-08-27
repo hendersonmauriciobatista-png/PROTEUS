@@ -1,4 +1,4 @@
-# Fluxo Operacional Oficial Do PROTEUS
+# Fluxo Operacional Oficial Do Sistema de Monitoramento de Águas
 
 ## Controle Documental
 
@@ -10,7 +10,7 @@
 | Responsável pela elaboração | Evidência documental não encontrada. |
 | Custódia documental | Evidência documental não encontrada. |
 | Situação documental | Integrante de `DOC-002`, classificado como `Validado` quanto à existência e organização documental; estado institucional reconciliado pela GP-PD-02; conteúdo técnico não revalidado |
-| Responsabilidade documental | Fluxo operacional institucional do PROTEUS |
+| Responsabilidade documental | Fluxo operacional institucional do Sistema de Monitoramento de Águas |
 | Autoridade institucional | `docs/institutional/DOCUMENT_REGISTER.md`, seções 4 e 5 |
 
 ### Histórico de Revisões
@@ -23,7 +23,7 @@
 
 ## Objetivo
 
-Documentar o fluxo operacional oficial do PROTEUS em linguagem institucional, representando apenas o estado atual do sistema.
+Documentar o fluxo operacional oficial do Sistema de Monitoramento de Águas em linguagem institucional, representando apenas o estado atual do sistema.
 
 ## Fluxo Resumido
 
@@ -47,7 +47,7 @@ Dashboard / Painel Executivo / Relatorios
 
 ## 1. Entrada De Dados
 
-O PROTEUS recebe informacoes por telas operacionais:
+O Sistema de Monitoramento de Águas recebe informacoes por telas operacionais:
 
 * qualidade da agua;
 * dados ambientais;
@@ -147,7 +147,7 @@ Nem todo dado segue exatamente o mesmo percurso:
 
 ## Limites Operacionais
 
-O PROTEUS nao executa:
+O Sistema de Monitoramento de Águas nao executa:
 
 * coleta fisica;
 * transporte de amostras;

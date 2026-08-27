@@ -1,4 +1,4 @@
-# Roteiro Oficial De Demonstracao Do PROTEUS
+# Roteiro Oficial De Demonstracao Do Sistema de Monitoramento de Águas
 
 ## Controle Documental
 
@@ -23,7 +23,7 @@
 
 ## Objetivo
 
-Definir um roteiro oficial para demonstracoes consistentes e reproduziveis do PROTEUS perante universidades, instituicoes de pesquisa, empresas, orgaos publicos e demais partes interessadas.
+Definir um roteiro oficial para demonstracoes consistentes e reproduziveis do Sistema de Monitoramento de Águas perante universidades, instituicoes de pesquisa, empresas, orgaos publicos e demais partes interessadas.
 
 ## Duracao Recomendada
 
@@ -60,7 +60,7 @@ Antes da demonstracao:
 Mensagem sugerida:
 
 ```text
-O PROTEUS e uma plataforma institucional de monitoramento hidrico que organiza registros,
+O Sistema de Monitoramento de Águas e uma plataforma institucional de monitoramento hidrico que organiza registros,
 avaliacoes observacionais, sinais analiticos, governanca operacional e sintese executiva
 em uma arquitetura rastreavel e explicavel.
 ```
@@ -221,26 +221,26 @@ O Painel Executivo apoia leitura e comunicacao; a decisao permanece humana.
 Mensagem sugerida:
 
 ```text
-O PROTEUS demonstra como uma plataforma de monitoramento hidrico pode unir registro,
+O Sistema de Monitoramento de Águas demonstra como uma plataforma de monitoramento hidrico pode unir registro,
 avaliacao observacional, analise, governanca e inteligencia executiva mantendo
 rastreabilidade, explicabilidade e separacao de responsabilidades.
 ```
 
 ## Perguntas Frequentes Para Demonstracao
 
-### O PROTEUS substitui laboratorio?
+### O Sistema de Monitoramento de Águas substitui laboratorio?
 
-Nao. O PROTEUS organiza e avalia informacoes observacionais, mas nao substitui laudos, metodos laboratoriais ou certificacoes oficiais.
+Nao. O Sistema de Monitoramento de Águas organiza e avalia informacoes observacionais, mas nao substitui laudos, metodos laboratoriais ou certificacoes oficiais.
 
-### O PROTEUS toma decisoes automaticas?
+### O Sistema de Monitoramento de Águas toma decisoes automaticas?
 
 Nao. O sistema apoia leitura e acompanhamento. Decisoes operacionais ou regulatorias permanecem humanas.
 
-### O PROTEUS usa IA generativa ou Machine Learning?
+### O Sistema de Monitoramento de Águas usa IA generativa ou Machine Learning?
 
 Nao no estado atual. A arquitetura atual e deterministica.
 
-### O PROTEUS possui banco de dados relacional?
+### O Sistema de Monitoramento de Águas possui banco de dados relacional?
 
 Nao no estado atual. A persistencia e local, baseada em CSV e JSON.
 
@@ -256,7 +256,7 @@ Nao no estado atual. A persistencia e local, baseada em CSV e JSON.
 
 Ao final da demonstracao, o publico deve compreender:
 
-* o que o PROTEUS faz;
+* o que o Sistema de Monitoramento de Águas faz;
 * quais camadas compoem a plataforma;
 * como dados viram sinais e apresentacoes;
 * por que a arquitetura e rastreavel;

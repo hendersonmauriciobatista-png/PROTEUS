@@ -2,7 +2,7 @@
 
 ## Missão M-01B.1
 
-Identificar perfis de usuários com potencial interesse no Sistema De Análise De Água para a primeira adoção externa.
+Identificar perfis de usuários com potencial interesse no Sistema de Monitoramento de Águas para a primeira adoção externa.
 
 ---
 
@@ -241,4 +241,4 @@ O primeiro usuário ideal deve:
 
 M-01B.2
 
-Identificação de candidatos reais para a primeira adoção externa do Sistema De Análise De Água.
+Identificação de candidatos reais para a primeira adoção externa do Sistema de Monitoramento de Águas.

@@ -2,7 +2,7 @@
 
 ## Introdução
 
-Este guia apresenta as funcionalidades disponíveis no Sistema De Análise De Água e explica como utilizar cada módulo da aplicação.
+Este guia apresenta as funcionalidades disponíveis no Sistema de Monitoramento de Águas e explica como utilizar cada módulo da aplicação.
 
 ---
 
@@ -220,6 +220,6 @@ O botão Sincronizar Alertas analisa os alertas preventivos atuais e cria ou atu
 
 # Observação
 
-O Sistema De Análise De Água possui finalidade educacional, demonstrativa e de apoio observacional.
+O Sistema de Monitoramento de Águas possui finalidade educacional, demonstrativa e de apoio observacional.
 
 O sistema não substitui análises laboratoriais, pareceres técnicos especializados ou exigências regulatórias aplicáveis.

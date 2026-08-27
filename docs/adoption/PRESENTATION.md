@@ -1,8 +1,8 @@
-# Sistema De Análise De Água
+# Sistema de Monitoramento de Águas
 
 ## Apresentação
 
-O Sistema De Análise De Água é uma plataforma desenvolvida para apoiar o monitoramento, análise e acompanhamento operacional de indicadores relacionados à qualidade da água, condições ambientais e consumo/distribuição.
+O Sistema de Monitoramento de Águas é uma plataforma desenvolvida para apoiar o monitoramento, análise e acompanhamento operacional de indicadores relacionados à qualidade da água, condições ambientais e consumo/distribuição.
 
 O projeto foi concebido para transformar dados operacionais em informações úteis, permitindo não apenas o registro de medições, mas também a identificação de tendências, geração de alertas preventivos, acompanhamento de eventos observacionais e visualização executiva do estado geral do sistema monitorado.
 
@@ -25,7 +25,7 @@ Como consequência, sinais importantes podem passar despercebidos ou serem ident
 
 # A Solução
 
-O Sistema De Análise De Água centraliza informações operacionais e oferece recursos de análise observacional que ajudam a compreender a evolução dos indicadores monitorados.
+O Sistema de Monitoramento de Águas centraliza informações operacionais e oferece recursos de análise observacional que ajudam a compreender a evolução dos indicadores monitorados.
 
 A plataforma permite:
 
@@ -124,6 +124,6 @@ A evolução do projeto busca ampliar a capacidade de apoio à observação e ac
 
 # Observação
 
-O Sistema De Análise De Água possui finalidade educacional, demonstrativa e de apoio observacional.
+O Sistema de Monitoramento de Águas possui finalidade educacional, demonstrativa e de apoio observacional.
 
 O sistema não substitui análises laboratoriais, pareceres técnicos especializados ou exigências regulatórias aplicáveis.

@@ -1,4 +1,4 @@
-# Visao Arquitetural Executiva Do PROTEUS
+# Visao Arquitetural Executiva Do Sistema de Monitoramento de Águas
 
 ## Controle Documental
 
@@ -10,7 +10,7 @@
 | Responsável pela elaboração | Evidência documental não encontrada. |
 | Custódia documental | Evidência documental não encontrada. |
 | Situação documental | Integrante de `DOC-002`, classificado como `Validado` quanto à existência e organização documental; estado institucional reconciliado pela GP-PD-02; conteúdo técnico não revalidado |
-| Responsabilidade documental | Visão arquitetural institucional do PROTEUS |
+| Responsabilidade documental | Visão arquitetural institucional do Sistema de Monitoramento de Águas |
 | Autoridade institucional | `docs/institutional/DOCUMENT_REGISTER.md`, seções 4 e 5 |
 
 ### Histórico de Revisões
@@ -23,11 +23,11 @@
 
 ## Objetivo
 
-Apresentar uma visao arquitetural de alto nivel, voltada a publico executivo e tecnico, contendo exclusivamente componentes existentes no PROTEUS.
+Apresentar uma visao arquitetural de alto nivel, voltada a publico executivo e tecnico, contendo exclusivamente componentes existentes no Sistema de Monitoramento de Águas.
 
 ## Principio Geral
 
-O PROTEUS organiza informacoes de monitoramento hidrico por camadas especializadas. Cada camada agrega valor sem assumir a autoridade da camada anterior.
+O Sistema de Monitoramento de Águas organiza informacoes de monitoramento hidrico por camadas especializadas. Cada camada agrega valor sem assumir a autoridade da camada anterior.
 
 ## Visao Em Alto Nivel
 
