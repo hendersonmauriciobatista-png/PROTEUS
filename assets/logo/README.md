@@ -1,20 +1,23 @@
-# Ativos Oficiais De Logo
+# Ativo Oficial de Identidade
 
-Este diretorio reserva os nomes oficiais dos arquivos de logo do PROTEUS.
+## Autoridade Vigente
 
-Arquivos esperados:
+| Campo | Valor |
+| --- | --- |
+| Identidade | Sistema de Monitoramento de Águas |
+| Nome fantasia | Nenhum |
+| Ativo oficial | `assets/logo/sistema_monitoramento_aguas.png` |
+| SHA-256 | `55f42c5f26ae141b0f2a55c79031a345fefc101d281a1c16cd620b8e708107ec` |
+| Cor primária | Azul |
+| Vigência | 2026-08-26 |
 
-```text
-proteus.svg
-proteus.png
-proteus_dark.svg
-proteus_light.svg
-proteus_monochrome.svg
-```
+O arquivo oficial deve ser utilizado sem reexportação, conversão, redimensionamento ou reprocessamento.
 
-Esta PI nao cria nem redesenha a marca. Os arquivos devem ser adicionados somente a partir da identidade visual oficial aprovada.
+## Ativos Históricos
 
-Enquanto os arquivos finais nao estiverem versionados, as regras oficiais de uso estao em:
+Os nomes `proteus.svg`, `proteus.png`, `proteus_dark.svg`, `proteus_light.svg` e `proteus_monochrome.svg` pertencem à baseline da identidade anterior PROTEUS. Permanecem reservados para rastreabilidade histórica e não devem ser apagados, reutilizados como identidade vigente ou confundidos com o ativo oficial atual.
+
+As regras vigentes estão em:
 
 ```text
 docs/branding/BRAND_GUIDELINES.md

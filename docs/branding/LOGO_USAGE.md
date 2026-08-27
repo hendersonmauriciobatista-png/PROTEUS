@@ -1,72 +1,39 @@
-# Uso Oficial Do Logo PROTEUS
+# Uso Oficial da Identidade Visual
 
-## Objetivo
+## Autoridade Vigente
 
-Definir regras oficiais de aplicacao do logo PROTEUS sem criar, alterar ou redesenhar a marca aprovada.
+A identidade vigente é **Sistema de Monitoramento de Águas**, sem nome fantasia, por decisão do Product Owner em 2026-08-26. O ativo visual oficial é:
 
-## Baseline Oficial
+```text
+assets/logo/sistema_monitoramento_aguas.png
+```
 
-O logo e a identidade visual atualmente aprovados constituem baseline oficial. Todas as aplicacoes devem preservar desenho, simbolo, proporcao, cor, tipografia e composicao.
+O arquivo deve conservar desenho, proporção, cor, tipografia e composição originais. Não é permitido reexportar, redimensionar, reenquadrar ou criar variantes não aprovadas.
 
-## Versoes Oficiais
+## Baseline Histórica
 
-| Versao | Uso |
+PROTEUS foi a identidade anterior e foi substituída em 2026-08-26. As regras anteriores reservavam nomes como `proteus.svg`, `proteus.png`, `proteus_dark.svg`, `proteus_light.svg` e `proteus_monochrome.svg` e proibiam substituir PROTEUS como identidade vigente. Essas regras permanecem registradas como baseline histórica, mas não governam a identidade atual. Os arquivos legados não devem ser apagados nem apresentados como ativos vigentes.
+
+## Área de Proteção
+
+Usar `X` como unidade base, correspondente à altura da letra principal ou à unidade dominante do símbolo oficial.
+
+* Proteção mínima: `1X`.
+* Proteção recomendada: `2X`.
+* Proteção excepcional: `0.5X`, somente se a legibilidade permanecer adequada.
+
+Nenhum texto, gráfico, borda, ícone ou elemento visual deve invadir a área de proteção.
+
+## Tamanho Mínimo
+
+| Meio | Tamanho mínimo |
 | --- | --- |
-| Principal | Aplicacoes institucionais padrao. |
-| Fundo claro | Documentos, slides claros, papelaria e artigos. |
-| Fundo escuro | Dashboard, splash screen, videos e materiais escuros. |
-| Monocromatica | Impressao restrita ou aplicacao tecnica de uma cor. |
-| Negativa | Uso sobre fundos escuros quando a versao principal perder contraste. |
-
-## Area De Protecao
-
-Usar `X` como unidade base, onde `X` corresponde a altura da letra principal do logotipo ou unidade dominante do simbolo oficial.
-
-* Protecao minima: `1X`.
-* Protecao recomendada: `2X`.
-* Protecao excepcional em espacos pequenos: `0.5X`, somente se a legibilidade permanecer adequada.
-
-Nenhum texto, grafico, borda, icone ou elemento visual deve invadir a area de protecao.
-
-## Tamanho Minimo
-
-| Meio | Tamanho minimo |
-| --- | --- |
-| Impressao | 25 mm de largura. |
+| Impressão | 25 mm de largura. |
 | Web | 120 px de largura. |
 | Aplicativo desktop | 96 px de largura. |
-| Apresentacao em rodape | 90 px de largura. |
-| Apresentacao em capa | 180 px de largura. |
-| Favicon | 16 px e 32 px, apenas com simbolo oficial. |
+| Apresentação em rodapé | 90 px de largura. |
+| Apresentação em capa | 180 px de largura. |
 
 ## Usos Proibidos
 
-Nao e permitido:
-
-* alterar cores;
-* alterar tipografia;
-* deformar;
-* girar;
-* inclinar;
-* aplicar sombra ou brilho;
-* aplicar gradientes nao oficiais;
-* recortar;
-* reposicionar simbolo e logotipo;
-* criar versao outline nao aprovada;
-* usar sobre fundo de baixo contraste;
-* combinar com elementos graficos nao aprovados;
-* substituir PROTEUS por outro nome institucional.
-
-## Arquivos Oficiais Reservados
-
-Os nomes oficiais reservados para versionamento dos ativos sao:
-
-```text
-assets/logo/proteus.svg
-assets/logo/proteus.png
-assets/logo/proteus_dark.svg
-assets/logo/proteus_light.svg
-assets/logo/proteus_monochrome.svg
-```
-
-Estes arquivos devem ser adicionados somente a partir da arte oficial aprovada.
+Não é permitido alterar cores ou tipografia, deformar, girar, inclinar, recortar, aplicar efeitos ou gradientes não oficiais, reposicionar elementos, combinar com grafismos não aprovados, usar sobre fundo sem contraste ou introduzir nome fantasia.

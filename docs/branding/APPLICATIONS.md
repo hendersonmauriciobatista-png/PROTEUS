@@ -1,78 +1,46 @@
-# Aplicacoes Institucionais Da Marca PROTEUS
+# Aplicações Institucionais da Identidade
 
-## Objetivo
+## Autoridade Vigente
 
-Definir aplicacoes oficiais da identidade visual PROTEUS em produtos, documentos e materiais institucionais.
+Aplicar a identidade **Sistema de Monitoramento de Águas**, sem nome fantasia, usando o ativo `assets/logo/sistema_monitoramento_aguas.png`. A identidade anterior PROTEUS foi substituída por decisão do Product Owner em 2026-08-26 e pode aparecer somente como referência histórica explícita.
 
-## Dashboard
+## Dashboard, Splash Screen e Login
 
-* Usar fundo institucional escuro.
-* Preservar ciano como destaque principal.
-* Usar cores de estado conforme paleta oficial.
-* Nao transformar o Dashboard em peca promocional.
-* Priorizar leitura operacional, sinais, indicadores e rastreabilidade.
+* Usar fundo institucional escuro e azul como destaque principal.
+* Usar cores de estado conforme a paleta oficial.
+* Priorizar leitura operacional, indicadores e rastreabilidade.
+* Usar a assinatura `Sistema de Monitoramento de Águas`.
+* Preservar a área de proteção e evitar elementos decorativos concorrentes.
 
-## Splash Screen
+## Relatórios e Documentação Técnica
 
-* Usar logo oficial centralizado.
-* Preferir fundo azul noite operacional.
-* Usar subtitulo curto: `Sistema de Analise de Agua`.
-* Evitar efeitos animados excessivos.
+* Usar o ativo oficial em cabeçalho ou capa quando o formato permitir.
+* Usar `Sistema de Monitoramento de Águas` como identidade principal.
+* Preservar linguagem técnica, observacional e objetiva.
+* Não afirmar que o sistema realiza análises laboratoriais.
 
-## Tela De Login
+## GitHub e README
 
-* Usar logo oficial em area superior ou lateral.
-* Preservar area de protecao.
-* Usar poucos campos e alto contraste.
-* Nao usar imagens decorativas que concorram com a marca.
-
-## Relatorios
-
-* Usar logo em cabecalho.
-* Preservar versao para fundo claro quando o relatorio for impresso.
-* Usar cores de estado apenas quando ajudarem a leitura.
-* Manter tipografia tecnica e legivel.
-
-## Documentacao Tecnica
-
-* Usar nome PROTEUS no titulo principal.
-* Usar marca em capa ou cabecalho quando o formato permitir.
-* Preservar tom institucional, tecnico e objetivo.
-
-## GitHub E README
-
-* Usar nome PROTEUS como identificador principal.
-* Usar logo oficial quando o asset estiver versionado.
-* Nao usar variantes improvisadas de logo em badges ou banners.
+* Usar `Sistema de Monitoramento de Águas` como identificador público principal.
+* Referenciar `assets/logo/sistema_monitoramento_aguas.png`.
+* Quando necessário, registrar: “Projeto anteriormente identificado como PROTEUS.”
+* Não usar variantes improvisadas em badges ou banners.
 
 ## Website
 
-* Usar logo oficial no topo.
-* Usar paleta oficial como base.
-* Apresentar o produto com linguagem institucional.
-* Evitar layout promocional que contradiga o carater tecnico-cientifico.
+Este documento registra a diretriz de identidade, mas esta onda não modifica o website. Em aplicação futura autorizada, usar o ativo e a paleta oficiais com linguagem técnico-institucional.
 
-## Apresentacoes
+## Apresentações, Artigos e Materiais Institucionais
 
-* Capa com logo oficial e titulo.
-* Rodape com logo reduzido ou nome PROTEUS.
-* Uso de ciano para destaques e verde/laranja/vermelho para estados.
-* Evitar excesso de efeitos, clipart ou imagens genericas.
+* Usar a identidade atual em capa, título ou cabeçalho.
+* Manter grafismos discretos e proporção original do ativo.
+* Usar azul para destaque e verde, laranja e vermelho para estados.
+* Não introduzir nome fantasia nem alegar registro ou exclusividade de marca.
 
-## Artigos Cientificos
+## Ícones
 
-* Usar logo somente quando permitido pelo formato.
-* Priorizar nome institucional PROTEUS.
-* Manter grafismos discretos.
+Usar somente versões oficiais aprovadas. Não reduzir o logotipo completo de forma ilegível nem derivar novo símbolo sem autorização.
 
-## Cartoes E Assinatura Institucional
+## Proveniência Histórica
 
-* Usar logo oficial em proporcao preservada.
-* Usar nome, funcao, contato e referencia ao projeto.
-* Evitar fundos complexos.
-
-## Favicon E Icone De Aplicativo
-
-* Usar apenas simbolo oficial.
-* Exportar nos tamanhos definidos em `ICONS.md`.
-* Nao usar reducao ilegivel do logotipo completo.
+Materiais publicados sob a identidade PROTEUS permanecem como evidência histórica e não devem ser reescritos retroativamente. A regra anterior que determinava PROTEUS como identificador principal está supersedida para materiais vigentes.

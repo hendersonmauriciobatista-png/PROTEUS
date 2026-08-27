@@ -1,6 +1,8 @@
 # CONSTITUIÇÃO DO PROJETO
 
-Projeto: Sistema De Análise De Água
+Projeto: Sistema de Monitoramento de Águas
+
+Identidade vigente desde 2026-08-26 por decisão do Product Owner. Projeto anteriormente identificado como PROTEUS.
 
 Framework Constitucional Aplicável: ICFACTORY
 
@@ -44,7 +46,7 @@ Nenhum conflito conhecido.
 
 Nome do Projeto:
 
-Sistema De Análise De Água
+Sistema de Monitoramento de Águas
 
 Responsável contextual pelo projeto:
 

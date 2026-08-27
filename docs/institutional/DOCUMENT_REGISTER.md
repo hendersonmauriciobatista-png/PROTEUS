@@ -1,15 +1,15 @@
-# Registro Mestre de Documentos do PROTEUS
+# Registro Mestre de Documentos do Sistema de Monitoramento de Águas
 
 ## Controle Documental
 
 | Campo | Valor |
 | --- | --- |
 | Código documental | PRO-REG-001 |
-| Versão | 1.3 |
-| Data-base | 26/07/2026 |
+| Versão | 1.4 |
+| Data-base | 26/08/2026 |
 | Responsável pela elaboração | Evidência documental não encontrada. |
 | Custódia documental | Evidência documental não encontrada. |
-| Situação documental | Registro Mestre vigente para controle, estado institucional e arquitetura documental do Kit Institucional do PROTEUS |
+| Situação documental | Registro Mestre vigente para controle, estado institucional e arquitetura documental do Sistema de Monitoramento de Águas |
 
 ### Histórico de Revisões
 
@@ -19,16 +19,21 @@
 | 1.1 | 26/07/2026 | GP-PD-02 | Reconciliação do estado institucional, atualização das versões controladas e inclusão das referências de autoridade. |
 | 1.2 | 26/07/2026 | GP-PD-03 | Definição da arquitetura documental, autoridades primárias, responsabilidades e precedência temática do Kit. |
 | 1.3 | 26/07/2026 | GP-PD-04 | Registro da auditoria de rastreabilidade das afirmações institucionais, sem alteração dos documentos do Kit ou de suas evidências. |
+| 1.4 | 26/08/2026 | Migração de identidade | Registro da identidade canônica “Sistema de Monitoramento de Águas”, sem nome fantasia, e preservação de PROTEUS como referência histórica. |
+
+### Transição de Identidade
+
+Desde 26/08/2026, a identidade canônica vigente é **Sistema de Monitoramento de Águas**, sem nome fantasia. A identidade anterior **PROTEUS** foi substituída por decisão do Product Owner e permanece neste registro somente para identificar títulos, versões e evidências históricas. Os títulos legados abaixo não foram reescritos retroativamente.
 
 ## 1. Finalidade
 
-Este documento constitui a referência oficial para o controle documental do Kit Institucional do PROTEUS.
+Este documento constitui a referência oficial para o controle documental do Sistema de Monitoramento de Águas. As ocorrências de PROTEUS nas seções de inventário identificam a identidade histórica dos documentos registrados.
 
 Seu escopo é exclusivamente administrativo e documental. O registro não valida conteúdo técnico, não altera estados institucionais, não modifica arquitetura, não cria funcionalidades e não reconcilia inconsistências.
 
 ## 2. Autoridade e Perímetro
 
-O perímetro controlado corresponde ao Kit Institucional do PROTEUS registrado como `DOC-002` em `docs/institutional/AGIPI/INSTITUTIONAL_ASSET_INVENTORY.md`.
+O perímetro controlado corresponde ao Kit Institucional historicamente identificado como PROTEUS e registrado como `DOC-002` em `docs/institutional/AGIPI/INSTITUTIONAL_ASSET_INVENTORY.md`.
 
 O proprietário e a custódia dos documentos não foram atribuídos pela GP-PD-01 quando ausentes nas fontes oficiais.
 
@@ -44,7 +49,7 @@ O proprietário e a custódia dos documentos não foram atribuídos pela GP-PD-0
 | PRO-KIT-006 | Fluxo Operacional Oficial Do PROTEUS | `docs/institutional/OPERATIONAL_FLOW.md` | Evidência documental não encontrada. | 1.2 | `Validado` quanto à existência e organização em `DOC-002`; estado institucional reconciliado; conteúdo técnico não revalidado | 26/07/2026 | Autoridade primária para fluxo operacional institucional |
 | PRO-KIT-007 | Roteiro Oficial De Demonstracao Do PROTEUS | `docs/institutional/DEMONSTRATION_GUIDE.md` | Evidência documental não encontrada. | 1.2 | `Validado` quanto à existência e organização em `DOC-002`; estado institucional reconciliado; conteúdo técnico não revalidado | 26/07/2026 | Autoridade primária para procedimento de demonstração |
 
-## 4. Estado Institucional Oficial do PROTEUS
+## 4. Estado Institucional Oficial do Sistema de Monitoramento de Águas
 
 | Dimensão | Estado oficial reconciliado | Autoridade documental |
 | --- | --- | --- |
@@ -53,11 +58,11 @@ O proprietário e a custódia dos documentos não foram atribuídos pela GP-PD-0
 | Maturidade tecnológica interna | `M3 — protótipo integrado validado internamente` | `docs/institutional/TECHNOLOGY_PORTFOLIO.md`, `PT-01` |
 | Estado do Kit Institucional | `Validado` quanto à existência e organização documental | `docs/institutional/AGIPI/INSTITUTIONAL_ASSET_INVENTORY.md`, `DOC-002` |
 | Aprovação da Constituição Institucional da ICFACTORY | Versão 1.1 vigente para uso interno, aprovada pela Direção do Projeto ICFACTORY | `docs/institutional/ICFACTORY_CONSTITUTION.md`, Identificação e Histórico de revisão; `docs/history/HISTORY.md`, GP-AGIPI-01B |
-| Constituição do Projeto PROTEUS | `RASCUNHO INICIAL` | `docs/governance/PROJECT_CONSTITUTION.md`; `docs/institutional/AGIPI/INSTITUTIONAL_ASSET_INVENTORY.md`, `MET-003` |
+| Constituição do Projeto, registrada historicamente sob a identidade PROTEUS | `RASCUNHO INICIAL` | `docs/governance/PROJECT_CONSTITUTION.md`; `docs/institutional/AGIPI/INSTITUTIONAL_ASSET_INVENTORY.md`, `MET-003` |
 
 ### 4.1 Declaração Canônica
 
-O PROTEUS encontra-se na fase `Produto Institucional`, com situação `Parcialmente Validado para a plataforma` e maturidade tecnológica interna `M3 — protótipo integrado validado internamente`.
+O Sistema de Monitoramento de Águas encontra-se na fase `Produto Institucional`, com situação `Parcialmente Validado para a plataforma` e maturidade tecnológica interna `M3 — protótipo integrado validado internamente`.
 
 Essa declaração preserva os limites documentados: não há validação operacional externa, certificação regulatória ou operação produtiva comprovada.
 
@@ -67,7 +72,7 @@ O status `RASCUNHO INICIAL` da Constituição do Projeto é um estado constituci
 
 ### 4.2 Precedência
 
-Para comunicação institucional do estado do PROTEUS, prevalece a Declaração Canônica desta seção. Estados históricos permanecem válidos exclusivamente para o momento e o instrumento em que foram registrados.
+Para comunicação institucional do estado do Sistema de Monitoramento de Águas, prevalece a Declaração Canônica desta seção. Estados e referências à identidade PROTEUS permanecem válidos exclusivamente para o momento e o instrumento histórico em que foram registrados.
 
 ## 5. Arquitetura Documental do Kit
 

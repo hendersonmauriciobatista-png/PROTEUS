@@ -1,8 +1,12 @@
-# PROTEUS
+# Sistema de Monitoramento de Águas
+
+![Identidade oficial do Sistema de Monitoramento de Águas](assets/logo/sistema_monitoramento_aguas.png)
+
+Projeto anteriormente identificado como PROTEUS.
 
 ## Visão Geral
 
-O PROTEUS é uma plataforma de monitoramento e análise operacional de recursos hídricos. Sua arquitetura foi concebida para apoiar diferentes cenários de monitoramento da qualidade da água, incluindo aplicações ambientais, agrícolas, industriais e de saneamento, por meio de módulos especializados de análise. A Baseline Operacional Inteligente V1 concentra-se na gestão de indicadores de qualidade da água, dados ambientais e consumo/distribuição, constituindo o primeiro núcleo funcional da plataforma.
+O Sistema de Monitoramento de Águas é uma plataforma de monitoramento e análise operacional de recursos hídricos. Sua arquitetura foi concebida para apoiar diferentes cenários de monitoramento da qualidade da água, incluindo aplicações ambientais, agrícolas, industriais e de saneamento, por meio de módulos especializados de análise. A Baseline Operacional Inteligente V1 concentra-se na gestão de indicadores de qualidade da água, dados ambientais e consumo/distribuição, constituindo o primeiro núcleo funcional da plataforma.
 
 O projeto foi desenvolvido seguindo a metodologia ICFACTORY, com foco em arquitetura determinística, rastreabilidade, explicabilidade e evolução incremental.
 
