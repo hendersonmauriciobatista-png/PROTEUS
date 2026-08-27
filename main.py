@@ -2,7 +2,7 @@ import sys
 from pathlib import Path
 
 from PyQt5.QtCore import Qt, QDateTime, QTimer
-from PyQt5.QtGui import QColor, QPainter, QPen, QPalette
+from PyQt5.QtGui import QColor, QPainter, QPen, QPalette, QPixmap
 from PyQt5.QtWidgets import (
     QApplication,
     QFrame,
@@ -33,6 +33,10 @@ from relatorios import RelatoriosPage
 
 
 DATA_DIR = Path(__file__).resolve().parent / "data"
+CURRENT_IDENTITY = "Sistema de Monitoramento de Águas"
+OFFICIAL_IDENTITY_ASSET = (
+    Path(__file__).resolve().parent / "assets" / "logo" / "sistema_monitoramento_aguas.png"
+)
 AMBIENTE_CSV = DATA_DIR / "dados_ambientais_medicoes.csv"
 CONSUMO_CSV = DATA_DIR / "consumo_distribuicao_medicoes.csv"
 AMBIENTE_FIELDS = (
@@ -319,7 +323,7 @@ class MainWindow(QMainWindow):
         self.quality_water_repository = build_quality_water_repository()
         self.environment_repository = CSVMeasurementRepository(AMBIENTE_CSV, AMBIENTE_FIELDS)
         self.consumption_repository = CSVMeasurementRepository(CONSUMO_CSV, CONSUMO_FIELDS)
-        self.setWindowTitle("PROTEUS")
+        self.setWindowTitle(CURRENT_IDENTITY)
         self.setMinimumSize(1100, 700)
         self.resize(1280, 780)
         self.setStyleSheet(STYLE_MAIN)
@@ -339,10 +343,26 @@ class MainWindow(QMainWindow):
         sidebar_layout = QVBoxLayout(sidebar)
         sidebar_layout.setContentsMargins(0, 0, 0, 0)
         sidebar_layout.setSpacing(0)
-        logo = QLabel("PROTEUS")
+        logo = QLabel()
         logo.setObjectName("logo")
-        logo_sub = QLabel("MONITORAMENTO INTELIGENTE DA ÁGUA")
+        logo.setAlignment(Qt.AlignCenter)
+        logo.setAccessibleName(CURRENT_IDENTITY)
+        logo_pixmap = QPixmap(str(OFFICIAL_IDENTITY_ASSET))
+        if logo_pixmap.isNull():
+            logo.setText(CURRENT_IDENTITY)
+        else:
+            logo.setPixmap(
+                logo_pixmap.scaled(
+                    190,
+                    120,
+                    Qt.KeepAspectRatio,
+                    Qt.SmoothTransformation,
+                )
+            )
+        logo_sub = QLabel(CURRENT_IDENTITY.upper())
         logo_sub.setObjectName("logo_sub")
+        logo_sub.setAlignment(Qt.AlignCenter)
+        logo_sub.setWordWrap(True)
         sidebar_layout.addWidget(logo)
         sidebar_layout.addWidget(logo_sub)
 
