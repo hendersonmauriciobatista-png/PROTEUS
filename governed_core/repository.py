@@ -6,6 +6,11 @@ from contextlib import contextmanager
 from datetime import datetime, timezone
 from pathlib import Path
 
+from .measurement_models import (
+    APSMemberAuthorizationResolution,
+    AuthorizationBasisResolution,
+    GovernedMeasurement,
+)
 from .models import APSReference, GovernedMonitoringPoint, PointContextRevision
 
 
@@ -162,6 +167,110 @@ class GovernedCoreRepository:
             ).fetchall()
         return tuple(row[0] for row in rows)
 
+    def resolve_member_authorization(
+        self,
+        reference,
+        parameter_reference,
+        connection=None,
+    ):
+        with self._optional_connection(connection) as active:
+            member = active.execute(
+                "SELECT 1 FROM aps_member WHERE set_id = ? AND version = ? "
+                "AND parameter_reference = ?",
+                (reference.set_id, reference.version, parameter_reference),
+            ).fetchone()
+            if member is None:
+                raise GovernedReferenceError(
+                    "Parametro nao pertence a versao APS exata: "
+                    f"{reference.set_id}/{reference.version}/{parameter_reference}"
+                )
+            basis_rows = active.execute(
+                "SELECT basis.basis_id FROM member_authorization_basis AS trace "
+                "JOIN authorization_basis AS basis "
+                "ON basis.basis_id = trace.basis_id "
+                "AND basis.set_id = trace.set_id AND basis.version = trace.version "
+                "WHERE trace.set_id = ? AND trace.version = ? "
+                "AND trace.parameter_reference = ? ORDER BY basis.basis_id",
+                (reference.set_id, reference.version, parameter_reference),
+            ).fetchall()
+            if not basis_rows:
+                raise GovernedReferenceError(
+                    f"Membro sem authorization basis exata: {parameter_reference}"
+                )
+            bases = []
+            for basis_row in basis_rows:
+                basis_id = basis_row[0]
+                authorities = tuple(
+                    row[0]
+                    for row in active.execute(
+                        "SELECT authority.authority_reference_id "
+                        "FROM basis_authority AS trace "
+                        "JOIN authority_reference AS authority "
+                        "ON authority.authority_reference_id = trace.authority_reference_id "
+                        "WHERE trace.basis_id = ? ORDER BY authority.authority_reference_id",
+                        (basis_id,),
+                    ).fetchall()
+                )
+                evidence = tuple(
+                    row[0]
+                    for row in active.execute(
+                        "SELECT evidence.evidence_reference_id "
+                        "FROM basis_evidence AS trace "
+                        "JOIN evidence_reference AS evidence "
+                        "ON evidence.evidence_reference_id = trace.evidence_reference_id "
+                        "WHERE trace.basis_id = ? ORDER BY evidence.evidence_reference_id",
+                        (basis_id,),
+                    ).fetchall()
+                )
+                if not authorities or not evidence:
+                    raise GovernedReferenceError(
+                        f"Authorization basis com cadeia quebrada: {basis_id}"
+                    )
+                bases.append(
+                    AuthorizationBasisResolution(basis_id, authorities, evidence)
+                )
+        return APSMemberAuthorizationResolution(
+            reference,
+            parameter_reference,
+            tuple(bases),
+        )
+
+    def insert_measurement(self, measurement, connection):
+        if connection is None:
+            raise ValueError("Measurement insert requires an active transaction.")
+        connection.execute(
+            "INSERT INTO governed_measurement "
+            "(measurement_id, point_id, context_revision_id, aps_set_id, aps_version, "
+            "parameter_reference, value, measured_at, registered_at, provenance) "
+            "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+            (
+                measurement.measurement_id,
+                measurement.point_id,
+                measurement.context_revision_id,
+                measurement.aps_set_id,
+                measurement.aps_version,
+                measurement.parameter_reference,
+                measurement.value,
+                measurement.measured_at,
+                measurement.registered_at,
+                measurement.provenance,
+            ),
+        )
+
+    def fetch_measurement(self, measurement_id, connection=None):
+        with self._optional_connection(connection) as active:
+            row = active.execute(
+                "SELECT measurement_id, point_id, context_revision_id, aps_set_id, "
+                "aps_version, parameter_reference, value, measured_at, registered_at, "
+                "provenance FROM governed_measurement WHERE measurement_id = ?",
+                (measurement_id,),
+            ).fetchone()
+        if row is None:
+            raise GovernedReferenceError(
+                f"Medicao governada nao resolvivel: {measurement_id}"
+            )
+        return GovernedMeasurement(*row)
+
     def _connect(self):
         connection = sqlite3.connect(self.path)
         connection.execute("PRAGMA foreign_keys = ON")
@@ -200,13 +309,18 @@ class GovernedCoreRepository:
                             f"Checksum de migracao divergente: {migration.name}"
                         )
                     continue
-            connection.executescript(sql)
-            connection.execute(
-                "INSERT INTO schema_migration(migration_id, checksum, applied_at) VALUES (?, ?, ?)",
-                (migration.name, checksum, _now()),
-            )
-            connection.execute(f"PRAGMA user_version = {int(migration.name[:3])}")
-            connection.commit()
+            try:
+                connection.executescript("BEGIN IMMEDIATE;\n" + sql)
+                connection.execute(
+                    "INSERT INTO schema_migration(migration_id, checksum, applied_at) "
+                    "VALUES (?, ?, ?)",
+                    (migration.name, checksum, _now()),
+                )
+                connection.execute(f"PRAGMA user_version = {int(migration.name[:3])}")
+                connection.commit()
+            except Exception:
+                connection.rollback()
+                raise
 
     def _validate_active_points(self, connection):
         invalid = connection.execute(

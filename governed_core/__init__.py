@@ -1,6 +1,14 @@
 """DFA-02 governed Core V1 public contracts."""
 
 from .identifiers import IdentifierFactory
+from .measurement_models import (
+    APSMemberAuthorizationResolution,
+    AuthorizationBasisResolution,
+    DataProvenance,
+    GovernedMeasurement,
+    GovernedMeasurementRequest,
+)
+from .measurement_service import GovernedMeasurementService
 from .models import (
     APSReference,
     APSVersionDraft,
@@ -19,7 +27,13 @@ __all__ = [
     "APSVersionDraft",
     "ApplicabilityService",
     "AuthorizationBasisDraft",
+    "AuthorizationBasisResolution",
+    "APSMemberAuthorizationResolution",
+    "DataProvenance",
     "GovernedCoreRepository",
+    "GovernedMeasurement",
+    "GovernedMeasurementRequest",
+    "GovernedMeasurementService",
     "GovernedMonitoringPoint",
     "GovernanceAction",
     "IdentifierFactory",

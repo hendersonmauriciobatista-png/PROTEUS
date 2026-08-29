@@ -1,6 +1,7 @@
 """Fail-safe resolution of approved governed reference chains."""
 
 from .repository import GovernedReferenceError
+from .models import PointStatus
 
 
 class GovernedReferenceResolver:
@@ -11,6 +12,13 @@ class GovernedReferenceResolver:
         return self.repository.fetch_current_context(point_id, connection)
 
     def resolve_operational_aps(self, point_id, connection=None):
+        _context, reference = self.resolve_operational_references(point_id, connection)
+        return reference
+
+    def resolve_operational_references(self, point_id, connection=None):
+        point = self.repository.fetch_point(point_id, connection)
+        if point.status != PointStatus.ACTIVE.value:
+            raise GovernedReferenceError(f"Ponto inativo para uso operacional: {point_id}")
         context = self.resolve_point_context(point_id, connection)
         reference = self.repository.fetch_applicable_aps(
             context.context_revision_id,
@@ -26,4 +34,4 @@ class GovernedReferenceResolver:
                 "Versao APS bloqueada por disqualification nao resolvida: "
                 + ", ".join(unresolved)
             )
-        return reference
+        return context, reference

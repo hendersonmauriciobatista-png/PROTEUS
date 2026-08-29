@@ -12,6 +12,7 @@ class IdentifierFactory:
         "event": "gev",
         "authority": "aut",
         "evidence": "evi",
+        "measurement": "mea",
     }
 
     def new(self, kind):
