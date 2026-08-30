@@ -41,6 +41,7 @@ class GovernedMonitoringPoint:
     display_name: str
     status: str
     current_context_revision_id: str | None = None
+    external_station_reference: str | None = None
 
 
 @dataclass(frozen=True)

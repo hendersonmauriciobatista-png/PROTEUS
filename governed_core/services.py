@@ -1,5 +1,6 @@
 """Transactional application services for DFA-02 governed Core V1."""
 
+from contextlib import contextmanager
 from datetime import datetime, timezone
 
 from .identifiers import IdentifierFactory
@@ -32,20 +33,25 @@ class PointContextService:
         actor_reference,
         geo_reference=None,
         status=PointStatus.ACTIVE.value,
+        external_station_reference=None,
+        connection=None,
     ):
         self._validate_context_values(purpose, water_context, point_type)
         self._validate_point_input(project_reference, display_name, status, actor_reference)
+        if external_station_reference is not None and not external_station_reference.strip():
+            raise ValueError("Referencia externa da estacao deve ser nao vazia.")
         point_id = self.identifiers.new("point")
         revision_id = self.identifiers.new("context_revision")
         now = _now()
-        with self.repository.transaction() as connection:
-            connection.execute(
+        with _operation(self.repository, connection) as active:
+            active.execute(
                 "INSERT INTO governed_monitoring_point "
-                "(point_id, project_reference, display_name, status, current_context_revision_id) "
-                "VALUES (?, ?, ?, 'INACTIVE', NULL)",
-                (point_id, project_reference, display_name),
+                "(point_id, project_reference, display_name, status, "
+                "current_context_revision_id, external_station_reference) "
+                "VALUES (?, ?, ?, 'INACTIVE', NULL, ?)",
+                (point_id, project_reference, display_name, external_station_reference),
             )
-            connection.execute(
+            active.execute(
                 "INSERT INTO point_context_revision "
                 "(context_revision_id, point_id, revision, purpose, water_context, "
                 "point_type, geo_reference, created_at) VALUES (?, ?, 1, ?, ?, ?, ?, ?)",
@@ -59,18 +65,18 @@ class PointContextService:
                     now,
                 ),
             )
-            connection.execute(
+            active.execute(
                 "UPDATE governed_monitoring_point SET status = ?, "
                 "current_context_revision_id = ? WHERE point_id = ?",
                 (status, revision_id, point_id),
             )
             self._insert_context_event(
-                connection,
+                active,
                 actor_reference,
                 previous_context_revision_id=None,
                 new_context_revision_id=revision_id,
             )
-        return self.repository.fetch_point(point_id)
+        return self.repository.fetch_point(point_id, connection)
 
     def create_context_revision(
         self,
@@ -185,11 +191,11 @@ class APSService:
         self.repository = repository
         self.identifiers = identifiers or IdentifierFactory()
 
-    def register_authority_reference(self, locator, content_hash=None):
-        return self._register_reference("authority", locator, content_hash)
+    def register_authority_reference(self, locator, content_hash=None, connection=None):
+        return self._register_reference("authority", locator, content_hash, connection)
 
-    def register_evidence_reference(self, locator, content_hash=None):
-        return self._register_reference("evidence", locator, content_hash)
+    def register_evidence_reference(self, locator, content_hash=None, connection=None):
+        return self._register_reference("evidence", locator, content_hash, connection)
 
     def make_basis(self, authority_references, evidence_references, member_references):
         return AuthorizationBasisDraft(
@@ -205,6 +211,7 @@ class APSService:
         parameter_references,
         bases,
         set_id=None,
+        connection=None,
     ):
         parameters = tuple(dict.fromkeys(parameter_references))
         bases = tuple(bases)
@@ -213,62 +220,62 @@ class APSService:
         if not bases:
             raise GovernedConflictError("Versao APS exige authorization basis.")
         set_id = set_id or self.identifiers.new("aps")
-        with self.repository.transaction() as connection:
-            self.repository.fetch_context_revision(context_revision_id, connection)
-            current = connection.execute(
+        with _operation(self.repository, connection) as active:
+            self.repository.fetch_context_revision(context_revision_id, active)
+            current = active.execute(
                 "SELECT MAX(version) FROM aps_version WHERE set_id = ?",
                 (set_id,),
             ).fetchone()[0]
             version = 1 if current is None else current + 1
             if current is None:
-                connection.execute(
+                active.execute(
                     "INSERT INTO authorized_parameter_set(set_id) VALUES (?)",
                     (set_id,),
                 )
-            self._validate_basis_inputs(connection, parameters, bases)
-            connection.execute(
+            self._validate_basis_inputs(active, parameters, bases)
+            active.execute(
                 "INSERT INTO aps_version(set_id, version, context_revision_id) VALUES (?, ?, ?)",
                 (set_id, version, context_revision_id),
             )
             for parameter in parameters:
-                connection.execute(
+                active.execute(
                     "INSERT INTO aps_member(set_id, version, parameter_reference) "
                     "VALUES (?, ?, ?)",
                     (set_id, version, parameter),
                 )
             for basis in bases:
-                connection.execute(
+                active.execute(
                     "INSERT INTO authorization_basis(basis_id, set_id, version) VALUES (?, ?, ?)",
                     (basis.basis_id, set_id, version),
                 )
                 for authority_id in basis.authority_references:
-                    connection.execute(
+                    active.execute(
                         "INSERT INTO basis_authority(basis_id, authority_reference_id) VALUES (?, ?)",
                         (basis.basis_id, authority_id),
                     )
                 for evidence_id in basis.evidence_references:
-                    connection.execute(
+                    active.execute(
                         "INSERT INTO basis_evidence(basis_id, evidence_reference_id) VALUES (?, ?)",
                         (basis.basis_id, evidence_id),
                     )
                 for parameter in basis.member_references:
-                    connection.execute(
+                    active.execute(
                         "INSERT INTO member_authorization_basis "
                         "(set_id, version, parameter_reference, basis_id) VALUES (?, ?, ?, ?)",
                         (set_id, version, parameter, basis.basis_id),
                     )
             reference = APSReference(set_id, version)
-            self.repository.validate_authorization_chain(reference, connection)
+            self.repository.validate_authorization_chain(reference, active)
         return reference
 
-    def _register_reference(self, kind, locator, content_hash):
+    def _register_reference(self, kind, locator, content_hash, connection=None):
         if not locator or not locator.strip():
             raise ValueError("Locator de referencia e obrigatorio.")
         reference_id = self.identifiers.new(kind)
         table = f"{kind}_reference"
         id_column = f"{kind}_reference_id"
-        with self.repository.transaction() as connection:
-            connection.execute(
+        with _operation(self.repository, connection) as active:
+            active.execute(
                 f"INSERT INTO {table}({id_column}, locator, content_hash) VALUES (?, ?, ?)",
                 (reference_id, locator, content_hash),
             )
@@ -317,14 +324,14 @@ class ApplicabilityService:
         self.identifiers = identifiers or IdentifierFactory()
         self.resolver = GovernedReferenceResolver(repository)
 
-    def assign(self, context_revision_id, reference, actor_reference):
+    def assign(self, context_revision_id, reference, actor_reference, connection=None):
         self._require_actor(actor_reference)
-        with self.repository.transaction() as connection:
-            self.repository.fetch_context_revision(context_revision_id, connection)
-            target_context = self.repository.fetch_aps_version(reference, connection)
+        with _operation(self.repository, connection) as active:
+            self.repository.fetch_context_revision(context_revision_id, active)
+            target_context = self.repository.fetch_aps_version(reference, active)
             if target_context != context_revision_id:
                 raise GovernedReferenceError("APS e contexto da applicability nao coincidem.")
-            previous_row = connection.execute(
+            previous_row = active.execute(
                 "SELECT set_id, version FROM aps_applicability WHERE context_revision_id = ?",
                 (context_revision_id,),
             ).fetchone()
@@ -333,20 +340,20 @@ class ApplicabilityService:
                 return previous
             if previous is None:
                 action = GovernanceAction.APPLICABILITY_ASSIGNED.value
-                connection.execute(
+                active.execute(
                     "INSERT INTO aps_applicability(context_revision_id, set_id, version) "
                     "VALUES (?, ?, ?)",
                     (context_revision_id, reference.set_id, reference.version),
                 )
             else:
                 action = GovernanceAction.APPLICABILITY_CHANGED.value
-                connection.execute(
+                active.execute(
                     "UPDATE aps_applicability SET set_id = ?, version = ? "
                     "WHERE context_revision_id = ?",
                     (reference.set_id, reference.version, context_revision_id),
                 )
             self._insert_event(
-                connection,
+                active,
                 action,
                 actor_reference,
                 context_revision_id=context_revision_id,
@@ -473,3 +480,12 @@ class ApplicabilityService:
 
 def _now():
     return datetime.now(timezone.utc).isoformat(timespec="seconds")
+
+
+@contextmanager
+def _operation(repository, connection):
+    if connection is not None:
+        yield connection
+        return
+    with repository.transaction() as active:
+        yield active

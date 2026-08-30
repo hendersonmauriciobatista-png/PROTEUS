@@ -1,6 +1,10 @@
 """DFA-02 governed Core V1 public contracts."""
 
 from .identifiers import IdentifierFactory
+from .first_real_aps_bootstrap import (
+    FirstRealAPSBootstrap,
+    FirstRealAPSBootstrapResult,
+)
 from .measurement_models import (
     APSMemberAuthorizationResolution,
     AuthorizationBasisResolution,
@@ -30,6 +34,8 @@ __all__ = [
     "AuthorizationBasisResolution",
     "APSMemberAuthorizationResolution",
     "DataProvenance",
+    "FirstRealAPSBootstrap",
+    "FirstRealAPSBootstrapResult",
     "GovernedCoreRepository",
     "GovernedMeasurement",
     "GovernedMeasurementRequest",

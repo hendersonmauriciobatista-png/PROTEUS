@@ -64,12 +64,34 @@ class GovernedCoreRepository:
         with self._optional_connection(connection) as active:
             row = active.execute(
                 "SELECT point_id, project_reference, display_name, status, "
-                "current_context_revision_id FROM governed_monitoring_point WHERE point_id = ?",
+                "current_context_revision_id, external_station_reference "
+                "FROM governed_monitoring_point WHERE point_id = ?",
                 (point_id,),
             ).fetchone()
         if row is None:
             raise GovernedReferenceError(f"Ponto governado nao resolvivel: {point_id}")
         return GovernedMonitoringPoint(*row)
+
+    def fetch_point_by_external_reference(
+        self, project_reference, external_station_reference, connection=None
+    ):
+        if not external_station_reference or not external_station_reference.strip():
+            raise ValueError("Referencia externa da estacao deve ser nao vazia.")
+        with self._optional_connection(connection) as active:
+            rows = active.execute(
+                "SELECT point_id, project_reference, display_name, status, "
+                "current_context_revision_id, external_station_reference "
+                "FROM governed_monitoring_point "
+                "WHERE project_reference = ? AND external_station_reference = ?",
+                (project_reference, external_station_reference),
+            ).fetchall()
+        if not rows:
+            return None
+        if len(rows) != 1:
+            raise GovernedConflictError(
+                "Referencia externa da estacao nao e univoca no projeto."
+            )
+        return GovernedMonitoringPoint(*rows[0])
 
     def fetch_context_revision(self, context_revision_id, connection=None):
         with self._optional_connection(connection) as active:
