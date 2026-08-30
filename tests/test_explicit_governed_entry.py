@@ -1,14 +1,23 @@
 import tempfile
 import unittest
+import os
 from datetime import datetime, timezone
 from pathlib import Path
+
+os.environ.setdefault("QT_QPA_PLATFORM", "offscreen")
+from PyQt5.QtWidgets import QApplication
 
 from governed_core.entry_application import ExplicitGovernedEntryService
 from governed_core.first_real_aps_bootstrap import FirstRealAPSBootstrap
 from governed_core.repository import GovernedCoreRepository, GovernedReferenceError
+from governed_entry_page import GovernedEntryPage
 
 
 class ExplicitGovernedEntryTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.qt_app = QApplication.instance() or QApplication([])
+
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory()
         self.repository = GovernedCoreRepository(Path(self.temp.name) / "entry.sqlite3").initialize()
@@ -57,6 +66,40 @@ class ExplicitGovernedEntryTests(unittest.TestCase):
     def test_no_point_selection_is_not_accepted(self):
         with self.assertRaises(GovernedReferenceError):
             self.service.canonical_parameters("pnt_missing")
+
+    def test_real_qt_page_submission_with_three_member_aps(self):
+        page = GovernedEntryPage(repository=self.repository)
+        self.assertEqual(
+            [None, self.state.point_id],
+            [page.point_input.itemData(index) for index in range(page.point_input.count())],
+        )
+        self.assertEqual(
+            [None],
+            [page.parameter_input.itemData(index) for index in range(page.parameter_input.count())],
+        )
+        self.assertFalse(page.save_button.isEnabled())
+
+        page.point_input.setCurrentIndex(1)
+        self.assertEqual(
+            [None, "PH", "TURBIDITY", "DISSOLVED_OXYGEN"],
+            [page.parameter_input.itemData(index) for index in range(page.parameter_input.count())],
+        )
+        self.assertFalse(page.parameter_input.currentData())
+        page.parameter_input.setCurrentIndex(1)
+        page.value_input.setText("7.2")
+        page.measured_at_input.setText("2026-08-30T12:00:00-03:00")
+        self.assertEqual("MANUAL_ENTRY (obrigatório e explícito)", page.provenance.text())
+        self.assertTrue(page.save_button.isEnabled())
+
+        page.submit()
+
+        self.assertEqual(1, self.count("governed_measurement"))
+        self.assertIn("Receipt governado:", page.receipt.text())
+        self.assertIn("Point={}".format(self.state.point_id), page.receipt.text())
+        self.assertIn("Parameter=PH", page.receipt.text())
+        self.assertIn("Measured_at=", page.receipt.text())
+        self.assertIn("Registered_at=", page.receipt.text())
+        self.assertIn("Provenance=MANUAL_ENTRY", page.receipt.text())
 
 
 if __name__ == "__main__":
