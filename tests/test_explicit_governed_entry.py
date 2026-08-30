@@ -39,8 +39,19 @@ class ExplicitGovernedEntryTests(unittest.TestCase):
         before = self.count("governed_measurement")
         with self.assertRaises(ValueError):
             self.service.submit(self.state.point_id, "PH", 7.2, datetime(2026, 8, 30, 12, 0))
-        with self.assertRaises(GovernedReferenceError):
+        with self.assertRaises(ValueError):
             self.service.submit(self.state.point_id, "TEMPERATURE", 20.0, datetime.now(timezone.utc))
+        self.assertEqual(before, self.count("governed_measurement"))
+
+    def test_application_seam_rejects_non_canonical_parameter(self):
+        before = self.count("governed_measurement")
+        with self.assertRaises(ValueError):
+            self.service.submit(
+                self.state.point_id,
+                "TEMPERATURE",
+                20.0,
+                datetime(2026, 8, 30, 12, 0, tzinfo=timezone.utc),
+            )
         self.assertEqual(before, self.count("governed_measurement"))
 
     def test_no_point_selection_is_not_accepted(self):

@@ -30,6 +30,8 @@ class ExplicitGovernedEntryService:
         return tuple(parameter for parameter in CANONICAL_APS_PARAMETERS if parameter in available)
 
     def submit(self, point_id, parameter_reference, value, measured_at):
+        if parameter_reference not in CANONICAL_APS_PARAMETERS:
+            raise ValueError("Parametro fora do conjunto APS canonico.")
         if not isinstance(measured_at, datetime) or measured_at.tzinfo is None:
             raise ValueError("Measured_at timezone-aware explicito e obrigatorio.")
         return self.measurements.accept(

@@ -17,8 +17,11 @@ class GovernedEntryPage(QWidget):
         self.point_input.currentIndexChanged.connect(self._load_parameters)
         self.parameter_input = QComboBox()
         self.parameter_input.addItem("Selecione um parâmetro APS", None)
+        self.parameter_input.currentIndexChanged.connect(lambda _index: self._update_submit_state())
         self.value_input = QLineEdit()
+        self.value_input.textChanged.connect(lambda _text: self._update_submit_state())
         self.measured_at_input = QLineEdit()
+        self.measured_at_input.textChanged.connect(lambda _text: self._update_submit_state())
         self.measured_at_input.setPlaceholderText("AAAA-MM-DDTHH:MM:SS-03:00")
         self.provenance = QLabel("MANUAL_ENTRY (obrigatório e explícito)")
         self.save_button = QPushButton("Registrar medição governada")
@@ -45,6 +48,14 @@ class GovernedEntryPage(QWidget):
         self.parameter_input.addItem("Selecione um parâmetro APS", None)
         self.save_button.setEnabled(False)
 
+    def _update_submit_state(self):
+        self.save_button.setEnabled(
+            bool(self.point_input.currentData())
+            and bool(self.parameter_input.currentData())
+            and bool(self.value_input.text().strip())
+            and bool(self.measured_at_input.text().strip())
+        )
+
     def _load_parameters(self, index):
         self.parameter_input.clear()
         self.parameter_input.addItem("Selecione um parâmetro APS", None)
@@ -54,7 +65,7 @@ class GovernedEntryPage(QWidget):
         try:
             for parameter in self.entry_service.canonical_parameters(point_id):
                 self.parameter_input.addItem(parameter, parameter)
-            self.save_button.setEnabled(self.parameter_input.count() == 2)
+            self._update_submit_state()
         except Exception as error:
             QMessageBox.critical(self, "Ponto não resolvível", str(error))
 
