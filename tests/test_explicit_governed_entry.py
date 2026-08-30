@@ -68,6 +68,9 @@ class ExplicitGovernedEntryTests(unittest.TestCase):
             self.service.canonical_parameters("pnt_missing")
 
     def test_real_qt_page_submission_with_three_member_aps(self):
+        legacy_path = Path(self.temp.name) / "legacy.csv"
+        legacy_bytes = b"timestamp,ph\nlegacy,7.0\n"
+        legacy_path.write_bytes(legacy_bytes)
         page = GovernedEntryPage(repository=self.repository)
         self.assertEqual(
             [None, self.state.point_id],
@@ -100,6 +103,7 @@ class ExplicitGovernedEntryTests(unittest.TestCase):
         self.assertIn("Measured_at=", page.receipt.text())
         self.assertIn("Registered_at=", page.receipt.text())
         self.assertIn("Provenance=MANUAL_ENTRY", page.receipt.text())
+        self.assertEqual(legacy_bytes, legacy_path.read_bytes())
 
 
 if __name__ == "__main__":
