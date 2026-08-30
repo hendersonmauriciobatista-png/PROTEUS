@@ -93,6 +93,16 @@ class GovernedCoreRepository:
             )
         return GovernedMonitoringPoint(*rows[0])
 
+    def list_active_points(self, connection=None):
+        with self._optional_connection(connection) as active:
+            rows = active.execute(
+                "SELECT point_id, project_reference, display_name, status, "
+                "current_context_revision_id, external_station_reference "
+                "FROM governed_monitoring_point WHERE status = 'ACTIVE' "
+                "ORDER BY project_reference, point_id"
+            ).fetchall()
+        return tuple(GovernedMonitoringPoint(*row) for row in rows)
+
     def fetch_context_revision(self, context_revision_id, connection=None):
         with self._optional_connection(connection) as active:
             row = active.execute(

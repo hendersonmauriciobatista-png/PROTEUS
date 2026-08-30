@@ -5,6 +5,7 @@ from .first_real_aps_bootstrap import (
     FirstRealAPSBootstrap,
     FirstRealAPSBootstrapResult,
 )
+from .entry_application import ExplicitGovernedEntryService
 from .measurement_models import (
     APSMemberAuthorizationResolution,
     AuthorizationBasisResolution,
@@ -36,6 +37,7 @@ __all__ = [
     "DataProvenance",
     "FirstRealAPSBootstrap",
     "FirstRealAPSBootstrapResult",
+    "ExplicitGovernedEntryService",
     "GovernedCoreRepository",
     "GovernedMeasurement",
     "GovernedMeasurementRequest",
