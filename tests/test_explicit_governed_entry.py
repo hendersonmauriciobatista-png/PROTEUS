@@ -107,7 +107,10 @@ class ExplicitGovernedEntryTests(unittest.TestCase):
         page.point_input.setCurrentIndex(0)
         page.point_input.setCurrentIndex(1)
         self.assertIn("Histórico governado", page.history.text())
-        self.assertIn(receipt.measurement_id, page.history.text())
+        self.assertIn(
+            self.service.governed_history(self.state.point_id)[0].measurement_id,
+            page.history.text(),
+        )
 
 
 if __name__ == "__main__":
