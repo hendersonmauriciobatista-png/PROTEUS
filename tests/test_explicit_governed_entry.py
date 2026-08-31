@@ -104,8 +104,7 @@ class ExplicitGovernedEntryTests(unittest.TestCase):
         self.assertIn("Registered_at=", page.receipt.text())
         self.assertIn("Provenance=MANUAL_ENTRY", page.receipt.text())
         self.assertEqual(legacy_bytes, legacy_path.read_bytes())
-        page.point_input.setCurrentIndex(0)
-        page.point_input.setCurrentIndex(1)
+        self.assertEqual(self.state.point_id, page.point_input.currentData())
         self.assertIn("Histórico governado", page.history.text())
         self.assertIn(
             self.service.governed_history(self.state.point_id)[0].measurement_id,
