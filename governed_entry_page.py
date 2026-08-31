@@ -36,6 +36,9 @@ class GovernedEntryPage(QWidget):
         self.receipt = QLabel("Nenhum receipt governado nesta sessão.")
         self.receipt.setWordWrap(True)
         layout.addWidget(self.receipt)
+        self.history = QLabel()
+        self.history.setWordWrap(True)
+        layout.addWidget(self.history)
         self.refresh()
 
     def refresh(self):
@@ -47,6 +50,7 @@ class GovernedEntryPage(QWidget):
         self.parameter_input.clear()
         self.parameter_input.addItem("Selecione um parâmetro APS", None)
         self.save_button.setEnabled(False)
+        self.history.setText("Selecione um ponto para consultar o histórico governado.")
 
     def _update_submit_state(self):
         self.save_button.setEnabled(
@@ -66,8 +70,24 @@ class GovernedEntryPage(QWidget):
             for parameter in self.entry_service.canonical_parameters(point_id):
                 self.parameter_input.addItem(parameter, parameter)
             self._update_submit_state()
+            self._render_history(point_id)
         except Exception as error:
             QMessageBox.critical(self, "Ponto não resolvível", str(error))
+
+    def _render_history(self, point_id):
+        rows = self.entry_service.governed_history(point_id)
+        if not rows:
+            self.history.setText("Nenhuma medição governada registrada para este ponto.")
+            return
+        lines = ["Histórico governado (mais recente primeiro)"]
+        for row in rows:
+            lines.append(
+                "{} | {} | {} | measured_at={} | registered_at={} | provenance={}".format(
+                    row.measurement_id, row.parameter_reference, row.value,
+                    row.measured_at, row.registered_at, row.provenance,
+                )
+            )
+        self.history.setText(chr(10).join(lines))
 
     def submit(self):
         point_id, parameter = self.point_input.currentData(), self.parameter_input.currentData()

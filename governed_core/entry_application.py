@@ -43,3 +43,6 @@ class ExplicitGovernedEntryService:
                 provenance=DataProvenance.MANUAL_ENTRY,
             )
         )
+
+    def governed_history(self, point_id):
+        return self.repository.list_measurements_by_point(point_id)

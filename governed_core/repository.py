@@ -303,6 +303,18 @@ class GovernedCoreRepository:
             )
         return GovernedMeasurement(*row)
 
+    def list_measurements_by_point(self, point_id, connection=None):
+        self.fetch_point(point_id, connection)
+        with self._optional_connection(connection) as active:
+            rows = active.execute(
+                "SELECT measurement_id, point_id, context_revision_id, aps_set_id, "
+                "aps_version, parameter_reference, value, measured_at, registered_at, provenance "
+                "FROM governed_measurement WHERE point_id = ? "
+                "ORDER BY measured_at DESC, registered_at DESC, measurement_id DESC",
+                (point_id,),
+            ).fetchall()
+        return tuple(GovernedMeasurement(*row) for row in rows)
+
     def _connect(self):
         connection = sqlite3.connect(self.path)
         connection.execute("PRAGMA foreign_keys = ON")
