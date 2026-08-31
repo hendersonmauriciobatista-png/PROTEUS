@@ -75,3 +75,21 @@ This section is distinct from the retrospective findings above. It records one p
 - F09 (child traceability differs from parent-authority traceability): **SUPPORTED**
 
 The cycle does not demonstrate auditor independence, causality or generalization. KCP-01 remains `EXPERIMENTALLY_SUPPORTED_CANDIDATE`; no methodology or ICFACTORY promotion is made.
+
+## Two-cycle prospective comparison
+
+This section compares two distinct prospective problem classes and is separate from the retrospective record above.
+
+| Property | Cycle A — DFA-02 | Cycle B — D-02 |
+|---|---|---|
+| Authority before T0 | Supported | Supported |
+| Predeclared criteria/falsification | Supported | Supported |
+| Temporal traceability | Supported | Supported |
+| T0 immutability | Supported | Supported |
+| Result alignment | Supported | Supported |
+| Failure history preserved | Not applicable | T3 FAIL → T4 evidence → T5 PASS |
+| Unauthorized scope expansion | None observed | None observed |
+
+Cycle B provides supported enforcement evidence: its initial T3 result was `FAIL — C2 NOT DEMONSTRATED`; only after isolated clean-install evidence did T5 pass. This demonstrates evidence-gating value, not methodological authority.
+
+F09 remains **SUPPORTED**: child/evidence traceability is distinct from parent authority traceability. KCP-01 remains `EXPERIMENTALLY_SUPPORTED_CANDIDATE`. Causality, generalization and auditor independence remain **NOT DEMONSTRATED**. Two cycles are not generalization, replication is not causality, and audit records are not proof of auditor independence. Promotion is **NO**.
