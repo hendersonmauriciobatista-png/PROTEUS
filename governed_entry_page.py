@@ -103,3 +103,4 @@ class GovernedEntryPage(QWidget):
             QMessageBox.critical(self, "Registro rejeitado", "Falha sem validação técnica: {}".format(error))
             return
         self.receipt.setText("Receipt governado: {} | Point={} | Parameter={} | Value={} | Measured_at={} | Registered_at={} | Provenance={}".format(receipt.measurement_id, receipt.point_id, receipt.parameter_reference, receipt.value, receipt.measured_at, receipt.registered_at, receipt.provenance))
+        self._render_history(point_id)
