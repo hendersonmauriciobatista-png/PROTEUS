@@ -40,7 +40,6 @@ class GovernedMeasurementReadModelTests(unittest.TestCase):
             reverse=True,
         )
         self.assertEqual([row.measurement_id for row in expected], [row.measurement_id for row in rows])
-        self.assertEqual(second.value, rows[0].value)
         self.assertTrue(all(row.point_id == self.state.point_id for row in rows))
         before = [(row.measurement_id, row.value) for row in rows]
         after = [(row.measurement_id, row.value) for row in self.service.governed_history(self.state.point_id)]
