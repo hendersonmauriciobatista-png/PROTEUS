@@ -319,7 +319,14 @@ class GovernedCoreRepository:
         return tuple(GovernedMeasurement(*row) for row in rows)
 
     def insert_evaluation(self, evaluation, connection):
-        connection.execute("INSERT INTO governed_evaluation VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", tuple(evaluation.__dict__.values()))
+        connection.execute(
+            "INSERT INTO governed_evaluation ("
+            "evaluation_id, measurement_id, parameter_reference, status, message, "
+            "rule_origin, evaluated_at, registered_at, evaluation_engine, "
+            "evaluation_engine_version, explanation_data"
+            ") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+            tuple(evaluation.__dict__.values()),
+        )
 
     def list_evaluations_by_measurement(self, measurement_id, connection=None):
         with self._optional_connection(connection) as active:

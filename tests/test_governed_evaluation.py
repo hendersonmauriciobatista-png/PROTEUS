@@ -92,6 +92,37 @@ class GovernedEvaluationTests(unittest.TestCase):
         with self.repository._optional_connection(None) as connection:
             self.assertEqual(2, connection.execute("SELECT COUNT(*) FROM governance_event").fetchone()[0])
 
+    def test_persistence_is_compatible_with_nullable_trailing_columns(self):
+        item = self.record(explanation_data={"fixture": "nullable-extension"})
+        rows = self.repository.list_evaluations_by_measurement(self.measurement.measurement_id)
+        self.assertEqual((item,), rows)
+        with self.repository._optional_connection(None) as connection:
+            columns = {
+                row[1] for row in connection.execute("PRAGMA table_info(governed_evaluation)")
+            }
+            self.assertTrue(
+                {
+                    "rule_id",
+                    "rule_version",
+                    "rule_payload_hash",
+                    "authority_reference_ids",
+                    "evidence_reference_ids",
+                    "context_revision_id",
+                    "aps_set_id",
+                    "aps_version",
+                }.issubset(columns)
+            )
+            self.assertEqual(
+                (None,) * 8,
+                connection.execute(
+                    "SELECT rule_id, rule_version, rule_payload_hash, "
+                    "authority_reference_ids, evidence_reference_ids, "
+                    "context_revision_id, aps_set_id, aps_version "
+                    "FROM governed_evaluation WHERE evaluation_id = ?",
+                    (item.evaluation_id,),
+                ).fetchone(),
+            )
+
 
 if __name__ == "__main__":
     unittest.main()
