@@ -80,6 +80,21 @@ class B3RuleCoreTests(unittest.TestCase):
         result = RuleResolutionService(BrokenRepository()).resolve("c", "p", datetime(2026, 1, 1, tzinfo=timezone.utc))
         self.assertEqual("BLOCKED", result.state)
 
+    def test_missing_concrete_authority_or_evidence_blocks(self):
+        class BrokenRepository:
+            def fetch_rules(self, *_):
+                from governed_core.rule_models import GovernedRule
+                return (GovernedRule("broken", 1, "p", "c", "2026-01-01", None, "o", "{}", "h", ("missing-a",), ("missing-e",)),)
+            def _optional_connection(self, *_):
+                class C:
+                    def __enter__(self): return self
+                    def __exit__(self, *args): pass
+                    def execute(self, *_): return self
+                    def fetchone(self): return None
+                return C()
+        result = RuleResolutionService(BrokenRepository()).resolve("c", "p", datetime(2026, 1, 1, tzinfo=timezone.utc))
+        self.assertEqual("BLOCKED", result.state)
+
     def test_rule_is_immutable(self):
         rule = self._create({"operator": "EQUALS", "value": "1"})
         with self.repo.transaction() as cx:

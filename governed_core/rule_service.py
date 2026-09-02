@@ -33,6 +33,16 @@ class RuleResolutionService:
         rule = rows[0]
         if not rule.authority_reference_ids or not rule.evidence_reference_ids:
             return RuleResolution("BLOCKED", reason="BROKEN_AUTHORITY_EVIDENCE_CHAIN")
+        for reference_id in rule.authority_reference_ids:
+            with self.repository._optional_connection(None) as connection:
+                exists = connection.execute("SELECT 1 FROM authority_reference WHERE authority_reference_id = ?", (reference_id,)).fetchone()
+            if exists is None:
+                return RuleResolution("BLOCKED", reason="MISSING_AUTHORITY_REFERENCE")
+        for reference_id in rule.evidence_reference_ids:
+            with self.repository._optional_connection(None) as connection:
+                exists = connection.execute("SELECT 1 FROM evidence_reference WHERE evidence_reference_id = ?", (reference_id,)).fetchone()
+            if exists is None:
+                return RuleResolution("BLOCKED", reason="MISSING_EVIDENCE_REFERENCE")
         return RuleResolution("RESOLVED", rule)
 
 class RuleService:
