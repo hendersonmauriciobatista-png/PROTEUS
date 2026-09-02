@@ -35,3 +35,16 @@ class GovernedReferenceResolver:
                 + ", ".join(unresolved)
             )
         return context, reference
+
+    def resolve_temporal_references(self, point_id, measured_at, connection=None):
+        point = self.repository.fetch_point(point_id, connection)
+        if point.status != PointStatus.ACTIVE.value:
+            raise GovernedReferenceError(f"Ponto inativo para uso operacional: {point_id}")
+        context = self.repository.fetch_temporal_context(point_id, measured_at, connection)
+        reference = self.repository.fetch_temporal_aps(context.context_revision_id, measured_at, connection)
+        if self.repository.fetch_aps_version(reference, connection) != context.context_revision_id:
+            raise GovernedReferenceError("APS temporal pertence a outro contexto.")
+        self.repository.validate_authorization_chain(reference, connection)
+        if self.repository.unresolved_disqualification_ids(reference, connection):
+            raise GovernedReferenceError("Versao APS temporal bloqueada por disqualification nao resolvida.")
+        return context, reference

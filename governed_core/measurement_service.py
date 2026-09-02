@@ -21,21 +21,23 @@ class GovernedMeasurementService:
         self.clock = clock or (lambda: datetime.now(timezone.utc))
 
     def accept(self, request):
+        return self._accept(request, temporal=False)
+
+    def accept_temporal(self, request):
+        return self._accept(request, temporal=True)
+
+    def _accept(self, request, temporal=False):
         if not isinstance(request, GovernedMeasurementRequest):
             raise TypeError("GovernedMeasurementRequest is required.")
 
         with self.repository.transaction() as connection:
-            context, reference = self.resolver.resolve_operational_references(
-                request.point_id,
-                connection,
-            )
-            self.repository.resolve_member_authorization(
-                reference,
-                request.parameter_reference,
-                connection,
-            )
-            provenance = _validate_provenance(request.provenance)
             measured_at = serialize_utc_instant(request.measured_at)
+            if temporal:
+                context, reference = self.resolver.resolve_temporal_references(request.point_id, measured_at, connection)
+            else:
+                context, reference = self.resolver.resolve_operational_references(request.point_id, connection)
+            self.repository.resolve_member_authorization(reference, request.parameter_reference, connection)
+            provenance = _validate_provenance(request.provenance)
             value = _validate_value(request.value)
             measurement = GovernedMeasurement(
                 measurement_id=self.identifiers.new("measurement"),

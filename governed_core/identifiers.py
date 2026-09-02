@@ -15,6 +15,7 @@ class IdentifierFactory:
         "measurement": "mea",
         "evaluation": "eva",
         "aps_applicability": "apa",
+        "rule": "rul",
     }
 
     def new(self, kind):

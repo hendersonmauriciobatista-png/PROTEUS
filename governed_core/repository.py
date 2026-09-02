@@ -1,6 +1,7 @@
 """SQLite persistence boundary for governed Core V1."""
 
 import hashlib
+import json
 import sqlite3
 from contextlib import contextmanager
 from datetime import datetime, timezone
@@ -13,6 +14,7 @@ from .measurement_models import (
     GovernedEvaluation,
 )
 from .models import APSReference, GovernedMonitoringPoint, PointContextRevision
+from .rule_models import GovernedRule
 
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -337,6 +339,27 @@ class GovernedCoreRepository:
         if len(rows) != 1:
             raise GovernedReferenceError("Temporal APS resolution requires exactly one match")
         return APSReference(*rows[0])
+
+    def fetch_rules(self, context_revision_id, parameter_reference, measured_at, connection=None):
+        with self._optional_connection(connection) as active:
+            rows = active.execute(
+                "SELECT rule_id, rule_version, parameter_reference, context_revision_id, "
+                "effective_from, effective_until, origin, rule_payload, payload_hash, "
+                "authority_reference_ids, evidence_reference_ids FROM governed_rule "
+                "WHERE context_revision_id = ? AND parameter_reference = ? "
+                "AND effective_from <= ? AND (effective_until IS NULL OR ? < effective_until) "
+                "ORDER BY rule_id, rule_version",
+                (context_revision_id, parameter_reference, measured_at, measured_at),
+            ).fetchall()
+        return tuple(GovernedRule(*row[:9], tuple(json.loads(row[9])), tuple(json.loads(row[10]))) for row in rows)
+
+    def insert_rule(self, rule, connection):
+        connection.execute(
+            "INSERT INTO governed_rule VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+            (rule.rule_id, rule.rule_version, rule.parameter_reference, rule.context_revision_id,
+             rule.effective_from, rule.effective_until, rule.origin, rule.rule_payload,
+             rule.payload_hash, json.dumps(rule.authority_reference_ids), json.dumps(rule.evidence_reference_ids)),
+        )
 
     def _connect(self):
         connection = sqlite3.connect(self.path)

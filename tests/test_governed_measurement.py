@@ -60,6 +60,10 @@ class GovernedMeasurementTests(unittest.TestCase):
             self.reference,
             TEST_ACTOR,
         )
+        self.applicability.assign_temporal(
+            self.point.current_context_revision_id, self.reference,
+            datetime(2020, 1, 1, tzinfo=timezone.utc), actor_reference=TEST_ACTOR,
+        )
 
     def tearDown(self):
         self.temp_dir.cleanup()
@@ -72,6 +76,7 @@ class GovernedMeasurementTests(unittest.TestCase):
             water_context="FLOWING_SURFACE_WATER",
             point_type=point_type,
             actor_reference=TEST_ACTOR,
+            effective_from=datetime(2020, 1, 1, tzinfo=timezone.utc),
         )
 
     def _create_aps(self, context_revision_id, parameters=(TEST_PARAMETER,), set_id=None):
@@ -419,7 +424,7 @@ class GovernedMeasurementMigrationTests(unittest.TestCase):
         database = self.root / "test-data-empty.sqlite3"
         repository = GovernedCoreRepository(database).initialize()
         with repository._optional_connection(None) as connection:
-            self.assertEqual(9, connection.execute("PRAGMA user_version").fetchone()[0])
+            self.assertEqual(12, connection.execute("PRAGMA user_version").fetchone()[0])
             self.assertEqual(0, connection.execute("SELECT COUNT(*) FROM governed_measurement").fetchone()[0])
             self.assertEqual(0, connection.execute("SELECT COUNT(*) FROM governed_monitoring_point").fetchone()[0])
 

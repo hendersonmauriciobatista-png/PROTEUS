@@ -35,3 +35,31 @@ class TemporalStateService:
                 if c.execute("SELECT 1 FROM governed_measurement WHERE aps_set_id=? AND aps_version=? AND measured_at>=?", (lineage[0], lineage[1], end)).fetchone(): raise GovernedConflictError("closure invalidates history")
                 c.execute("UPDATE aps_temporal_applicability SET effective_until=? WHERE aps_applicability_id=?", (end,record_id))
             c.execute("INSERT INTO governance_event (event_id,action,actor_reference,registered_at,authorization_basis_id,decision_timestamp,affected_record_type,affected_record_id,previous_effective_until,new_effective_until,successor_record_id) VALUES (?,?,?,?,?,?,?,?,?,?,?)", (self.identifiers.new('event'),action,actor_reference,serialize_utc_instant(self.clock()),authorization_basis_id,serialize_utc_instant(self.clock()),record_type,record_id,None,end,successor))
+
+    def append_successor(self, record_type, record_id, successor, actor_reference, authorization_basis_id):
+        if record_type not in self.TYPES or not isinstance(successor, dict):
+            raise ValueError("invalid temporal successor")
+        start = successor.get("effective_from")
+        if start is None: raise ValueError("successor effective_from is required")
+        start = serialize_utc_instant(start)
+        with self.repository.transaction() as c:
+            basis = c.execute("SELECT set_id, version FROM authorization_basis WHERE basis_id=?", (authorization_basis_id,)).fetchone()
+            if basis is None: raise GovernedReferenceError("authorization basis not resolvable")
+            if record_type == "APS_TEMPORAL_APPLICABILITY":
+                row = c.execute("SELECT context_revision_id, aps_set_id, aps_version, effective_from, effective_until FROM aps_temporal_applicability WHERE aps_applicability_id=?", (record_id,)).fetchone()
+                if row is None or row[4] is not None: raise GovernedConflictError("interval is not open")
+                if (row[1], row[2]) != basis: raise GovernedConflictError("authorization basis incompatible with APS lineage")
+                ref = successor.get("reference")
+                if ref is None or self.repository.fetch_aps_version(ref, c) != row[0]: raise GovernedReferenceError("successor APS context mismatch")
+                c.execute("UPDATE aps_temporal_applicability SET effective_until=? WHERE aps_applicability_id=?", (start, record_id))
+                successor_id = self.identifiers.new("aps_applicability")
+                c.execute("INSERT INTO aps_temporal_applicability VALUES (?,?,?,?,?,NULL)", (successor_id, row[0], ref.set_id, ref.version, start))
+            else:
+                row = c.execute("SELECT point_id, effective_from, effective_until FROM point_context_revision WHERE context_revision_id=?", (record_id,)).fetchone()
+                if row is None or row[2] is not None: raise GovernedConflictError("interval is not open")
+                if c.execute("SELECT set_id,version FROM aps_version WHERE context_revision_id=? ORDER BY version LIMIT 1", (record_id,)).fetchone() not in (basis, None): raise GovernedConflictError("authorization basis incompatible with context lineage")
+                successor_id = self.identifiers.new("context_revision")
+                c.execute("UPDATE point_context_revision SET effective_until=? WHERE context_revision_id=?", (start, record_id))
+                c.execute("INSERT INTO point_context_revision (context_revision_id,point_id,revision,purpose,water_context,point_type,geo_reference,created_at,effective_from) VALUES (?,?,?,?,?,?,?,?,?)", (successor_id, row[0], successor["revision"], successor["purpose"], successor["water_context"], successor["point_type"], successor.get("geo_reference"), serialize_utc_instant(self.clock()), start))
+            c.execute("INSERT INTO governance_event (event_id,action,actor_reference,registered_at,authorization_basis_id,decision_timestamp,affected_record_type,affected_record_id,previous_effective_until,new_effective_until,successor_record_id) VALUES (?,?,?,?,?,?,?,?,?,?,?)", (self.identifiers.new("event"), "CLOSE_AND_APPEND_SUCCESSOR", actor_reference, serialize_utc_instant(self.clock()), authorization_basis_id, start, record_type, record_id, None, start, successor_id))
+        return successor_id
