@@ -54,6 +54,8 @@ class PointContextRevision:
     point_type: str
     geo_reference: str | None
     created_at: str
+    effective_from: str | None = None
+    effective_until: str | None = None
 
 
 @dataclass(frozen=True)

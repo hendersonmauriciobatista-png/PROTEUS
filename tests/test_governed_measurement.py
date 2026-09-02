@@ -419,7 +419,7 @@ class GovernedMeasurementMigrationTests(unittest.TestCase):
         database = self.root / "test-data-empty.sqlite3"
         repository = GovernedCoreRepository(database).initialize()
         with repository._optional_connection(None) as connection:
-            self.assertEqual(5, connection.execute("PRAGMA user_version").fetchone()[0])
+            self.assertEqual(9, connection.execute("PRAGMA user_version").fetchone()[0])
             self.assertEqual(0, connection.execute("SELECT COUNT(*) FROM governed_measurement").fetchone()[0])
             self.assertEqual(0, connection.execute("SELECT COUNT(*) FROM governed_monitoring_point").fetchone()[0])
 

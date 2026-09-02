@@ -34,6 +34,7 @@ class PointContextService:
         geo_reference=None,
         status=PointStatus.ACTIVE.value,
         external_station_reference=None,
+        effective_from=None,
         connection=None,
     ):
         self._validate_context_values(purpose, water_context, point_type)
@@ -54,7 +55,7 @@ class PointContextService:
             active.execute(
                 "INSERT INTO point_context_revision "
                 "(context_revision_id, point_id, revision, purpose, water_context, "
-                "point_type, geo_reference, created_at) VALUES (?, ?, 1, ?, ?, ?, ?, ?)",
+                "point_type, geo_reference, created_at, effective_from) VALUES (?, ?, 1, ?, ?, ?, ?, ?, ?)",
                 (
                     revision_id,
                     point_id,
@@ -63,6 +64,7 @@ class PointContextService:
                     point_type,
                     geo_reference,
                     now,
+                    _explicit_effective_from(effective_from),
                 ),
             )
             active.execute(
@@ -86,6 +88,7 @@ class PointContextService:
         point_type,
         actor_reference,
         geo_reference=None,
+        effective_from=None,
     ):
         self._validate_context_values(purpose, water_context, point_type)
         if not actor_reference or not actor_reference.strip():
@@ -93,11 +96,14 @@ class PointContextService:
         new_revision_id = self.identifiers.new("context_revision")
         with self.repository.transaction() as connection:
             current = self.repository.fetch_current_context(point_id, connection)
+            effective = _explicit_effective_from(effective_from)
+            if connection.execute("SELECT 1 FROM point_context_revision WHERE point_id = ? AND effective_from IS NOT NULL AND effective_from < COALESCE(?, '9999-12-31T23:59:59.999999Z') AND ? < COALESCE(effective_until, '9999-12-31T23:59:59.999999Z')", (point_id, None, effective)).fetchone():
+                raise GovernedConflictError("overlapping context interval")
             next_revision = current.revision + 1
             connection.execute(
                 "INSERT INTO point_context_revision "
                 "(context_revision_id, point_id, revision, purpose, water_context, "
-                "point_type, geo_reference, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
+                "point_type, geo_reference, created_at, effective_from) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)",
                 (
                     new_revision_id,
                     point_id,
@@ -107,6 +113,7 @@ class PointContextService:
                     point_type,
                     geo_reference,
                     _now(),
+                    _explicit_effective_from(effective_from),
                 ),
             )
             connection.execute(
@@ -362,6 +369,19 @@ class ApplicabilityService:
             )
         return reference
 
+    def assign_temporal(self, context_revision_id, reference, effective_from, effective_until=None, actor_reference=None):
+        self._require_actor(actor_reference)
+        start = _explicit_effective_from(effective_from)
+        end = _explicit_effective_from(effective_until) if effective_until is not None else None
+        if end is not None and end <= start:
+            raise ValueError("effective_until deve ser posterior a effective_from.")
+        with self.repository.transaction() as connection:
+            self.repository.fetch_context_revision(context_revision_id, connection)
+            if self.repository.fetch_aps_version(reference, connection) != context_revision_id:
+                raise GovernedReferenceError("APS e contexto da applicability nao coincidem.")
+            connection.execute("INSERT INTO aps_temporal_applicability (aps_applicability_id, context_revision_id, aps_set_id, aps_version, effective_from, effective_until) VALUES (?, ?, ?, ?, ?, ?)", (self.identifiers.new("aps_applicability"), context_revision_id, reference.set_id, reference.version, start, end))
+        return reference
+
     def remove(self, context_revision_id, actor_reference):
         self._require_actor(actor_reference)
         with self.repository.transaction() as connection:
@@ -480,6 +500,14 @@ class ApplicabilityService:
 
 def _now():
     return datetime.now(timezone.utc).isoformat(timespec="seconds")
+
+
+def _explicit_effective_from(value):
+    if value is None:
+        return None
+    if not isinstance(value, datetime) or value.tzinfo is None or value.utcoffset() is None:
+        raise ValueError("effective_from exige timestamp UTC explicito.")
+    return value.astimezone(timezone.utc).isoformat(timespec="microseconds").replace("+00:00", "Z")
 
 
 @contextmanager

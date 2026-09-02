@@ -108,7 +108,7 @@ class GovernedCoreRepository:
         with self._optional_connection(connection) as active:
             row = active.execute(
                 "SELECT context_revision_id, revision, point_id, purpose, water_context, "
-                "point_type, geo_reference, created_at FROM point_context_revision "
+                "point_type, geo_reference, created_at, effective_from, effective_until FROM point_context_revision "
                 "WHERE context_revision_id = ?",
                 (context_revision_id,),
             ).fetchone()
@@ -323,6 +323,20 @@ class GovernedCoreRepository:
         with self._optional_connection(connection) as active:
             rows = active.execute("SELECT evaluation_id, measurement_id, parameter_reference, status, message, rule_origin, evaluated_at, registered_at, evaluation_engine, evaluation_engine_version, explanation_data FROM governed_evaluation WHERE measurement_id = ? ORDER BY registered_at, evaluation_id", (measurement_id,)).fetchall()
         return tuple(GovernedEvaluation(*row) for row in rows)
+
+    def fetch_temporal_context(self, point_id, measured_at, connection=None):
+        with self._optional_connection(connection) as active:
+            rows = active.execute("SELECT context_revision_id, revision, point_id, purpose, water_context, point_type, geo_reference, created_at, effective_from, effective_until FROM point_context_revision WHERE point_id = ? AND effective_from IS NOT NULL AND effective_from <= ? AND (effective_until IS NULL OR ? < effective_until)", (point_id, measured_at, measured_at)).fetchall()
+        if len(rows) != 1:
+            raise GovernedReferenceError(f"Temporal context resolution requires exactly one match: {point_id}")
+        return PointContextRevision(*rows[0])
+
+    def fetch_temporal_aps(self, context_revision_id, measured_at, connection=None):
+        with self._optional_connection(connection) as active:
+            rows = active.execute("SELECT aps_set_id, aps_version FROM aps_temporal_applicability WHERE context_revision_id = ? AND effective_from <= ? AND (effective_until IS NULL OR ? < effective_until)", (context_revision_id, measured_at, measured_at)).fetchall()
+        if len(rows) != 1:
+            raise GovernedReferenceError("Temporal APS resolution requires exactly one match")
+        return APSReference(*rows[0])
 
     def _connect(self):
         connection = sqlite3.connect(self.path)

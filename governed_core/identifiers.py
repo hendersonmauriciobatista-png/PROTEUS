@@ -14,6 +14,7 @@ class IdentifierFactory:
         "evidence": "evi",
         "measurement": "mea",
         "evaluation": "eva",
+        "aps_applicability": "apa",
     }
 
     def new(self, kind):
