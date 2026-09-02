@@ -10,6 +10,7 @@ from .measurement_models import (
     APSMemberAuthorizationResolution,
     AuthorizationBasisResolution,
     GovernedMeasurement,
+    GovernedEvaluation,
 )
 from .models import APSReference, GovernedMonitoringPoint, PointContextRevision
 
@@ -314,6 +315,14 @@ class GovernedCoreRepository:
                 (point_id,),
             ).fetchall()
         return tuple(GovernedMeasurement(*row) for row in rows)
+
+    def insert_evaluation(self, evaluation, connection):
+        connection.execute("INSERT INTO governed_evaluation VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", tuple(evaluation.__dict__.values()))
+
+    def list_evaluations_by_measurement(self, measurement_id, connection=None):
+        with self._optional_connection(connection) as active:
+            rows = active.execute("SELECT evaluation_id, measurement_id, parameter_reference, status, message, rule_origin, evaluated_at, registered_at, evaluation_engine, evaluation_engine_version, explanation_data FROM governed_evaluation WHERE measurement_id = ? ORDER BY registered_at, evaluation_id", (measurement_id,)).fetchall()
+        return tuple(GovernedEvaluation(*row) for row in rows)
 
     def _connect(self):
         connection = sqlite3.connect(self.path)

@@ -13,6 +13,7 @@ class IdentifierFactory:
         "authority": "aut",
         "evidence": "evi",
         "measurement": "mea",
+        "evaluation": "eva",
     }
 
     def new(self, kind):

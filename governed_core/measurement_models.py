@@ -39,6 +39,21 @@ class GovernedMeasurement:
 
 
 @dataclass(frozen=True)
+class GovernedEvaluation:
+    evaluation_id: str
+    measurement_id: str
+    parameter_reference: str
+    status: str
+    message: str
+    rule_origin: str
+    evaluated_at: str
+    registered_at: str
+    evaluation_engine: str
+    evaluation_engine_version: str
+    explanation_data: str | None = None
+
+
+@dataclass(frozen=True)
 class AuthorizationBasisResolution:
     basis_id: str
     authority_reference_ids: tuple[str, ...]
