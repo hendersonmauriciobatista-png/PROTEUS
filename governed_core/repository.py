@@ -57,6 +57,7 @@ class GovernedCoreRepository:
         connection = self._connect()
         try:
             self._apply_migrations(connection)
+            self._assert_governed_connection(connection)
             connection.execute("BEGIN IMMEDIATE")
             yield connection
             self._validate_active_points(connection)
@@ -323,6 +324,7 @@ class GovernedCoreRepository:
         return tuple(GovernedMeasurement(*row) for row in rows)
 
     def insert_evaluation(self, evaluation, connection):
+        self._assert_governed_connection(connection)
         connection.execute(
             "INSERT INTO governed_evaluation ("
             "evaluation_id, measurement_id, parameter_reference, status, message, "
@@ -331,6 +333,52 @@ class GovernedCoreRepository:
             ") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
             tuple(evaluation.__dict__.values()),
         )
+
+    def insert_authority_snapshot(self, snapshot, connection):
+        self._assert_governed_connection(connection)
+        connection.execute(
+            "INSERT INTO governed_evaluation_authority_snapshot ("
+            "evaluation_id, authority_id, authority_version, "
+            "authority_applicability_id, authority_lifecycle_event_id, "
+            "authority_applicability_event_id, verification_id, "
+            "authority_gate_status, lifecycle_policy_result, "
+            "rule_resolution_outcome, authority_gate_policy_contract_version"
+            ") VALUES (?,?,?,?,?,?,?,?,?,?,?)",
+            tuple(snapshot),
+        )
+
+    def insert_authority_snapshot_basis(self, basis, connection):
+        self._assert_governed_connection(connection)
+        connection.execute(
+            "INSERT INTO governed_evaluation_authority_snapshot_basis ("
+            "evaluation_id, basis_id, aps_set_id, aps_version, "
+            "parameter_reference"
+            ") VALUES (?,?,?,?,?)",
+            tuple(basis),
+        )
+
+    def fetch_authority_snapshot(self, evaluation_id, connection=None):
+        with self._optional_connection(connection) as active:
+            return active.execute(
+                "SELECT evaluation_id, authority_id, authority_version, "
+                "authority_applicability_id, authority_lifecycle_event_id, "
+                "authority_applicability_event_id, verification_id, "
+                "authority_gate_status, lifecycle_policy_result, "
+                "rule_resolution_outcome, authority_gate_policy_contract_version "
+                "FROM governed_evaluation_authority_snapshot "
+                "WHERE evaluation_id = ?",
+                (evaluation_id,),
+            ).fetchone()
+
+    def list_authority_snapshot_basis(self, evaluation_id, connection=None):
+        with self._optional_connection(connection) as active:
+            return tuple(active.execute(
+                "SELECT evaluation_id, basis_id, aps_set_id, aps_version, "
+                "parameter_reference "
+                "FROM governed_evaluation_authority_snapshot_basis "
+                "WHERE evaluation_id = ? ORDER BY basis_id",
+                (evaluation_id,),
+            ).fetchall())
 
     def insert_authority_artifact(self, artifact, connection):
         connection.execute(
@@ -457,6 +505,16 @@ class GovernedCoreRepository:
         connection.execute("PRAGMA synchronous = FULL")
         return connection
 
+    @staticmethod
+    def _assert_governed_connection(connection):
+        if connection is None:
+            raise ValueError("Governed operation requires an active connection.")
+        enabled = connection.execute("PRAGMA foreign_keys").fetchone()[0]
+        if enabled != 1:
+            raise GovernedConflictError(
+                "Governed operation requires PRAGMA foreign_keys = 1."
+            )
+
     @contextmanager
     def _optional_connection(self, connection):
         if connection is not None:
@@ -489,6 +547,23 @@ class GovernedCoreRepository:
                         )
                     continue
             try:
+                if migration.name.startswith("019_"):
+                    required = {
+                        "governed_authority",
+                        "authority_applicability",
+                        "authority_event",
+                        "authority_artifact_verification",
+                    }
+                    present = {
+                        row[0]
+                        for row in connection.execute(
+                            "SELECT name FROM sqlite_master WHERE type = 'table'"
+                        )
+                    }
+                    if not required.issubset(present):
+                        raise GovernedConflictError(
+                            "Migration 019 requires the complete Schema A infrastructure."
+                        )
                 connection.executescript("BEGIN IMMEDIATE;\n" + sql)
                 connection.execute(
                     "INSERT INTO schema_migration(migration_id, checksum, applied_at) "
