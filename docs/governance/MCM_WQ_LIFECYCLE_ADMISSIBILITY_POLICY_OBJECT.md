@@ -12,13 +12,14 @@ Estado de materialização em 2026-09-03, contra a baseline publicada `106b1d679
 - **B5 classificação:** `TECHNICALLY_CLOSED_WITH_DOCUMENTED_LIMITATIONS`
 - **Transition object:** publicado e dependente deste limite de elegibilidade antes de runtime
 - **Status de elegibilidade:** `NOT_DEFINED`
+- **Status da decisão de política:** `PARTIAL_TECHNICAL_ONLY`
 - **Implementação:** `NOT_AUTHORIZED`
 - **B6:** `NOT_DEFINED`
 - **Cutover:** `NOT_AUTHORIZED`
 - **A5A:** `DEMONSTRATED_FOR_B5_TECHNICAL_SCOPE`
 - **A5B:** `NOT_DEMONSTRATED`
 
-Este objeto materializa a menor decisão governada ainda ausente: definir, em ato posterior, como a elegibilidade técnica de lifecycle de uma única candidatura deve ser determinada para uma medição histórica. Ele não preenche decisões que B5 não prova, não implementa runtime e não autoriza avaliação final.
+Este objeto materializa a fronteira técnica interna autorizada para uma única candidatura e uma medição histórica. A admissibilidade dos estados da matriz permanece `NOT_DEFINED`; este registro não preenche decisões que B5 não prova, não implementa runtime e não autoriza avaliação final.
 
 ## Autoridade documental e fontes
 
@@ -40,7 +41,7 @@ Fontes examinadas:
 Disciplina de evidência:
 
 - **PROVEN:** existência dos estados, transições de lifecycle, eventos terminais de applicability, fechamento temporal half-open da applicability e inputs temporais canônicos, dentro do escopo técnico B5;
-- **DEFINED_BUT_NOT_PROVEN:** o contrato documental tri-state, o uso de histórico para uma medição histórica e o fail-safe requerido para futura integração;
+- **DEFINED_BUT_NOT_PROVEN:** a fronteira técnica documental, o contrato tri-state, o uso de histórico para uma medição histórica e o fail-safe requerido para futura integração; runtime e sua validação ainda não existem;
 - **NOT_DEFINED:** admissibilidade de avaliação para qualquer combinação de estados authority/applicability;
 - **OUT_OF_SCOPE:** validade científica, legal, institucional ou normativa; precedência, adjudicação, vencedor, B6, cutover, produção e A5B.
 
@@ -190,6 +191,93 @@ Até essa decisão, nenhuma combinação é admissível por presunção:
 
 `UNDEFINED_OR_UNPROVEN_ELIGIBILITY => BLOCKED`
 
+## Fronteira de política técnica interna
+
+`TECHNICAL_ADMISSIBILITY_SEPARABLE_FROM_DOMAIN_VALIDITY::YES`
+
+Sob A5A, podem ser governados somente predicados técnicos determinísticos, sem afirmar que uma authority é cientificamente, legalmente, institucionalmente, normativamente ou domain-valid. A distinção é obrigatória:
+
+- `ELIGIBLE`, `INELIGIBLE` e `UNDEFINED` são classificações técnicas de lifecycle para a candidatura e a medição;
+- nenhum desses resultados prova autoridade de domínio;
+- uma classificação técnica positiva não autoriza avaliação final sem os demais gates e sem qualquer gate externo de validade que seja exigido fora deste objeto.
+
+São predicados tecnicamente governáveis sob A5A:
+
+- `canonical measured_at` válido e usado como tempo do fato;
+- requisito de reconstrução histórica de lifecycle/eventos;
+- satisfação do `authority temporal boundary`;
+- satisfação do intervalo temporal da applicability;
+- consistência de linkage entre authority e applicability;
+- consistência de `context_revision_id`;
+- consistência de `parameter_reference`;
+- consistência do lineage de medição/contexto;
+- completude do histórico lifecycle/eventos;
+- reconhecimento exclusivo de estados lifecycle conhecidos;
+- consistência de escopo e proveniência.
+
+Esses predicados podem produzir uma conclusão técnica somente para a candidatura concreta. Eles não autorizam, por si só, a preencher uma célula estática da matriz. A evidência B5 demonstra estados, transições e fechamento temporal da applicability, mas não uma consequência de admissibilidade de avaliação para qualquer estado.
+
+### Semântica técnica dos estados
+
+- `PUBLISHED` é o estado técnico inicial da authority; sua consequência de admissão permanece `NOT_DEFINED`.
+- `ACTIVE` é um estado técnico de lifecycle após a transição permitida; sua consequência de admissão permanece `NOT_DEFINED`.
+- `REVOKED` é um estado técnico terminal; o efeito histórico da authority não pode ser inferido pelo estado atual.
+- `SUPERSEDED` é um estado técnico terminal associado à sucessão governada; o efeito histórico da authority não pode ser inferido pelo estado atual.
+- Para applicability, eventos terminais fecham o intervalo temporal onde B5 já prova esse efeito; isso não constitui política completa de admissibilidade da authority.
+
+`STATE_DOMAIN_SEMANTICS::NOT_DEMONSTRATED`
+
+Nenhum significado científico, legal, institucional, normativo ou de domínio é derivado de `PUBLISHED`, `ACTIVE`, `REVOKED` ou `SUPERSEDED`.
+
+### Política histórica técnica
+
+A avaliação técnica futura deve usar `measured_at` e intervalos half-open `[start,end)`:
+
+- `start` é inclusivo;
+- o terminal `end` é exclusivo;
+- adjacência não é overlap;
+- `created_at` e tempo de registro nunca substituem tempo efetivo;
+- estado lifecycle atual sozinho nunca decide admissibilidade histórica;
+- fora de um intervalo temporal comprovado: `TECHNICALLY_INELIGIBLE => BLOCKED`;
+- timing histórico ausente, ambíguo ou não provado: `UNDEFINED => BLOCKED`.
+
+Esta semântica é uma fronteira técnica por candidatura; não classifica as doze células da matriz.
+
+### Fail-safe técnico
+
+- dado técnico obrigatório malformado, incompleto ou desconhecido: `UNDEFINED => BLOCKED`;
+- inconsistência de escopo ou proveniência: `BLOCKED`;
+- elegibilidade lifecycle indefinida ou não provada: `BLOCKED`;
+- a medição factual permanece retida;
+- nenhuma avaliação final é persistida;
+- nenhum fallback, heurística ou seleção de vencedor.
+
+O fail-safe permanece futuro/documental e não altera o runtime atual.
+
+### Limites de autoridade externa e B6
+
+Technical eligibility não substitui qualquer gate externo de autoridade de domínio que seja exigido antes da avaliação final. `A5A` permanece restrito a provenance, governança e integridade técnica; `A5B` permanece `NOT_DEMONSTRATED`.
+
+Este objeto trata uma única candidatura. Precedência, resolução de conflito, adjudicação, seleção de vencedor, resolução multi-candidata e promoção de authority permanecem fora do escopo e em `B6_STATUS::NOT_DEFINED`.
+
+### Limite da matriz
+
+`PUBLISHED admission consequence=NOT_DEFINED`
+
+`ACTIVE admission consequence=NOT_DEFINED`
+
+`REVOKED admission consequence=NOT_DEFINED`
+
+`SUPERSEDED admission consequence=NOT_DEFINED`
+
+`MATRIX_PROVEN_ADMISSIBLE::NONE`
+
+`MATRIX_PROVEN_INADMISSIBLE::NONE`
+
+`MATRIX_NOT_DEFINED_CELLS::ALL_12_STATE_COMBINATIONS`
+
+Nenhuma célula é alterada por esta emenda documental.
+
 ## Contrato de resultado
 
 O resultado futuro deve ser exatamente um de:
@@ -306,6 +394,10 @@ Este registro não:
 - modifica `scratch/`.
 
 ## Status governado
+
+`DOCUMENT_STRUCTURE_STATUS::COMPLETE`
+
+`POLICY_DECISION_STATUS::PARTIAL_TECHNICAL_ONLY`
 
 `LIFECYCLE_ADMISSIBILITY_STATUS::NOT_DEFINED`
 
