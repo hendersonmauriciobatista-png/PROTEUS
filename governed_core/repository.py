@@ -13,6 +13,7 @@ from .measurement_models import (
     GovernedMeasurement,
     GovernedEvaluation,
 )
+from .authority_models import AuthorityEvent
 from .models import APSReference, GovernedMonitoringPoint, PointContextRevision
 from .rule_models import GovernedRule
 
@@ -327,6 +328,45 @@ class GovernedCoreRepository:
             ") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
             tuple(evaluation.__dict__.values()),
         )
+
+    def fetch_authority_scope(self, authority_id, authority_version,
+                              context_revision_id, parameter_reference,
+                              connection=None):
+        with self._optional_connection(connection) as active:
+            rows = active.execute(
+                "SELECT authority_id, authority_version, context_revision_id, "
+                "parameter_reference FROM authority_scope "
+                "WHERE authority_id = ? AND authority_version = ? "
+                "AND context_revision_id = ? AND parameter_reference = ?",
+                (authority_id, authority_version, context_revision_id,
+                 parameter_reference),
+            ).fetchall()
+        return tuple(rows)
+
+    def fetch_authority_boundary(self, authority_id, authority_version,
+                                 connection=None):
+        with self._optional_connection(connection) as active:
+            row = active.execute(
+                "SELECT effective_from, effective_until "
+                "FROM authority_temporal_boundary "
+                "WHERE authority_id = ? AND authority_version = ?",
+                (authority_id, authority_version),
+            ).fetchone()
+        return row
+
+    def fetch_authority_events(self, authority_id, authority_version,
+                               connection=None):
+        with self._optional_connection(connection) as active:
+            rows = active.execute(
+                "SELECT event_id, authority_id, authority_version, event_type, "
+                "actor_reference, reason, successor_authority_id, "
+                "successor_authority_version, registered_at, effective_at, "
+                "effective_at_source, effective_at_provenance "
+                "FROM authority_event WHERE authority_id = ? "
+                "AND authority_version = ? ORDER BY effective_at, event_id",
+                (authority_id, authority_version),
+            ).fetchall()
+        return tuple(AuthorityEvent(*row) for row in rows)
 
     def list_evaluations_by_measurement(self, measurement_id, connection=None):
         with self._optional_connection(connection) as active:

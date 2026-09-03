@@ -424,9 +424,64 @@ class GovernedMeasurementMigrationTests(unittest.TestCase):
         database = self.root / "test-data-empty.sqlite3"
         repository = GovernedCoreRepository(database).initialize()
         with repository._optional_connection(None) as connection:
-            self.assertEqual(16, connection.execute("PRAGMA user_version").fetchone()[0])
+            self.assertEqual(17, connection.execute("PRAGMA user_version").fetchone()[0])
             self.assertEqual(0, connection.execute("SELECT COUNT(*) FROM governed_measurement").fetchone()[0])
             self.assertEqual(0, connection.execute("SELECT COUNT(*) FROM governed_monitoring_point").fetchone()[0])
+
+    def test_fresh_bootstrap_reaches_historical_temporal_extension(self):
+        database = self.root / "test-data-fresh-017.sqlite3"
+        repository = GovernedCoreRepository(database).initialize()
+        with repository._optional_connection(None) as connection:
+            self.assertEqual(17, connection.execute("PRAGMA user_version").fetchone()[0])
+            columns = {row[1] for row in connection.execute("PRAGMA table_info(authority_event)")}
+        self.assertIn("effective_at", columns)
+        self.assertIn("effective_at_source", columns)
+        self.assertIn("effective_at_provenance", columns)
+
+    def test_persisted_016_database_upgrades_to_017_without_backfill(self):
+        migrations = self.root / "test-data-016-to-017"
+        migrations.mkdir()
+        for source in self.source_migrations.glob("*.sql"):
+            if source.name.startswith("017_"):
+                continue
+            shutil.copy2(source, migrations / source.name)
+        database = self.root / "test-data-upgrade-017.sqlite3"
+        GovernedCoreRepository(database, migrations).initialize()
+        connection = sqlite3.connect(database)
+        try:
+            connection.execute(
+                "INSERT INTO governed_authority VALUES (?,?,?,?,?)",
+                ("legacy", 1, "urn:legacy", "hash", "2026-01-01T00:00:00.000000Z"),
+            )
+            connection.execute(
+                "INSERT INTO authority_scope VALUES (?,?,?,?)",
+                ("legacy", 1, "ctx", "parameter"),
+            )
+            connection.execute(
+                "INSERT INTO authority_state VALUES (?,?,?,?,?)",
+                ("legacy", 1, "PUBLISHED", "2026-01-01T00:00:00.000000Z", "event-legacy"),
+            )
+            connection.execute(
+                "INSERT INTO authority_temporal_boundary VALUES (?,?,?,?)",
+                ("legacy", 1, "2026-01-01T00:00:00.000000Z", None),
+            )
+            connection.execute(
+                "INSERT INTO authority_event VALUES (?,?,?,?,?,?,?,?,?)",
+                ("event-legacy", "legacy", 1, "PUBLISHED", "actor", "legacy", None, None,
+                 "2026-01-01T00:00:00.000000Z"),
+            )
+            connection.commit()
+        finally:
+            connection.close()
+        self._copy_migration("017_mcm_wq_historical_authority_temporal_extension.sql", migrations)
+        repository = GovernedCoreRepository(database, migrations).initialize()
+        with repository._optional_connection(None) as connection:
+            self.assertEqual(17, connection.execute("PRAGMA user_version").fetchone()[0])
+            row = connection.execute(
+                "SELECT effective_at,effective_at_source,effective_at_provenance "
+                "FROM authority_event WHERE event_id='event-legacy'"
+            ).fetchone()
+        self.assertEqual((None, None, None), tuple(row))
 
     def test_wave_01_database_upgrades_only_with_003(self):
         migrations = self.root / "test-data-migrations"
