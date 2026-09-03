@@ -424,7 +424,7 @@ class GovernedMeasurementMigrationTests(unittest.TestCase):
         database = self.root / "test-data-empty.sqlite3"
         repository = GovernedCoreRepository(database).initialize()
         with repository._optional_connection(None) as connection:
-            self.assertEqual(17, connection.execute("PRAGMA user_version").fetchone()[0])
+            self.assertEqual(18, connection.execute("PRAGMA user_version").fetchone()[0])
             self.assertEqual(0, connection.execute("SELECT COUNT(*) FROM governed_measurement").fetchone()[0])
             self.assertEqual(0, connection.execute("SELECT COUNT(*) FROM governed_monitoring_point").fetchone()[0])
 
@@ -432,7 +432,7 @@ class GovernedMeasurementMigrationTests(unittest.TestCase):
         database = self.root / "test-data-fresh-017.sqlite3"
         repository = GovernedCoreRepository(database).initialize()
         with repository._optional_connection(None) as connection:
-            self.assertEqual(17, connection.execute("PRAGMA user_version").fetchone()[0])
+            self.assertEqual(18, connection.execute("PRAGMA user_version").fetchone()[0])
             columns = {row[1] for row in connection.execute("PRAGMA table_info(authority_event)")}
         self.assertIn("effective_at", columns)
         self.assertIn("effective_at_source", columns)
@@ -442,7 +442,7 @@ class GovernedMeasurementMigrationTests(unittest.TestCase):
         migrations = self.root / "test-data-016-to-017"
         migrations.mkdir()
         for source in self.source_migrations.glob("*.sql"):
-            if source.name.startswith("017_"):
+            if source.name.startswith(("017_", "018_")):
                 continue
             shutil.copy2(source, migrations / source.name)
         database = self.root / "test-data-upgrade-017.sqlite3"

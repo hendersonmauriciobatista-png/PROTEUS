@@ -1,4 +1,4 @@
-import sqlite3, tempfile, unittest
+import hashlib, sqlite3, tempfile, unittest
 from datetime import datetime, timezone
 from pathlib import Path
 from governed_core.repository import GovernedCoreRepository
@@ -9,10 +9,15 @@ from governed_core.evaluation_service import GovernedEvaluationService
 
 T0=datetime(2026,1,1,tzinfo=timezone.utc); T1=datetime(2027,1,1,tzinfo=timezone.utc); T2=datetime(2028,1,1,tzinfo=timezone.utc)
 
+def proof(label):
+    raw = label.encode("utf-8")
+    return hashlib.sha256(raw).hexdigest(), raw
+
 class B5AuthorityLifecycleTests(unittest.TestCase):
     def setUp(self):
         self.tmp=tempfile.TemporaryDirectory(); self.repo=GovernedCoreRepository(Path(self.tmp.name)/'db.sqlite3').initialize(); self.service=AuthorityService(self.repo)
-        self.authority=self.service.create_authority('urn:test','hash','ctx','p',T0, effective_at=T0, effective_at_source='CALLER_SUPPLIED_EXPLICIT_TIME', effective_at_provenance='test:published')
+        digest, raw = proof("b5-test")
+        self.authority=self.service.create_authority('urn:test',digest,'ctx','p',T0, effective_at=T0, effective_at_source='CALLER_SUPPLIED_EXPLICIT_TIME', effective_at_provenance='test:published', artifact_bytes=raw, artifact_locator_reference='urn:test:artifact', verification_provenance='test:verification')
     def tearDown(self): self.tmp.cleanup()
     def test_create_resolve_and_state(self):
         a=self.service.create_applicability(self.authority.authority_id,1,'ctx','p',T0,'actor','create')
@@ -205,12 +210,15 @@ class B5AuthorityLifecycleTests(unittest.TestCase):
                                   effective_at_provenance='test')
 
     def test_system_immediate_time_uses_trusted_clock(self):
-        times = iter((T1, datetime(2026, 1, 1, 0, 0, 0, 1, tzinfo=timezone.utc)))
+        times = iter((T1, datetime(2026, 1, 1, 0, 0, 0, 1, tzinfo=timezone.utc),
+                      datetime(2026, 1, 1, 0, 0, 0, 2, tzinfo=timezone.utc),
+                      datetime(2026, 1, 1, 0, 0, 0, 3, tzinfo=timezone.utc)))
         service = AuthorityService(self.repo, clock=lambda: next(times))
         authority = service.create_authority(
-            'urn:immediate', 'hash', 'ctx', 'immediate', T1,
+            'urn:immediate', proof("b5-immediate")[0], 'ctx', 'immediate', T1,
             effective_at_source='SYSTEM_GENERATED_IMMEDIATE_TIME',
             effective_at_provenance='trusted-test-clock', immediate_effect=True,
+            artifact_bytes=proof("b5-immediate")[1], artifact_locator_reference='urn:immediate:artifact', verification_provenance='test:verification',
         )
         with self.repo._optional_connection(None) as c:
             row = c.execute(
@@ -296,9 +304,9 @@ class B5AuthorityLifecycleTests(unittest.TestCase):
 
     def test_authority_boundary_blocks_out_of_window_resolution(self):
         authority = self.service.create_authority(
-            'urn:bounded', 'hash', 'ctx', 'bounded', T0, T2,
+            'urn:bounded', proof("b5-bounded")[0], 'ctx', 'bounded', T0, T2,
             effective_at=T0, effective_at_source='CALLER_SUPPLIED_EXPLICIT_TIME',
-            effective_at_provenance='test:bounded',
+            effective_at_provenance='test:bounded', artifact_bytes=proof("b5-bounded")[1], artifact_locator_reference='urn:bounded:artifact', verification_provenance='test:verification',
         )
         result = self.service.resolve_historical_authority(
             authority.authority_id, 1, T2, 'ctx', 'bounded'

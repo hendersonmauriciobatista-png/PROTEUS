@@ -13,7 +13,10 @@ from .measurement_models import (
     GovernedMeasurement,
     GovernedEvaluation,
 )
-from .authority_models import AuthorityEvent
+from .authority_models import (
+    AuthorityEvent, GovernedAuthorityArtifact, AuthorityArtifactBinding,
+    AuthorityArtifactVerification,
+)
 from .models import APSReference, GovernedMonitoringPoint, PointContextRevision
 from .rule_models import GovernedRule
 
@@ -328,6 +331,45 @@ class GovernedCoreRepository:
             ") VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
             tuple(evaluation.__dict__.values()),
         )
+
+    def insert_authority_artifact(self, artifact, connection):
+        connection.execute(
+            "INSERT INTO authority_artifact VALUES (?,?,?,?,?,?,?)",
+            (artifact.artifact_id, artifact.artifact_version, artifact.artifact_locator_reference,
+             artifact.artifact_bytes, artifact.artifact_digest, artifact.digest_algorithm,
+             artifact.registered_at),
+        )
+
+    def fetch_authority_artifact(self, artifact_id, artifact_version, connection=None):
+        with self._optional_connection(connection) as active:
+            row = active.execute(
+                "SELECT artifact_id,artifact_version,artifact_locator_reference,artifact_bytes,"
+                "artifact_digest,digest_algorithm,registered_at FROM authority_artifact "
+                "WHERE artifact_id=? AND artifact_version=?", (artifact_id, artifact_version)
+            ).fetchone()
+        return None if row is None else GovernedAuthorityArtifact(*row)
+
+    def insert_authority_artifact_binding(self, binding, connection):
+        connection.execute("INSERT INTO authority_artifact_binding VALUES (?,?,?,?)",
+                           (binding.authority_id, binding.authority_version,
+                            binding.artifact_id, binding.artifact_version))
+
+    def insert_authority_artifact_verification(self, verification, connection):
+        connection.execute("INSERT INTO authority_artifact_verification VALUES (?,?,?,?,?,?,?,?,?,?,?,?)",
+                           tuple(verification.__dict__.values()))
+
+    def fetch_authority_artifact_verification(self, authority_id, authority_version,
+                                              contract_version="mcm-authority-artifact-hash/v1",
+                                              connection=None):
+        with self._optional_connection(connection) as active:
+            row = active.execute(
+                "SELECT verification_id,authority_id,authority_version,artifact_id,"
+                "artifact_version,algorithm_id,verification_contract_version,"
+                "expected_digest,computed_digest,verification_result,verified_at,"
+                "verification_provenance FROM authority_artifact_verification "
+                "WHERE authority_id=? AND authority_version=? AND verification_contract_version=?",
+                (authority_id, authority_version, contract_version)).fetchone()
+        return None if row is None else AuthorityArtifactVerification(*row)
 
     def fetch_authority_scope(self, authority_id, authority_version,
                               context_revision_id, parameter_reference,

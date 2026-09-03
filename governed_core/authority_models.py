@@ -50,3 +50,35 @@ class HistoricalAuthorityResolution:
     state: str
     reason: str = ""
     event: AuthorityEvent | None = None
+
+@dataclass(frozen=True)
+class GovernedAuthorityArtifact:
+    artifact_id: str
+    artifact_version: int
+    artifact_locator_reference: str
+    artifact_bytes: bytes
+    artifact_digest: str
+    digest_algorithm: str
+    registered_at: str
+
+@dataclass(frozen=True)
+class AuthorityArtifactBinding:
+    authority_id: str
+    authority_version: int
+    artifact_id: str
+    artifact_version: int
+
+@dataclass(frozen=True)
+class AuthorityArtifactVerification:
+    verification_id: str
+    authority_id: str
+    authority_version: int
+    artifact_id: str
+    artifact_version: int
+    algorithm_id: str
+    verification_contract_version: str
+    expected_digest: str
+    computed_digest: str
+    verification_result: str
+    verified_at: str
+    verification_provenance: str
