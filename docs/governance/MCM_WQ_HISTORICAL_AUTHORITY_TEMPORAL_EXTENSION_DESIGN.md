@@ -5,7 +5,7 @@
 - **Case:** `PROTEUS`
 - **Object:** `MCM_WQ_HISTORICAL_AUTHORITY_TEMPORAL_EXTENSION_DESIGN`
 - **Design status:** `CLOSED`
-- **Documentary status:** `MATERIALIZED_NOT_PUBLISHED`
+- **Documentary status:** `PUBLISHED`
 - **Implementation status:** `NOT_AUTHORIZED`
 - **A5 scope:** `TECHNICAL_ONLY`
 - **A5B:** `NOT_DEMONSTRATED`
