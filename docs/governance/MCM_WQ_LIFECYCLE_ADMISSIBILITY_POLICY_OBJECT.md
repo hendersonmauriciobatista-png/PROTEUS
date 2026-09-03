@@ -19,7 +19,7 @@ Estado de materialização em 2026-09-03, contra a baseline publicada `106b1d679
 - **A5A:** `DEMONSTRATED_FOR_B5_TECHNICAL_SCOPE`
 - **A5B:** `NOT_DEMONSTRATED`
 
-Este objeto materializa a fronteira técnica interna autorizada para uma única candidatura e uma medição histórica. A admissibilidade dos estados da matriz permanece `NOT_DEFINED`; este registro não preenche decisões que B5 não prova, não implementa runtime e não autoriza avaliação final.
+Este objeto materializa a fronteira técnica interna autorizada para uma única candidatura e uma medição histórica. A política técnica da matriz está definida com resultados `ELIGIBLE`, `INELIGIBLE` ou `UNDEFINED`; este registro não implementa runtime e não autoriza avaliação final.
 
 ## Autoridade documental e fontes
 
@@ -110,28 +110,103 @@ Isso prova efeito temporal da applicability, não admissibilidade completa da au
 
 `evaluate_temporal()` atualmente resolve contexto, APS, autorização de membro e RULE, mas não chama a resolução B5 de authority applicability. Portanto, não existe política de admissibilidade já aplicada ao evaluation path.
 
-## Matriz de decisão de admissibilidade
+## Matriz materializada de política de admissibilidade
 
 Esta matriz classifica admissibilidade para avaliação, e não mera existência, transição ou efeito temporal. Nenhuma célula é preenchida por intuição.
 
 | Authority \ Applicability | `ACTIVE` | `REVOKED` | `SUPERSEDED` |
 | --- | --- | --- | --- |
-| `PUBLISHED` | `NOT_DEFINED` | `NOT_DEFINED` | `NOT_DEFINED` |
-| `ACTIVE` | `NOT_DEFINED` | `NOT_DEFINED` | `NOT_DEFINED` |
-| `REVOKED` | `NOT_DEFINED` | `NOT_DEFINED` | `NOT_DEFINED` |
-| `SUPERSEDED` | `NOT_DEFINED` | `NOT_DEFINED` | `NOT_DEFINED` |
+| `PUBLISHED` | `UNDEFINED` | `INELIGIBLE` | `INELIGIBLE` |
+| `ACTIVE` | `UNDEFINED` | `INELIGIBLE` | `INELIGIBLE` |
+| `REVOKED` | `UNDEFINED` | `INELIGIBLE` | `INELIGIBLE` |
+| `SUPERSEDED` | `UNDEFINED` | `INELIGIBLE` | `INELIGIBLE` |
 
-`MATRIX_PROVEN_ADMISSIBLE::NONE`
+`MATRIX_POLICY_RESULT_ELIGIBLE_CELLS::NONE`
 
-`MATRIX_PROVEN_INADMISSIBLE::NONE`
+`MATRIX_POLICY_RESULT_INELIGIBLE_CELLS::8`
 
-`MATRIX_NOT_DEFINED_CELLS::ALL_12_STATE_COMBINATIONS`
+`MATRIX_POLICY_RESULT_UNDEFINED_CELLS::4`
+
+`MATRIX_PRIOR_EVIDENCE_PROVEN_ADMISSIBLE_CELLS::NONE`
+
+`MATRIX_PRIOR_EVIDENCE_PROVEN_INADMISSIBLE_CELLS::NONE`
+
+`MATRIX_NOT_DEFINED_CELLS::NONE`
 
 O teste B5 que resolve uma applicability `ACTIVE` sob authority `PUBLISHED` não é base para classificar essa combinação como `PROVEN_ADMISSIBLE`; ele demonstra resolução temporal de applicability, não autorização de avaliação.
 
-## Semântica histórica e temporal
+## Vocabulário da política materializada da matriz
 
-A decisão futura deve avaliar a candidatura contra:
+### Resultado de política e classificação de evidência anterior
+
+`INELIGIBLE` é um **resultado de política técnica** para uma candidatura individual no instante `measurement.measured_at`. Ele não representa validade de domínio e não equivale a uma classificação de evidência anterior.
+
+`PROVEN_INADMISSIBLE` é uma **classificação de evidência anterior**, estabelecida independentemente antes da decisão da política da matriz. A existência de um resultado de política `INELIGIBLE` não altera retroativamente a classificação da evidência B5.
+
+Os conceitos devem ser registrados separadamente:
+
+- `MATRIX_POLICY_RESULT_INELIGIBLE_CELLS`;
+- `MATRIX_POLICY_RESULT_UNDEFINED_CELLS`;
+- `MATRIX_POLICY_RESULT_ELIGIBLE_CELLS`;
+- `MATRIX_PRIOR_EVIDENCE_PROVEN_ADMISSIBLE_CELLS`;
+- `MATRIX_PRIOR_EVIDENCE_PROVEN_INADMISSIBLE_CELLS`.
+
+Não se deve combinar, substituir ou interpretar um conjunto como o outro.
+
+### Matriz não definida e resultado de política `UNDEFINED`
+
+`MATRIX_NOT_DEFINED` significa que ainda não existe resultado de política aprovado para a célula. Após esta materialização, nenhuma célula permanece nessa condição.
+
+`POLICY_RESULT=UNDEFINED` significa que existe uma consequência de política explicitamente definida para a célula, mas a autoridade ou a evidência técnica disponível é insuficiente para admitir ou excluir positivamente a candidatura.
+
+`POLICY_RESULT_UNDEFINED => BLOCKED`
+
+Após esta materialização:
+
+`MATRIX_NOT_DEFINED_CELLS=NONE`
+
+Os quatro resultados `POLICY_RESULT=UNDEFINED` são resultados de política aprovados e não significam ausência de definição.
+
+### Pré-condição para resultado técnico baseado em applicability terminal
+
+Um eventual resultado de política `INELIGIBLE` baseado em applicability terminal somente é válido quando a reconstrução histórica provar cumulativamente:
+
+- existência do evento terminal;
+- `terminal_effective_at` válido;
+- `terminal_effective_at <= measurement.measured_at`;
+- `measurement.measured_at` fora do intervalo half-open da applicability:
+
+  `effective_from <= t < terminal_effective_at`.
+
+Nenhum nome de estado `REVOKED` ou `SUPERSEDED`, isoladamente, é suficiente para produzir `INELIGIBLE`.
+
+### Não retroatividade do estado terminal
+
+`CURRENT_TERMINAL_STATE MUST NOT RETROACTIVELY CLASSIFY A HISTORICAL MEASUREMENT`.
+
+Quando:
+
+`terminal_effective_at > measurement.measured_at`
+
+o evento terminal posterior não pode, por si só, classificar como `INELIGIBLE` a candidatura referente à medição anterior. A reconstrução histórica em `measured_at` governa o resultado.
+
+Se o estado terminal atualmente observado divergir do estado histórico em `measured_at`, o estado atual não pode substituir a reconstrução histórica.
+
+### Histórico terminal não resolvido
+
+Se o histórico terminal estiver ausente, desconhecido, malformado, incompleto, ambíguo ou temporalmente não provado:
+
+`POLICY_RESULT=UNDEFINED => BLOCKED`
+
+Não se deve inferir o instante terminal a partir de `registered_at`, `created_at`, estado corrente, hash, locator ou qualquer outro substituto de tempo efetivo.
+
+### Decisão materializada
+
+A decisão técnica auditada foi materializada neste registro. Ela não constitui validade de domínio, não autoriza runtime e não altera os limites de A5B ou B6.
+
+## Semântica histórica e temporal da política
+
+A política deve avaliar a candidatura contra:
 
 - `measured_at` canônico;
 - o intervalo temporal aplicável da authority;
@@ -175,19 +250,11 @@ O objeto deve operar sobre exatamente uma candidatura e exatamente uma medição
 
 O objeto não recebe seleção de vencedor nem cardinalidade de candidatos. Zero candidatos e múltiplos/conflicting candidates são responsabilidades do authority gate de integração.
 
-## Decisões que permanecem necessárias
+## Limites da decisão materializada
 
-Uma definição futura, independente deste registro, deve decidir explicitamente:
+As quatro combinações com applicability `ACTIVE` permanecem com resultado de política `UNDEFINED`, porque não existe base técnica positiva suficiente para admitir ou excluir a authority histórica apenas por seu estado. Isso é um resultado de política aprovado, não ausência de decisão.
 
-- se `PUBLISHED` authority pode ser admissível;
-- se `ACTIVE` authority é necessária;
-- como authority `REVOKED` ou `SUPERSEDED` atual é tratada quando `measured_at` precede ou sucede eventos terminais;
-- se uma applicability `ACTIVE` basta ou requer combinação específica com authority state;
-- como boundary temporal da authority e intervalo temporal da applicability se combinam;
-- como eventos históricos e estados inconsistentes produzem `INELIGIBLE` ou `UNDEFINED`;
-- qual base governada é necessária para cada célula não `NOT_DEFINED`.
-
-Até essa decisão, nenhuma combinação é admissível por presunção:
+As oito combinações com applicability terminal recebem `INELIGIBLE` somente sob a pré-condição histórica e temporal definida neste registro. Nenhuma combinação é admissível por presunção.
 
 `UNDEFINED_OR_UNPROVEN_ELIGIBILITY => BLOCKED`
 
@@ -262,25 +329,31 @@ Este objeto trata uma única candidatura. Precedência, resolução de conflito,
 
 ### Limite da matriz
 
-`PUBLISHED admission consequence=NOT_DEFINED`
+`PUBLISHED authority + ACTIVE applicability => UNDEFINED`
 
-`ACTIVE admission consequence=NOT_DEFINED`
+`ACTIVE authority + ACTIVE applicability => UNDEFINED`
 
-`REVOKED admission consequence=NOT_DEFINED`
+`REVOKED authority + ACTIVE applicability => UNDEFINED`
 
-`SUPERSEDED admission consequence=NOT_DEFINED`
+`SUPERSEDED authority + ACTIVE applicability => UNDEFINED`
 
-`MATRIX_PROVEN_ADMISSIBLE::NONE`
+`MATRIX_POLICY_RESULT_ELIGIBLE_CELLS::NONE`
 
-`MATRIX_PROVEN_INADMISSIBLE::NONE`
+`MATRIX_POLICY_RESULT_INELIGIBLE_CELLS::8`
 
-`MATRIX_NOT_DEFINED_CELLS::ALL_12_STATE_COMBINATIONS`
+`MATRIX_POLICY_RESULT_UNDEFINED_CELLS::4`
 
-Nenhuma célula é alterada por esta emenda documental.
+`MATRIX_PRIOR_EVIDENCE_PROVEN_ADMISSIBLE_CELLS::NONE`
 
-## Contrato de resultado
+`MATRIX_PRIOR_EVIDENCE_PROVEN_INADMISSIBLE_CELLS::NONE`
 
-O resultado futuro deve ser exatamente um de:
+`MATRIX_NOT_DEFINED_CELLS::NONE`
+
+As doze células estão materializadas como resultados de política. Nenhum resultado constitui validade de domínio.
+
+## Contrato de resultado da política materializada
+
+O resultado da política deve ser exatamente um de:
 
 - `ELIGIBLE` — a candidatura satisfaz a política técnica aprovada para aquela medição; pode continuar ao próximo passo do authority gate, mas não autoriza avaliação final, não seleciona RULE e não promove A5B;
 - `INELIGIBLE` — a candidatura não pode autorizar avaliação para aquela medição; no `evaluate_temporal()` integrado, resulta em `BLOCKED`;
@@ -346,7 +419,7 @@ Nenhum estado, hash, locator, teste, migration ou resultado `ELIGIBLE` demonstra
 
 Antes de implementação futura, deve haver evidência independente de:
 
-- cada ramo da matriz, inclusive a justificativa de cada célula não `NOT_DEFINED`;
+- cada um dos doze resultados materializados da matriz, inclusive sua justificativa;
 - casos `PUBLISHED` e `ACTIVE`;
 - medições históricas antes, no instante e depois de eventos lifecycle;
 - casos atuais `REVOKED` e `SUPERSEDED` sem inferência somente pelo estado atual;
@@ -365,11 +438,7 @@ Antes de implementação futura, deve haver evidência independente de:
 
 ## Precondição de implementação
 
-Este objeto deve ser:
-
-`DEFINED → INDEPENDENTLY_AUDITED → APPROVED → PUBLISHED`
-
-antes que qualquer implementação de admissibilidade de lifecycle seja autorizada. Depois disso, a implementação do authority gate em `evaluate_temporal()` continua sendo uma decisão separada.
+Esta política foi definida, auditada e materializada documentalmente. Qualquer implementação de admissibilidade de lifecycle continua exigindo autorização separada. A implementação do authority gate em `evaluate_temporal()` permanece uma decisão independente.
 
 `MIGRATION_REQUIRED_FOR_DEFINITION::NO`
 
@@ -397,13 +466,13 @@ Este registro não:
 
 `DOCUMENT_STRUCTURE_STATUS::COMPLETE`
 
-`POLICY_DECISION_STATUS::PARTIAL_TECHNICAL_ONLY`
+`POLICY_DECISION_STATUS::TECHNICAL_POLICY_DEFINED`
 
-`LIFECYCLE_ADMISSIBILITY_STATUS::NOT_DEFINED`
+`LIFECYCLE_ADMISSIBILITY_STATUS::TECHNICAL_POLICY_DEFINED_RUNTIME_NOT_IMPLEMENTED`
 
-`NEXT_REQUIRED_GOVERNED_DECISION::MCM_WQ_LIFECYCLE_ADMISSIBILITY_POLICY_OBJECT`
+`NEXT_REQUIRED_GOVERNED_OBJECT::HISTORICAL_AUTHORITY_TEMPORAL_IMPLEMENTATION`
 
-`READY_FOR_INDEPENDENT_AUDIT::YES`
+`MATRIX_POLICY_MATERIALIZATION_STATUS::COMPLETE`
 
 `B6_STATUS::NOT_DEFINED`
 
