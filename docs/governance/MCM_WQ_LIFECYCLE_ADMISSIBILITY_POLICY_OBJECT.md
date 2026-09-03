@@ -11,15 +11,15 @@ Estado de materialização em 2026-09-03, contra a baseline publicada `106b1d679
 - **B5 técnico:** `CLOSED_AND_PUBLISHED`
 - **B5 classificação:** `TECHNICALLY_CLOSED_WITH_DOCUMENTED_LIMITATIONS`
 - **Transition object:** publicado e dependente deste limite de elegibilidade antes de runtime
-- **Status de elegibilidade:** `NOT_DEFINED`
-- **Status da decisão de política:** `PARTIAL_TECHNICAL_ONLY`
+- **Status de elegibilidade:** `TECHNICAL_ADMISSION_ONLY_CONDITIONAL`
+- **Status da decisão de política:** `TECHNICAL_POLICY_DEFINED_RUNTIME_NOT_IMPLEMENTED`
 - **Implementação:** `NOT_AUTHORIZED`
 - **B6:** `NOT_DEFINED`
 - **Cutover:** `NOT_AUTHORIZED`
 - **A5A:** `DEMONSTRATED_FOR_B5_TECHNICAL_SCOPE`
 - **A5B:** `NOT_DEMONSTRATED`
 
-Este objeto materializa a fronteira técnica interna autorizada para uma única candidatura e uma medição histórica. A política técnica da matriz está definida com resultados `ELIGIBLE`, `INELIGIBLE` ou `UNDEFINED`; este registro não implementa runtime e não autoriza avaliação final.
+Este objeto materializa a fronteira técnica interna autorizada para uma única candidatura e uma medição histórica. A política técnica da matriz está definida com resultados condicionais `ELIGIBLE`, `INELIGIBLE` ou `UNDEFINED`; este registro não implementa runtime e não autoriza avaliação final.
 
 ## Autoridade documental e fontes
 
@@ -42,7 +42,7 @@ Disciplina de evidência:
 
 - **PROVEN:** existência dos estados, transições de lifecycle, eventos terminais de applicability, fechamento temporal half-open da applicability e inputs temporais canônicos, dentro do escopo técnico B5;
 - **DEFINED_BUT_NOT_PROVEN:** a fronteira técnica documental, o contrato tri-state, o uso de histórico para uma medição histórica e o fail-safe requerido para futura integração; runtime e sua validação ainda não existem;
-- **NOT_DEFINED:** admissibilidade de avaliação para qualquer combinação de estados authority/applicability;
+- **DEFINED_BUT_NOT_IMPLEMENTED:** admissibilidade técnica condicional para candidaturas que satisfaçam todos os predicados governados;
 - **OUT_OF_SCOPE:** validade científica, legal, institucional ou normativa; precedência, adjudicação, vencedor, B6, cutover, produção e A5B.
 
 O comportamento de runtime descrito como futuro neste documento não é apresentado como implementado. Os resultados B5 `58 PASS` e `347 PASS` continuam apenas evidência registrada do ciclo controlado anterior; não são rerun nesta materialização.
@@ -114,18 +114,24 @@ Isso prova efeito temporal da applicability, não admissibilidade completa da au
 
 Esta matriz classifica admissibilidade para avaliação, e não mera existência, transição ou efeito temporal. Nenhuma célula é preenchida por intuição.
 
+### Histórico da emenda
+
+Antes desta emenda, a política registrava `ELIGIBLE=0`, `INELIGIBLE=8` e `UNDEFINED=4`. Esses valores permanecem como histórico pré-emenda e não representam o resultado corrente da política técnica condicional abaixo. A emenda não converteu ausência de prova em autorização: ela definiu a condição explícita para admissão positiva e preservou o bloqueio quando a condição não for provada.
+
 | Authority \ Applicability | `ACTIVE` | `REVOKED` | `SUPERSEDED` |
 | --- | --- | --- | --- |
-| `PUBLISHED` | `UNDEFINED` | `INELIGIBLE` | `INELIGIBLE` |
-| `ACTIVE` | `UNDEFINED` | `INELIGIBLE` | `INELIGIBLE` |
-| `REVOKED` | `UNDEFINED` | `INELIGIBLE` | `INELIGIBLE` |
-| `SUPERSEDED` | `UNDEFINED` | `INELIGIBLE` | `INELIGIBLE` |
+| `PUBLISHED` | `ELIGIBLE_IF_TECHNICAL_PREDICATES_PASS` | `INELIGIBLE` | `INELIGIBLE` |
+| `ACTIVE` | `ELIGIBLE_IF_TECHNICAL_PREDICATES_PASS` | `INELIGIBLE` | `INELIGIBLE` |
+| `REVOKED` | `INELIGIBLE_IF_TERMINALITY_PROVEN; OTHERWISE UNDEFINED` | `INELIGIBLE` | `INELIGIBLE` |
+| `SUPERSEDED` | `INELIGIBLE_IF_TERMINALITY_PROVEN; OTHERWISE UNDEFINED` | `INELIGIBLE` | `INELIGIBLE` |
 
-`MATRIX_POLICY_RESULT_ELIGIBLE_CELLS::NONE`
+`MATRIX_POLICY_RESULT_ELIGIBLE_CONDITIONAL_CASES::2`
 
-`MATRIX_POLICY_RESULT_INELIGIBLE_CELLS::8`
+`MATRIX_POLICY_RESULT_INELIGIBLE_BASELINE_TERMINAL_APPLICABILITY_CELLS::8`
 
-`MATRIX_POLICY_RESULT_UNDEFINED_CELLS::4`
+`MATRIX_POLICY_RESULT_INELIGIBLE_CONDITIONAL_TERMINAL_AUTHORITY_CASES::2`
+
+`MATRIX_POLICY_RESULT_UNDEFINED_RESIDUAL_CASES::PROOF_DEPENDENT`
 
 `MATRIX_PRIOR_EVIDENCE_PROVEN_ADMISSIBLE_CELLS::NONE`
 
@@ -133,7 +139,7 @@ Esta matriz classifica admissibilidade para avaliação, e não mera existência
 
 `MATRIX_NOT_DEFINED_CELLS::NONE`
 
-O teste B5 que resolve uma applicability `ACTIVE` sob authority `PUBLISHED` não é base para classificar essa combinação como `PROVEN_ADMISSIBLE`; ele demonstra resolução temporal de applicability, não autorização de avaliação.
+O teste B5 que resolve uma applicability `ACTIVE` sob authority `PUBLISHED` não é, isoladamente, base para classificar essa combinação como `PROVEN_ADMISSIBLE`; a admissão condicional exige a composição completa dos predicados técnicos e a reconstrução histórica.
 
 ## Vocabulário da política materializada da matriz
 
@@ -165,7 +171,7 @@ Após esta materialização:
 
 `MATRIX_NOT_DEFINED_CELLS=NONE`
 
-Os quatro resultados `POLICY_RESULT=UNDEFINED` são resultados de política aprovados e não significam ausência de definição.
+Resultados `POLICY_RESULT=UNDEFINED` residuais são resultados de política aprovados e não significam ausência de definição; qualquer prova ausente continua resultando em `BLOCKED`.
 
 ### Pré-condição para resultado técnico baseado em applicability terminal
 
@@ -252,9 +258,34 @@ O objeto não recebe seleção de vencedor nem cardinalidade de candidatos. Zero
 
 ## Limites da decisão materializada
 
-As quatro combinações com applicability `ACTIVE` permanecem com resultado de política `UNDEFINED`, porque não existe base técnica positiva suficiente para admitir ou excluir a authority histórica apenas por seu estado. Isso é um resultado de política aprovado, não ausência de decisão.
+A admissão positiva é condicional e nunca decorre do nome do estado. Para uma candidatura única, a consequência `ELIGIBLE` exige que todos os predicados técnicos abaixo sejam positivamente provados:
 
-As oito combinações com applicability terminal recebem `INELIGIBLE` somente sob a pré-condição histórica e temporal definida neste registro. Nenhuma combinação é admissível por presunção.
+- authority identity/version resolvida;
+- lifecycle histórico resolvido em `measurement.measured_at`;
+- applicability `ACTIVE` em `measurement.measured_at`;
+- linkage authority/applicability consistente;
+- contexto e parâmetro coincidentes;
+- autorização APS/member coincidente;
+- locator presente;
+- `content_hash` verificado somente para identidade e integridade técnica;
+- histórico completo e não ambíguo;
+- boundary temporal satisfeito;
+- lineage measurement/context consistente;
+- exatamente uma candidatura coerente.
+
+`TECHNICAL_ADMISSION_ONLY` significa apenas admissibilidade técnica para uso pelo motor governado. Não significa validade científica, legal, regulatória, institucional ou de domínio.
+
+As combinações com authority histórica `PUBLISHED` ou `ACTIVE` e applicability `ACTIVE` podem produzir:
+
+`ELIGIBLE_IF_TECHNICAL_PREDICATES_PASS`
+
+As combinações com authority histórica `REVOKED` ou `SUPERSEDED` não são positivamente admissíveis quando o evento terminal é efetivo em ou antes de `measurement.measured_at`:
+
+`INELIGIBLE_IF_TERMINALITY_IS_PROVEN_AT_OR_BEFORE_MEASURED_AT`
+
+Se a authority corrente estiver `REVOKED` ou `SUPERSEDED`, mas o evento terminal ocorrer depois de `measurement.measured_at`, não há rejeição retroativa; a reconstrução histórica pré-terminal governa. Se a terminalidade não puder ser provada, o resultado é `UNDEFINED => BLOCKED`.
+
+Qualquer predicado ausente, desconhecido, ambíguo, malformado, conflitante ou não provado resulta em `NOT_POSITIVELY_ADMITTED => BLOCKED`. Não existe default allow.
 
 `UNDEFINED_OR_UNPROVEN_ELIGIBILITY => BLOCKED`
 
@@ -286,10 +317,10 @@ Esses predicados podem produzir uma conclusão técnica somente para a candidatu
 
 ### Semântica técnica dos estados
 
-- `PUBLISHED` é o estado técnico inicial da authority; sua consequência de admissão permanece `NOT_DEFINED`.
-- `ACTIVE` é um estado técnico de lifecycle após a transição permitida; sua consequência de admissão permanece `NOT_DEFINED`.
-- `REVOKED` é um estado técnico terminal; o efeito histórico da authority não pode ser inferido pelo estado atual.
-- `SUPERSEDED` é um estado técnico terminal associado à sucessão governada; o efeito histórico da authority não pode ser inferido pelo estado atual.
+- `PUBLISHED` é o estado técnico inicial da authority; sua admissão é condicional aos predicados técnicos e à applicability histórica.
+- `ACTIVE` é um estado técnico de lifecycle após a transição permitida; sua admissão é condicional aos predicados técnicos e à applicability histórica.
+- `REVOKED` é um estado técnico terminal; se efetivo em `measured_at`, é tecnicamente inelegível, sem inferência pelo estado atual isolado.
+- `SUPERSEDED` é um estado técnico terminal associado à sucessão governada; se efetivo em `measured_at`, é tecnicamente inelegível, sem inferência pelo estado atual isolado.
 - Para applicability, eventos terminais fecham o intervalo temporal onde B5 já prova esse efeito; isso não constitui política completa de admissibilidade da authority.
 
 `STATE_DOMAIN_SEMANTICS::NOT_DEMONSTRATED`
@@ -329,19 +360,21 @@ Este objeto trata uma única candidatura. Precedência, resolução de conflito,
 
 ### Limite da matriz
 
-`PUBLISHED authority + ACTIVE applicability => UNDEFINED`
+`PUBLISHED authority + ACTIVE applicability => ELIGIBLE_IF_TECHNICAL_PREDICATES_PASS`
 
-`ACTIVE authority + ACTIVE applicability => UNDEFINED`
+`ACTIVE authority + ACTIVE applicability => ELIGIBLE_IF_TECHNICAL_PREDICATES_PASS`
 
-`REVOKED authority + ACTIVE applicability => UNDEFINED`
+`REVOKED authority + ACTIVE applicability => INELIGIBLE_IF_TERMINALITY_IS_PROVEN_AT_OR_BEFORE_MEASURED_AT; OTHERWISE UNDEFINED`
 
-`SUPERSEDED authority + ACTIVE applicability => UNDEFINED`
+`SUPERSEDED authority + ACTIVE applicability => INELIGIBLE_IF_TERMINALITY_IS_PROVEN_AT_OR_BEFORE_MEASURED_AT; OTHERWISE UNDEFINED`
 
-`MATRIX_POLICY_RESULT_ELIGIBLE_CELLS::NONE`
+`MATRIX_POLICY_RESULT_ELIGIBLE_CONDITIONAL_CASES::2`
 
-`MATRIX_POLICY_RESULT_INELIGIBLE_CELLS::8`
+`MATRIX_POLICY_RESULT_INELIGIBLE_BASELINE_TERMINAL_APPLICABILITY_CELLS::8`
 
-`MATRIX_POLICY_RESULT_UNDEFINED_CELLS::4`
+`MATRIX_POLICY_RESULT_INELIGIBLE_CONDITIONAL_TERMINAL_AUTHORITY_CASES::2`
+
+`MATRIX_POLICY_RESULT_UNDEFINED_RESIDUAL_CASES::PROOF_DEPENDENT`
 
 `MATRIX_PRIOR_EVIDENCE_PROVEN_ADMISSIBLE_CELLS::NONE`
 
@@ -349,7 +382,17 @@ Este objeto trata uma única candidatura. Precedência, resolução de conflito,
 
 `MATRIX_NOT_DEFINED_CELLS::NONE`
 
-As doze células estão materializadas como resultados de política. Nenhum resultado constitui validade de domínio.
+As doze células estão materializadas como resultados de política condicional. Nenhum resultado constitui validade de domínio.
+
+### Política positiva de admissão técnica
+
+`TECHNICALLY_ELIGIBLE_FOR_GOVERNED_EVALUATION`
+
+`IFF` todos os predicados técnicos requeridos passam, a authority histórica em `measured_at` é `PUBLISHED` ou `ACTIVE`, a applicability é `ACTIVE` no mesmo instante e existe exatamente uma candidatura coerente.
+
+`ACTIVE` applicability prova somente aplicabilidade temporal; não prova admissibilidade da authority isoladamente. Locator e `content_hash` provam referência, identidade e integridade técnica somente; não provam correção científica, validade legal, validade regulatória, competência institucional ou correção de domínio.
+
+Esta definição é uma política A5A técnica somente. Não promove A5B, não seleciona vencedor e não define precedência, adjudicação ou resolução de conflito.
 
 ## Contrato de resultado da política materializada
 
