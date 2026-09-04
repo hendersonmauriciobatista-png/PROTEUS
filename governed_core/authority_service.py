@@ -645,9 +645,9 @@ class AuthorityService:
 
     def resolve_historical_authority(self, authority_id, authority_version,
                                      measured_at, context_revision_id,
-                                     parameter_reference):
+                                     parameter_reference, connection=None):
         measured = _instant(measured_at)
-        with self.repository._optional_connection(None) as c:
+        with self.repository._optional_connection(connection) as c:
             authority = c.execute(
                 "SELECT 1 FROM governed_authority WHERE authority_id=? AND authority_version=?",
                 (authority_id, authority_version),
@@ -711,13 +711,13 @@ class AuthorityService:
                         if successor is None:
                             return HistoricalAuthorityResolution("UNDEFINED", "AUTHORITY_HISTORY_INCOMPLETE")
                     terminal_seen = True
-            selected = [event for event in events if event.effective_at <= measured]
-            if not selected:
-                return HistoricalAuthorityResolution("UNDEFINED", "AUTHORITY_HISTORY_INCOMPLETE")
             if measured < boundary[0] or (
                 boundary[1] is not None and measured >= boundary[1]
             ):
                 return HistoricalAuthorityResolution(
                     "TECHNICALLY_INELIGIBLE", "AUTHORITY_OUT_OF_WINDOW",
                 )
+            selected = [event for event in events if event.effective_at <= measured]
+            if not selected:
+                return HistoricalAuthorityResolution("UNDEFINED", "AUTHORITY_HISTORY_INCOMPLETE")
             return HistoricalAuthorityResolution("RESOLVED", event=selected[-1])

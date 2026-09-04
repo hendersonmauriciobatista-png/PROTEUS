@@ -25,22 +25,24 @@ def canonical_payload(payload, unit):
 
 class RuleResolutionService:
     def __init__(self, repository): self.repository = repository
-    def resolve(self, context_revision_id, parameter_reference, measured_at):
+    def resolve(self, context_revision_id, parameter_reference, measured_at, connection=None):
         instant = _instant(measured_at)
-        rows = self.repository.fetch_rules(context_revision_id, parameter_reference, instant)
+        rows = self.repository.fetch_rules(
+            context_revision_id, parameter_reference, instant, connection
+        )
         if len(rows) == 0: return RuleResolution("NAO_AVALIAVEL", reason="NO_APPLICABLE_RULE")
-        if len(rows) != 1: return RuleResolution("BLOCKED", reason="AMBIGUOUS_RULE_RESOLUTION")
+        if len(rows) != 1: return RuleResolution("BLOCKED", reason="MULTIPLE_APPLICABLE_RULES")
         rule = rows[0]
         if not rule.authority_reference_ids or not rule.evidence_reference_ids:
             return RuleResolution("BLOCKED", reason="BROKEN_AUTHORITY_EVIDENCE_CHAIN")
         for reference_id in rule.authority_reference_ids:
-            with self.repository._optional_connection(None) as connection:
-                exists = connection.execute("SELECT 1 FROM authority_reference WHERE authority_reference_id = ?", (reference_id,)).fetchone()
+            with self.repository._optional_connection(connection) as active:
+                exists = active.execute("SELECT 1 FROM authority_reference WHERE authority_reference_id = ?", (reference_id,)).fetchone()
             if exists is None:
                 return RuleResolution("BLOCKED", reason="MISSING_AUTHORITY_REFERENCE")
         for reference_id in rule.evidence_reference_ids:
-            with self.repository._optional_connection(None) as connection:
-                exists = connection.execute("SELECT 1 FROM evidence_reference WHERE evidence_reference_id = ?", (reference_id,)).fetchone()
+            with self.repository._optional_connection(connection) as active:
+                exists = active.execute("SELECT 1 FROM evidence_reference WHERE evidence_reference_id = ?", (reference_id,)).fetchone()
             if exists is None:
                 return RuleResolution("BLOCKED", reason="MISSING_EVIDENCE_REFERENCE")
         return RuleResolution("RESOLVED", rule)

@@ -34,6 +34,18 @@ class GovernedReferenceError(GovernedCoreError):
     pass
 
 
+class MeasurementResolutionError(GovernedReferenceError):
+    reason_code = "MEASUREMENT_UNRESOLVED"
+
+
+class TemporalContextResolutionError(GovernedReferenceError):
+    reason_code = "TEMPORAL_CONTEXT_UNRESOLVED"
+
+
+class TemporalAPSResolutionError(GovernedReferenceError):
+    reason_code = "APS_MEMBER_AUTHORIZATION_UNRESOLVED"
+
+
 class GovernedConflictError(GovernedCoreError):
     pass
 
@@ -275,6 +287,34 @@ class GovernedCoreRepository:
             tuple(bases),
         )
 
+    def fetch_authority_applicability_candidates(
+        self, context_revision_id, parameter_reference, measured_at, connection=None
+    ):
+        """Return all scoped applicability candidates, including their temporal end."""
+        with self._optional_connection(connection) as active:
+            return tuple(active.execute(
+                "SELECT applicability_id, authority_id, authority_version, "
+                "context_revision_id, parameter_reference, effective_from, "
+                "terminal_effective_at "
+                "FROM authority_applicability_temporal "
+                "WHERE context_revision_id = ? AND parameter_reference = ? "
+                "ORDER BY authority_id, authority_version, applicability_id",
+                (context_revision_id, parameter_reference),
+            ).fetchall())
+
+    def fetch_authority_applicability_event_ids(
+        self, applicability_id, measured_at, connection=None
+    ):
+        """Return every historical publication event available at measured_at."""
+        with self._optional_connection(connection) as active:
+            rows = active.execute(
+                "SELECT event_id FROM authority_applicability_event "
+                "WHERE applicability_id = ? AND event_type = 'PUBLISHED' "
+                "AND effective_at <= ? ORDER BY effective_at, event_id",
+                (applicability_id, measured_at),
+            ).fetchall()
+        return tuple(row[0] for row in rows)
+
     def insert_measurement(self, measurement, connection):
         if connection is None:
             raise ValueError("Measurement insert requires an active transaction.")
@@ -306,7 +346,7 @@ class GovernedCoreRepository:
                 (measurement_id,),
             ).fetchone()
         if row is None:
-            raise GovernedReferenceError(
+            raise MeasurementResolutionError(
                 f"Medicao governada nao resolvivel: {measurement_id}"
             )
         return GovernedMeasurement(*row)
@@ -467,14 +507,14 @@ class GovernedCoreRepository:
         with self._optional_connection(connection) as active:
             rows = active.execute("SELECT context_revision_id, revision, point_id, purpose, water_context, point_type, geo_reference, created_at, effective_from, effective_until FROM point_context_revision WHERE point_id = ? AND effective_from IS NOT NULL AND effective_from <= ? AND (effective_until IS NULL OR ? < effective_until)", (point_id, measured_at, measured_at)).fetchall()
         if len(rows) != 1:
-            raise GovernedReferenceError(f"Temporal context resolution requires exactly one match: {point_id}")
+            raise TemporalContextResolutionError(f"Temporal context resolution requires exactly one match: {point_id}")
         return PointContextRevision(*rows[0])
 
     def fetch_temporal_aps(self, context_revision_id, measured_at, connection=None):
         with self._optional_connection(connection) as active:
             rows = active.execute("SELECT aps_set_id, aps_version FROM aps_temporal_applicability WHERE context_revision_id = ? AND effective_from <= ? AND (effective_until IS NULL OR ? < effective_until)", (context_revision_id, measured_at, measured_at)).fetchall()
         if len(rows) != 1:
-            raise GovernedReferenceError("Temporal APS resolution requires exactly one match")
+            raise TemporalAPSResolutionError("Temporal APS resolution requires exactly one match")
         return APSReference(*rows[0])
 
     def fetch_rules(self, context_revision_id, parameter_reference, measured_at, connection=None):

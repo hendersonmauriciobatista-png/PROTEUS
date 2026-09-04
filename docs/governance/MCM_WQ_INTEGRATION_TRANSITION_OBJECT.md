@@ -1,8 +1,8 @@
 # MCM-WQ — Integration Transition Object
 
-Estado de definição em 2026-09-03, contra a publicação `1e27a672e40b414e6c7b568e401eba55ce7d5e6b` e a baseline técnica B5 `c13593f3665f425ada833fe6c0ceb225136ec5e3`.
+Estado revisado em 2026-09-04 contra a baseline `62351f2dcdf1dcf753fe5e6fcbd8700e05a44af1`.
 
-## Identidade e classificação
+## Identidade, natureza e limites
 
 - **Caso:** `PROTEUS`
 - **Objeto:** `MCM_WQ_INTEGRATION_TRANSITION_OBJECT`
@@ -16,363 +16,603 @@ Estado de definição em 2026-09-03, contra a publicação `1e27a672e40b414e6c7b
 - **Cutover:** `NOT_AUTHORIZED`
 - **Produção:** `NOT_READY`
 - **Implementação deste objeto:** `NOT_AUTHORIZED`
+- **Escopo do ato:** `DOCUMENTARY_CORRECTION_ONLY`
 
-Este documento define a menor fronteira governada necessária para conectar a aplicabilidade de autoridade B5 ao caminho temporal de avaliação. Ele não implementa runtime, não altera schema, não define B6 e não constitui autorização de cutover ou produção.
+Este documento define a fronteira governada para conectar a aplicabilidade de
+authority B5 ao caminho temporal de avaliação. Ele não implementa runtime, não
+altera schema, não cria migration, não altera `record()`, não define B6 e não
+autoriza cutover ou produção.
 
 ## Autoridade documental e disciplina de evidência
 
-Este é um objeto governado canônico em `docs/governance/`, seguindo a estrutura dos registros MCM-WQ B3, B4 e B5. É uma definição de transição e não substitui os registros de certificação nem cria uma segunda fonte de verdade técnica.
+Este é o objeto governado canônico da transição em `docs/governance/`. Ele não
+substitui os registros de certificação, a política de lifecycle, o contrato de
+versão do Authority Gate, o Schema A ou o Schema B.
 
-As referências de evidência são:
+Fontes documentais e técnicas consideradas:
 
-- `docs/governance/MCM_WQ_B3_CERTIFICATION_RECORD.md`
-- `docs/governance/MCM_WQ_B4_CERTIFICATION_RECORD.md`
-- `docs/governance/MCM_WQ_B5_CERTIFICATION_RECORD.md`
-- `governed_core/evaluation_service.py`
-- `governed_core/authority_service.py`
-- `governed_core/rule_service.py`
-- `governed_core/repository.py`
-- `governed_core/measurement_models.py`
-- `tests/test_governed_evaluation.py`
-- `tests/test_b5_authority_lifecycle.py`
-- `migrations/011_mcm_wq_b3_evaluation_provenance.sql`
-- `migrations/013_mcm_wq_b5_authority_foundation.sql`
-- `migrations/014_mcm_wq_b5_authority_applicability.sql`
-- `migrations/015_mcm_wq_b5_deferred_successor_fk.sql`
-- `migrations/016_mcm_wq_b5_db_temporal_enforcement.sql`
+- `docs/governance/MCM_WQ_LIFECYCLE_ADMISSIBILITY_POLICY_OBJECT.md`;
+- `docs/governance/MCM_WQ_AUTHORITY_GATE_TECHNICAL_POLICY_VERSION_CONTRACT.md`;
+- `docs/governance/MCM_WQ_AUTHORITY_ARTIFACT_VERIFICATION_SCHEMA_CONTRACT.md`;
+- `docs/governance/MCM_WQ_EVALUATION_AUTHORITY_SNAPSHOT_SCHEMA_CONTRACT.md`;
+- `docs/governance/MCM_WQ_B3_CERTIFICATION_RECORD.md`;
+- `docs/governance/MCM_WQ_B4_CERTIFICATION_RECORD.md`;
+- `docs/governance/MCM_WQ_B5_CERTIFICATION_RECORD.md`;
+- `governed_core/evaluation_service.py`;
+- `governed_core/authority_service.py`;
+- `governed_core/rule_service.py`;
+- `governed_core/repository.py`;
+- `tests/test_governed_evaluation.py`;
+- `tests/test_b5_authority_lifecycle.py`;
+- migrations B5 `013`, `014`, `015`, `016` e migration 019.
 
-Classificação das afirmações:
+Disciplina de evidência:
 
-- **PROVEN:** a baseline B5 publicada demonstra, no escopo técnico certificado, a fundação de autoridade, aplicabilidade temporal, lifecycle, supersession atômica, enforcement temporal, timestamp governado e evidência rollback/fail-safe.
-- **DOCUMENTED:** este documento define a fronteira, contratos e obrigações da transição futura.
-- **RECORDED_FROM_CONTROLLED_VALIDATION:** os resultados `58 PASS` focado e `347 PASS` completo, com Python `3.12.10` e runner `unittest`, permanecem evidência registrada no ciclo controlado B5; não são rerun desta definição.
-- **INFERRED:** a posição do gate é derivada da sequência atual de `evaluate_temporal()` e da API B5 existente; a integração ainda não foi implementada.
-- **NOT_DEMONSTRATED:** testes, hashes, migrations, locators e comportamento de software não demonstram autoridade científica, legal, institucional ou normativa de domínio. `A5B` permanece `NOT_DEMONSTRATED`.
-- **NOT_DEFINED:** B6, política de precedência/adjudicação de conflitos e semântica de alert/event/action.
+- **PROVEN:** a baseline B5 demonstra, no escopo técnico publicado, a
+  fundação de authority, applicability temporal, lifecycle, supersession
+  atômica, enforcement temporal, timestamp governado e evidência rollback/
+  fail-safe;
+- **DOCUMENTED:** este registro define a integração futura, o resultado
+  tipado, os reason codes, o limite transacional e a leitura de proveniência;
+- **DEFINED_BUT_NOT_IMPLEMENTED:** o Authority Gate integrado, a adaptação
+  connection-aware e a persistência Schema B;
+- **RECORDED_FROM_CONTROLLED_VALIDATION:** `58 PASS` focado e `347 PASS`
+  completo, com Python `3.12.10` e runner `unittest`; esses resultados não
+  são rerun por esta correção;
+- **NOT_DEMONSTRATED:** testes, hashes, migrations, locators e comportamento
+  de software não demonstram autoridade científica, legal, institucional,
+  normativa ou de domínio. `A5B` permanece `NOT_DEMONSTRATED`.
 
-As limitações B5 permanecem preservadas: `TERMINAL_OVERLAP_LIMITATION`, `MIGRATION_011_PROVENANCE_LIMITATION`, `HISTORICAL_ENVIRONMENT_REPRODUCIBILITY_LIMITATION` e `A5B_NOT_DEMONSTRATED`.
+## Bind obrigatório da política de lifecycle
 
-## Semântica de lifecycle e elegibilidade
+O lifecycle technical admission do Authority Gate é regido explicitamente
+por uma única política publicada:
 
-### Fonte publicada
+~~~text
+POLICY_ID::mcm-wq-authority-gate-technical-admission/v1
+CANONICAL_POLICY_OBJECT::docs/governance/MCM_WQ_LIFECYCLE_ADMISSIBILITY_POLICY_OBJECT.md
+CANONICAL_POLICY_ROLE::PUBLISHED_LIFECYCLE_ADMISSIBILITY_POLICY_SOURCE_OF_TRUTH
+POLICY_RESULT_DOMAIN::ELIGIBLE | INELIGIBLE | UNDEFINED
+POLICY_RESULT_UNDEFINED::BLOCKED
+MATRIX_NOT_DEFINED_CELLS::NONE
+~~~
 
-As migrations B5 `013`, `014` e `015` e a evidência em `tests/test_b5_authority_lifecycle.py` demonstram:
+`MCM_WQ_LIFECYCLE_ADMISSIBILITY_POLICY_OBJECT.md` é o Source of Truth
+semântico da admissão técnica de lifecycle. A matriz publicada define as
+consequências para as combinações de authority/applicability e os predicados
+históricos exigidos; não existe, neste objeto de integração, uma lacuna
+`NOT_DEFINED` de política para substituir essa matriz.
 
-- `authority_state` possui os estados `PUBLISHED`, `ACTIVE`, `REVOKED` e `SUPERSEDED`;
-- a transição de autoridade é `PUBLISHED → ACTIVE → REVOKED|SUPERSEDED`;
-- `authority_applicability_state` possui `ACTIVE`, `REVOKED` e `SUPERSEDED`;
-- a publicação de uma applicability produz estado `ACTIVE`;
-- revocation/supersession fecha a janela temporal half-open da applicability e não permite reopen;
-- a resolução B5 usa a janela temporal da applicability.
+O resultado da política é calculado para uma candidatura única contra o
+`measurement.measured_at` canônico. `ELIGIBLE` somente significa que todos os
+predicados técnicos da política publicada foram positivamente provados;
+`INELIGIBLE` e `UNDEFINED` bloqueiam. Nenhum resultado afirma validade
+científica, legal, institucional, normativa ou de domínio.
 
-O teste B5 de criação e resolução cria a autoridade em `PUBLISHED`, cria uma applicability que fica `ACTIVE` e demonstra resolução temporal dessa applicability. Isso prova o comportamento de lifecycle e de janela temporal, mas não define se `PUBLISHED` ou `ACTIVE` da autoridade é admissível para uma avaliação futura.
+Para a persistência Schema B, o resultado positivo da política é representado
+pelo valor canônico exigido pelo Schema B:
 
-`LIFECYCLE_ELIGIBILITY_STATUS::NOT_DEFINED`
+~~~text
+lifecycle_policy_decision::ELIGIBLE
+lifecycle_policy_result::TECHNICALLY_ELIGIBLE_FOR_GOVERNED_EVALUATION
+~~~
 
-Não há na autoridade B5 publicada uma matriz explícita de admissibilidade da autoridade para avaliação. O nome do estado, isoladamente, nunca constitui validade científica, legal, institucional ou de domínio.
+Essa representação não cria uma segunda política: `ELIGIBLE` é a decisão
+tri-state da política publicada e `TECHNICALLY_ELIGIBLE_FOR_GOVERNED_EVALUATION`
+é seu resultado positivo canônico no contrato do snapshot.
 
-### Matriz de estado
+Os predicados devem usar `measured_at`, intervalos half-open `[start,end)` e
+histórico completo de lifecycle/eventos. Estado corrente isolado, `created_at`,
+`registered_at`, tempo de execução ou qualquer estado/política atual não pode
+substituir a prova histórica. Se o histórico necessário estiver incompleto,
+ambíguo ou não provado, o resultado da política é `UNDEFINED` e o Gate é
+`BLOCKED`.
 
-| Registro | Estado observado | O que B5 prova | Admissibilidade no futuro authority gate |
-| --- | --- | --- | --- |
-| Authority | `PUBLISHED` | Estado inicial e usado no teste B5 de resolução da applicability | `NOT_DEFINED`; não pode passar sem elegibilidade definida |
-| Authority | `ACTIVE` | Transição de lifecycle permitida | `NOT_DEFINED`; não pode passar sem elegibilidade definida |
-| Authority | `REVOKED` | Estado terminal e evento append-only | `NOT_DEFINED`; o nome do estado atual sozinho não decide admissibilidade histórica |
-| Authority | `SUPERSEDED` | Estado terminal e sucessão governada | `NOT_DEFINED`; o nome do estado atual sozinho não decide admissibilidade histórica |
-| Applicability | `ACTIVE` | Candidatura temporal resolvível quando a janela inclui `measured_at` | Candidatura identificada; admissibilidade final da authority permanece `NOT_DEFINED` |
-| Applicability | `REVOKED` | Janela fechada a partir de `terminal_effective_at` | Fora da janela após o terminal; admissibilidade histórica anterior não é decidida aqui |
-| Applicability | `SUPERSEDED` | Janela fechada e sucessor vinculado | Fora da janela após o terminal; admissibilidade histórica anterior não é decidida aqui |
+## Fronteira de integração
 
-`UNDEFINED_OR_UNPROVEN_ELIGIBILITY => BLOCKED`
+O escopo é somente o `evaluate_temporal()` integrado:
 
-`CURRENT_STATE_NAME_ALONE MUST NOT DETERMINE HISTORICAL ADMISSIBILITY`
+~~~text
+MEASUREMENT
+  -> temporal context resolution
+  -> temporal APS resolution
+  -> APS member authorization resolution
+  -> AUTHORITY GATE
+  -> RULE resolution
+  -> final evaluation and Schema B persistence
+~~~
 
-A elegibilidade histórica da authority deve ser resolvida contra `measured_at`, o intervalo temporal aplicável, o histórico de lifecycle/eventos e uma política de admissibilidade de lifecycle definida separadamente. Não se infere se uma authority `PUBLISHED`, `ACTIVE`, `REVOKED` ou `SUPERSEDED` é admissível para um evento histórico.
+O Authority Gate ocorre depois de contexto, APS temporal e autorização de
+membro resolvidos e antes da resolução da RULE. `record()` permanece fora da
+fronteira e inalterado. A medição factual continua distinta da avaliação e é
+retida quando a fronteira bloqueia.
 
-Os eventos terminais da applicability podem fechar seus intervalos temporais nos pontos já provados por B5. Esse fechamento temporal não constitui, sozinho, uma política completa de admissibilidade da authority para avaliação.
+Entradas mínimas do Gate:
 
-Antes de qualquer autorização de runtime, uma decisão governada separada deve definir a elegibilidade técnica do par authority/applicability, inclusive sua relação com `measured_at`. Essa decisão não pode ser inferida deste documento nem tratada como política de precedência ou adjudicação B6.
-
-## Cadeia governada atual e fronteira da transição
-
-O caminho temporal atualmente evidenciado é:
-
-`MEASUREMENT → APPLICABLE_CONTEXT/APS → APS_MEMBER_AUTHORIZATION → RULE_RESOLUTION → EVALUATION`
-
-A capacidade B5 de resolução de aplicabilidade de autoridade existe separadamente e não é chamada pelo caminho atual de `evaluate_temporal()`. A transição definida neste documento acrescenta conceitualmente, antes da resolução da RULE:
-
-`MEASUREMENT → APPLICABLE_CONTEXT → AUTHORITY_APPLICABILITY_GATE → APPLICABLE_RULE → EVALUATION`
-
-O escopo é exclusivamente `evaluate_temporal()`:
-
-- o gate ocorre depois da resolução exata do contexto temporal, APS temporal e autorização de membro;
-- o gate ocorre antes da resolução da RULE;
-- o gate ocorre antes da construção e persistência de uma avaliação final;
-- `record()` permanece fora do escopo e não deve ser alterado por esta definição;
-- a medição factual continua distinta da avaliação e permanece preservada quando o caminho é bloqueado.
-
-## Contrato de entrada
-
-O gate deve receber os dados já resolvidos do evento de medição, contexto e autorização temporal:
-
-- `measurement_id`;
-- `point_id` e demais dados de lineage do ponto;
-- `context_revision_id` imutável, resolvido para `measured_at`;
+- `measurement_id`, `point_id` e lineage do ponto;
+- `context_revision_id` imutável resolvido para `measured_at`;
 - `parameter_reference`;
 - `measured_at` canônico em UTC;
 - proveniência da medição;
 - identidade e versão do APS temporal resolvido;
-- resultado da autorização `APS_MEMBER` temporal.
+- resultado da autorização temporal de membro;
+- candidaturas de authority/applicability e suas evidências históricas e de
+  verificação.
 
-O valor factual da medição permanece dado da `MEASUREMENT`; ele não é usado para selecionar autoridade, RULE ou resultado de avaliação.
+São proibidos como fallback `current_context`, `registration_time`,
+`created_at`, estado corrente fora da janela medida, `rule_origin`,
+applicability corrente, regra legada, seleção heurística, desempate silencioso
+ou inferência de authority.
 
-### Entradas proibidas como fallback
+## GATE_RESULT_CONTRACT — resultado canônico tipado
 
-O gate não pode substituir os inputs acima por:
+O resultado do Authority Gate é exatamente uma união discriminada:
 
-- `current_context`;
-- `registration_time` ou `created_at`;
-- estado atual do APS fora da janela de `measured_at`;
-- `rule_origin`;
-- aplicabilidade corrente, regra legada ou qualquer fallback;
-- seleção heurística, desempate silencioso ou inferência de autoridade.
+~~~text
+AuthorityGateResult =
+  RESOLVED {
+    status: RESOLVED,
+    authority_id,
+    authority_version,
+    authority_applicability_id,
+    authority_lifecycle_event_id,
+    authority_applicability_event_id,
+    verification_id,
+    authority_gate_policy_contract_version,
+    lifecycle_policy_result: TECHNICALLY_ELIGIBLE_FOR_GOVERNED_EVALUATION,
+    resolution_provenance,
+    exact_member_authorization_basis: NONEMPTY_SET<APS_MEMBER_BASIS_ID>
+  }
+  |
+  BLOCKED {
+    status: BLOCKED,
+    reason_code: GOVERNED_DETERMINISTIC_REASON_CODE,
+    resolution_provenance: DIAGNOSTIC_PROVENANCE
+  }
+~~~
 
-## Contrato de resolução de autoridade
+### `RESOLVED`
 
-O input mínimo da resolução B5 é:
+`RESOLVED` somente pode ser emitido quando houver exatamente uma candidatura
+coerente, a política de lifecycle retornar `ELIGIBLE`, o policy identifier for
+reconhecido, a applicability for temporalmente válida, os escopos e lineages
+forem consistentes e houver verificação Schema A aceita para a mesma
+authority/version.
 
-`context_revision_id + parameter_reference + canonical measured_at`
+`resolution_provenance` deve identificar, no mínimo, a policy id/version, o
+`measured_at` avaliado, os inputs temporais, a candidatura selecionada, os
+eventos históricos considerados, o estágio do resolvedor, a versão do
+resolvedor e a base de autorização de membros. Esse campo não autoriza seleção
+de vencedor: `RESOLVED` só existe após a cardinalidade única já estar provada.
 
-O resultado governado deve ser tipado como `RESOLVED` ou `BLOCKED` e conter:
+`exact_member_authorization_basis` é um conjunto não vazio, exato e imutável
+dos IDs de base de autorização de membro usados pela resolução. Não pode ser
+reconstruído, reduzido ou enriquecido depois do fato.
 
-- `status`;
-- `reason_code`;
-- `candidate_count`;
-- `candidate_ids`;
-- `selected_applicability_id`, somente quando houver exatamente uma correspondência válida;
-- `authority_id` e `authority_version`;
-- intervalo temporal aplicável;
-- estado de lifecycle observado e estado elegível exigido;
-- `origin_locator`;
-- `content_hash`;
-- `resolution_provenance` e versão do resolvedor.
+### `BLOCKED`
 
-Campos de autoridade selecionada não podem ser tratados como resolvidos quando o resultado for `BLOCKED`. Candidatos e razão do bloqueio devem ser preservados para evidência.
+`BLOCKED` sempre carrega um único `reason_code` governado e uma
+`resolution_provenance` suficiente para diagnóstico, incluindo a medição,
+inputs, contagem e IDs de candidaturas quando disponíveis, estágio que falhou,
+referências de evidência e a regra aplicada.
 
-O gate de autoridade nunca emite `NOT_EVALUABLE`. `NOT_EVALUABLE` pertence somente à resolução de RULE após uma autoridade ter sido resolvida com sucesso.
+O resultado `BLOCKED` não carrega campos de avaliação final, `evaluation_id`,
+resultado de RULE ou qualquer payload de persistência Schema B. Não existe
+snapshot, linha de base de membro ou outro fragmento de Schema B para um
+resultado bloqueado. A medição factual é retida; nenhuma falha de authority é
+convertida em `NAO_AVALIAVEL`.
 
-## Taxonomia transitional de reason codes
+## SCHEMA_B_MAPPING — mapeamento normativo
 
-Na futura fronteira de integração, qualquer exceção ou resultado não resolvido do resolver deve ser convertido em um resultado determinístico `BLOCKED` com um reason code estável. O `ValueError` genérico atual não pode vazar como semântica governada.
+Para `RESOLVED`, a avaliação final e o snapshot são produzidos na mesma
+transação. O mapeamento direto e obrigatório para os campos exatos do Schema B
+é:
 
-Os códigos mínimos, alinhados ao padrão uppercase e descritivo já usado pela resolução de RULE, são:
+| Fonte governada | Campo Schema B | Regra normativa |
+| --- | --- | --- |
+| identidade da avaliação final criada no caminho integrado | `governed_evaluation_authority_snapshot.evaluation_id` | one-to-one com a avaliação; só existe em fluxo `RESOLVED` |
+| `RESOLVED.authority_id` | `governed_evaluation_authority_snapshot.authority_id` | mesma authority identity/version validada |
+| `RESOLVED.authority_version` | `governed_evaluation_authority_snapshot.authority_version` | versão imutável da authority resolvida |
+| `RESOLVED.authority_applicability_id` | `governed_evaluation_authority_snapshot.authority_applicability_id` | applicability histórica resolvida |
+| `RESOLVED.authority_lifecycle_event_id` | `governed_evaluation_authority_snapshot.authority_lifecycle_event_id` | evento histórico de lifecycle considerado |
+| `RESOLVED.authority_applicability_event_id` | `governed_evaluation_authority_snapshot.authority_applicability_event_id` | evento histórico de applicability considerado |
+| `RESOLVED.verification_id` | `governed_evaluation_authority_snapshot.verification_id` | único handoff para prova Schema A aceita |
+| `RESOLVED.status` | `governed_evaluation_authority_snapshot.authority_gate_status` | invariavelmente `RESOLVED` |
+| `RESOLVED.lifecycle_policy_result` | `governed_evaluation_authority_snapshot.lifecycle_policy_result` | invariavelmente `TECHNICALLY_ELIGIBLE_FOR_GOVERNED_EVALUATION` |
+| resultado da RULE após Gate resolvido | `governed_evaluation_authority_snapshot.rule_resolution_outcome` | somente `ZERO_APPLICABLE_RULE` ou `ONE_APPLICABLE_RULE` |
+| `RESOLVED.authority_gate_policy_contract_version` | `governed_evaluation_authority_snapshot.authority_gate_policy_contract_version` | exatamente `mcm-wq-authority-gate-technical-admission/v1` |
 
-- `AUTHORITY_ZERO_MATCH` — nenhuma candidatura de autoridade;
-- `AUTHORITY_MULTIPLE_MATCH` — mais de uma candidatura sem resolução única;
-- `AUTHORITY_MALFORMED` — registro ou input de autoridade malformado;
-- `AUTHORITY_OUT_OF_WINDOW` — `measured_at` fora do intervalo aplicável;
-- `AUTHORITY_LIFECYCLE_INELIGIBLE` — lifecycle explicitamente classificado como inelegível pela política separada;
-- `AUTHORITY_PROVENANCE_INCOMPLETE_OR_INVALID` — provenance, locator ou hash ausente/inconsistente;
-- `AUTHORITY_CONFLICT_DETECTED` — conflito detectado sem adjudicação;
-- `AUTHORITY_ELIGIBILITY_NOT_DEFINED_OR_UNPROVEN` — elegibilidade não definida ou não provada;
-- `AUTHORITY_RESOLUTION_UNEXPECTED_FAILURE` — falha inesperada do resolver sem categoria mais específica.
+Invariantes do mapeamento:
 
-`AUTHORITY_RESOLUTION_UNEXPECTED_FAILURE` significa:
+~~~text
+authority_gate_status == RESOLVED
+rule_resolution_outcome == ZERO_APPLICABLE_RULE
+  | ONE_APPLICABLE_RULE
+exact_member_authorization_basis cardinality >= 1
+~~~
 
-- falha inesperada do resolver `=> BLOCKED`;
-- medição factual retida;
-- nenhuma avaliação final persistida no futuro caminho integrado de `evaluate_temporal()`;
-- evidência diagnóstica retida;
-- nenhuma exceção genérica exposta como resultado governado;
-- nenhum fallback;
-- nenhuma seleção heurística.
+`exact_member_authorization_basis` é persistido somente na relação filha
+imutável de bases do snapshot, com um ou mais IDs exatos por snapshot. Ele não
+é uma nova coluna direta nem pode ser substituído por reconstrução live.
+`resolution_provenance` é satisfeita pelas referências relacionais imutáveis
+do snapshot, pelas linhas de base e pelo encadeamento Schema A; não se adiciona
+campo Schema B, JSON concorrente ou duplicação de locator/hash.
 
-O catch-all não pode substituir um reason code específico quando uma categoria governada for determinável. A tradução é requisito documental para a futura fronteira de integração; não está implementada neste estado.
+Um resultado `BLOCKED` não entra neste mapeamento e não produz nenhum payload
+Schema B. Avaliações legadas continuam sem snapshot e não recebem backfill.
 
-Esta taxonomia não define precedência, adjudicação ou vencedor.
+## CONNECTION_OWNERSHIP_CONTRACT — uma conexão e uma transação
 
-## Semântica por cardinalidade e falha
+O `evaluate_temporal()` integrado deve possuir uma única conexão governada e
+uma única transação desde antes da resolução do contexto temporal até o
+`COMMIT` final:
 
-### Zero correspondências de autoridade
+~~~text
+ONE governed connection
+ONE transaction
+NO nested connection
+NO intermediate commit
+NO _optional_connection(None) inside the integrated path
+~~~
 
-`ZERO_AUTHORITY_MATCH => VALID_MEASUREMENT + BLOCKED`
+A mesma conexão explícita deve ser passada, sem substituição ou reabertura,
+para:
 
-A medição permanece disponível; nenhuma avaliação final é persistida. Isso não é `NO_APPLICABLE_RULE`.
+~~~text
+temporal context resolution
+ -> temporal APS resolution
+ -> member authorization resolution
+ -> Authority Gate
+ -> rule resolution
+ -> evaluation persistence
+ -> all snapshot basis rows
+ -> snapshot persistence
+ -> final validation
+ -> COMMIT
+~~~
 
-### Uma correspondência válida
+O serviço integrado é o dono da conexão e da transação. Repositórios e
+serviços chamados nessa cadeia não podem abrir conexão própria, iniciar
+transação aninhada, chamar `_optional_connection(None)` ou fazer commit
+intermediário. APIs connection-aware podem ser adaptadas somente na medida
+necessária para transmitir essa mesma conexão e preservar a fronteira.
 
-`ONE_VALID_AUTHORITY_MATCH => RESOLVED`
+Em `RESOLVED + ZERO_APPLICABLE_RULE` e `RESOLVED + ONE_APPLICABLE_RULE`, a
+avaliação final, todas as linhas de base não vazias, o snapshot completo e a
+validação final pertencem à mesma transação; o commit é atômico. Falha antes
+do commit faz rollback sem avaliação final parcial, snapshot parcial ou base
+parcial. `record()` permanece inalterado e fora dessa transação integrada.
 
-A resolução só é válida se o escopo de contexto e parâmetro coincidir, `measured_at` estiver dentro do intervalo, o lifecycle for elegível e a identidade/proveniência da autoridade estiverem completas. Somente depois disso a resolução de RULE pode ocorrer.
+## RUNTIME_SEMANTICS — comportamento futuro obrigatório
 
-### Múltiplas ou conflitantes
+### Authority bloqueada
 
-`MULTIPLE_OR_CONFLICTING_AUTHORITY => BLOCKED`
+~~~text
+AUTHORITY_BLOCKED
+  -> factual measurement retained
+  -> no final evaluation
+  -> no Schema B snapshot
+  -> no Schema B snapshot basis
+~~~
 
-O transition object pode detectar candidatos múltiplos, sobreposição ou conflito e bloquear o caminho. Ele não seleciona vencedor, não aplica precedência e não adjudica o conflito.
+Não há `NOT_EVALUABLE`, alerta, evento, ação, fallback ou seleção heurística
+nesse ramo.
 
-### Outras falhas
+### Authority resolvida, zero RULE aplicável
 
-Cada condição abaixo resulta em `BLOCKED`, sem fallback:
+~~~text
+RESOLVED + ZERO_APPLICABLE_RULE
+  -> NAO_AVALIAVEL
+  -> final evaluation persisted
+  -> complete nonempty exact basis set persisted
+  -> complete Schema B snapshot persisted
+  -> atomic COMMIT
+~~~
 
-- autoridade ausente;
-- autoridade malformada;
-- intervalo inválido ou `measured_at` fora da janela;
-- lifecycle explicitamente classificado como inelegível pela política separada;
-- elegibilidade histórica não resolvível contra `measured_at`, intervalo temporal, histórico de eventos e política governada;
-- referência, locator ou hash ausente/inconsistente;
-- contexto temporal, APS ou autorização de membro não resolvidos;
-- conflito entre a proveniência da medição, contexto, autoridade ou RULE;
-- falha inesperada do resolver sem categoria mais específica.
+`NAO_AVALIAVEL` é válido somente depois de `authority_gate_status == RESOLVED`
+e somente para `ZERO_APPLICABLE_RULE`.
 
-Em todas as falhas, a medição factual permanece no bloco. Não há avaliação final, alerta, evento ou ação.
+### Authority resolvida, uma RULE aplicável
 
-## Semântica após autoridade resolvida
+~~~text
+RESOLVED + ONE_APPLICABLE_RULE
+  -> final evaluation persisted
+  -> complete nonempty exact basis set persisted
+  -> complete Schema B snapshot persisted
+  -> atomic COMMIT
+~~~
 
-Somente após `AUTHORITY_STATUS=RESOLVED`:
+Mais de uma RULE aplicável resulta em `BLOCKED`, sem avaliação final, snapshot
+ou base. A authority não é uma RULE, uma RULE não é uma medição e uma RULE
+existente não é automaticamente a RULE aplicável.
 
-- `ZERO_APPLICABLE_RULE => VALID_MEASUREMENT + NOT_EVALUABLE`;
-- `ONE_APPLICABLE_RULE => MAY_PROCEED_TO_EVALUATION`;
-- `MULTIPLE_APPLICABLE_RULES => BLOCKED`.
+## BLOCKED_REASON_CODE_CONTRACT — categorias determinísticas
 
-A autoridade não é uma RULE, a RULE não é uma medição e uma RULE existente não é automaticamente a RULE aplicável. A resolução da RULE continua responsável por sua própria cardinalidade, referências e hash.
+O Gate emite exatamente um reason code por resultado `BLOCKED`. A classificação
+é fail-safe, determinística e auditável. A ordem de decisão abaixo é fixa: a
+primeira condição determinável na etapa aplicável define o código; nenhum
+código genérico pode mascarar uma categoria específica.
 
-## Contrato de persistência
+| Ordem | `reason_code` | Condição governada |
+| --- | --- | --- |
+| 1 | `NO_AUTHORITY_CANDIDATE` | nenhuma candidatura foi encontrada para o contexto, parâmetro e `measured_at` |
+| 2 | `CONFLICTING_AUTHORITY` | duas ou mais candidaturas, identidade, escopo, lifecycle ou proveniência são mutuamente incompatíveis |
+| 3 | `MULTIPLE_AUTHORITY_CANDIDATES` | mais de uma candidatura coerente existe e não há política B6 de seleção |
+| 4 | `MALFORMED_AUTHORITY_STATE` | estado, identidade, versão, evento ou estrutura da authority é inválido/malformado |
+| 5 | `INCOMPLETE_AUTHORITY_HISTORY` | histórico de lifecycle/applicability exigido para `measured_at` está ausente, incompleto ou ambíguo |
+| 6 | `APPLICABILITY_INVALID` | applicability ausente, inválida, inconsistente ou fora da janela temporal half-open |
+| 7 | `AUTHORITY_SCOPE_MISMATCH` | authority, applicability, contexto, parâmetro ou lineage não coincidem |
+| 8 | `UNKNOWN_POLICY_VERSION` | o policy identifier não é reconhecido exatamente; não há fallback para latest |
+| 9 | `MISSING_VERIFICATION` | não existe `verification_id`/prova Schema A para a mesma authority/version |
+| 10 | `VERIFICATION_NOT_ACCEPTED` | a prova existe, mas não tem resultado aceito ou falha em identidade/integridade |
+| 11 | `LIFECYCLE_INELIGIBLE` | a política canônica retorna `INELIGIBLE` para a candidatura histórica |
+| 12 | `LIFECYCLE_UNDEFINED` | a política canônica retorna `UNDEFINED` por prova insuficiente ou não resolvível |
+| 13 | `TEMPORAL_CONTEXT_UNRESOLVED` | contexto temporal não foi resolvido de modo único e válido |
+| 14 | `APS_MEMBER_AUTHORIZATION_UNRESOLVED` | APS temporal ou autorização de membro não foi resolvida de modo válido |
+| 15 | `MULTIPLE_APPLICABLE_RULES` | a resolução posterior da RULE encontrou mais de uma RULE aplicável |
+| 16 | `INTERNAL_RESOLUTION_FAILURE` | falha inesperada sem categoria específica determinável; permanece `BLOCKED` |
 
-- A `MEASUREMENT` é persistida e permanece imutável quando o gate bloqueia.
-- Para o futuro caminho integrado de `evaluate_temporal()`, nenhuma avaliação final existe antes de `AUTHORITY_STATUS=RESOLVED`.
-- Para o futuro caminho integrado de `evaluate_temporal()`, nenhuma avaliação final é persistida em `AUTHORITY_STATUS=BLOCKED`.
-- `record()` permanece fora deste transition object e inalterado; este contrato não implica que seu comportamento atual esteja submetido ao futuro authority gate.
-- Uma avaliação bem-sucedida retém snapshot da aplicabilidade e da autoridade, intervalo temporal, lifecycle, locator, hash e proveniência da resolução.
-- A proveniência de transição pode usar uma forma documentada em `explanation_data`, caso essa seja a decisão de implementação futura.
-- Os campos adicionados pela migration 011 não devem ser apresentados como proveniência first-class completa; o caminho atual não demonstra seu preenchimento integral.
-- A persistência deve ser atômica: falha após a resolução não pode deixar avaliação final parcial nem alterar a medição.
-- Nenhum efeito colateral de `ALERT`, `EVENT` ou `ACTION` pertence a este objeto.
+`CONFLICTING_AUTHORITY` é avaliado antes de
+`MULTIPLE_AUTHORITY_CANDIDATES` quando a incompatibilidade material é
+determinável. `MULTIPLE_AUTHORITY_CANDIDATES` não escolhe vencedor; ele se
+aplica ao conjunto múltiplo coerente sem política B6 de seleção. Isso é
+diagnóstico, não adjudicação B6. `MISSING_VERIFICATION` e
+`VERIFICATION_NOT_ACCEPTED` somente se aplicam após a candidatura única estar
+identificada.
 
-## Invariantes preservadas
+Os códigos `LIFECYCLE_INELIGIBLE` e `LIFECYCLE_UNDEFINED` são a tradução
+normativa dos resultados da política publicada. Em particular:
 
-- `MEASUREMENT != EVALUATION`
-- `RULE != MEASUREMENT`
-- `CONFIGURATION != AUTHORITY`
-- `APPLICABLE_RULE != ANY_EXISTING_RULE`
-- `EVALUATION != ALERT`
-- `NO_APPLICABLE_RULE => VALID_MEASUREMENT + NOT_EVALUABLE`
-- `MULTIPLE_APPLICABLE_RULES => BLOCKED`
-- `AUTHORITY_FAILURE => BLOCKED`, nunca `NOT_EVALUABLE`
-- a medição factual permanece no bloco;
-- `A5A=DEMONSTRATED_FOR_B5_TECHNICAL_SCOPE` não promove `A5B`;
+~~~text
+policy_result::INELIGIBLE -> LIFECYCLE_INELIGIBLE -> BLOCKED
+policy_result::UNDEFINED  -> LIFECYCLE_UNDEFINED  -> BLOCKED
+~~~
+
+Nenhum estado corrente `REVOKED` ou `SUPERSEDED`, isoladamente, decide a
+admissibilidade histórica. A política canônica deve provar a terminalidade em
+relação a `measured_at`; caso contrário, o resultado é `UNDEFINED`.
+
+## POST_COMMIT_PROVENANCE_CONTRACT — prova histórica
+
+Depois do commit, toda leitura de proveniência de uma avaliação governada deve
+partir daquilo que foi persistido:
+
+~~~text
+immutable Schema B snapshot
+  -> immutable exact member-basis rows
+  -> verification_id
+  -> accepted immutable Schema A verification evidence
+  -> authority/artifact binding and artifact/hash/locator evidence
+~~~
+
+O `verification_id` é o único handoff do Schema B para o Schema A. Evidência
+de artifact, hash e locator deve ser alcançada por esse encadeamento; Schema B
+não duplica locator, bytes, digest, algoritmo, `verified_at` ou versão do
+contrato de verificação.
+
+Não é permitido reconstruir a prova histórica consultando authority,
+applicability, lifecycle, APS ou relações live atuais, nem substituir o
+snapshot persistido por uma projeção corrente. A base exata de autorização de
+membros também não pode ser refeita de relações live. A leitura deve tolerar
+que o estado/política atual seja diferente do estado que foi persistido.
+
+## Falhas, atomicidade e invariantes preservadas
+
+- `MEASUREMENT != EVALUATION`;
+- `RULE != MEASUREMENT`;
+- `CONFIGURATION != AUTHORITY`;
+- `APPLICABLE_RULE != ANY_EXISTING_RULE`;
+- `EVALUATION != ALERT`;
+- `NO_APPLICABLE_RULE => VALID_MEASUREMENT + NOT_EVALUABLE` somente após
+  authority `RESOLVED`;
+- `MULTIPLE_APPLICABLE_RULES => BLOCKED`;
+- `AUTHORITY_FAILURE => BLOCKED`, nunca `NOT_EVALUABLE`;
+- medição factual retida em todo bloqueio;
+- bloqueio não cria avaliação, snapshot ou basis rows;
+- resultado resolvido exige basis set completo, exato e não vazio;
+- `authority_gate_status == RESOLVED` em toda linha Schema B;
+- `A5A=DEMONSTRATED_FOR_B5_TECHNICAL_SCOPE` não promove A5B;
 - `A5B=NOT_DEMONSTRATED` permanece inalterado.
 
-## Limite reservado para B6
+Não há efeito colateral de `ALERT`, `EVENT`, `ACTION`, GEO ou ação autônoma
+em qualquer ramo deste objeto.
 
-B6 permanece não definido. Este documento não define B6 por implicação.
+## Limites reservados para B6 e A5B
 
-Ficam reservados para decisão governada posterior:
+Este objeto não define precedência, adjudicação, seleção de vencedor,
+resolução de conflito entre authorities, promoção de authority, validade
+científica/legal/institucional/normativa ou qualquer outro B6. Ele somente
+detecta condições incompatíveis e bloqueia sem escolher.
 
-- precedência entre autoridades;
-- adjudicação e seleção de vencedor;
-- política formal para conflito de autoridade;
-- promoção, validade científica, legal, institucional ou normativa de autoridade;
-- cutover, readiness de produção e remoção de legado;
-- integração e semântica de `EVALUATION → ALERT/EVENT → ACTION`;
-- promoção de `A5B`.
+~~~text
+B6_STATUS::NOT_DEFINED
+B6_IMPLEMENTATION_AUTHORIZED::NO
+A5B_STATUS::NOT_DEMONSTRATED
+~~~
 
-O transition object somente detecta e bloqueia conflito. A definição e aprovação deste objeto devem preceder qualquer definição ou implementação de B6.
+Também permanecem fora do escopo: GEO, cutover, readiness de produção,
+remoção de legacy, alert/event/action e qualquer ação autônoma.
+
+## Preservações obrigatórias
+
+Esta correção documental preserva, sem alteração:
+
+- `record()`;
+- migration 019, inalterada;
+- Schema A, inalterado;
+- Schema B, inalterado;
+- `A5B::NOT_DEMONSTRATED`;
+- `B6::NOT_DEFINED`;
+- ausência de GEO, cutover, alert/event/action e ação autônoma;
+- ausência de backfill ou duplicação de locator/hash em Schema B;
+- ausência de autorização para runtime, migration, schema, teste ou commit.
+
+~~~text
+MIGRATION_019_UNCHANGED::YES
+SCHEMA_A_UNCHANGED::YES
+SCHEMA_B_UNCHANGED::YES
+GEO::NOT_IN_SCOPE
+CUTOVER::NOT_AUTHORIZED
+ALERT_EVENT_ACTION::NOT_IN_SCOPE
+AUTONOMOUS_ACTION::NOT_IN_SCOPE
+~~~
 
 ## Evidência requerida antes de implementação
 
-Antes de qualquer autorização de runtime, deve existir evidência independente de que:
+Antes de qualquer autorização de runtime, uma auditoria independente futura
+deve verificar, no mínimo:
 
-- o gate ocupa a posição correta;
-- a mudança é restrita ao caminho temporal;
-- `record()` permanece inalterado e fora do gate;
-- zero, uma e múltiplas candidaturas têm a semântica definida;
-- a matriz de estados admissíveis está definida; enquanto não estiver, elegibilidade indefinida ou não provada bloqueia;
-- eventos históricos com authority `REVOKED` ou `SUPERSEDED` são testados contra `measured_at` depois que a política de admissibilidade for governada;
-- o nome do estado atual sozinho não decide admissibilidade histórica;
-- a consistência de escopo entre `authority`, `authority_scope` e `authority_applicability` é verificada;
-- a consistência entre `authority_temporal_boundary`, applicability temporal e `measured_at` é verificada;
-- autoridade ausente, malformada, inativa, expirada ou fora da janela bloqueia;
-- a medição é retida quando há bloqueio;
-- nenhuma avaliação é persistida em bloqueio de autoridade;
-- uma avaliação bem-sucedida retém positivamente o snapshot de authority/applicability e sua proveniência;
-- `NOT_EVALUABLE` só ocorre após autoridade resolvida e zero RULE aplicável;
-- múltiplas RULEs continuam `BLOCKED`;
-- incompatibilidade de proveniência ou hash de autoridade/RULE bloqueia;
-- falhas do resolver são mapeadas deterministicamente para reason codes `BLOCKED`, sem vazamento de exceção genérica;
-- falha inesperada do resolver mapeia para `AUTHORITY_RESOLUTION_UNEXPECTED_FAILURE`;
-- o catch-all não mascara reason code específico determinável;
-- nenhuma exceção genérica do resolver aparece como resultado governado;
-- persistência e rollback são atômicos;
-- invariantes B3, B4 e B5 permanecem preservadas;
-- nenhum efeito colateral de alert/event/action ocorre.
+- bind exato à policy id publicada e reconhecimento sem fallback;
+- aplicação da matriz canônica para `ELIGIBLE`, `INELIGIBLE` e `UNDEFINED`;
+- tipagem exclusiva `RESOLVED|BLOCKED` e ausência de payload Schema B em
+  bloqueio;
+- campos obrigatórios do resultado resolvido e base de membros não vazia,
+  completa e exata;
+- mapeamento integral aos onze campos diretos do Schema B e às linhas filhas;
+- `authority_gate_status == RESOLVED` e outcomes de RULE restritos a zero ou
+  uma;
+- uma única conexão, uma única transação, ausência de conexão aninhada,
+  commit intermediário e `_optional_connection(None)` na cadeia integrada;
+- atomicidade de avaliação, snapshot, basis rows e rollback;
+- retenção da medição e ausência de avaliação/snapshot/basis em todo bloqueio;
+- leitura pós-commit a partir do snapshot/basis persistidos e travessia
+  `verification_id -> Schema A`;
+- não substituição por estado live, não duplicação de hash/locator e não uso
+  de JSON como SSoT relacional;
+- reason codes determinísticos, específicos e auditáveis;
+- preservação de `record()`, migration 019, Schema A/B, B6 e A5B;
+- ausência de efeitos alert/event/action/GEO/cutover/autonomous action.
 
-Os resultados B5 `58 PASS` e `347 PASS` são evidência registrada do ciclo controlado anterior. Eles não são rerun, nem demonstram por si só a integração definida neste documento ou a reprodutibilidade do ambiente histórico.
+Os resultados B5 `58 PASS` e `347 PASS` continuam evidência registrada de um
+ciclo controlado anterior. Esta correção não executa testes e não reivindica
+reprodutibilidade do ambiente histórico.
 
-## Dependências e riscos
+## Saída de validação da revisão
 
-### Dependências
+### STATUS
 
-- baseline técnica B5 `c13593f3665f425ada833fe6c0ceb225136ec5e3`;
-- publicação documental B5 `1e27a672e40b414e6c7b568e401eba55ce7d5e6b`;
-- resolução temporal existente de contexto, APS, `APS_MEMBER` e RULE;
-- invariantes e limites documentados nos registros B3 e B4;
-- aprovação documental independente deste objeto antes de qualquer implementação;
-- decisão governada posterior para qualquer proveniência first-class e para B6.
-- decisão governada separada sobre elegibilidade de lifecycle antes de qualquer autorização de runtime.
+`REVISED_DOCUMENTARY_CONTRACT`
 
-### Riscos
+### FILES_CHANGED
 
-- tratar `AuthorityService` como integrado quando ele ainda está fora de `evaluate_temporal()`;
-- transformar exceção genérica em semântica não aprovada;
-- selecionar autoridade por precedência implícita;
-- perder snapshot temporal ou proveniência na avaliação;
-- converter falha de autoridade em `NOT_EVALUABLE`;
-- conflitar autoridade com RULE ou com configuração;
-- criar efeitos downstream antes de existir contrato de alert/event/action;
-- interpretar a definição como autorização de implementação, cutover, produção ou A5B.
+`docs/governance/MCM_WQ_INTEGRATION_TRANSITION_OBJECT.md`
 
-## Status de implementação e migração
+### LIFECYCLE_POLICY_BINDING
 
-- **Migration requerida para esta definição:** `NO_FOR_DEFINITION`.
-- **Proveniência first-class futura:** requer decisão governada separada.
-- **Mudança de runtime futura:** necessária para implementar a chamada do gate; não autorizada por este documento.
-- **Implementação autorizada:** `NO`.
-- **Cutover autorizado:** `NO`.
-- **Legacy removal:** não autorizado.
+`mcm-wq-authority-gate-technical-admission/v1` vinculado explicitamente a
+`docs/governance/MCM_WQ_LIFECYCLE_ADMISSIBILITY_POLICY_OBJECT.md`, que é o
+Source of Truth publicado. A matriz publicada é a única fonte da decisão de
+admissão de lifecycle;
+`MATRIX_NOT_DEFINED_CELLS::NONE` é preservado.
 
-## Não-objetivos explícitos
+### GATE_RESULT_CONTRACT
 
-Este documento não:
+Resultado canônico tipado `RESOLVED|BLOCKED`, com os campos obrigatórios,
+proveniência diagnóstica, conjunto exato não vazio de bases em `RESOLVED` e
+firewall sem avaliação/payload Schema B em `BLOCKED`.
 
-- edita ou implementa runtime, schema, migrations ou testes;
-- define ou implementa B6;
-- define política de conflito ou vencedor;
-- estabelece autoridade científica, legal, institucional ou de domínio;
-- altera `record()`;
-- cria avaliação provisória antes do gate;
-- cria `NOT_EVALUABLE` para falha de autoridade;
-- cria alertas, eventos ou ações;
-- autoriza cutover, produção ou remoção de legado;
-- promove A5B;
-- modifica `scratch/`.
+### SCHEMA_B_FIELD_MAPPING
+
+Os campos `evaluation_id`, `authority_id`, `authority_version`,
+`authority_applicability_id`, `authority_lifecycle_event_id`,
+`authority_applicability_event_id`, `verification_id`,
+`authority_gate_status`, `lifecycle_policy_result`,
+`rule_resolution_outcome` e `authority_gate_policy_contract_version` estão
+mapeados normativamente aos campos homônimos do snapshot governado, sem
+alteração de Schema B.
+
+### CONNECTION_OWNERSHIP_CONTRACT
+
+`evaluate_temporal()` integrado possui uma conexão, uma transação, sem conexão
+aninhada, sem commit intermediário e sem `_optional_connection(None)`; a mesma
+conexão percorre toda a cadeia até validação final e commit.
+
+### BLOCKED_REASON_CODE_CONTRACT
+
+Categorias determinísticas incluem `NO_AUTHORITY_CANDIDATE`,
+`MULTIPLE_AUTHORITY_CANDIDATES`, `CONFLICTING_AUTHORITY`,
+`LIFECYCLE_INELIGIBLE`, `LIFECYCLE_UNDEFINED`, `APPLICABILITY_INVALID`,
+`AUTHORITY_SCOPE_MISMATCH`, `MISSING_VERIFICATION`,
+`VERIFICATION_NOT_ACCEPTED`, `UNKNOWN_POLICY_VERSION`,
+`MALFORMED_AUTHORITY_STATE` e `INCOMPLETE_AUTHORITY_HISTORY`, além das falhas
+de contexto/APS/RULE e do catch-all fail-safe.
+
+### POST_COMMIT_PROVENANCE_CONTRACT
+
+A proveniência pós-commit parte do snapshot Schema B imutável e das basis rows;
+artifact/hash/locator são alcançados por `verification_id` e Schema A. Não há
+reconstrução live nem duplicação de locator/hash em Schema B.
+
+### MATERIAL_FINDINGS_CLOSED
+
+- bind ausente à política canônica: fechado com `POLICY_ID` e caminho SSoT
+  explícitos;
+- classificação de elegibilidade: fechada pela matriz publicada e pelo
+  tri-state `ELIGIBLE|INELIGIBLE|UNDEFINED`;
+- resultado do Gate não tipado: fechado pela união `RESOLVED|BLOCKED`;
+- campos obrigatórios e base exata não definidos: fechados no contrato e no
+  mapeamento Schema B;
+- bloqueio sem firewall de persistência: fechado com ausência explícita de
+  avaliação, snapshot e basis rows;
+- posse de conexão/transação implícita: fechada pela sequência e pelas
+  proibições de conexão aninhada/commit intermediário;
+- reason codes não determinísticos: fechados pela taxonomia e ordem fixa;
+- proveniência histórica pós-commit ambígua: fechada pelo snapshot/basis e
+  handoff exclusivo `verification_id -> Schema A`.
+
+### MINOR_FINDINGS_CLOSED
+
+- nomenclatura e valores de policy/lifecycle alinhados aos contratos
+  publicados;
+- zero/uma RULE e `NAO_AVALIAVEL` explicitamente condicionados a authority
+  `RESOLVED`;
+- cardinalidade não vazia e imutabilidade da base de membros explicitadas;
+- preservações de `record()`, migration 019, Schema A/B, B6, A5B e limites
+  de escopo repetidas no ponto de validação;
+- ausência de fallback, heurística, backfill, JSON concorrente e duplicação
+  de hash/locator explicitada.
+
+### UNRESOLVED_DECISIONS
+
+Nenhuma decisão crítica de integração permanece implícita neste objeto
+documental. Permanecem deliberadamente fora deste escopo e não são resolvidas
+por ele: implementação futura, B6/precedência/adjudicação, A5B, validade de
+domínio, GEO, alert/event/action, cutover, produção e remoção de legacy.
+
+### SCOPE_AUDIT
+
+`DOCUMENTARY_CORRECTION_ONLY::PASS`
+
+Somente este arquivo é permitido como mudança. Runtime, testes, migrations,
+records, schemas, `scratch/`, commit e push não fazem parte da operação.
+
+### QUALITY_GATE
+
+`PASS_DOCUMENTARY_SCOPE`
+
+Critérios atendidos: findings materiais e menores documentados como fechados;
+bind de lifecycle explícito; consistência declarada com Schema A/B; contrato de
+conexão atômica; reason codes fail-safe; proveniência histórica pós-commit; e
+firewalls A5B/B6/escopo preservados.
+
+### NEXT_OPERATION
+
+`INDEPENDENT_REAUDIT_REVISED_MCM_WQ_INTEGRATION_TRANSITION_OBJECT`
 
 ## Gate de governança
 
-`NEXT_REQUIRED_GOVERNED_OBJECT::MCM_WQ_INTEGRATION_TRANSITION_OBJECT`
-
-`TRANSITION_OBJECT_STATUS::DEFINED_DOCUMENTARY_ONLY`
-
-O objeto está definido documentalmente neste registro, mas sua implementação permanece não autorizada. Qualquer próxima operação deve ser uma auditoria documental independente e, se aprovada, uma decisão explícita de implementação separada.
-
-`READY_FOR_INDEPENDENT_REAUDIT::YES`
-
-`B6_STATUS::NOT_DEFINED`
-
-`B6_IMPLEMENTATION_AUTHORIZED::NO`
-
-`IMPLEMENTATION_AUTHORIZED::NO`
-
-`CUTOVER_AUTHORIZED::NO`
-
-`A5B_STATUS::NOT_DEMONSTRATED`
+~~~text
+TRANSITION_OBJECT_STATUS::REVISED_DOCUMENTARY_ONLY
+IMPLEMENTATION_AUTHORIZED::NO
+MIGRATION_CREATION_AUTHORIZED::NO
+SCHEMA_CHANGE_AUTHORIZED::NO
+TEST_CHANGE_AUTHORIZED::NO
+COMMIT_AUTHORIZED::NO
+PUSH_AUTHORIZED::NO
+CUTOVER_AUTHORIZED::NO
+GEO_IMPLEMENTATION_AUTHORIZED::NO
+ALERT_EVENT_ACTION_AUTHORIZED::NO
+A5B_STATUS::NOT_DEMONSTRATED
+B6_STATUS::NOT_DEFINED
+READY_FOR_INDEPENDENT_REAUDIT::YES
+~~~

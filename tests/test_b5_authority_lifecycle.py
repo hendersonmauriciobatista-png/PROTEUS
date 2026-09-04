@@ -280,7 +280,7 @@ class B5AuthorityLifecycleTests(unittest.TestCase):
         at_terminal = self.service.resolve_historical_authority(
             self.authority.authority_id, 1, T2, 'ctx', 'p'
         )
-        self.assertEqual('UNDEFINED', before.state)
+        self.assertEqual('TECHNICALLY_INELIGIBLE', before.state)
         self.assertEqual('PUBLISHED', at_publish.event.event_type)
         self.assertEqual('PUBLISHED', between.event.event_type)
         self.assertEqual('ACTIVE', at_active.event.event_type)

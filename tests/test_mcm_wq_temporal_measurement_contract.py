@@ -1,3 +1,4 @@
+import hashlib
 import sqlite3
 import tempfile
 import unittest
@@ -10,6 +11,7 @@ from governed_core.measurement_service import GovernedMeasurementService
 from governed_core.measurement_models import GovernedMeasurementRequest, DataProvenance
 from governed_core.evaluation_service import GovernedEvaluationService
 from governed_core.rule_service import RuleService
+from governed_core.authority_service import AuthorityService
 
 
 class TemporalMeasurementContractTests(unittest.TestCase):
@@ -27,6 +29,30 @@ class TemporalMeasurementContractTests(unittest.TestCase):
         ApplicabilityService(self.repo).assign_temporal(self.point.current_context_revision_id, self.aps, datetime(2020, 1, 1, tzinfo=timezone.utc), actor_reference="A")
         with self.repo._optional_connection(None) as cx:
             self.app_id = cx.execute("SELECT aps_applicability_id FROM aps_temporal_applicability").fetchone()[0]
+        artifact = b"temporal-authority"
+        AuthorityService(self.repo).create_authority(
+            "urn:test:temporal-authority",
+            hashlib.sha256(artifact).hexdigest(),
+            self.point.current_context_revision_id,
+            "PH",
+            datetime(2020, 1, 1, tzinfo=timezone.utc),
+            authority_id="authority-temporal",
+            effective_at=datetime(2020, 1, 1, tzinfo=timezone.utc),
+            effective_at_source="CALLER_SUPPLIED_EXPLICIT_TIME",
+            effective_at_provenance="test:published",
+            artifact_bytes=artifact,
+            artifact_locator_reference="urn:test:temporal-authority",
+            verification_provenance="test:verification",
+        )
+        AuthorityService(self.repo).create_applicability(
+            "authority-temporal",
+            1,
+            self.point.current_context_revision_id,
+            "PH",
+            datetime(2020, 1, 1, tzinfo=timezone.utc),
+            "A",
+            "test applicability",
+        )
 
     def tearDown(self): self.temp.cleanup()
 
