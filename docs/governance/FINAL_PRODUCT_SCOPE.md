@@ -6,7 +6,7 @@
 | --- | --- |
 | Case | PROTEUS |
 | Current product identity | Sistema de Monitoramento de Águas |
-| Baseline | `935181ccc96469336b04214aa8ecbd4c0217d1e6` |
+| Baseline | `2014958aeec254e0d80eb85e639634d0916e583f` |
 | Final product target | `CASE_CLOSED_CLIENT_DELIVERABLE` |
 | Target client delivery date | `2026-11-12` |
 | Product profile | `LOCAL_DESKTOP_LICENSED_PRODUCT` |
@@ -116,9 +116,17 @@ source-specific requirements, findings, inferences, and design decisions. It
 does not assert a universal datum, fixed precision, GPS requirement, map/GIS
 requirement, or unsupported legacy interpretation.
 
-`GEO_IMPLEMENTATION_STATUS=NOT_YET_IMPLEMENTED`
+`O9_PHYSICAL_DESIGN=APPROVED`
 
-`GEO_MIGRATION_STATUS=REQUIRED_FUTURE_AUTHORIZATION`
+`GEO_IMPLEMENTATION_STATUS=PENDING`
+
+`GEO_IMPLEMENTATION=PENDING`
+
+`GEO_MIGRATION_STATUS=DESIGNED_NOT_IMPLEMENTED`
+
+`MIGRATION_020_STATUS=DESIGNED_NOT_IMPLEMENTED`
+
+`AUTHORITATIVE_BASELINE=2014958aeec254e0d80eb85e639634d0916e583f`
 
 `MAP_WITH_PINS_STATUS=OPTIONAL_FUTURE_ENHANCEMENT`
 
@@ -135,9 +143,12 @@ Required before case closure:
 
 `LIFECYCLE_DEPENDENCY=NO_DIRECT_DEPENDENCY_PROVEN`
 
-GEO research and semantic decision work are complete. Physical GEO
-implementation remains separately authorized work. No direct dependency on
-lifecycle-admissibility work is established by the current repository evidence.
+GEO research and semantic decision work are complete. The approved physical
+schema and migration design is recorded in
+`docs/governance/GEO_PHYSICAL_SCHEMA_AND_MIGRATION_DESIGN.md`. Physical GEO
+implementation and migration execution remain separately authorized work. No
+direct dependency on lifecycle-admissibility work is established by the
+current repository evidence.
 
 ## Completion gates
 
@@ -217,13 +228,13 @@ SCOPE_FINAL_FROZEN
 → CASE_CLOSED
 ```
 
-`NEXT_CRITICAL_OBJECT=GEO_PHYSICAL_SCHEMA_AND_MIGRATION_DESIGN_AUTHORIZATION_REVIEW`
+`NEXT_CRITICAL_OBJECT=GEO_PHYSICAL_DESIGN_PUBLICATION`
 
-`PARALLEL_REQUIRED_OBJECT=GEO_PHYSICAL_SCHEMA_AND_MIGRATION_DESIGN_AUTHORIZATION_REVIEW`
+`PARALLEL_REQUIRED_OBJECT=GEO_PHYSICAL_DESIGN_PUBLICATION`
 
-The GEO semantic model and implementation-readiness audit are complete. The
-physical schema and migration design authorization review is required before
-any physical GEO implementation and is not authorized for execution by this
+The GEO semantic model and physical schema/migration design are complete and
+approved for controlled publication. Physical GEO implementation and migration
+execution remain separately authorized work and are not authorized by this
 record.
 
 ## Governance firewalls
