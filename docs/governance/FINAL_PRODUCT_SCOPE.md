@@ -91,26 +91,36 @@ MEASUREMENT
 → EVALUATION
 ```
 
-The candidate relationship `MONITORING_POINT → GEO_REFERENCE` and
-`MEASUREMENT → MONITORING_POINT` remains a design candidate, not a frozen
-domain model.
+The approved relationship is:
 
-`GEO_EXACT_DOMAIN_MODEL=NOT_DEFINED`
+`MONITORING_POINT → POINT_CONTEXT_REVISION → GEO_REFERENCE`
 
-`GEO_SEMANTICS=NOT_DEFINED`
+and measurements resolve the applicable historical GEO reference through
+`POINT_CONTEXT_REVISION` using `measured_at`. The approved semantic authority
+is `docs/governance/GEO_SEMANTIC_MODEL_AND_SCHEMA_STRATEGY.md`.
+
+`GEO_EXACT_DOMAIN_MODEL=DEFINED`
+
+`GEO_SEMANTICS=DEFINED`
 
 `GEO_IMPLEMENTATION_AUTHORIZED=NO`
 
-`GEO_NORMATIVE_RESEARCH_REQUIRED=YES`
+`GEO_NORMATIVE_RESEARCH_REQUIRED=NO`
 
-`MONITORING_POINT_MODEL_STATUS=RESEARCH_CANDIDATE`
+`MONITORING_POINT_MODEL_STATUS=APPROVED`
 
-`SPATIAL_TEMPORALITY_STATUS=RESEARCH_HYPOTHESIS`
+`SPATIAL_TEMPORALITY_STATUS=APPROVED`
 
-Before GEO implementation, dedicated official-document research must
-distinguish normative requirements, technical standards, operational practice,
-and recommendations. This scope does not assert a mandatory datum, precision,
-GPS, map, GIS, or historical-location rule.
+The approved GEO semantic authority distinguishes official-source facts,
+source-specific requirements, findings, inferences, and design decisions. It
+does not assert a universal datum, fixed precision, GPS requirement, map/GIS
+requirement, or unsupported legacy interpretation.
+
+`GEO_IMPLEMENTATION_STATUS=NOT_YET_IMPLEMENTED`
+
+`GEO_MIGRATION_STATUS=REQUIRED_FUTURE_AUTHORIZATION`
+
+`MAP_WITH_PINS_STATUS=OPTIONAL_FUTURE_ENHANCEMENT`
 
 Required before case closure:
 
@@ -125,7 +135,8 @@ Required before case closure:
 
 `LIFECYCLE_DEPENDENCY=NO_DIRECT_DEPENDENCY_PROVEN`
 
-GEO research is required before GEO implementation. No direct dependency on
+GEO research and semantic decision work are complete. Physical GEO
+implementation remains separately authorized work. No direct dependency on
 lifecycle-admissibility work is established by the current repository evidence.
 
 ## Completion gates
@@ -206,12 +217,14 @@ SCOPE_FINAL_FROZEN
 → CASE_CLOSED
 ```
 
-`NEXT_CRITICAL_OBJECT=GEO_DOCUMENTARY_RESEARCH_AND_SEMANTIC_MODEL`
+`NEXT_CRITICAL_OBJECT=GEO_PHYSICAL_SCHEMA_AND_MIGRATION_DESIGN_AUTHORIZATION_REVIEW`
 
-`PARALLEL_REQUIRED_OBJECT=GEO_DOCUMENTARY_RESEARCH_AND_SEMANTIC_MODEL`
+`PARALLEL_REQUIRED_OBJECT=GEO_PHYSICAL_SCHEMA_AND_MIGRATION_DESIGN_AUTHORIZATION_REVIEW`
 
-The GEO parallel object is required before GEO implementation and is not
-authorized for execution by this record.
+The GEO semantic model and implementation-readiness audit are complete. The
+physical schema and migration design authorization review is required before
+any physical GEO implementation and is not authorized for execution by this
+record.
 
 ## Governance firewalls
 
