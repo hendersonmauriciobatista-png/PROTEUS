@@ -6,7 +6,7 @@
 - **Object:** `MCM_WQ_HISTORICAL_AUTHORITY_TEMPORAL_EXTENSION_DESIGN`
 - **Design status:** `CLOSED`
 - **Documentary status:** `PUBLISHED`
-- **Implementation status:** `NOT_AUTHORIZED`
+- **Implementation status:** `CERTIFIED_AND_PUBLISHED_IN_AUTHORITY_GATE_INTEGRATION`
 - **A5 scope:** `TECHNICAL_ONLY`
 - **A5B:** `NOT_DEMONSTRATED`
 - **B6:** `NOT_DEFINED`
@@ -14,7 +14,7 @@
 - **Baseline HEAD:** `1fbe32d6033f7fe2d0644a2d2ccfea695ee7554b`
 - **Design audit:** `PASS_INDEPENDENT_FINAL_TEMPORAL_DESIGN_REAUDIT`
 
-This record materializes the independently audited historical authority temporal-extension design. It records decisions and proof obligations only; it does not implement runtime behavior or create new policy beyond the audited design.
+This record materializes the independently audited historical authority temporal-extension design. It records decisions and proof obligations; the runtime realization is published in the certified Authority Gate integration and does not create new policy beyond the audited design.
 
 ## Problem and semantic distinctions
 
@@ -188,9 +188,9 @@ These are technical A5A policies only. They are not B5-proven admission facts, d
 - proof and test obligations;
 - preservation of B5 invariants.
 
-These requirements apply to a separately authorized future implementation. They are not existing functionality.
+These requirements are retained as traceability for the separately audited design and are realized by the published Authority Gate integration. They do not authorize scope beyond that bounded integration.
 
-`IMPLEMENTATION_AUTHORIZED=NO`
+`IMPLEMENTATION_STATUS=CERTIFIED_AND_PUBLISHED`
 
 ## Matrix firewall
 
@@ -198,7 +198,9 @@ These requirements apply to a separately authorized future implementation. They 
 
 `MATRIX_PROVEN_ADMISSIBLE=NONE`  
 `MATRIX_PROVEN_INADMISSIBLE=NONE`  
-`MATRIX_NOT_DEFINED_CELLS=ALL_12_STATE_COMBINATIONS`
+`MATRIX_NOT_DEFINED_CELLS=NONE`
+
+`MATRIX_EVIDENCE_REGISTER=docs/governance/MCM_WQ_LIFECYCLE_MATRIX_EVIDENCE_REGISTER.md`
 
 Temporal reconstruction capability alone authorizes no matrix classification.
 
@@ -214,7 +216,7 @@ This object makes no claim of domain, scientific, legal, or institutional validi
 
 `SEMANTIC_MUTATION_FROM_AUDITED_DESIGN=NO`  
 `NEW_POLICY_DECISIONS=NONE`  
-`IMPLEMENTATION_AUTHORIZED=NO`  
+`IMPLEMENTATION_AUTHORIZATION=CLOSED_BY_SCOPED_CERTIFIED_GATE`
 `B6_STATUS=NOT_DEFINED`  
 `CUTOVER_AUTHORIZED=NO`  
 `A5B_STATUS=NOT_DEMONSTRATED`

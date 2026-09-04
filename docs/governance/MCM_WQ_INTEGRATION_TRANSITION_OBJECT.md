@@ -6,7 +6,7 @@ Estado revisado em 2026-09-04 contra a baseline `62351f2dcdf1dcf753fe5e6fcbd8700
 
 - **Caso:** `PROTEUS`
 - **Objeto:** `MCM_WQ_INTEGRATION_TRANSITION_OBJECT`
-- **Natureza:** contrato governado documental para futura integração
+- **Natureza:** contrato governado da integração publicada e certificada
 - **B5 técnico:** `CLOSED_AND_PUBLISHED`
 - **B5 classificação:** `TECHNICALLY_CLOSED_WITH_DOCUMENTED_LIMITATIONS`
 - **A5A:** `DEMONSTRATED_FOR_B5_TECHNICAL_SCOPE`
@@ -15,13 +15,14 @@ Estado revisado em 2026-09-04 contra a baseline `62351f2dcdf1dcf753fe5e6fcbd8700
 - **B6 implementação:** `NOT_AUTHORIZED`
 - **Cutover:** `NOT_AUTHORIZED`
 - **Produção:** `NOT_READY`
-- **Implementação deste objeto:** `NOT_AUTHORIZED`
-- **Escopo do ato:** `DOCUMENTARY_CORRECTION_ONLY`
+- **Implementação deste objeto:** `CERTIFIED_AND_PUBLISHED`
+- **Escopo do ato:** `BOUNDED_AUTHORITY_GATE_INTEGRATION`
 
 Este documento define a fronteira governada para conectar a aplicabilidade de
-authority B5 ao caminho temporal de avaliação. Ele não implementa runtime, não
-altera schema, não cria migration, não altera `record()`, não define B6 e não
-autoriza cutover ou produção.
+authority B5 ao caminho temporal de avaliação. A realização de runtime está
+publicada no Authority Gate certificado; este documento não altera schema, não
+cria migration, não altera `record()`, não define B6 e não autoriza cutover ou
+produção.
 
 ## Autoridade documental e disciplina de evidência
 
@@ -45,6 +46,7 @@ Fontes documentais e técnicas consideradas:
 - `tests/test_governed_evaluation.py`;
 - `tests/test_b5_authority_lifecycle.py`;
 - migrations B5 `013`, `014`, `015`, `016` e migration 019.
+- `docs/governance/MCM_WQ_LIFECYCLE_MATRIX_EVIDENCE_REGISTER.md`.
 
 Disciplina de evidência:
 
@@ -54,7 +56,7 @@ Disciplina de evidência:
   fail-safe;
 - **DOCUMENTED:** este registro define a integração futura, o resultado
   tipado, os reason codes, o limite transacional e a leitura de proveniência;
-- **DEFINED_BUT_NOT_IMPLEMENTED:** o Authority Gate integrado, a adaptação
+- **CERTIFIED_AND_PUBLISHED:** o Authority Gate integrado, a adaptação
   connection-aware e a persistência Schema B;
 - **RECORDED_FROM_CONTROLLED_VALIDATION:** `58 PASS` focado e `347 PASS`
   completo, com Python `3.12.10` e runner `unittest`; esses resultados não
@@ -597,13 +599,13 @@ firewalls A5B/B6/escopo preservados.
 
 ### NEXT_OPERATION
 
-`INDEPENDENT_REAUDIT_REVISED_MCM_WQ_INTEGRATION_TRANSITION_OBJECT`
+`GEO_DOCUMENTARY_RESEARCH_AND_SEMANTIC_MODEL`
 
 ## Gate de governança
 
 ~~~text
-TRANSITION_OBJECT_STATUS::REVISED_DOCUMENTARY_ONLY
-IMPLEMENTATION_AUTHORIZED::NO
+TRANSITION_OBJECT_STATUS::CERTIFIED_AND_PUBLISHED
+IMPLEMENTATION_AUTHORIZED::YES_SCOPED_CERTIFIED_GATE
 MIGRATION_CREATION_AUTHORIZED::NO
 SCHEMA_CHANGE_AUTHORIZED::NO
 TEST_CHANGE_AUTHORIZED::NO

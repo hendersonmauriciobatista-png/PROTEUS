@@ -10,16 +10,16 @@ Estado de materialização em 2026-09-03, contra a baseline publicada `106b1d679
 - **Natureza:** objeto governado documental para uma única candidatura authority/applicability contra uma única medição histórica
 - **B5 técnico:** `CLOSED_AND_PUBLISHED`
 - **B5 classificação:** `TECHNICALLY_CLOSED_WITH_DOCUMENTED_LIMITATIONS`
-- **Transition object:** publicado e dependente deste limite de elegibilidade antes de runtime
+- **Transition object:** publicado e realizado pelo Authority Gate integrado certificado
 - **Status de elegibilidade:** `TECHNICAL_ADMISSION_ONLY_CONDITIONAL`
-- **Status da decisão de política:** `TECHNICAL_POLICY_DEFINED_RUNTIME_NOT_IMPLEMENTED`
-- **Implementação:** `NOT_AUTHORIZED`
+- **Status da decisão de política:** `TECHNICAL_POLICY_DEFINED_AND_RUNTIME_CERTIFIED`
+- **Implementação:** `CERTIFIED_AND_PUBLISHED_IN_AUTHORITY_GATE_INTEGRATION`
 - **B6:** `NOT_DEFINED`
 - **Cutover:** `NOT_AUTHORIZED`
 - **A5A:** `DEMONSTRATED_FOR_B5_TECHNICAL_SCOPE`
 - **A5B:** `NOT_DEMONSTRATED`
 
-Este objeto materializa a fronteira técnica interna autorizada para uma única candidatura e uma medição histórica. A política técnica da matriz está definida com resultados condicionais `ELIGIBLE`, `INELIGIBLE` ou `UNDEFINED`; este registro não implementa runtime e não autoriza avaliação final.
+Este objeto materializa a fronteira técnica interna autorizada para uma única candidatura e uma medição histórica. A política técnica da matriz está definida com resultados condicionais `ELIGIBLE`, `INELIGIBLE` ou `UNDEFINED`; sua realização de runtime está publicada no caminho integrado certificado, sem promover A5B ou autorizar avaliação fora do Gate.
 
 ## Autoridade documental e fontes
 
@@ -37,15 +37,16 @@ Fontes examinadas:
 - `migrations/014_mcm_wq_b5_authority_applicability.sql`;
 - `migrations/015_mcm_wq_b5_deferred_successor_fk.sql`;
 - `migrations/016_mcm_wq_b5_db_temporal_enforcement.sql`.
+- `docs/governance/MCM_WQ_LIFECYCLE_MATRIX_EVIDENCE_REGISTER.md`.
 
 Disciplina de evidência:
 
 - **PROVEN:** existência dos estados, transições de lifecycle, eventos terminais de applicability, fechamento temporal half-open da applicability e inputs temporais canônicos, dentro do escopo técnico B5;
-- **DEFINED_BUT_NOT_PROVEN:** a fronteira técnica documental, o contrato tri-state, o uso de histórico para uma medição histórica e o fail-safe requerido para futura integração; runtime e sua validação ainda não existem;
-- **DEFINED_BUT_NOT_IMPLEMENTED:** admissibilidade técnica condicional para candidaturas que satisfaçam todos os predicados governados;
+- **CERTIFIED:** a fronteira técnica, o contrato tri-state, o uso de histórico para uma medição histórica e o fail-safe da integração publicada;
+- **EVIDENCE_REGISTERED:** admissibilidade técnica condicional para candidaturas que satisfaçam todos os predicados governados, com as 12 células mapeadas no registro de evidência O4;
 - **OUT_OF_SCOPE:** validade científica, legal, institucional ou normativa; precedência, adjudicação, vencedor, B6, cutover, produção e A5B.
 
-O comportamento de runtime descrito como futuro neste documento não é apresentado como implementado. Os resultados B5 `58 PASS` e `347 PASS` continuam apenas evidência registrada do ciclo controlado anterior; não são rerun nesta materialização.
+As referências históricas a runtime futuro e implementação não autorizada pertencem ao estado anterior deste registro. O estado vigente é a implementação publicada do Authority Gate, sustentada pelo registro O4 e pelos testes certificados; os resultados B5 `58 PASS` e `347 PASS` permanecem como evidência histórica do ciclo anterior.
 
 ## Pergunta governada
 
@@ -208,7 +209,7 @@ Não se deve inferir o instante terminal a partir de `registered_at`, `created_a
 
 ### Decisão materializada
 
-A decisão técnica auditada foi materializada neste registro. Ela não constitui validade de domínio, não autoriza runtime e não altera os limites de A5B ou B6.
+A decisão técnica auditada foi materializada neste registro. Ela não constitui validade de domínio; a implementação de runtime publicada foi autorizada separadamente e permanece limitada ao Authority Gate certificado. Os limites de A5B e B6 não são alterados.
 
 ## Semântica histórica e temporal da política
 
@@ -479,13 +480,13 @@ Antes de implementação futura, deve haver evidência independente de:
 - ausência de `NOT_EVALUABLE` em falha de authority;
 - `A5B` permanece `NOT_DEMONSTRATED`.
 
-## Precondição de implementação
+## Estado de implementação
 
-Esta política foi definida, auditada e materializada documentalmente. Qualquer implementação de admissibilidade de lifecycle continua exigindo autorização separada. A implementação do authority gate em `evaluate_temporal()` permanece uma decisão independente.
+Esta política foi definida, auditada e materializada documentalmente. A decisão separada de implementação do Authority Gate foi concluída e publicada no caminho integrado `evaluate_temporal()`. Este documento continua sem autorizar alterações de schema, migrations, B6, A5B ou cutover.
 
 `MIGRATION_REQUIRED_FOR_DEFINITION::NO`
 
-`IMPLEMENTATION_AUTHORIZED::NO`
+`IMPLEMENTATION_AUTHORIZED::YES_SCOPED_CERTIFIED_GATE`
 
 `CUTOVER_AUTHORIZED::NO`
 
@@ -511,9 +512,9 @@ Este registro não:
 
 `POLICY_DECISION_STATUS::TECHNICAL_POLICY_DEFINED`
 
-`LIFECYCLE_ADMISSIBILITY_STATUS::TECHNICAL_POLICY_DEFINED_RUNTIME_NOT_IMPLEMENTED`
+`LIFECYCLE_ADMISSIBILITY_STATUS::TECHNICAL_POLICY_DEFINED_RUNTIME_CERTIFIED`
 
-`NEXT_REQUIRED_GOVERNED_OBJECT::HISTORICAL_AUTHORITY_TEMPORAL_IMPLEMENTATION`
+`NEXT_REQUIRED_GOVERNED_OBJECT::GEO_DOCUMENTARY_RESEARCH_AND_SEMANTIC_MODEL`
 
 `MATRIX_POLICY_MATERIALIZATION_STATUS::COMPLETE`
 
@@ -521,7 +522,7 @@ Este registro não:
 
 `B6_IMPLEMENTATION_AUTHORIZED::NO`
 
-`IMPLEMENTATION_AUTHORIZED::NO`
+`IMPLEMENTATION_AUTHORIZED::YES_SCOPED_CERTIFIED_GATE`
 
 `CUTOVER_AUTHORIZED::NO`
 
