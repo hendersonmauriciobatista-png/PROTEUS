@@ -25,6 +25,9 @@ from .models import (
 )
 from .repository import GovernedCoreRepository
 from .services import APSService, ApplicabilityService, PointContextService
+from .geo_crs import CRSResolver, CoordinateTransformer
+from .geo_models import GeoAvailabilityState, GeoReference, LocationProvenance, SourceAxisOrder
+from .geo_service import GeoReferenceResolutionError, GeoService
 
 __all__ = [
     "APSReference",
@@ -48,4 +51,12 @@ __all__ = [
     "PointContextRevision",
     "PointContextService",
     "PointStatus",
+    "CRSResolver",
+    "CoordinateTransformer",
+    "GeoAvailabilityState",
+    "GeoReference",
+    "GeoReferenceResolutionError",
+    "GeoService",
+    "LocationProvenance",
+    "SourceAxisOrder",
 ]

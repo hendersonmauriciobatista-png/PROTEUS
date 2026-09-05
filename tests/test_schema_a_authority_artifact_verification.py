@@ -508,7 +508,7 @@ class SchemaAAuthorityArtifactVerificationTests(unittest.TestCase):
         migration_dir.mkdir()
         source_dir = Path(__file__).resolve().parents[1] / "migrations"
         for migration in source_dir.glob("*.sql"):
-            if not migration.name.startswith(("017_", "018_", "019_")):
+            if not migration.name.startswith(("017_", "018_", "019_", "020_")):
                 shutil.copy2(migration, migration_dir / migration.name)
         legacy_repo = GovernedCoreRepository(Path(self.tmp.name) / "legacy.sqlite3", migration_dir).initialize()
         connection = legacy_repo._connect()

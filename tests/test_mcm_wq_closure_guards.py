@@ -37,9 +37,10 @@ class ClosureGuardTests(unittest.TestCase):
 
     def test_explicit_context_overlap_is_rejected(self):
         with self.r.transaction() as c:
-            c.execute("INSERT INTO point_context_revision (context_revision_id,point_id,revision,purpose,water_context,point_type,created_at,effective_from) VALUES ('ctx_overlap',?,?,? ,?,?,?,?)", (self.s.point_id, 99, 'ENVIRONMENTAL_CONDITION_MONITORING','FLOWING_SURFACE_WATER','GENERAL','2026-01-01T00:00:00Z','2026-02-01T00:00:00Z'))
+            c.execute("INSERT INTO geo_reference (geo_reference_id,context_revision_id,availability_state,state_reason,registered_at) VALUES ('geo-overlap','ctx_overlap','UNAVAILABLE','test','2026-01-01T00:00:00Z')")
+            c.execute("INSERT INTO point_context_revision (context_revision_id,point_id,revision,purpose,water_context,point_type,created_at,effective_from,effective_until,geo_reference_id) VALUES ('ctx_overlap',?,?,? ,?,?,?,?,?,?)", (self.s.point_id, 99, 'ENVIRONMENTAL_CONDITION_MONITORING','FLOWING_SURFACE_WATER','GENERAL','2026-01-01T00:00:00Z','2026-02-01T00:00:00Z',None,'geo-overlap'))
             with self.assertRaises(sqlite3.IntegrityError):
-                c.execute("INSERT INTO point_context_revision (context_revision_id,point_id,revision,purpose,water_context,point_type,created_at,effective_from) VALUES ('ctx_overlap2',?,?,? ,?,?,?,?)", (self.s.point_id, 100, 'ENVIRONMENTAL_CONDITION_MONITORING','FLOWING_SURFACE_WATER','GENERAL','2026-01-15T00:00:00Z','2026-03-01T00:00:00Z'))
+                c.execute("INSERT INTO point_context_revision (context_revision_id,point_id,revision,purpose,water_context,point_type,created_at,effective_from,geo_reference_id) VALUES ('ctx_overlap2',?,?,? ,?,?,?,?,?)", (self.s.point_id, 100, 'ENVIRONMENTAL_CONDITION_MONITORING','FLOWING_SURFACE_WATER','GENERAL','2026-01-15T00:00:00Z','2026-03-01T00:00:00Z','geo-overlap'))
 
     def test_referenced_aps_history_blocks_closure(self):
         with self.r._optional_connection(None) as c: app=c.execute('SELECT aps_applicability_id,aps_set_id,aps_version FROM aps_temporal_applicability').fetchone()

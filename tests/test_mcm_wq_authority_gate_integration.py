@@ -153,8 +153,10 @@ class AuthorityGateIntegrationEvidenceTests(TemporalMeasurementContractTests):
         migration_dir = root / "migrations"
         migration_dir.mkdir()
         source_dir = __import__("pathlib").Path(__file__).resolve().parents[1] / "migrations"
+        # Build the legacy data before the later publication guards are
+        # installed, then upgrade it through the published migration chain.
         for migration in source_dir.glob("*.sql"):
-            if not migration.name.startswith(("017_", "018_", "019_")):
+            if not migration.name.startswith(("017_", "018_", "019_", "020_")):
                 shutil.copy2(migration, migration_dir / migration.name)
         repo = GovernedCoreRepository(root / "legacy.sqlite3", migration_dir).initialize()
         point = PointContextService(repo).create_point_with_initial_context(
@@ -208,6 +210,8 @@ class AuthorityGateIntegrationEvidenceTests(TemporalMeasurementContractTests):
         shutil.copy2(source_dir / "018_mcm_wq_authority_artifact_verification.sql", migration_dir)
         repo.initialize()
         shutil.copy2(source_dir / "019_mcm_wq_evaluation_authority_snapshot.sql", migration_dir)
+        repo.initialize()
+        shutil.copy2(source_dir / "020_mcm_wq_normalized_geo.sql", migration_dir)
         repo.initialize()
         return repo, point, raw
 

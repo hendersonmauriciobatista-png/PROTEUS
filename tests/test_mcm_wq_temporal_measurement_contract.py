@@ -105,8 +105,14 @@ class TemporalMeasurementContractTests(unittest.TestCase):
 
     def test_overlapping_context_and_multiple_aps_are_prevented_at_write(self):
         with self.repo.transaction() as cx:
-            with self.assertRaises(sqlite3.IntegrityError):
-                cx.execute("INSERT INTO point_context_revision VALUES ('c2',?,?,?,?,?,?,?,?,?)", (self.point.point_id, 2, "ENVIRONMENTAL_CONDITION_MONITORING", "FLOWING_SURFACE_WATER", "GENERAL", None, "2020", "2020-06-01T00:00:00Z", None))
+            cx.execute("SAVEPOINT overlapping_context")
+            cx.execute("INSERT INTO geo_reference (geo_reference_id, context_revision_id, availability_state, state_reason, registered_at) VALUES ('geo-c2','c2','UNAVAILABLE','test','2020-01-01T00:00:00Z')")
+            try:
+                with self.assertRaises(sqlite3.IntegrityError):
+                    cx.execute("INSERT INTO point_context_revision (context_revision_id,point_id,revision,purpose,water_context,point_type,geo_reference,created_at,effective_from,effective_until,geo_reference_id) VALUES ('c2',?,?,?,?,?,?,?,?,?,?)", (self.point.point_id, 2, "ENVIRONMENTAL_CONDITION_MONITORING", "FLOWING_SURFACE_WATER", "GENERAL", None, "2020", "2020-06-01T00:00:00Z", None, "geo-c2"))
+            finally:
+                cx.execute("ROLLBACK TO overlapping_context")
+                cx.execute("RELEASE overlapping_context")
             with self.assertRaises(sqlite3.IntegrityError):
                 cx.execute("INSERT INTO aps_temporal_applicability VALUES ('a2',?,?,?,?,?)", (self.point.current_context_revision_id, self.aps.set_id, self.aps.version, "2020-06-01T00:00:00Z", None))
 

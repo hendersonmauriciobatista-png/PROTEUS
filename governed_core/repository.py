@@ -19,11 +19,13 @@ from .authority_models import (
 )
 from .models import APSReference, GovernedMonitoringPoint, PointContextRevision
 from .rule_models import GovernedRule
+from .geo_models import GeoReference, LocationProvenance
 
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 DEFAULT_DATABASE_PATH = BASE_DIR / "data" / "governed_core_v1.sqlite3"
 MIGRATIONS_DIR = BASE_DIR / "migrations"
+EXPECTED_MIGRATION_019_SHA256 = "8db22fa64588a01aef54978066fbd459794dd8710317ec4b99882a52608ffd36"
 
 
 class GovernedCoreError(RuntimeError):
@@ -136,6 +138,46 @@ class GovernedCoreRepository:
                 f"Revisao contextual nao resolvivel: {context_revision_id}"
             )
         return PointContextRevision(*row)
+
+    def fetch_geo_reference(self, context_revision_id, connection=None):
+        with self._optional_connection(connection) as active:
+            row = active.execute(
+                "SELECT geo_reference_id, context_revision_id, availability_state, "
+                "latitude, longitude, crs_identifier, location_provenance_id, "
+                "state_reason, registered_at FROM geo_reference "
+                "WHERE context_revision_id = ?",
+                (context_revision_id,),
+            ).fetchone()
+        return None if row is None else GeoReference(*row)
+
+    def fetch_location_provenance(self, provenance_id, connection=None):
+        with self._optional_connection(connection) as active:
+            row = active.execute(
+                "SELECT provenance_id, source_reference, source_coordinate_1_raw, "
+                "source_coordinate_2_raw, source_coordinate_1_numeric, "
+                "source_coordinate_2_numeric, source_axis_order, source_crs_identifier, "
+                "acquisition_method, captured_at, captured_at_status, "
+                "transformation_method, transformation_parameters, "
+                "transformation_provenance, accuracy_or_uncertainty_kind, "
+                "accuracy_or_uncertainty_value, accuracy_or_uncertainty_unit, "
+                "registered_at FROM location_provenance WHERE provenance_id = ?",
+                (provenance_id,),
+            ).fetchone()
+        return None if row is None else LocationProvenance(*row)
+
+    def insert_location_provenance(self, provenance, connection):
+        self._assert_governed_connection(connection)
+        connection.execute(
+            "INSERT INTO location_provenance VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
+            tuple(provenance.__dict__.values()),
+        )
+
+    def insert_geo_reference(self, geo_reference, connection):
+        self._assert_governed_connection(connection)
+        connection.execute(
+            "INSERT INTO geo_reference VALUES (?,?,?,?,?,?,?,?,?)",
+            tuple(geo_reference.__dict__.values()),
+        )
 
     def fetch_current_context(self, point_id, connection=None):
         point = self.fetch_point(point_id, connection)
@@ -567,6 +609,73 @@ class GovernedCoreRepository:
         finally:
             active.close()
 
+    def _preflight_migration_020(self, connection):
+        """Reject incompatible persisted state before executing migration 020."""
+        tables = {
+            row[0] for row in connection.execute(
+                "SELECT name FROM sqlite_master WHERE type = 'table'"
+            )
+        }
+        if "schema_migration" not in tables or "point_context_revision" not in tables:
+            raise GovernedConflictError(
+                "Migration 020 preflight failed: required table is missing."
+            )
+        required = {
+            "context_revision_id", "point_id", "revision", "purpose",
+            "water_context", "point_type", "geo_reference", "created_at",
+            "effective_from", "effective_until",
+        }
+        present = {
+            row[1] for row in connection.execute(
+                "PRAGMA table_info(point_context_revision)"
+            )
+        }
+        if not required.issubset(present):
+            raise GovernedConflictError(
+                "Migration 020 preflight failed: required column is missing."
+            )
+        if "geo_reference_id" in present:
+            raise GovernedConflictError(
+                "Migration 020 preflight failed: GEO link column already exists."
+            )
+        try:
+            connection.execute(
+                "SELECT context_revision_id, geo_reference FROM point_context_revision LIMIT 0"
+            )
+        except sqlite3.Error as error:
+            raise GovernedConflictError(
+                "Migration 020 preflight failed: legacy GEO field is unreadable."
+            ) from error
+        occupied = {
+            "geo_reference", "location_provenance",
+        }
+        objects = {
+            row[0] for row in connection.execute(
+                "SELECT name FROM sqlite_master WHERE name IN (?, ?) AND type IN ('table','view','index','trigger')",
+                tuple(occupied),
+            )
+        }
+        if objects:
+            raise GovernedConflictError(
+                "Migration 020 preflight failed: normalized GEO name is occupied."
+            )
+        reserved = {
+            "geo_reference_context_unique", "geo_reference_state_lookup",
+            "geo_reference_provenance_lookup", "location_provenance_source_lookup",
+            "context_geo_link_required", "context_geo_link_immutable",
+            "geo_context_link_guard", "location_provenance_immutable_update",
+            "location_provenance_immutable_delete", "geo_reference_immutable_update",
+            "geo_reference_immutable_delete",
+        }
+        placeholders = ",".join("?" for _ in reserved)
+        if connection.execute(
+            f"SELECT 1 FROM sqlite_master WHERE name IN ({placeholders}) LIMIT 1",
+            tuple(reserved),
+        ).fetchone():
+            raise GovernedConflictError(
+                "Migration 020 preflight failed: migration object name is occupied."
+            )
+
     def _apply_migrations(self, connection):
         migrations = sorted(self.migrations_dir.glob("*.sql"))
         for migration in migrations:
@@ -587,6 +696,16 @@ class GovernedCoreRepository:
                         )
                     continue
             try:
+                if migration.name.startswith("020_"):
+                    self._preflight_migration_020(connection)
+                    applied_019 = connection.execute(
+                        "SELECT checksum FROM schema_migration WHERE migration_id = ?",
+                        ("019_mcm_wq_evaluation_authority_snapshot.sql",),
+                    ).fetchone()
+                    if not applied_019 or applied_019[0] != EXPECTED_MIGRATION_019_SHA256:
+                        raise GovernedConflictError(
+                            "Migration 020 requires the published Migration 019 checksum."
+                        )
                 if migration.name.startswith("019_"):
                     required = {
                         "governed_authority",
@@ -635,6 +754,24 @@ class GovernedCoreRepository:
             raise GovernedConflictError(
                 f"Ponto com referencia contextual cruzada: {cross_point[0]}"
             )
+        geo_table = connection.execute(
+            "SELECT 1 FROM sqlite_master WHERE type='table' AND name='geo_reference'"
+        ).fetchone()
+        if geo_table:
+            missing_geo = connection.execute(
+                "SELECT point.point_id FROM governed_monitoring_point AS point "
+                "JOIN point_context_revision AS revision "
+                "ON revision.context_revision_id = point.current_context_revision_id "
+                "LEFT JOIN geo_reference AS geo "
+                "ON geo.geo_reference_id = revision.geo_reference_id "
+                "WHERE point.status = 'ACTIVE' "
+                "AND (revision.geo_reference_id IS NULL OR geo.geo_reference_id IS NULL "
+                "OR geo.context_revision_id <> revision.context_revision_id)"
+            ).fetchone()
+            if missing_geo:
+                raise GovernedConflictError(
+                    f"Ponto ativo sem classificacao GEO governada: {missing_geo[0]}"
+                )
 
 
 def _now():

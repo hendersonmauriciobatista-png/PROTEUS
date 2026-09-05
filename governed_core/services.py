@@ -16,12 +16,15 @@ from .models import (
 )
 from .reference_resolver import GovernedReferenceResolver
 from .repository import GovernedConflictError, GovernedReferenceError
+from .geo_models import GeoAvailabilityState, LocationProvenance
+from .geo_service import GeoService
 
 
 class PointContextService:
     def __init__(self, repository, identifiers=None):
         self.repository = repository
         self.identifiers = identifiers or IdentifierFactory()
+        self.geo = GeoService(repository, self.identifiers)
 
     def create_point_with_initial_context(
         self,
@@ -36,6 +39,7 @@ class PointContextService:
         external_station_reference=None,
         effective_from=None,
         connection=None,
+        geo_reference_data=None,
     ):
         self._validate_context_values(purpose, water_context, point_type)
         self._validate_point_input(project_reference, display_name, status, actor_reference)
@@ -52,21 +56,13 @@ class PointContextService:
                 "VALUES (?, ?, ?, 'INACTIVE', NULL, ?)",
                 (point_id, project_reference, display_name, external_station_reference),
             )
-            active.execute(
-                "INSERT INTO point_context_revision "
-                "(context_revision_id, point_id, revision, purpose, water_context, "
-                "point_type, geo_reference, created_at, effective_from) VALUES (?, ?, 1, ?, ?, ?, ?, ?, ?)",
-                (
-                    revision_id,
-                    point_id,
-                    purpose,
-                    water_context,
-                    point_type,
-                    geo_reference,
-                    now,
-                    _explicit_effective_from(effective_from),
-                ),
-            )
+            geo_id = self._create_geo(active, revision_id, geo_reference, geo_reference_data)
+            columns = "context_revision_id, point_id, revision, purpose, water_context, point_type, geo_reference, created_at, effective_from"
+            values = [revision_id, point_id, 1, purpose, water_context, point_type, geo_reference, now, _explicit_effective_from(effective_from)]
+            if geo_id is not None:
+                columns += ", geo_reference_id"
+                values.append(geo_id)
+            active.execute(f"INSERT INTO point_context_revision ({columns}) VALUES ({','.join('?' for _ in values)})", values)
             active.execute(
                 "UPDATE governed_monitoring_point SET status = ?, "
                 "current_context_revision_id = ? WHERE point_id = ?",
@@ -89,6 +85,7 @@ class PointContextService:
         actor_reference,
         geo_reference=None,
         effective_from=None,
+        geo_reference_data=None,
     ):
         self._validate_context_values(purpose, water_context, point_type)
         if not actor_reference or not actor_reference.strip():
@@ -100,22 +97,13 @@ class PointContextService:
             if connection.execute("SELECT 1 FROM point_context_revision WHERE point_id = ? AND effective_from IS NOT NULL AND effective_from < COALESCE(?, '9999-12-31T23:59:59.999999Z') AND ? < COALESCE(effective_until, '9999-12-31T23:59:59.999999Z')", (point_id, None, effective)).fetchone():
                 raise GovernedConflictError("overlapping context interval")
             next_revision = current.revision + 1
-            connection.execute(
-                "INSERT INTO point_context_revision "
-                "(context_revision_id, point_id, revision, purpose, water_context, "
-                "point_type, geo_reference, created_at, effective_from) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)",
-                (
-                    new_revision_id,
-                    point_id,
-                    next_revision,
-                    purpose,
-                    water_context,
-                    point_type,
-                    geo_reference,
-                    _now(),
-                    _explicit_effective_from(effective_from),
-                ),
-            )
+            geo_id = self._create_geo(connection, new_revision_id, geo_reference, geo_reference_data)
+            columns = "context_revision_id, point_id, revision, purpose, water_context, point_type, geo_reference, created_at, effective_from"
+            values = [new_revision_id, point_id, next_revision, purpose, water_context, point_type, geo_reference, _now(), _explicit_effective_from(effective_from)]
+            if geo_id is not None:
+                columns += ", geo_reference_id"
+                values.append(geo_id)
+            connection.execute(f"INSERT INTO point_context_revision ({columns}) VALUES ({','.join('?' for _ in values)})", values)
             connection.execute(
                 "UPDATE governed_monitoring_point SET current_context_revision_id = ? "
                 "WHERE point_id = ?",
@@ -128,6 +116,32 @@ class PointContextService:
                 new_context_revision_id=new_revision_id,
             )
         return self.repository.fetch_context_revision(new_revision_id)
+
+    def _create_geo(self, connection, context_revision_id, legacy_value, data):
+        if not connection.execute(
+            "SELECT 1 FROM sqlite_master WHERE type='table' AND name='geo_reference'"
+        ).fetchone():
+            return None
+        if data is None:
+            state = (GeoAvailabilityState.LEGACY_UNCLASSIFIED.value
+                     if legacy_value is not None
+                     else GeoAvailabilityState.UNAVAILABLE.value)
+            reason = ("LEGACY_OPAQUE_VALUE_NOT_SEMANTICALLY_PROVEN"
+                      if legacy_value is not None else "NO_COORDINATE_SUPPLIED")
+            return self.geo.create_reference(
+                context_revision_id, state, state_reason=reason, connection=connection
+            ).geo_reference_id
+        if isinstance(data, dict):
+            data = dict(data)
+            provenance = data.pop("provenance", None)
+            if isinstance(provenance, dict):
+                provenance = LocationProvenance(**provenance)
+            if provenance is not None:
+                self.geo.register_provenance(provenance, connection)
+            return self.geo.create_reference(
+                context_revision_id, connection=connection, **data
+            ).geo_reference_id
+        raise TypeError("geo_reference_data must be a mapping when supplied.")
 
     def update_display_name(self, point_id, display_name):
         if not display_name or not display_name.strip():

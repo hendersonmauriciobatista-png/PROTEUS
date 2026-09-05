@@ -16,6 +16,8 @@ class IdentifierFactory:
         "evaluation": "eva",
         "aps_applicability": "apa",
         "rule": "rul",
+        "geo_reference": "geo",
+        "provenance": "prv",
     }
 
     def new(self, kind):

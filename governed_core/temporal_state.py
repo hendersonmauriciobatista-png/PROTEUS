@@ -2,12 +2,14 @@ from datetime import datetime, timezone
 from .identifiers import IdentifierFactory
 from .repository import GovernedConflictError, GovernedReferenceError
 from .measurement_service import serialize_utc_instant
+from .geo_models import GeoAvailabilityState, LocationProvenance
+from .geo_service import GeoService
 
 class TemporalStateService:
     ACTIONS = {"CLOSE_TEMPORAL_INTERVAL", "CLOSE_AND_APPEND_SUCCESSOR"}
     TYPES = {"POINT_CONTEXT_REVISION", "APS_TEMPORAL_APPLICABILITY"}
     def __init__(self, repository, identifiers=None, clock=None):
-        self.repository = repository; self.identifiers = identifiers or IdentifierFactory(); self.clock = clock or (lambda: datetime.now(timezone.utc))
+        self.repository = repository; self.identifiers = identifiers or IdentifierFactory(); self.clock = clock or (lambda: datetime.now(timezone.utc)); self.geo = GeoService(repository, self.identifiers, self.clock)
 
     def close(self, record_type, record_id, effective_until, actor_reference, authorization_basis_id, successor=None):
         if record_type not in self.TYPES: raise ValueError("invalid affected record type")
@@ -60,6 +62,29 @@ class TemporalStateService:
                 if c.execute("SELECT set_id,version FROM aps_version WHERE context_revision_id=? ORDER BY version LIMIT 1", (record_id,)).fetchone() not in (basis, None): raise GovernedConflictError("authorization basis incompatible with context lineage")
                 successor_id = self.identifiers.new("context_revision")
                 c.execute("UPDATE point_context_revision SET effective_until=? WHERE context_revision_id=?", (start, record_id))
-                c.execute("INSERT INTO point_context_revision (context_revision_id,point_id,revision,purpose,water_context,point_type,geo_reference,created_at,effective_from) VALUES (?,?,?,?,?,?,?,?,?)", (successor_id, row[0], successor["revision"], successor["purpose"], successor["water_context"], successor["point_type"], successor.get("geo_reference"), serialize_utc_instant(self.clock()), start))
+                legacy_value = successor.get("geo_reference")
+                geo_id = None
+                if c.execute("SELECT 1 FROM sqlite_master WHERE type='table' AND name='geo_reference'").fetchone():
+                    data = successor.get("geo_reference_data")
+                    if isinstance(data, dict):
+                        data = dict(data)
+                        provenance = data.pop("provenance", None)
+                        if isinstance(provenance, dict):
+                            provenance = LocationProvenance(**provenance)
+                        if provenance is not None:
+                            self.geo.register_provenance(provenance, c)
+                        geo_id = self.geo.create_reference(successor_id, connection=c, **data).geo_reference_id
+                    else:
+                        state = (GeoAvailabilityState.LEGACY_UNCLASSIFIED.value
+                                 if legacy_value is not None else GeoAvailabilityState.UNAVAILABLE.value)
+                        reason = ("LEGACY_OPAQUE_VALUE_NOT_SEMANTICALLY_PROVEN"
+                                  if legacy_value is not None else "NO_COORDINATE_SUPPLIED")
+                        geo_id = self.geo.create_reference(successor_id, state, state_reason=reason, connection=c).geo_reference_id
+                columns = "context_revision_id,point_id,revision,purpose,water_context,point_type,geo_reference,created_at,effective_from"
+                values = [successor_id, row[0], successor["revision"], successor["purpose"], successor["water_context"], successor["point_type"], legacy_value, serialize_utc_instant(self.clock()), start]
+                if geo_id is not None:
+                    columns += ",geo_reference_id"; values.append(geo_id)
+                c.execute(f"INSERT INTO point_context_revision ({columns}) VALUES ({','.join('?' for _ in values)})", values)
+                c.execute("UPDATE governed_monitoring_point SET current_context_revision_id=? WHERE point_id=?", (successor_id, row[0]))
             c.execute("INSERT INTO governance_event (event_id,action,actor_reference,registered_at,authorization_basis_id,decision_timestamp,affected_record_type,affected_record_id,previous_effective_until,new_effective_until,successor_record_id) VALUES (?,?,?,?,?,?,?,?,?,?,?)", (self.identifiers.new("event"), "CLOSE_AND_APPEND_SUCCESSOR", actor_reference, serialize_utc_instant(self.clock()), authorization_basis_id, start, record_type, record_id, None, start, successor_id))
         return successor_id

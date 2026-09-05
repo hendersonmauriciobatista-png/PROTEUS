@@ -28,10 +28,10 @@ class SchemaBMigrationTests(unittest.TestCase):
             if int(migration.name[:3]) <= last:
                 shutil.copy2(migration, target / migration.name)
 
-    def test_fresh_001_to_019_has_exact_schema_b_tables(self):
+    def test_fresh_001_to_020_has_exact_schema_b_and_geo_tables(self):
         repo = GovernedCoreRepository(self.root / "fresh.sqlite3").initialize()
         with repo._optional_connection(None) as connection:
-            self.assertEqual(19, connection.execute("PRAGMA user_version").fetchone()[0])
+            self.assertEqual(20, connection.execute("PRAGMA user_version").fetchone()[0])
             self.assertEqual(1, connection.execute("PRAGMA foreign_keys").fetchone()[0])
             tables = {
                 row[0] for row in connection.execute(
@@ -42,6 +42,13 @@ class SchemaBMigrationTests(unittest.TestCase):
                 "governed_evaluation_authority_snapshot",
                 "governed_evaluation_authority_snapshot_basis",
             }, tables)
+            geo_tables = {
+                row[0] for row in connection.execute(
+                    "SELECT name FROM sqlite_master WHERE type='table' "
+                    "AND name IN ('geo_reference','location_provenance')"
+                )
+            }
+            self.assertEqual({"geo_reference", "location_provenance"}, geo_tables)
 
     def test_persisted_017_and_018_upgrade_to_019(self):
         for last in (17, 18):
