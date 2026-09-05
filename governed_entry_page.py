@@ -1,13 +1,14 @@
 from datetime import datetime
 from PyQt5.QtWidgets import QComboBox, QFormLayout, QLabel, QLineEdit, QMessageBox, QPushButton, QVBoxLayout, QWidget
 from governed_core.entry_application import ExplicitGovernedEntryService
-from governed_core.repository import GovernedCoreRepository
 
 
 class GovernedEntryPage(QWidget):
     def __init__(self, repository=None, entry_service=None):
         super().__init__()
-        self.entry_service = entry_service or ExplicitGovernedEntryService(repository or GovernedCoreRepository().initialize())
+        if entry_service is None and repository is None:
+            raise ValueError("GovernedEntryPage exige o repositório governado pertencente ao bootstrap da aplicação.")
+        self.entry_service = entry_service or ExplicitGovernedEntryService(repository)
         layout = QVBoxLayout(self)
         layout.addWidget(QLabel("Entrada Governada — Registro Explícito"))
         layout.addWidget(QLabel("Modo separado do histórico legado; um parâmetro por interação."))

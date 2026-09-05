@@ -9,6 +9,7 @@ from PyQt5.QtWidgets import (
     QHBoxLayout,
     QLabel,
     QMainWindow,
+    QMessageBox,
     QPushButton,
     QStackedWidget,
     QStatusBar,
@@ -25,6 +26,11 @@ from governanca_operacional import GovernancaOperacionalPage
 from monitoramento_hidrico import carregar_projeto_ativo
 from monitoramento_hidrico.application_context import HydricApplicationContext
 from monitoramento_hidrico.dashboard_adapter import DashboardMonitoringAdapter
+from governed_core.desktop_bootstrap import (
+    DesktopGovernedStartupError,
+    initialize_desktop_governed_repository,
+)
+from governed_entry_page import GovernedEntryPage
 from painel_executivo import PainelExecutivoPage
 from previsao_analitica import PrevisaoAnaliticaPage
 from projeto_monitoramento_page import ProjetoMonitoramentoPage
@@ -316,6 +322,7 @@ def make_placeholder_page(icon, title, subtitle, desc):
 class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
+        self.governed_repository = initialize_desktop_governed_repository()
         projeto_ativo = carregar_projeto_ativo()
         self.hydric_application_context = HydricApplicationContext.from_active_profile(
             projeto_ativo.perfil_operacional
@@ -383,6 +390,7 @@ class MainWindow(QMainWindow):
             ("Previsao Analitica", 7),
             ("Governanca Operacional", 8),
             ("Administração", 9),
+            ("Entrada Governada", 10),
         ]
         for index, item in enumerate(nav_items):
             label = item[0]
@@ -426,6 +434,7 @@ class MainWindow(QMainWindow):
         self.stack.addWidget(PrevisaoAnaliticaPage())
         self.stack.addWidget(GovernancaOperacionalPage())
         self.stack.addWidget(AdministracaoPage())
+        self.stack.addWidget(GovernedEntryPage(repository=self.governed_repository))
         content_layout.addWidget(self.stack)
         main_layout.addWidget(content)
 
@@ -468,6 +477,14 @@ if __name__ == "__main__":
     palette.setColor(QPalette.ButtonText, QColor("#cfd8dc"))
     app.setPalette(palette)
 
-    window = MainWindow()
+    try:
+        window = MainWindow()
+    except DesktopGovernedStartupError as error:
+        QMessageBox.critical(
+            None,
+            "Inicialização governada indisponível",
+            f"{error}\nCódigo: {error.reason_code}",
+        )
+        sys.exit(1)
     window.show()
     sys.exit(app.exec_())

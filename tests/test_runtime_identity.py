@@ -63,6 +63,7 @@ class RuntimeIdentityTests(unittest.TestCase):
                 ("Previsao Analitica", 7),
                 ("Governanca Operacional", 8),
                 ("Administração", 9),
+                ("Entrada Governada", 10),
             ],
             ast.literal_eval(nav_assignment.value),
         )
